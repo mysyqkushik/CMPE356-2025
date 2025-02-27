@@ -1,0 +1,46 @@
+.homepage {
+    font-family: Arial, sans-serif;
+    text-align: center;
+  }
+  
+  .homepage-header {
+    background-color: #282c34;
+    padding: 20px;
+    color: white;
+  }
+  
+  nav ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  nav ul li {
+    display: inline;
+    margin: 0 15px;
+  }
+  
+  .search-bar {
+    margin-top: 15px;
+  }
+  
+  .card-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+  }
+  
+  .card {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    margin: 10px;
+    padding: 10px;
+    width: 150px;
+  }
+  
+  .homepage-footer {
+    margin-top: 20px;
+    padding: 10px;
+    background-color: #282c34;
+    color: white;
+  }
+  
