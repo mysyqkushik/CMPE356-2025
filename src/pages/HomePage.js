@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import './HomePage.css';
+import Navbar from './NavBar'; // Import Navbar component
 
 const HomePage = () => {
   const [searchTerm, setSearchTerm] = useState('');
@@ -10,40 +11,32 @@ const HomePage = () => {
 
   return (
     <div className="homepage">
-      {/* Middle Section with brown background spanning the full width */}
+      {/* Navbar */}
+      <Navbar />
+
+      {/* Middle Section with Brown Background Fully Spanning Width */}
       <div className="middle-section">
-        <div className="content-container">
-          {/* Image on the left */}
-          <img src="/bookowl_prev_ui.png" alt="Book Owl" className="owl-image" />
-          
-          {/* Title with each word aligned to the left */}
-          <h1 className="book-title">
-            <span>The</span>
-            <span>Book</span>
-            <span>Owl</span>
-          </h1>
+        {/* Logo & Title Container Positioned Next to Image */}
+        <div className="logo-title">
+          <h1 className="book-title">THE <br /> BOOK <br /> OWL</h1>
         </div>
 
-        {/* Search Bar */}
-        <div className="search-bar">
+        {/* Owl Image */}
+        <img src="/bookowl_prev_ui.png" alt="Owl Logo" className="owl-logo" />
+
+        {/* Search Bar Adjusted to Span 65% of the Width */}
+        <div className="search-container">
+          <button className="database-button">All Databases</button>
           <input 
             type="text" 
-            placeholder="Search for books..." 
+            placeholder="Search By Name, Author, ISBN..." 
             value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)} 
+            onChange={(e) => setSearchTerm(e.target.value)}
+            className="search-bar"
           />
-          <button onClick={handleSearch}>Search</button>
+          <button onClick={handleSearch} className="search-button">Search</button>
         </div>
       </div>
-
-      {/* Footer */}
-      <footer className="homepage-footer">
-        <p>Follow us on 
-          <a href="https://facebook.com"> Facebook</a>, 
-          <a href="https://twitter.com"> Twitter</a>, 
-          <a href="https://instagram.com"> Instagram</a>
-        </p>
-      </footer>
     </div>
   );
 }
