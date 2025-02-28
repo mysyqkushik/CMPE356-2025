@@ -1,7 +1,7 @@
 /* Navbar Container */
 .navbar {
     width: 100%;
-    background-color: #8B5E3B; /* Brown Background */
+    background-color: rgba(177, 107, 57, 0.8);
     display: flex;
     align-items: center;
     justify-content: space-between;

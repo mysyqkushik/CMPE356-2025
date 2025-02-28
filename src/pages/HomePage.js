@@ -16,11 +16,6 @@ const HomePage = () => {
 
       {/* Middle Section with Brown Background Fully Spanning Width */}
       <div className="middle-section">
-        {/* Logo & Title Container Positioned Next to Image */}
-        <div className="logo-title">
-          <h1 className="book-title">THE <br /> BOOK <br /> OWL</h1>
-        </div>
-
         {/* Owl Image */}
         <img src="/bookowl_prev_ui.png" alt="Owl Logo" className="owl-logo" />
 
