@@ -1,62 +1,170 @@
-/* Navbar Container */
 .navbar {
-    width: 100%;
-    background-color: rgba(177, 107, 57, 0.8);
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 15px 30px;
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: 1000;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-  }
-  
-  /* Logo Styling */
-  .logo {
-    font-size: 24px;
-    font-weight: bold;
-    color: #FFF;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-  }
-  
-  /* Navigation Links */
-  .nav-links {
-    list-style: none;
-    display: flex;
-    gap: 25px;
-  }
-  
-  .nav-links li {
-    display: inline-block;
-  }
-  
-  .nav-links a {
-    text-decoration: none;
-    color: #FFF;
-    font-size: 16px;
-    font-weight: bold;
-    transition: color 0.3s ease-in-out;
-  }
-  
-  .nav-links a:hover {
-    color: #FFD700; /* Gold hover effect */
-  }
-  
-  /* Responsive Navbar */
-  @media (max-width: 768px) {
-    .navbar {
-      flex-direction: column;
-      align-items: center;
-      padding: 10px;
-    }
-  
-    .nav-links {
-      flex-direction: column;
-      gap: 15px;
-      margin-top: 10px;
-    }
-  }
-  
+  display: flex;
+  background: rgb(222, 138, 82);
+  width: 100%;
+  padding: 10px 40px;
+  align-items: center;
+  gap: 40px;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+  font-family: "Prompt", sans-serif;
+  font-size: 1.2rem; 
+  font-weight: bold; 
+  justify-content: space-around; 
+}
+
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 20px;
+  /*flex-grow: 1;  /* Allows it to take up space */
+  justify-content: center; /* Centers the nav items */
+  align-items: center;
+  margin: 0 auto;
+}
+
+
+
+.nav-links a {
+  text-decoration: none;
+  font-family: "Prompt", sans-serif;
+  font-size: 1rem;
+  font-weight: bold;
+  color: black;
+  padding: 20px 20px;  
+  transition: 0.3s ease-in-out;
+}
+
+.nav-links, .nav-right {
+  display: flex;
+  align-items: center;
+  gap: 22px; 
+}
+
+
+.nav-right button, .navbar button {
+  font-family: "Prompt", sans-serif; 
+  background-color: rgba(247, 203, 171, 0.8); /* Slightly transparent */
+  padding: 8px 16px;
+  border-radius: 50px; 
+  font-size: 1rem;
+  font-weight: bold;
+  border: none;
+  cursor: pointer;
+  transition: 0.3s ease-in-out;
+}
+
+.nav-right button:hover {
+  background-color: rgba(179, 106, 58, 0.9);
+}
+
+.nav-right select {
+  font-family: "Prompt", sans-serif;
+  font-size: 1rem;
+  font-weight: bold;
+  border: none;
+  background: transparent;
+  padding: 5px;
+  cursor: pointer;
+  transition: 0.3s ease-in-out;
+}
+
+/* Optional: Add a hover effect to the language dropdown */
+.nav-right select:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: 8px;
+}
+
+
+.navbar button:hover {
+  background-color: rgba(179, 106, 58, 0.9);
+}
+
+.nav-links a:hover {
+  background:rgba(247, 203, 171, 0.8); /* Light orange-brown hover effect */
+  border-radius: 8px; /* Optional: smooth edges */
+}
+
+
+.header {
+  display: flex;
+  align-items: center;
+  gap: 10px; 
+}
+
+
+.content-container {
+  display: flex;
+  align-items: center;
+  gap: 10px; 
+}
+
+
+.text {
+  font-family: 'Prompt', sans-serif;
+  text-transform: uppercase;
+  font-size: 14px;
+  font-weight: bold;
+  line-height: 1;
+}
+
+.book-title {
+  color: #FCE8C8; 
+  font-size: 2rem;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 5px; 
+  font-weight: 900;
+  text-transform: uppercase;
+  margin-left: -60px;
+  margin-top: 80px;
+  font-family: "Prompt", sans-serif;
+  letter-spacing: 2px; 
+  line-height: 1; 
+  text-shadow: 3px 3px 0px #613B1F; 
+}
+
+.owl-image {
+  width: 200px; 
+  height: auto;
+  margin-left: -30px;
+  margin-top: 50px;
+}
+
+.dropdown {
+  position: relative;
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: white;
+  list-style: none;
+  padding: 5px 0;
+  display: none;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  min-width: 200px;
+}
+
+.dropdown-menu li {
+  padding: 10px 20px;
+}
+
+.dropdown-menu li a {
+  text-decoration: none;
+  font-size: 1rem;
+  color: black;
+  display: block;
+}
+
+.dropdown-menu li a:hover {
+  background: rgba(222, 138, 82, 0.3);
+}
+
+.dropdown:hover .dropdown-menu {
+  display: block;
+}

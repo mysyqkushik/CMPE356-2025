@@ -3,18 +3,69 @@ import './NavBar.css';
 
 const Navbar = () => {
   return (
-    <nav className="navbar">
-      <h1 className="logo">THE BOOK OWL</h1>
-      <ul className="nav-links">
-        {/* Replace # with valid links if needed, or use buttons if not navigational */}
-        <li><a href="/about">About Us</a></li> 
-        <li><a href="/research">Research</a></li> 
-        <li><a href="/services">Services</a></li>
-        <li><button className="nav-button">Log In</button></li>
-        <li><button className="nav-button">Sign Up</button></li>
-        <li><a href="/faq">FAQ</a></li> 
-      </ul>
-    </nav>
+ <nav class="navbar">
+ 
+  <div class="content-container">
+    <img src="bookowl_prev_ui.png" className="owl-image" alt="Owl Logo"/>
+    <span class="book-title">The<br></br>Book<br></br>Owl</span>
+  </div>
+
+
+  <ul class="nav-links">
+  <li class="dropdown">
+  <a href="#">Books&More</a>
+  <ul class="dropdown-menu">
+    <li><a href="#">Fiction</a></li>
+    <li><a href="#">Non-Fiction</a></li>
+    <li><a href="#">New Arrivals</a></li>
+  </ul>
+</li>
+
+<li class="dropdown">
+  <a href="#">Events</a>
+  <ul class="dropdown-menu">
+    <li><a href="#">Workshops</a></li>
+    <li><a href="#">Author Talks</a></li>
+    <li><a href="#">Book Clubs</a></li>
+  </ul>
+</li>
+
+<li class="dropdown">
+  <a href="#">Learning&Tech</a>
+  <ul class="dropdown-menu">
+    <li><a href="#">Online Courses</a></li>
+    <li><a href="#">Tech Resources</a></li>
+    <li><a href="#">Tutorials</a></li>
+  </ul>
+</li>
+
+<li class="dropdown">
+  <a href="#">Services</a>
+  <ul class="dropdown-menu">
+    <li><a href="#">Library Cards</a></li>
+    <li><a href="#">Research Help</a></li>
+    <li><a href="#">E-Books</a></li>
+  </ul>
+</li>
+
+<li class="dropdown">
+  <a href="#">AboutUs</a>
+  <ul class="dropdown-menu">
+    <li><a href="#">Our Mission</a></li>
+    <li><a href="#">Contact</a></li>
+    <li><a href="#">Team</a></li>
+  </ul>
+</li>
+
+  </ul>
+  <div class="nav-right">
+    <button class="account-btn">MyAccount</button>
+    <select class="language-dropdown">
+      <option>English</option>
+      <option>Türkçe</option>
+    </select>
+  </div>
+</nav>
   );
 }
 

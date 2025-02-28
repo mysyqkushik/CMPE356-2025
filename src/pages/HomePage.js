@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './HomePage.css';
-import Navbar from './NavBar'; // Import Navbar component
+import Navbar from './NavBar';
 
 const HomePage = () => {
   const [searchTerm, setSearchTerm] = useState('');
@@ -14,23 +14,24 @@ const HomePage = () => {
       {/* Navbar */}
       <Navbar />
 
-      {/* Middle Section with Brown Background Fully Spanning Width */}
-      <div className="middle-section">
-        {/* Owl Image */}
-        <img src="/bookowl_prev_ui.png" alt="Owl Logo" className="owl-logo" />
-
-        {/* Search Bar Adjusted to Span 65% of the Width */}
+      {/* Hero Section */}
+      <div className="hero-section">
         <div className="search-container">
-          <button className="database-button">All Databases</button>
+          <button className="dropdown-button">Collections </button>
           <input 
             type="text" 
-            placeholder="Search By Name, Author, ISBN..." 
+            placeholder="Search Our Library Catalog" 
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
             className="search-bar"
           />
-          <button onClick={handleSearch} className="search-button">Search</button>
+          <button onClick={handleSearch} className="search-button">🔍</button>
         </div>
+      </div>
+
+      {/* Need Help? Live Chat */}
+      <div className="chat-button">
+        <button>Need help? Chat live now</button>
       </div>
     </div>
   );
