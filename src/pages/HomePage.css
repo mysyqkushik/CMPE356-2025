@@ -1,46 +1,102 @@
-.homepage {
-    font-family: Arial, sans-serif;
-    text-align: center;
-  }
-  
-  .homepage-header {
-    background-color: #282c34;
-    padding: 20px;
-    color: white;
-  }
-  
-  nav ul {
-    list-style-type: none;
+/* General body styling */
+body {
+    font-family: "Prompt", sans-serif;
+    margin: 0;
     padding: 0;
+    background-color: white; /* White background for the body */
+    display: flex;
+    justify-content: center; /* Center everything horizontally */
+    align-items: center; /* Center everything vertically */
+    height: 100vh; /* Take full height of the viewport */
   }
   
-  nav ul li {
-    display: inline;
-    margin: 0 15px;
+  /* Homepage container */
+  .homepage {
+    text-align: center;
+    width: 100%; /* Make the homepage container take full width */
   }
   
+  /* Middle section with brown background */
+  .middle-section {
+    background-color: rgba(183, 114, 66, 0.8); /* Book brown with transparency */
+    padding: 40px 20px; /* Increased padding to give space */
+    border-radius: 10px;
+    display: flex;
+    justify-content: space-between; /* Space between image/title and search bar */
+    align-items: center; /* Center all items vertically */
+    width: 100%; /* Full width of the page */
+  }
+  
+  /* Content container inside the middle section */
+  .content-container {
+    display: flex;
+    align-items: center;
+    gap: 30px; /* Space between image and title */
+    flex-grow: 1; /* Allow the content container to expand */
+  }
+  
+  /* Owl image styling */
+  .owl-image {
+    width: 300px; /* Increase image width */
+    height: auto;
+  }
+  
+  /* Title styling (The Book Owl) */
+  .book-title {
+    color: white;
+    font-size: 4rem; /* Larger font size */
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* Align text to the left */
+    gap: 10px; /* Spacing between the words */
+  }
+  
+  .book-title span {
+    font-size: 3.5rem; /* Make each word large */
+  }
+  
+  /* Search bar styling */
   .search-bar {
-    margin-top: 15px;
-  }
-  
-  .card-container {
     display: flex;
     justify-content: center;
-    margin-top: 20px;
+    align-items: center;
+    gap: 10px;
+    flex-grow: 2; /* Allow search bar to take up more space */
   }
   
-  .card {
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    margin: 10px;
-    padding: 10px;
-    width: 150px;
+  /* Input field of the search bar */
+  .search-bar input {
+    width: 65%; /* Make the search bar 65% of the parent width */
+    max-width: 900px; /* Limit max width */
+    padding: 20px;
+    font-size: 20px;
+    border: 2px solid #d68c57; /* Book brown */
+    border-radius: 50px;
+    outline: none;
+    margin-right: 10px;
   }
   
+  /* Button in the search bar */
+  .search-bar button {
+    padding: 20px 40px;
+    font-size: 20px;
+    background-color: lightgreen;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+  
+  .search-bar button:hover {
+    background-color: lightcoral; /* Light red */
+  }
+  
+  /* Footer */
   .homepage-footer {
-    margin-top: 20px;
+    margin-top: 50px;
     padding: 10px;
-    background-color: #282c34;
-    color: white;
+    color: rgb(11, 4, 4);
+    border-radius: 10px;
   }
   
