@@ -33,6 +33,7 @@
   color: black;
   padding: 20px 20px;  
   transition: 0.3s ease-in-out;
+  align-items: center;
 }
 
 .nav-links, .nav-right {

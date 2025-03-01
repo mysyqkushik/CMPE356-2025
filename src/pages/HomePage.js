@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './HomePage.css';
-import Navbar from './NavBar';
+import NavBar from './NavBar';
 
 const HomePage = () => {
   const [searchTerm, setSearchTerm] = useState('');
@@ -12,7 +12,7 @@ const HomePage = () => {
   return (
     <div className="homepage">
       {/* Navbar */}
-      <Navbar />
+       <NavBar />
 
       {/* Hero Section */}
       <div className="hero-section">

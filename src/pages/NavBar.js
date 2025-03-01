@@ -1,7 +1,7 @@
 import React from 'react';
 import './NavBar.css';
 
-const Navbar = () => {
+const NavBar = () => {
   return (
  <nav class="navbar">
  
@@ -31,11 +31,11 @@ const Navbar = () => {
 </li>
 
 <li class="dropdown">
-  <a href="#">Learning&Tech</a>
+  <a href="#">Learning</a>
   <ul class="dropdown-menu">
-    <li><a href="#">Online Courses</a></li>
-    <li><a href="#">Tech Resources</a></li>
-    <li><a href="#">Tutorials</a></li>
+    <li><a href="#">Library Cards</a></li>
+    <li><a href="#">Research Help</a></li>
+    <li><a href="#">E-Books</a></li>
   </ul>
 </li>
 
@@ -69,4 +69,4 @@ const Navbar = () => {
   );
 }
 
-export default Navbar;
+export default NavBar;
