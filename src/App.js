@@ -7,9 +7,7 @@ const App = () => {
         <div>
             <HomePage />
 
-            <footer style={{ background: '#282c34', padding: '10px', color: 'white', textAlign: 'center' }}>
-                <p>© 2025 The Book Owl. Library Management System</p>
-            </footer>
+            
         </div>
     );
 };

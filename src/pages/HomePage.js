@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import './HomePage.css';
 import NavBar from './NavBar';
+import Footer from './Footer';
 
 const HomePage = () => {
   const [searchTerm, setSearchTerm] = useState('');
@@ -33,6 +34,10 @@ const HomePage = () => {
       <div className="chat-button">
         <button>Need help? Chat live now</button>
       </div>
+
+      {/* footer */}
+      <Footer />
+
     </div>
   );
 }
