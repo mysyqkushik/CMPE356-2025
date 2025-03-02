@@ -1,7 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import './NavBar.css';
 
 const NavBar = () => {
+  const [dropdownOpen, setDropdownOpen] = useState(false);
+
   return (
  <nav class="navbar">
  
@@ -48,24 +51,35 @@ const NavBar = () => {
   </ul>
 </li>
 
-<li class="dropdown">
+  <li class="dropdown">
   <a href="#">AboutUs</a>
   <ul class="dropdown-menu">
     <li><a href="#">Our Mission</a></li>
     <li><a href="#">Contact</a></li>
     <li><a href="#">Team</a></li>
   </ul>
-</li>
+  </li>
+</ul>
 
-  </ul>
-  <div class="nav-right">
-    <button class="account-btn">MyAccount</button>
-    <select class="language-dropdown">
-      <option>English</option>
-      <option>Türkçe</option>
-    </select>
-  </div>
-</nav>
+<div className="nav-right">
+        <div className="account-dropdown">
+          <button className="account-btn" onClick={() => setDropdownOpen(!dropdownOpen)}>
+            MyAccount 
+          </button>
+          {dropdownOpen && (
+            <ul className="account-dropdown-menu">
+              <li><Link to="/LoginSignUp">Login</Link></li>
+              <li><Link to="/LoginSignUp">SignUp</Link></li>
+            </ul>
+          )}
+        </div>
+        
+        <select className="language-dropdown">
+          <option>English</option>
+          <option>Türkçe</option>
+        </select>
+      </div>
+    </nav>
   );
 }
 

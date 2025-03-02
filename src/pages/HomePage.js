@@ -4,21 +4,21 @@ import NavBar from './NavBar';
 import Footer from './Footer';
 
 const HomePage = () => {
-  const [searchTerm, setSearchTerm] = useState('');
+  const [searchTerm, setSearchTerm] = useState("Some value"); 
 
   const handleSearch = () => {
-    console.log('Searching for:', searchTerm);
+    console.log('Searching for', searchTerm);
   };
 
   return (
     <div className="homepage">
       {/* Navbar */}
-       <NavBar />
+      <NavBar />
 
       {/* Hero Section */}
       <div className="hero-section">
         <div className="search-container">
-          <button className="dropdown-button">Collections </button>
+          <button className="dropdown-button">Collections</button>
           <input 
             type="text" 
             placeholder="Search Our Library Catalog" 
@@ -35,9 +35,8 @@ const HomePage = () => {
         <button>Need help? Chat live now</button>
       </div>
 
-      {/* footer */}
+      {/* Footer */}
       <Footer />
-
     </div>
   );
 }
