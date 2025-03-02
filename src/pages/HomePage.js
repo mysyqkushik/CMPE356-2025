@@ -4,7 +4,7 @@ import NavBar from './NavBar';
 import Footer from './Footer';
 
 const HomePage = () => {
-  const [searchTerm, setSearchTerm] = useState("Some value"); 
+  const [searchTerm, setSearchTerm] = useState(''); 
 
   const handleSearch = () => {
     console.log('Searching for', searchTerm);
