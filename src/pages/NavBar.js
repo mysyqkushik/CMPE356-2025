@@ -7,12 +7,11 @@ const NavBar = () => {
 
   return (
  <nav class="navbar">
- 
-  <div class="content-container">
+
+ <div class="content-container">
     <img src="bookowl_prev_ui.png" className="owl-image" alt="Owl Logo"/>
     <span class="book-title">The<br></br>Book<br></br>Owl</span>
   </div>
-
 
   <ul class="nav-links">
   <li class="dropdown">
@@ -68,9 +67,9 @@ const NavBar = () => {
           </button>
           {dropdownOpen && (
             <ul className="account-dropdown-menu">
-              <li><Link to="/LoginSignUp">Admin Login</Link></li>
-              <li><Link to="/LoginSignUp">Manager Login</Link></li>
-              <li><Link to="/LoginSignUp">Customer Login</Link></li>
+              <li><Link to="/AdminLogin">Admin Login</Link></li>
+              <li><Link to="/ManagerLogin">Manager Login</Link></li>
+              <li><Link to="/CustomerLogin">Customer Login</Link></li>
               <li><Link to="/LoginSignUp">SignUp</Link></li>
             </ul>
           )}
