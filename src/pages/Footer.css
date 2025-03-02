@@ -1,9 +1,110 @@
 .footer {
-    background: #282c34;
-    padding: 10px;
-    color: white;
-    text-align: center;
-    position: fixed;
+    background-color: #513007; /* Change the color as you wish */
+    color: #fff;
+    padding: 1px;
     width: 100%;
-    bottom: 0;
-}
+  }
+  
+  /* Top section (3 columns) */
+  .footer-top {
+    display: flex;
+    flex-wrap: wrap;          /* Allows columns to wrap on smaller screens */
+    justify-content: space-around;
+  }
+  
+  .footer-col {
+    flex: 1 1 200px;          /* Minimum width of 200px, grows if there's space */
+    margin: 10px;
+  }
+  
+  .footer-col h3 {
+    color: #fff;        
+    font-size: 1.5rem;    
+    margin-bottom: 10px;
+    z-index: 1;           
+  }
+  
+  .footer-col p,
+  .footer-col ul {
+    margin: 1px;
+    line-height: 1.2;
+  }
+  
+  .footer-col ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .footer-col ul li {
+    margin-bottom: 5px;
+  }
+  
+  /* Links inside footer columns */
+  .footer-col a {
+    color: #fff;
+    text-decoration: none;
+  }
+  
+  .footer-col a:hover {
+    text-decoration: underline;
+  }
+  
+  /* Middle section (social media icons) */
+  .footer-middle {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .footer-middle a {
+    display: inline-block;
+    margin: 0 10px;
+    color: #fff;
+    font-size: 1.4rem;
+    transition: color 0.3s ease;
+  }
+  
+  .footer-middle a:hover {
+    color: #ccc;
+  }
+  
+  /* Bottom section (copyright, policies, etc.) */
+  .footer-bottom {
+    border-top: 1px solid #633e15;
+    text-align: center;
+    padding-top: 10px;
+  }
+  
+  .footer-bottom p {
+    margin: 5px 0;
+  }
+  
+  .footer-bottom a {
+    color: #fff;
+    text-decoration: none;
+    margin: 0 5px;
+    font-weight: bold;
+  }
+  
+  .footer-bottom a:hover {
+    text-decoration: underline;
+  }
+  
+  /* Optional: special style for "View/Holiday Closings" text */
+  .view-closings {
+    font-style: italic;
+    margin-top: 8px;
+  }
+  
+  /* Responsive design for smaller screens */
+  @media (max-width: 768px) {
+    .footer-top {
+      flex-direction: column;
+      align-items: center;
+    }
+    
+    .footer-col {
+      text-align: center;
+      margin: 15px 0;
+    }
+  }
+  
