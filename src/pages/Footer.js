@@ -12,11 +12,11 @@ const Footer = () => {
         {/* Column 1: Library Information (now The Book Owl) */}
         <div className="footer-col">
           <h3>The Book Owl</h3>
-          <p>15624 Central Avenue<br />Oak Forest, IL 60452</p>
+          <p>Kadir Has University<br />Istanbul Turkiye</p>
           <p>Tel: 708.687.3700</p>
           <p>
-            <a href="mailto:acorn@acornlibrary.org">
-              acorn@acornlibrary.org
+            <a href="mailto:thebookowl@thebookowllibrary.org">
+              thebookowl@thebookowllibrary.org
             </a>
           </p>
         </div>
@@ -61,7 +61,7 @@ const Footer = () => {
 
       {/* Bottom section: Copyright & policy links */}
       <div className="footer-bottom">
-        <p>© 2025 The Book Owl. All Rights Reserved. Website by <a href="#">AcornWeb</a></p>
+        <p>© 2025 The Book Owl. All Rights Reserved.</p>
         <p>
           <a href="#">Privacy Policy</a> | <a href="#">Terms of Use</a> | <a href="#">Cookie Policy</a>
         </p>

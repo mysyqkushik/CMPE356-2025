@@ -4,6 +4,7 @@ import HomePage from './pages/HomePage';
 import CustomerLogin from './pages/CustomerLogin';
 import AdminLogin from './pages/AdminLogin';
 import ManagerLogin from './pages/ManagerLogin';
+import SignUp from './pages/SignUp';
 import './App.css';
 
 const App = () => {
@@ -15,6 +16,7 @@ const App = () => {
         <Route path="/CustomerLogin" element={<CustomerLogin />} />
         <Route path="/AdminLogin" element={<AdminLogin />} />
         <Route path="/ManagerLogin" element={<ManagerLogin />} />
+        <Route path="/SignUp" element={<SignUp />} />
       </Routes>
     </>
   );

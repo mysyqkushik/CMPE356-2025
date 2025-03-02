@@ -5,6 +5,7 @@ import App from './App';
 import CustomerLogin from './pages/CustomerLogin';
 import AdminLogin from './pages/AdminLogin';
 import ManagerLogin from './pages/ManagerLogin';
+import SignUp from './pages/SignUp';
 import './index.css';
 
 const router = createBrowserRouter([
@@ -23,6 +24,10 @@ const router = createBrowserRouter([
   {
     path: "/ManagerLogin",
     element: <ManagerLogin />,
+  },
+  {
+    path: "/SignUp",
+    element: <SignUp />,
   },
 ]);
 

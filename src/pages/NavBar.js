@@ -70,7 +70,7 @@ const NavBar = () => {
               <li><Link to="/AdminLogin">Admin Login</Link></li>
               <li><Link to="/ManagerLogin">Manager Login</Link></li>
               <li><Link to="/CustomerLogin">Customer Login</Link></li>
-              <li><Link to="/LoginSignUp">SignUp</Link></li>
+              <li><Link to="/SignUp">SignUp</Link></li>
             </ul>
           )}
         </div>
