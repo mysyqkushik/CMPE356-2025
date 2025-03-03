@@ -9,8 +9,9 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background-color: #ffffff;
   min-height: 100vh;
+  margin: 0;
+  padding: 0;
 }
 
 /* Hero Section */
@@ -36,34 +37,49 @@ html, body {
   overflow-x: hidden; /* Prevent horizontal scrolling */
 }
 
-
 .search-container {
   display: flex;
   align-items: center;
   background: white;
-  padding: 7px;
-  border-radius: 30px;
+  padding: 3px; /* Reduced padding to make the container smaller */
+  border-radius: 30px; /* Keeps the round corners */
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
   width: 80%;
 }
 
 .search-bar {
   flex-grow: 1;
-  padding: 15px;
-  font-size: 18px;
+  padding: 8px 10px; /* Reduced padding to make the search input smaller */
+  font-size: 14px; /* Smaller font size */
   border: none;
-  font-size: 1rem;
   outline: none;
+  border-radius: 20px; /* Rounder search input */
+
 }
 
 .search-button {
   background: #eeb481;
   border: none;
   color: white;
-  padding: 15px;
-  font-size: 1rem;
-  border-radius: 50%;
+  padding: 10px; /* Reduced padding for the button */
+  font-size: 14px; /* Slightly smaller font size */
+  border-radius: 50%; /* Keeps the button round */
   cursor: pointer;
+  margin-left: 8px; /* Space between search input and button */
+}
+
+.search-container .search-bar,
+.search-container .search-button {
+  display: flex;
+  align-items: center; 
+  margin: 10px; /* Vertically align the content in both */
+}
+
+/* If you have icons inside the search bar or button, align them */
+.search-container .search-bar i,
+.search-container .search-button i {
+  vertical-align: middle; /* Aligns the icons vertically within the container */
+  font-size: 1.2rem; /* Adjust icon size if needed */
 }
 
 .dropdown-button {
@@ -74,7 +90,66 @@ html, body {
   font-size: 1rem;
   border-radius: 20px;
   cursor: pointer;
+  margin:10px;
 }
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: white;
+  min-width: 150px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 25px;
+  padding: 10px;
+  z-index: 1;
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 10px 12px;
+  display: block;
+  text-decoration: none;
+}
+
+.dropdown-content a:hover {
+  background-color: #fedecb;
+  border-radius: 25px;
+}
+
+/* Show dropdown on hover */
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 .library-cards-container {
   display: flex;
@@ -82,10 +157,11 @@ html, body {
   gap: 100px;
   flex-wrap: wrap;
   background-size: cover;
-  background: url('/public/bookshelfbg.jpg');
+  
   background-position: center;
 background-size: cover;
 background-repeat: no-repeat;
+  
 } 
 
 .library-card {
@@ -113,8 +189,8 @@ background-repeat: no-repeat;
 .card-icon {
   width: 80px; /* Adjust size to make it bigger */
   height: 80px;
-  margin-bottom: 15px; /* Adjust margin if needed */
-  opacity: 0.8; /* Adjust opacity for better visibility */
+  margin-bottom: 15px;
+  opacity: 0.8; 
 }
 
 

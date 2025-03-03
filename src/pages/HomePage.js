@@ -12,25 +12,37 @@ const HomePage = () => {
     console.log('Searching for', searchTerm);
   };
 
+  const handleDropdownClick = () => {
+    // Logic to toggle dropdown visibility (e.g., setting a state for showing the dropdown)
+    console.log("Dropdown clicked");
+  };
+
   return (
     <div className="homepage">
       {/* Navbar */}
       <NavBar />
 
-      {/* Hero Section */}
-      <div className="hero-section">
-        <div className="search-container">
-          <button className="dropdown-button">Collections</button>
-          <input 
-            type="text" 
-            placeholder="Search Our Library Catalog" 
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-            className="search-bar"
-          />
-          <button onClick={handleSearch} className="search-button">🔍</button>
-        </div>
+      {/* Hero Section */} 
+<div className="hero-section">
+  <div className="search-container">
+    <div className="dropdown">
+      <button className="dropdown-button">Collections </button>
+      <div className="dropdown-content">
+        <a href="#">All Books</a>
+        <a href="#">Academic Papers</a>
       </div>
+    </div>
+    <input 
+      type="text" 
+      placeholder="Search Our Library Catalog" 
+      value={searchTerm}
+      onChange={(e) => setSearchTerm(e.target.value)}
+      className="search-bar"
+    />
+    <button onClick={handleSearch} className="search-button">🔍</button>
+  </div>
+</div>
+
 
       {/* Book Carousel */}
       <div className="carousel-container">
