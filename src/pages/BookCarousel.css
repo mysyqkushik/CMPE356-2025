@@ -1,0 +1,51 @@
+
+body {
+    background-image: url('/public/bookshelfbg.jpg') !important;
+    background-size: cover; 
+    background-position: center; 
+    background-attachment: fixed; 
+    margin: 0;
+    padding: 0;
+  }
+
+  .carousel-container {
+    
+    width: 100%; /* Full width */
+    height: 300px;
+    background-color: white; 
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
+    margin-top: 20px; 
+    border-radius: 10px; 
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1); /* Optional, adds shadow around the carousel */
+  }
+  
+  /* Carousel */
+  .carousel {
+    width: 60%;
+    max-width: 600px;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1); /* Optional, adds shadow around the carousel */
+  }
+  
+  /* Image inside the carousel */
+  .carousel-image {
+    max-width: 100px; /* Adjust the size of the logo image */
+    max-height: 100px; 
+    object-fit: contain; 
+    transition: opacity 0.5s ease-in-out; 
+  }
+  
+  /* Optional: For carousel item styling */
+  .carousel-item {
+    display: inline-block;
+    margin: 0 10px;
+  }
+  

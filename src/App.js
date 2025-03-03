@@ -8,6 +8,8 @@ import SignUp from './pages/SignUp';
 import ManageBooks from './pages/ManageBooks';
 import IssueBook from './pages/IssueBook';
 import ViewIssuedBooks from './pages/ViewIssuedBooks';
+import BorrowBook from './pages/BorrowBook';
+import BookCarousel from './pages/BookCarousel';
 import './App.css';
 
 const App = () => {
@@ -23,6 +25,8 @@ const App = () => {
         <Route path="/ManageBooks" element={<ManageBooks />} />
         <Route path="/IssueBook" element={<IssueBook />} />
         <Route path="/ViewIssuedBooks" element={<ViewIssuedBooks />} />
+        <Route path="/BorrowBook" element={<BorrowBook/>} />
+        <Route path="/BookCarousel" element={<BookCarousel/>} />
       </Routes>
     </>
   );

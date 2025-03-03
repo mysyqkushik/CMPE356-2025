@@ -10,6 +10,8 @@ import SignUp from './pages/SignUp';
 import ManageBooks from './pages/ManageBooks';
 import IssueBook from './pages/IssueBook';
 import ViewIssuedBooks from './pages/ViewIssuedBooks';
+import BorrowBook from './pages/BorrowBook';
+import BookCarousel from './pages/BookCarousel';
 import './index.css';
 
 const router = createBrowserRouter([
@@ -48,6 +50,14 @@ const router = createBrowserRouter([
   {
     path: "/ViewIssuedBooks",
     element: <ViewIssuedBooks />,
+  },
+  {
+    path: "/BorrowBook",
+    element: <BorrowBook />,
+  },
+  {
+    path: "/BookCarousel",
+    element: <BookCarousel />,
   },
 ]);
 

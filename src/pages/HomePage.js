@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import './HomePage.css';
 import NavBar from './NavBar';
 import Footer from './Footer';
+import BookCarousel from './BookCarousel';
 
 const HomePage = () => {
   const [searchTerm, setSearchTerm] = useState(''); 
@@ -31,6 +32,12 @@ const HomePage = () => {
         </div>
       </div>
 
+      {/* Book Carousel */}
+      <div className="carousel-container">
+        <BookCarousel /> {/* Adding the carousel here */}
+      </div>
+
+
       {/* Library Management Cards */}
       <div className="library-cards-container">
       <li>
@@ -44,19 +51,15 @@ const HomePage = () => {
 
      <div className="library-card">
     <img src="/comedy (1).png" alt="Borrow Icon" className="card-icon" />
-    Borrow Book
+    Explore Genres
     </div>
   <div className="library-card">
     <img src="/comedy (1).png" alt="Return Icon" className="card-icon" />
-    Return Book
+    New Arrivals
   </div>
   <div className="library-card">
     <img src="/comedy (1).png" alt="Issue Icon" className="card-icon" />
-    Issue Book
-  </div>
-  <div className="library-card">
-    <img src="/comedy (1).png" alt="View Icon" className="card-icon" />
-    View Issued Books
+    View our Catalog
   </div>
   
 </div>

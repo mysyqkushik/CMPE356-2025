@@ -1,4 +1,6 @@
 import React from "react";
+import { Link } from "react-router-dom";
+
 import './AdminLogin.css';
 
 
@@ -25,7 +27,10 @@ const AdminLogin = () => {
       </div>
       <div className="forgot-password">Forgot Password?<span> Click Here</span></div>
       <div className="submit-container">
-      <div className="submit">Login</div>
+      <Link to="/ManageBooks">
+      <button className="submit">Login</button>
+      </Link>
+
       </div>
     </div>
   );

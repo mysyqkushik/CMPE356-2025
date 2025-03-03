@@ -23,7 +23,7 @@
     font-weight: bold;
     color: #ffe4cb;
     text-decoration: none;
-    text-shadow: 2px 2px 3px black; 
+    text-shadow: 2px 2px 3px black;
 }
 
 .nav-links1 ul {
@@ -41,7 +41,7 @@
 .nav-links1 ul li a {
     text-decoration: none;
     color: #ffffff;
-    text-shadow: 1px 1px 2px black; 
+    text-shadow: 1px 1px 2px black;
     font-weight: bold;
     transition: color 0.3s ease, text-shadow 0.3s ease;
 }

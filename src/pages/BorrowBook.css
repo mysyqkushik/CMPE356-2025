@@ -1,0 +1,94 @@
+/* BorrowBook.css */
+.borrow-book-container2 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    padding: 20px;
+    background: url('/public/bookshelfbg.jpg') center/cover no-repeat;
+}
+
+.card2 {
+    background-color: white;
+    border-radius: 16px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 600px;
+    padding: 30px;
+    box-sizing: border-box;
+}
+
+/* Card title styling */
+.card-title2 {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: #7a4422; 
+    text-align: center;
+}
+
+/* Form label styling */
+label2 {
+    font-size: 16px;
+    font-weight: bold;
+    color: #763f12; 
+}
+
+/* Form input & select styling */
+.select2, .form-control2 {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #f0b073;
+    border-radius: 8px;
+    font-size: 16px;
+    margin-top: 5px;
+    background-color: #fff;
+    color: #333;
+}
+
+/* Button styling */
+button2 {
+    background-color: #da8311;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    margin-top: 20px;
+    font-size: 16px;
+    transition: background 0.3s ease;
+    width: 100%;
+}
+
+button2:hover {
+    background-color: #895520;
+}
+
+/* Form group spacing */
+.form-group2 {
+    margin-bottom: 20px;
+}
+
+/* Borrow date field alignment */
+.borrow-date2 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.borrow-date2 input {
+    width: 48%;
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+    .borrow-date2 {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .borrow-date2 input {
+        width: 100%;
+        margin-top: 5px;
+    }
+}
