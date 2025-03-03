@@ -40,11 +40,12 @@ html, body {
 .search-container {
   display: flex;
   align-items: center;
-  background: white;
+  background: rgb(255, 255, 255);
   padding: 3px; /* Reduced padding to make the container smaller */
   border-radius: 30px; /* Keeps the round corners */
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
   width: 80%;
+  margin-top: 80px;
 }
 
 .search-bar {

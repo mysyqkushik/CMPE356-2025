@@ -5,10 +5,10 @@ const BookCarousel = () => {
     const [currentIndex, setCurrentIndex] = useState(0);
     const books = [
         'comedy (1).png',
-        'bookowl_prev_ui.png',
+        'logo512.png',
         'logo192.png',
         'comedy (1).png',
-        'bookowl_prev_ui.png',
+        'logo512.png',
     ];
 
     useEffect(() => {

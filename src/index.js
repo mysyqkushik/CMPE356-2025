@@ -12,6 +12,7 @@ import IssueBook from './pages/IssueBook';
 import ViewIssuedBooks from './pages/ViewIssuedBooks';
 import BorrowBook from './pages/BorrowBook';
 import BookCarousel from './pages/BookCarousel';
+import ConveyerBelt from './pages/ConveyerBelt';
 import './index.css';
 
 const router = createBrowserRouter([
@@ -58,6 +59,10 @@ const router = createBrowserRouter([
   {
     path: "/BookCarousel",
     element: <BookCarousel />,
+  },
+  {
+    path: "/ConveyerBelt",
+    element: <ConveyerBelt />,
   },
 ]);
 

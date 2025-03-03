@@ -10,7 +10,9 @@ const NavBar = () => {
 
  <div class="content-container">
     <img src="bookowl_prev_ui.png" className="owl-image" alt="Owl Logo"/>
-    <span class="book-title">The<br></br>Book<br></br>Owl</span>
+    <Link to="/HomePage" className="book-title">
+    <span className="book-title">The<br />Book<br />Owl</span>
+</Link>
   </div>
 
   <ul class="nav-links">

@@ -10,6 +10,7 @@ import IssueBook from './pages/IssueBook';
 import ViewIssuedBooks from './pages/ViewIssuedBooks';
 import BorrowBook from './pages/BorrowBook';
 import BookCarousel from './pages/BookCarousel';
+import ConveyerBelt from './pages/ConveyerBelt';
 import './App.css';
 
 const App = () => {
@@ -26,6 +27,7 @@ const App = () => {
         <Route path="/ViewIssuedBooks" element={<ViewIssuedBooks />} />
         <Route path="/BorrowBook" element={<BorrowBook/>} />
         <Route path="/BookCarousel" element={<BookCarousel/>} />
+        <Route path="/ConveyerBelt" element={<ConveyerBelt/>} />
       </Routes>
     </>
   );

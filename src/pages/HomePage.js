@@ -4,6 +4,7 @@ import './HomePage.css';
 import NavBar from './NavBar';
 import Footer from './Footer';
 import BookCarousel from './BookCarousel';
+import ConveyerBelt from './ConveyerBelt';
 
 const HomePage = () => {
   const [searchTerm, setSearchTerm] = useState(''); 
@@ -49,6 +50,10 @@ const HomePage = () => {
         <BookCarousel /> {/* Adding the carousel here */}
       </div>
 
+
+      <div className="belt-container">
+        <ConveyerBelt /> {/* Adding the carousel here */}
+      </div>
 
       {/* Library Management Cards */}
       <div className="library-cards-container">

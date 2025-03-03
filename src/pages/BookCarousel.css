@@ -10,9 +10,9 @@ body {
 
   .carousel-container {
     
-    width: 100%; /* Full width */
+    
     height: 300px;
-    background-color: white; 
+    background-color: rgb(255, 255, 255); 
     display: flex;
     justify-content: center; 
     align-items: center; 
