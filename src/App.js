@@ -15,7 +15,6 @@ import './App.css';
 const App = () => {
   return (
     <>
-      <HomePage />
       <Routes>
         <Route path="/" element={<HomePage />} /> 
         <Route path="/CustomerLogin" element={<CustomerLogin />} />
