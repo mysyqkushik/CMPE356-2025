@@ -6,6 +6,9 @@ import CustomerLogin from './pages/CustomerLogin';
 import AdminLogin from './pages/AdminLogin';
 import ManagerLogin from './pages/ManagerLogin';
 import SignUp from './pages/SignUp';
+import ManageBooks from './pages/ManageBooks';
+import IssueBook from './pages/IssueBook';
+import ViewIssuedBooks from './pages/ViewIssuedBooks';
 import './index.css';
 
 const router = createBrowserRouter([
@@ -28,6 +31,18 @@ const router = createBrowserRouter([
   {
     path: "/SignUp",
     element: <SignUp />,
+  },
+  {
+    path: "/ManageBooks",
+    element: <ManageBooks />,
+  },
+  {
+    path: "/IssueBook",
+    element: <IssueBook />,
+  },
+  {
+    path: "/ViewIssuedBooks",
+    element: <ViewIssuedBooks />,
   },
 ]);
 

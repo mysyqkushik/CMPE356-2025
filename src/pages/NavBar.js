@@ -24,15 +24,6 @@ const NavBar = () => {
 </li>
 
 <li class="dropdown">
-  <a href="#">Events</a>
-  <ul class="dropdown-menu">
-    <li><a href="#">Workshops</a></li>
-    <li><a href="#">Author Talks</a></li>
-    <li><a href="#">Book Clubs</a></li>
-  </ul>
-</li>
-
-<li class="dropdown">
   <a href="#">Learning</a>
   <ul class="dropdown-menu">
     <li><a href="#">Library Cards</a></li>

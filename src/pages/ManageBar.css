@@ -1,0 +1,43 @@
+
+* {
+    font-family: "Prompt", sans-serif;
+  }
+
+.managebar {
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 900px;
+}
+
+.brand {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #936515;
+    text-decoration: none;
+}
+
+.nav-links ul {
+    display: flex;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.nav-links ul li {
+    margin: 0 10px;
+}
+
+.nav-links ul li a {
+    text-decoration: none;
+    color: #333;
+    font-weight: 500;
+}
+
+.toggle-btn {
+    display: none;
+}

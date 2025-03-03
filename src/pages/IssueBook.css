@@ -1,0 +1,66 @@
+
+.issue-book-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    padding: 20px;
+    background: url('/public/bookshelfbg.jpg') center/cover no-repeat;
+}
+
+.card {
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 600px;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+/* Card title styling */
+.card-title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+/* Form label styling */
+label {
+    font-size: 16px;
+    font-weight: bold;
+    color: #333;
+}
+
+/* Form select dropdown styling */
+.select, .form-control {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 16px;
+    margin-top: 5px;
+    background-color: #fff;
+    color: #333;
+}
+
+/* Button styling */
+button {
+    background-color: #9e700c;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+/* Form group spacing */
+.form-group {
+    margin-bottom: 20px;
+}
