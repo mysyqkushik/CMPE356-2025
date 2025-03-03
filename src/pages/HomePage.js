@@ -46,7 +46,7 @@ const HomePage = () => {
 
 
       {/* Book Carousel */}
-      <div className="carousel-container">
+      <div className="tilt-container">
         <BookCarousel /> {/* Adding the carousel here */}
       </div>
 
