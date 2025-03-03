@@ -22,7 +22,7 @@ const ViewIssuedBooks = () => {
                             <table className="issued-books-table">
                                 <thead>
                                     <tr>
-                                        <th>Student</th>
+                                        <th>User</th>
                                         <th>Book Title</th>
                                         <th>Author</th>
                                         <th>Issue Date</th>

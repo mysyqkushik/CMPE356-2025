@@ -3,8 +3,12 @@
     font-family: "Prompt", sans-serif;
   }
 
-.managebar {
+.managebar1 {
     box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+    position: relative;
+    background-color: rgba(255, 136, 77, 0.614); /* White with slight transparency */
+    padding: 10px 25px;
+    width: 100%;
 }
 
 .container1 {
@@ -17,8 +21,9 @@
 .brand1 {
     font-size: 1.5rem;
     font-weight: bold;
-    color: #936515;
+    color: #ffe4cb;
     text-decoration: none;
+    text-shadow: 2px 2px 3px black; 
 }
 
 .nav-links1 ul {
@@ -26,6 +31,7 @@
     list-style: none;
     padding: 0;
     margin: 0;
+    gap: 65px;
 }
 
 .nav-links1 ul li {
@@ -34,8 +40,9 @@
 
 .nav-links1 ul li a {
     text-decoration: none;
-    color: #333;
-    font-weight: 500;
+    color: #ffffff;
+    text-shadow: 1px 1px 2px black; 
+    font-weight: bold;
 }
 
 .toggle-btn1 {

@@ -7,13 +7,13 @@ const IssueBook = () => {
         { name: 'Harry Potter' },
         { name: 'Hermione Granger' },
         { name: 'Ron Weasley' },
-        { name: 'Frodo Baggins' },
-        { name: 'Samwise Gamgee' },
-        { name: 'Gandalf the Grey' },
-        { name: 'Aragorn' },
-        { name: 'Katniss Everdeen' },
-        { name: 'Peeta Mellark' },
-    ]);
+        { name: 'Draco Malfoy' },
+        { name: 'Luna Lovegood' },
+        { name: 'Neville Longbottom' },
+        { name: 'Ginny Weasley' },
+        { name: 'Albus Dumbledore' },
+        { name: 'Severus Snape' },
+    ]);    
     const [books, setBooks] = useState([]);
     const [selectedStudent, setSelectedStudent] = useState('');
     const [selectedBookId, setSelectedBookId] = useState('');
@@ -68,14 +68,14 @@ const IssueBook = () => {
                         <h2 className="card-title">Issue Book</h2>
                         <form>
                             <div className="form-group">
-                                <label htmlFor="student">Select Student</label>
+                                <label htmlFor="student">Select User</label>
                                 <select
                                     id="student"
                                     className="form-select"
                                     value={selectedStudent}
                                     onChange={handleSelectedStudentChange}
                                 >
-                                    <option value="">Select Student</option>
+                                    <option value="">Select User</option>
                                     {students.map((student, index) => (
                                         <option key={index} value={student.name}>
                                             {student.name}

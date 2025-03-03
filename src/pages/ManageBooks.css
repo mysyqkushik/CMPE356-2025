@@ -100,3 +100,21 @@ h2, h3 {
 .delete-btn:hover {
     background: #c82333;
 }
+
+
+.toggle-book-list-btn {
+    margin: 10px 0;
+    padding: 10px 20px;
+    background-color: #d17b20;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background 0.3s ease;
+}
+
+.toggle-book-list-btn:hover {
+    background-color: #7a4616;
+}
+

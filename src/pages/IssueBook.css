@@ -1,4 +1,4 @@
-
+/* IssueBooks.css */
 .issue-book-container {
     display: flex;
     justify-content: center;
@@ -10,11 +10,11 @@
 
 .card {
     background-color: white;
-    border-radius: 8px;
+    border-radius: 16px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     width: 100%;
     max-width: 600px;
-    padding: 20px;
+    padding: 30px;
     box-sizing: border-box;
 }
 
@@ -23,21 +23,21 @@
     font-size: 24px;
     font-weight: bold;
     margin-bottom: 20px;
-    color: #333;
+    color: #7a4422; 
 }
 
 /* Form label styling */
 label {
     font-size: 16px;
     font-weight: bold;
-    color: #333;
+    color: #763f12; 
 }
 
 /* Form select dropdown styling */
 .select, .form-control {
     width: 100%;
     padding: 10px;
-    border: 1px solid #ddd;
+    border: 1px solid #f0b073; /* Similar border color */
     border-radius: 8px;
     font-size: 16px;
     margin-top: 5px;
@@ -47,20 +47,42 @@ label {
 
 /* Button styling */
 button {
-    background-color: #9e700c;
+    background-color: #da8311; 
     color: white;
     padding: 10px 20px;
     border-radius: 8px;
     border: none;
     cursor: pointer;
     margin-top: 20px;
+    font-size: 16px;
+    transition: background 0.3s ease;
 }
 
 button:hover {
-    background-color: #0056b3;
+    background-color: #895520; /* Match the hover effect */
 }
 
 /* Form group spacing */
 .form-group {
     margin-bottom: 20px;
+}
+
+.form-group.issue-date {
+    margin-right: auto; 
+}
+
+.form-group.select-fields {
+    display: flex;
+    justify-content: flex-end; 
+}
+
+.form-group select,
+.form-group input {
+    width: 45%; 
+    margin: 0 10px; 
+}
+
+/* Specific adjustments for Issue Date field */
+.form-group.issue-date input {
+    margin-left: -10px; 
 }

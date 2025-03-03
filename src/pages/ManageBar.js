@@ -1,13 +1,14 @@
-// ManageBar.js
 import React from 'react';
 import { Link } from 'react-router-dom';
 import './ManageBar.css';
 
 function ManageBar() {
   return (
-    <nav className="managebar">
+    <nav className="managebar1">
       <div className="container1">
-        <a className="brand1" href="#">The Book Owl</a>
+        <Link to="/HomePage" className="brand1">
+            The Book Owl
+        </Link>
         <button className="toggle-btn1">
           <span className="icon1"></span>
         </button>
