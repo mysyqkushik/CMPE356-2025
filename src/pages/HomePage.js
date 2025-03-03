@@ -40,7 +40,7 @@ const HomePage = () => {
             Manage Books
            </div>
           </Link>
-       </li>
+       </li> 
 
      <div className="library-card">
     <img src="/comedy (1).png" alt="Borrow Icon" className="card-icon" />
