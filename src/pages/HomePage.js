@@ -14,7 +14,6 @@ const HomePage = () => {
   };
 
   const handleDropdownClick = () => {
-    // Logic to toggle dropdown visibility (e.g., setting a state for showing the dropdown)
     console.log("Dropdown clicked");
   };
 

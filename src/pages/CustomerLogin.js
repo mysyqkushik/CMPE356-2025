@@ -12,15 +12,15 @@ const CustomerLogin = () => {
       </div>
       <div className="inputs"> 
         <div className="input">
-          <img src="user.png" alt="User Icon" /> {/* Ensure correct path */}
+          <img src="user.png" alt="User Icon" /> 
           <input type="text" placeholder="Username" />
         </div>
         <div className="input">
-          <img src="envelope.png" alt="Email Icon" /> {/* Ensure correct path */}
+          <img src="envelope.png" alt="Email Icon" /> 
           <input type="email" placeholder="Email" />
         </div>
         <div className="input">
-          <img src="lock.png" alt="Password Icon" /> {/* Ensure correct path */}
+          <img src="lock.png" alt="Password Icon" /> 
           <input type="password" placeholder="Password" />
         </div>
       </div>

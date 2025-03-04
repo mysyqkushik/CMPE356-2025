@@ -2,23 +2,29 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import App from './App';
+import SplashPage from './pages/SplashPage';
 import HomePage from './pages/HomePage'; 
 import CustomerLogin from './pages/CustomerLogin';
 import AdminLogin from './pages/AdminLogin';
 import ManagerLogin from './pages/ManagerLogin';
 import SignUp from './pages/SignUp';
-import ManageBooks from './pages/ManageBooks';
+import ManageBooks from './pages/ManagerPages/ManageBooks';
 import IssueBook from './pages/IssueBook';
 import ViewIssuedBooks from './pages/ViewIssuedBooks';
 import BorrowBook from './pages/BorrowBook';
 import BookCarousel from './pages/BookCarousel';
 import ConveyerBelt from './pages/ConveyerBelt';
+import ManagerDashboard from './pages/ManagerPages/ManagerDashboard';
 import './index.css';
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <App />,
+  },
+  {
+    path: "/SplashPage",
+    element: <SplashPage />,
   },
   {
     path: "/HomePage",
@@ -63,6 +69,10 @@ const router = createBrowserRouter([
   {
     path: "/ConveyerBelt",
     element: <ConveyerBelt />,
+  },
+  {
+    path: "/ManagerDashboard",
+    element: <ManagerDashboard />,
   },
 ]);
 

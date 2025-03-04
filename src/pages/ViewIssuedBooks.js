@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import ManageBar from './ManageBar';  
+import ManageBar from './ManagerPages/ManageBar';  
 import './ViewIssuedBooks.css'; 
 
 const ViewIssuedBooks = () => {
