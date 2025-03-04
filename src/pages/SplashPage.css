@@ -1,53 +1,116 @@
-/* SplashPage.css */
+* {
+    font-family: "Prompt", sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+  
 .splash-container {
     position: relative;
-    width: 100%;
+    width: 100vw;
     height: 100vh;
     overflow: hidden;
-  }
+}
+
+.my-video {
+    width: 100vw;  /* Adjust size */
+    height: 100vh;  /* Maintain aspect ratio */
+    object-fit: cover; /* Prevents weird zooming */
+}
+
   
-  .carousel .slide {
-    position: relative;
-    width: 100%;
-    height: 100vh;
-  }
-  
-  .carousel .slide img {
-    width: 100%;
-    height: 100vh;
-    object-fit: cover;
-    
-  }
-  
-  .overlay {
+  .overlay3 {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     text-align: center;
     color: white;
-    background: rgba(0, 0, 0, 0.5);
-    padding: 20px;
-    border-radius: 10px;
+    font-size: 2rem;
   }
   
-  .overlay h1 {
-    font-size: 2.5rem;
-    margin-bottom: 20px;
-  }
-  
-  .overlay button {
-    padding: 15px 30px;
+
+
+.main-title3 {
+    font-size: 4rem; /* Increased size massively */
+    font-weight: bold;
+    color: #FFC300; /* Warm golden yellow */
+    text-shadow: 6px 6px 12px rgba(0, 0, 0, 0.9);
+    margin-bottom: 0; /* Remove extra space */
+}
+
+/* Logo, Title & Button Section */
+.bottom-section3 {
+    position: absolute;
+    bottom: 10%; /* Move to mid-bottom */
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+}
+
+/* Logo & 'THE BOOK OWL' Text */
+.logo-container3 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+}
+
+/* Logo */
+.logo3 {
+    width: 150px;
+    max-width: 190px;
+    max-height: 190px;
+    object-fit: contain;
+}
+
+/* Subtitle (The Book Owl) */
+.sub-title3 {
+    font-size: 3rem;
+    font-weight: bold;
+    color: #222;
+    text-transform: uppercase;
+    line-height: 1.2;
+    text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.5);
+}
+
+/* 'Get Started' Button */
+.get-started-btn3 {
+    background-color: #FFDAB9;
+    color: black;
     font-size: 1.2rem;
-    background-color: #007BFF;
-    color: white;
+    font-weight: bold;
+    padding: 12px 30px;
     border: none;
     cursor: pointer;
-    border-radius: 5px;
-    transition: background 0.3s ease;
-  }
-  
-  .overlay button:hover {
-    background-color: #0056b3;
-  }
-  
+    transition: background 0.3s ease-in-out, transform 0.2s ease-in-out;
+    border-radius: 30px;
+    margin-top: 20px;
+}
+
+.get-started-btn3:hover {
+    background-color: #FFC0A0;
+    transform: scale(1.05);
+}
+
+/* Responsive Fixes */
+@media (max-width: 768px) {
+    .main-title3 {
+        font-size: 5rem; /* Adjust for smaller screens */
+    }
+
+    .sub-title3 {
+        font-size: 2rem;
+    }
+
+    .logo3 {
+        width: 120px;
+    }
+
+    .get-started-btn3 {
+        font-size: 1rem;
+        padding: 10px 25px;
+    }
+}

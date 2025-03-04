@@ -1,56 +1,34 @@
+// SplashPage.js
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import Slider from 'react-slick';
-import 'slick-carousel/slick/slick.css';
-import 'slick-carousel/slick/slick-theme.css';
 import './SplashPage.css';
+import VideoPlayer from './VideoPlayer';
 
 const SplashPage = () => {
-  const navigate = useNavigate(); // Using useNavigate instead of useHistory
+  const navigate = useNavigate();
 
   const handleGetStarted = () => {
-    navigate('/HomePage'); // Navigate to homepage
-  };
-
-  // Carousel settings
-  const settings = {
-    lazyLoad: 'ondemand', // Load images in high quality
-    dots: false,
-    infinite: true,
-    speed: 1000,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-    autoplay: true,
-    autoplaySpeed: 2000,
-    fade: true,
-    arrows: false, // No next/prev arrows
+    navigate('/HomePage');
   };
 
   return (
     <div className="splash-container">
-      <Slider {...settings} className="carousel">
-        <div className="slide">
-          <img src="/4kbook1.jpeg" alt="Slide 1" />
-          <div className="overlay">
-            <h1>Welcome to Our Library</h1>
-            <button onClick={handleGetStarted}>Get Started</button>
-          </div>
+         {/* Video Container */}
+         <div className="my-video">
+            <VideoPlayer />
+         </div>
+
+      
+
+      {/* Overlay Content */}
+      <div className="overlay3">
+        <h1 className="main-title3">Meet Your Next <br /> Favourite Read</h1>
+        <div className="logo-container3">
+          <img src="/bookowl_prev_ui.png" alt="Book Owl Logo" className="logo3" />
+          <h2 className="sub-title3">THE <br /> BOOK <br /> OWL</h2>
         </div>
-        <div className="slide">
-          <img src="/4kbook2.jpg" alt="Slide 2" />
-          <div className="overlay">
-            <h1>Discover New Books</h1>
-            <button onClick={handleGetStarted}>Get Started</button>
-          </div>
-        </div>
-        <div className="slide">
-          <img src="/4kbook3.jpg" alt="Slide 3" />
-          <div className="overlay">
-            <h1>Expand Your Knowledge</h1>
-            <button onClick={handleGetStarted}>Get Started</button>
-          </div>
-        </div>
-      </Slider>
+        <button className="get-started-btn3" onClick={handleGetStarted}>GET STARTED</button>
+      </div>
     </div>
   );
 };
