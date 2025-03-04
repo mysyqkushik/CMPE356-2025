@@ -34,7 +34,7 @@
 
 
 .main-title3 {
-    font-size: 4rem; /* Increased size massively */
+    font-size: 2.3rem; /* Increased size massively */
     font-weight: bold;
     color: #FFC300; /* Warm golden yellow */
     text-shadow: 6px 6px 12px rgba(0, 0, 0, 0.9);
@@ -60,7 +60,7 @@
 
 /* Logo */
 .logo3 {
-    width: 150px;
+    width: 170px;
     max-width: 190px;
     max-height: 190px;
     object-fit: contain;
@@ -68,12 +68,22 @@
 
 /* Subtitle (The Book Owl) */
 .sub-title3 {
-    font-size: 3rem;
-    font-weight: bold;
-    color: #222;
-    text-transform: uppercase;
-    line-height: 1.2;
-    text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.5);
+  color: #FCE8C8; 
+  text-align: left;
+  font-size: 2.3rem;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 5px; 
+  font-weight: 900;
+  text-transform: uppercase;
+  margin-left: -38px;
+  margin-top: 12px;
+  font-family: "Prompt", sans-serif;
+  letter-spacing: 2px; 
+  line-height: 1; 
+  text-shadow: 3px 3px 0px #613B1F; 
 }
 
 /* 'Get Started' Button */
@@ -91,7 +101,7 @@
 }
 
 .get-started-btn3:hover {
-    background-color: #FFC0A0;
+    background-color: #f6905e;
     transform: scale(1.05);
 }
 
@@ -114,3 +124,5 @@
         padding: 10px 25px;
     }
 }
+
+

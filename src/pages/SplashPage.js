@@ -3,6 +3,7 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import './SplashPage.css';
 import VideoPlayer from './VideoPlayer';
+import TypeWriter from './TypeWriter';
 
 const SplashPage = () => {
   const navigate = useNavigate();
@@ -22,7 +23,10 @@ const SplashPage = () => {
 
       {/* Overlay Content */}
       <div className="overlay3">
-        <h1 className="main-title3">Meet Your Next <br /> Favourite Read</h1>
+        <div className='main-title3'>
+            <TypeWriter text="Meet Your Next Favourite Read" />
+        </div>
+      
         <div className="logo-container3">
           <img src="/bookowl_prev_ui.png" alt="Book Owl Logo" className="logo3" />
           <h2 className="sub-title3">THE <br /> BOOK <br /> OWL</h2>
