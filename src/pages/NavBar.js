@@ -48,7 +48,7 @@ const NavBar = () => {
       <div className="content-container">
         <img src="bookowl_prev_ui.png" className="owl-image" alt="Owl Logo" />
         <Link to="/HomePage" className="book-title">
-          <span className="book-title">The<br />Book Owl</span>
+          <span className="book-title">The<br />Book<br/> Owl</span>
         </Link>
       </div>
 
