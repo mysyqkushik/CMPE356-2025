@@ -1,71 +1,82 @@
 import React, { useState, useEffect } from "react";
-import "./ManagerDashboard.css";
-
-const defaultBooks = [
-  { id: 1, title: "The Great Gatsby", author: "F. Scott Fitzgerald", publishedDate: "1925-04-10", quantity: 5, status: "available", category: "Classic", dueDate: null },
-  { id: 2, title: "To Kill a Mockingbird", author: "Harper Lee", publishedDate: "1960-07-11", quantity: 8, status: "borrowed", category: "Fiction", dueDate: "2025-03-01" },
-  { id: 3, title: "1984", author: "George Orwell", publishedDate: "1949-06-08", quantity: 4, status: "available", category: "Dystopian", dueDate: null },
-  { id: 4, title: "Moby-Dick", author: "Herman Melville", publishedDate: "1851-10-18", quantity: 3, status: "borrowed", category: "Adventure", dueDate: "2025-03-04" },
-  { id: 5, title: "Pride and Prejudice", author: "Jane Austen", publishedDate: "1813-01-28", quantity: 6, status: "available", category: "Romance", dueDate: null },
-];
-
-const defaultUsers = [
-  { name: "Harry Potter", active: true, borrowedBooks: ["To Kill a Mockingbird"] },
-  { name: "Hermione Granger", active: true, borrowedBooks: [] },
-  { name: "Ron Weasley", active: false, borrowedBooks: [] },
-  { name: "Draco Malfoy", active: true, borrowedBooks: ["Moby-Dick"] },
-  { name: "Luna Lovegood", active: true, borrowedBooks: [] },
-  { name: "Neville Longbottom", active: false, borrowedBooks: [] },
-  { name: "Ginny Weasley", active: true, borrowedBooks: [] },
-  { name: "Albus Dumbledore", active: true, borrowedBooks: [] },
-  { name: "Severus Snape", active: false, borrowedBooks: [] },
-];
+import "./ManagerDashboard.css"; 
+import bookData from './bookdata.json'; 
 
 const ManagerDashboard = () => {
   const [books, setBooks] = useState([]);
   const [users, setUsers] = useState([]);
+  const [selectedCategory, setSelectedCategory] = useState(null);
 
   useEffect(() => {
-    // Load books from localStorage, or use defaultBooks if none found
-    const storedBooks = JSON.parse(localStorage.getItem("books")) || defaultBooks;
-    const storedUsers = JSON.parse(localStorage.getItem("users")) || defaultUsers;
-    
-    setBooks(storedBooks);
-    setUsers(storedUsers);
+    console.log(bookData); // Check if bookData is loaded correctly
+    if (bookData.books && bookData.users) {
+      setBooks(bookData.books);
+      setUsers(bookData.users);
+    } else {
+      console.error('Error: Missing books or users data in bookData.');
+    }
   }, []);
-
-  useEffect(() => {
-    // Save books and users to localStorage whenever they change
-    localStorage.setItem("books", JSON.stringify(books));
-    localStorage.setItem("users", JSON.stringify(users));
-  }, [books, users]);
+  
 
   // Book Statistics
   const totalBooks = books.length;
-  const booksBorrowed = books.filter(book => book.status === "borrowed").length;
+  console.log("Books:", books);
+  const booksBorrowed = bookData.booksBorrowed.books.length;
   const overdueBooks = books.filter(book => book.dueDate && new Date(book.dueDate) < new Date()).length;
-  const newBooks = books.filter(book => !book.dueDate).length;
+  const newBooks = books.filter(book => book.id >= 15 && book.id <= 23).length;
 
-  // Book Categories
-  const bookCategories = books.reduce((acc, book) => {
-    acc[book.category] = (acc[book.category] || 0) + 1;
-    return acc;
-  }, {});
+  // Click Handlers
+ const handleCardClick = (category) => {
+  console.log("Category selected: ", category);  // Debug log to ensure category is set
+  setSelectedCategory(category);
+};
 
-  // Active Users
-  const activeUsers = users.filter(user => user.active).length;
+
+const getFilteredBooks = () => {
+  console.log("Selected category:", selectedCategory);  // Log selected category
+  switch (selectedCategory) {
+    case "total":
+      return books;
+    case "borrowed":
+      return bookData.booksBorrowed.books.map((borrowedBook) => {
+        // Find the corresponding book in the main books array to get the author
+        const book = books.find(book => book.id === borrowedBook.id);
+        return {
+          ...borrowedBook,
+          author: book ? book.author : "Unknown",  // Get author from the books array
+          status: "borrowed"  // Mark as borrowed
+        };
+      });
+    case "due":
+      return books.filter(book => book.dueDate && new Date(book.dueDate) < new Date());
+    case "new":
+      return books.filter(book => book.id >= 15 && book.id <= 23);
+    default:
+      return [];
+  }
+};
+
+
+  // Return Book Logic
+  const returnBook = (bookId) => {
+    setBooks(prevBooks =>
+      prevBooks.map(book =>
+        book.id === bookId ? { ...book, status: "available" } : book
+      )
+    );
+  };
 
   return (
     <div className="dashboard-container">
       {/* Sidebar */}
       <aside className="sidebar">
-        <div className="logo">Library Dashboard</div>
+        <div className="logo">Manager Dashboard</div>
         <nav>
           <ul>
-            <li className="active"><span>🏠</span> Dashboard</li>
+            <li className="active"><span>🏠</span> Statistics Panel</li>
             <li><span>📦</span> Book Inventory</li>
             <li><span>🔒</span> User Management</li>
-            <li><span>📊</span> Analytics</li>
+            <li><span>📊</span> Log Out</li>
           </ul>
         </nav>
       </aside>
@@ -82,68 +93,59 @@ const ManagerDashboard = () => {
 
         {/* Dashboard Cards */}
         <section className="dashboard-cards">
-          <div className="card blue">
+          <div className="card blue" onClick={() => handleCardClick("total")}>
             <h3>Total Books in Library</h3>
             <p className="big-number">{totalBooks}</p>
           </div>
-          <div className="card green">
+          <div className="card green" onClick={() => handleCardClick("borrowed")}>
             <h3>Books Currently Borrowed</h3>
             <p className="big-number">{booksBorrowed}</p>
           </div>
-          <div className="card yellow">
+          <div className="card yellow" onClick={() => handleCardClick("due")}>
             <h3>Books Due for Return</h3>
             <p className="big-number">{overdueBooks}</p>
           </div>
-          <div className="card red">
+          <div className="card red" onClick={() => handleCardClick("new")}>
             <h3>New Book Arrivals</h3>
             <p className="big-number">{newBooks}</p>
           </div>
         </section>
 
-        {/* Book Categories */}
-        <section className="dashboard-cards">
-          {Object.keys(bookCategories).map((category, index) => (
-            <div key={index} className="card">
-              <h3>{category} Books</h3>
-              <p>{bookCategories[category]}</p>
-            </div>
-          ))}
-        </section>
-
-        {/* Overdue Books Management */}
-        <section className="overdue-books">
-          <h3>Overdue Books</h3>
-          <table>
-            <thead>
-              <tr>
-                <th>Book Title</th>
-                <th>Borrower</th>
-                <th>Due Date</th>
-              </tr>
-            </thead>
-            <tbody>
-              {books.filter(book => book.dueDate && new Date(book.dueDate) < new Date()).map((book, index) => (
-                <tr key={index}>
-                  <td>{book.title}</td>
-                  <td>{users.find(user => user.borrowedBooks.includes(book.title))?.name || "Unknown"}</td>
-                  <td>{book.dueDate}</td>
+        {/* Display Selected Books */}
+        {selectedCategory && (
+          <section className="filtered-books">
+            <h3>
+              {selectedCategory === "total" && "All Books"}
+              {selectedCategory === "borrowed" && "Books Currently Borrowed"}
+              {selectedCategory === "due" && "Overdue Books"}
+              {selectedCategory === "new" && "New Book Arrivals"}
+            </h3>
+            <table>
+              <thead>
+                <tr>
+                  <th>Title</th>
+                  <th>Author</th>
+                  <th>Status</th>
+                  <th>Borrower</th>
+                  <th>Due Date</th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
-        </section>
+              </thead>
+              <tbody>
+  {getFilteredBooks().map((book) => (
+    <tr key={book.id}>
+      <td>{book.title}</td>
+      <td>{book.author}</td>  {/* Display Author */}
+      <td>{book.status}</td> 
+      <td>{book.borrower}</td> {/* Display Status */}
+      <td>{book.dueDate || "N/A"}</td>  {/* Display Due Date */}
+    </tr>
+  ))}
+</tbody>
+            </table>
+          </section>
+        )}
 
-        {/* Analytics */}
-        <section className="analytics">
-          <div className="graph">
-            <h3>Most Popular Books</h3>
-            <div className="pie-chart">📚 Popularity Data Here</div>
-          </div>
-          <div className="graph">
-            <h3>Active Users</h3>
-            <div className="pie-chart">Active Users: {activeUsers}</div>
-          </div>
-        </section>
+        
       </div>
     </div>
   );
