@@ -7,14 +7,6 @@ const NewArrivals = () => {
 
   // Get the books from localStorage
   useEffect(() => {
-    const storedBooks = localStorage.getItem('books');
-    if (storedBooks) {
-        const parsedBooks = JSON.parse(storedBooks);
-        console.log(parsedBooks); // This will log the books
-        setBooks(parsedBooks);
-    
-    } else {
-      // Default books if not in localStorage
       const defaultBooks = [
         { id: 15, title: "Beautiful World, Where Are You", author: "Sally Rooney", publishedDate: "2021-09-07", quantity: 6 },
         { id: 16, title: "Babel: An Arcane History", author: "R.F. Kuang", publishedDate: "2022-08-23", quantity: 8 },
@@ -29,7 +21,6 @@ const NewArrivals = () => {
       localStorage.setItem('books', JSON.stringify(defaultBooks));
       console.log(defaultBooks);
       setBooks(defaultBooks);
-    }
   }, []);
 
   useEffect(() => {
