@@ -1,42 +1,34 @@
-import React, { useReducer, useRef, useEffect } from "react";
-import ReactDOM from "react-dom";
+import React, { useReducer } from "react";
+import { Link } from 'react-router-dom';
 import "./BookCarousel.css";
 
 const slides = [
   {
-    title: "Machu Picchu",
-    subtitle: "Peru",
-    description: "Adventure is never far away",
-    image:
-      "bookowl_prev_ui.png"
+    content: (
+      <Link to="/NewArrivals">
+        <img src="/BookCarousel1.png" alt="New Arrivals" className="book-image7" />
+      </Link>
+    )
   },
   {
-    title: "Chamonix",
-    subtitle: "France",
-    description: "Let your dreams come true",
-    image:
-      "bookowl_prev_ui.png"
+    content: (
+        <img src="/BookCarouselother.png" alt="New Arrivals" className="book-image7" />
+    )
   },
   {
-    title: "Mimisa Rocks",
-    subtitle: "Australia",
-    description: "A piece of heaven",
-    image:
-      "bookowl_prev_ui.png"
+    content: (
+      <img src="/BookCarouselother.png" alt="New Arrivals" className="book-image7" />
+  )
   },
   {
-    title: "Four",
-    subtitle: "Australia",
-    description: "A piece of heaven",
-    image:
-      "bookowl_prev_ui.png"
+    content: (
+      <img src="/BookCarouselother.png" alt="New Arrivals" className="book-image7" />
+  )
   },
   {
-    title: "Five",
-    subtitle: "Australia",
-    description: "A piece of heaven",
-    image:
-      "bookowl_prev_ui.png"
+    content: (
+      <img src="/BookCarouselother.png" alt="New Arrivals" className="book-image7" />
+  )
   }
 ];
 
@@ -103,35 +95,27 @@ const useTilt = (active) => {
   };
     
 
-const Slide = ({ slide, offset }) => {
-  const active = offset === 0 ? true : null;
-  const ref = useTilt(active);
-
-  return (
-    <div
-      ref={ref}
-      className="slide"
-      data-active={active}
-      style={{
-        "--offset": offset,
-        "--dir": offset === 0 ? 0 : offset > 0 ? 1 : -1
-      }}
-    >
+  const Slide = ({ slide, offset }) => {
+    const active = offset === 0 ? true : null;
+    const ref = useTilt(active);
+  
+    return (
       <div
-        className="slideContent"
+        ref={ref}
+        className="slide"
+        data-active={active}
         style={{
-          backgroundImage: `url('${slide.image}')`
+          "--offset": offset,
+          "--dir": offset === 0 ? 0 : offset > 0 ? 1 : -1
         }}
       >
-        <div className="slideContentInner">
-          <h2 className="slideTitle">{slide.title}</h2>
-          <h3 className="slideSubtitle">{slide.subtitle}</h3>
-          <p className="slideDescription">{slide.description}</p>
+        <div className="slideContent">
+          {slide.content}  {/* Directly render the image content */}
         </div>
       </div>
-    </div>
-  );
+    );
 };
+
 
 const BookCarousel = () => {
   const [state, dispatch] = useReducer(slidesReducer, initialState);

@@ -13,6 +13,8 @@ import BorrowBook from './pages/BorrowBook';
 import BookCarousel from './pages/BookCarousel';
 import ConveyerBelt from './pages/ConveyerBelt';
 import ManagerDashboard from './pages/ManagerPages/ManagerDashboard';
+import NewArrivals from './pages/NewArrivals';
+
 
 import './App.css';
 
@@ -33,6 +35,7 @@ const App = () => {
         <Route path="/BookCarousel" element={<BookCarousel/>} />
         <Route path="/ConveyerBelt" element={<ConveyerBelt/>} />
         <Route path="/ManagerDashboard" element={<ManagerDashboard />} />
+        <Route path="/NewArrivals" element={<NewArrivals/>} />
       </Routes>
     </>
   );

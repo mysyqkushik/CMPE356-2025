@@ -86,7 +86,7 @@ body {
   transform-style: preserve-3d;
   transform: translateZ(2rem);
   transition: opacity 0.3s linear;
-  text-shadow: 0 0.1rem 1rem #000;
+  text-shadow: 0 0.1rem 1rem #340d0d;
   opacity: 0;
 
   .slideSubtitle,
@@ -147,4 +147,11 @@ body {
         rotateX(calc(var(--y) * -45deg));
     }
   }
+}
+
+.book-image7 {
+  width: 20vw;
+  height: 30vw;
+  object-fit: cover;
+  cursor: pointer;
 }
