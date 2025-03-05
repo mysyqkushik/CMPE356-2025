@@ -16,6 +16,7 @@ import BookCarousel from './pages/BookCarousel';
 import ConveyerBelt from './pages/ConveyerBelt';
 import ManagerDashboard from './pages/ManagerPages/ManagerDashboard';
 import NewArrivals from './pages/NewArrivals';
+import SearchResults from './pages/SearchResults';
 import './index.css';
 
 const router = createBrowserRouter([
@@ -78,6 +79,10 @@ const router = createBrowserRouter([
   {
     path: "/NewArrivals",
     element: <NewArrivals />,
+  },
+  {
+    path: "/search-results",
+    element: <SearchResults />,
   },
 ]);
 
