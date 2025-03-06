@@ -11,7 +11,7 @@ import SignUp from './pages/SignUp';
 import ManageBooks from './pages/ManagerPages/ManageBooks';
 import IssueBook from './pages/IssueBook';
 import ViewIssuedBooks from './pages/ViewIssuedBooks';
-import BorrowBook from './pages/BorrowBook';
+import BorrowBook from './pages/CustomerPages/BorrowBook';
 import BookCarousel from './pages/BookCarousel';
 import ConveyerBelt from './pages/ConveyerBelt';
 import ManagerDashboard from './pages/ManagerPages/ManagerDashboard';
@@ -22,6 +22,9 @@ import Team from './pages/AboutUs/Team';
 import BookRatings from './pages/BookRatings';
 import ExploreGenres from './pages/ExploreGenres';
 import ViewCatalog from './pages/ViewCatalog';
+import CustomerDashboard from './pages/CustomerPages/CustomerDashboard';
+import UserViewIssuedBooks from './pages/CustomerPages/UserViewIssuedBooks';
+import ReturnBook from './pages/CustomerPages/ReturnBook'
 import './index.css';
 
 const router = createBrowserRouter([
@@ -108,6 +111,18 @@ const router = createBrowserRouter([
   {
     path: "/ViewCatalog",
     element: <ViewCatalog />,
+  },
+  {
+    path: "/CustomerDashboard",
+    element: <CustomerDashboard />,
+  },
+  {
+    path: "/UserViewIssuedBooks",
+    element: <UserViewIssuedBooks />,
+  },
+  {
+    path: "/ReturnBook",
+    element: <ReturnBook />,
   }
 ]);
 

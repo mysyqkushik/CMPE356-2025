@@ -1,0 +1,38 @@
+/* ViewIssuedBooks.css */
+.issued-books-container1 {
+    padding: 20px;
+}
+
+.issued-books-container1 table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.issued-books-container1 th, .issued-books-container1 td {
+    padding: 10px;
+    border: 1px solid #ddd;
+}
+
+.issued-books-container1 th {
+    background-color: #f4f4f4;
+}
+
+/* Add this CSS to style the 'Return to Dashboard' button */
+.return-dashboard-container {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.return-dashboard-button {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.return-dashboard-button:hover {
+    background-color: #45a049;
+}

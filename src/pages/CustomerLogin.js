@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from 'react-router-dom';
+import { Link } from "react-router-dom";
+import './CustomerLogin.css';
 import bookData from './ManagerPages/bookdata.json'; // Direct import
 
 const CustomerLogin = () => {
@@ -17,10 +19,10 @@ const CustomerLogin = () => {
     );
 
     if (user && user.password === password) {
-      // If user found and password matches, redirect to BorrowBook
-      navigate("/BorrowBook");
+      // Store the logged-in user in localStorage
+      localStorage.setItem('currentUser', JSON.stringify(user));
+      navigate("/CustomerDashboard"); // Navigate to the dashboard
     } else {
-      // Show error if user not found or password is incorrect
       setError("Invalid username, email, or password");
     }
   };
