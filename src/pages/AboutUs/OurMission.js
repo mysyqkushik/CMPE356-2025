@@ -5,7 +5,9 @@ const OurMission = () => {
   return (
     <div className="mission-container">
       <h1 className="mission-title">Our Mission</h1>
-      <img src="bookowl_prev_ui.png" className="mission-image" alt="Owl Logo" />
+      <a href="/HomePage" className="mission-image">
+         <img src="bookowl_prev_ui.png" alt="Owl Logo" />
+      </a>
       <p className="mission-description">
         At our Library Management System, we aim to provide an accessible and
         user-friendly platform where customers can explore a wide variety of fiction books across multiple genres. 
