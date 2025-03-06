@@ -1,0 +1,52 @@
+.team-container55 {
+    text-align: center;
+    background-color: #f9c4a1b3;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .team-title55 {
+    font-size: 35px;
+    color: #52320e;
+    margin-bottom: 20px;
+    font-weight: bold;
+  }
+  
+  .team-members55 {
+    display: flex;
+    justify-content: center;
+    gap: 80px;
+  }
+  
+  .team-member55 {
+    text-align: center;
+    max-width: 250px;
+  }
+  
+  .team-image55 {
+    width: 210px; /* Medium size */
+    height: 210px;
+    border-radius: 50%;
+    border: 4px solid #2e1a0b;
+    object-fit: cover; /* Ensures images are properly cropped */
+    margin-bottom: 15px;
+  }
+  
+  .team-role55 {
+    font-size: 20px;
+    color: #52320e;
+    margin-top: -10px;
+  }
+
+  .team-role54 {
+    font-size: 28px;
+    color: #52320e;
+    margin-top: -20px;
+  }
+  
+  .team-contact55 {
+    font-size: 16px;
+    color: #666;
+  }
+  

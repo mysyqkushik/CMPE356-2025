@@ -1,0 +1,37 @@
+.mission-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #f0b48fcb;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .mission-title {
+    font-size: 36px;
+    color: #522d16;
+    margin-bottom: 20px;
+    font-family: 'Prompt', sans-serif;
+    font-weight: bold;
+  }
+
+  .mission-image {
+    width: 20%;
+    border-radius: 8px;
+    margin-top: -50px;
+    margin-bottom: 20px;
+  }
+  
+  .mission-description {
+    font-size: 18px;
+    color: #522d16;
+    font-weight: bold;;
+    text-align: center;
+    line-height: 1.6;
+    max-width: 700px;
+    margin-bottom: 20px;
+    font-family: 'Prompt', sans-serif;
+  }
+  

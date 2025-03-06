@@ -89,9 +89,8 @@ const NavBar = () => {
         <li className={`dropdown ${activeDropdown === 3 ? 'open' : ''}`}>
           <a href="#" onClick={(e) => toggleDropdown(3, e)}>AboutUs</a>
           <ul className="dropdown-menu">
-            <li><a href="#">Our Mission</a></li>
-            <li><a href="#">Contact</a></li>
-            <li><a href="#">Team</a></li>
+            <li><Link to="/OurMission">Our Mission</Link></li>
+            <li><Link to="/Team">Team</Link></li>
           </ul>
         </li>
       </ul>

@@ -49,11 +49,11 @@ const HomePage = () => {
 
       {/* Book Carousel */}
       <div className="tilt-container">
-        <BookCarousel /> {/* Adding the carousel here */}
+        <BookCarousel /> 
       </div>
 
       <div className="belt-container">
-        <ConveyerBelt /> {/* Adding the carousel here */}
+        <ConveyerBelt /> 
       </div>
 
       {/* Library Management Cards */}
