@@ -1,10 +1,13 @@
 import React from 'react';
 import './Team.css';
+import { Link } from "react-router-dom";
 
 const Team = () => {
   return (
     <div className="team-container55">
-      <h1 className="team-title55">🦉Our Team🦉</h1>
+      <h1 className="team-title55">
+      <a href="./HomePage">🦉Our Team🦉</a>
+      </h1>
       <div className="team-members55">
         <div className="team-member55">
           <img src="kuan.jpg" alt="Head of Back-End" className="team-image55" />

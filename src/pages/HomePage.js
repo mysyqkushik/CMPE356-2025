@@ -120,10 +120,7 @@ const HomePage = () => {
   </li>
 </div>
 
-      {/* Need Help? Live Chat */}
-      <div className="chat-button">
-        <button>Need help? Chat live now</button>
-      </div>
+      
 
       {/* Footer */}
       <Footer />

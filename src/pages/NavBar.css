@@ -355,3 +355,106 @@
     display: block;
   }
 }
+
+
+.nav-right-right {
+  display: flex;
+  align-items: center;
+}
+
+
+/* DARK MODE STYLES */
+body.dark-mode {
+  background-color: black;
+  color: white;
+}
+
+/* Navbar */
+.dark-mode .navbar {
+  background: rgba(33, 17, 4, 0.8);
+  box-shadow: 0px 2px 4px rgba(255, 255, 255, 0.1);
+}
+
+/* Logo & Title */
+.dark-mode .book-title {
+  color: #FCE8C8;
+  text-shadow: 3px 3px 0px #8B5A2B;
+}
+
+/* Hamburger Button */
+.dark-mode .hamburger-button {
+  color: #FCE8C8;
+}
+
+/* Nav Links */
+.dark-mode .nav-links a {
+  color: white;
+}
+
+.dark-mode .nav-links a:hover {
+  background: rgba(100, 100, 100, 0.8);
+}
+
+/* Dropdown */
+.dark-mode .dropdown-menu {
+  background: #222;
+  box-shadow: 0px 4px 6px rgba(255, 255, 255, 0.1);
+}
+
+.dark-mode .dropdown-menu li a {
+  color: white;
+}
+
+.dark-mode .dropdown-menu li a:hover {
+  background: rgba(150, 75, 0, 0.3);
+}
+
+/* Nav Right (Buttons & Select) */
+.dark-mode .nav-right button,
+.dark-mode .navbar button {
+  background-color: rgba(150, 75, 0, 0.8);
+  color: white;
+}
+
+.dark-mode .nav-right button:hover,
+.dark-mode .navbar button:hover {
+  background-color: rgba(100, 50, 0, 0.9);
+}
+
+.dark-mode .nav-right select {
+  color: white;
+}
+
+.dark-mode .nav-right select:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+/* MyAccount Dropdown */
+.dark-mode .account-btn {
+  background-color: #B55B00;
+  color: white;
+}
+
+.dark-mode .account-dropdown-menu {
+  background: #222;
+  box-shadow: 0px 4px 6px rgba(255, 255, 255, 0.1);
+}
+
+.dark-mode .account-dropdown-menu li a {
+  color: white;
+}
+
+.dark-mode .account-dropdown-menu li:hover {
+  background: rgba(150, 75, 0, 0.3);
+}
+
+/* Mobile Styles */
+@media (max-width: 768px) {
+  .dark-mode .nav-links a {
+    color: white;
+  }
+
+  .dark-mode .dropdown-menu {
+    background: #222;
+  }
+}

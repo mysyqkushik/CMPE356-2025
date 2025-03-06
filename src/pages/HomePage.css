@@ -3,6 +3,7 @@
   font-family: "Prompt", sans-serif;
 }
 
+
 .homepage {
   display: flex;
   margin-top: 200px;
@@ -266,4 +267,17 @@ html, body {
   padding: 10px 15px;
   border-radius: 20px;
   cursor: pointer;
+}
+
+
+body.dark-mode .homepage,
+body.dark-mode .hero-section,
+body.dark-mode .library-cards-container {
+  background-color: #5d371484;
+  color: white;
+}
+
+body.dark-mode .search-container,
+body.dark-mode .search-bar {
+  background-color: #140f0bd7;
 }

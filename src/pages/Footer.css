@@ -1,3 +1,8 @@
+body.dark-mode .footer {
+  background-color: #201308; /* Dark background for the whole page */
+  color: white; /* Light text color for readability */
+}
+
 .footer {
     background-color: #513007; /* Change the color as you wish */
     color: #fff;

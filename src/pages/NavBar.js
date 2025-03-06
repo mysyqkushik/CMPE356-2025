@@ -7,7 +7,19 @@ const NavBar = () => {
   const [accountOpen, setAccountOpen] = useState(false);
   const [navOpen, setNavOpen] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState(null);
+  const [darkMode, setDarkMode] = useState(() => {
+    return localStorage.getItem('theme') === 'dark';
+  });
   
+  useEffect(() => {
+    document.body.classList.toggle('dark-mode', darkMode);
+    localStorage.setItem('theme', darkMode ? 'dark' : 'light');
+  }, [darkMode]);
+
+  const toggleDarkMode = () => {
+    setDarkMode(!darkMode);
+  };
+
   // Close dropdown when clicking outside
   useEffect(() => {
     const handleClickOutside = (event) => {
@@ -113,11 +125,11 @@ const NavBar = () => {
             </ul>
           )}
         </div>
-
-        <select className="language-dropdown">
-          <option>English</option>
-          <option>Türkçe</option>
-        </select>
+      </div>
+      <div className="nav-right-right">
+      <button className="dark-mode-toggle" onClick={toggleDarkMode}>
+          {darkMode ? '🌞' : '🦇'}
+        </button>
       </div>
     </nav>
   );
