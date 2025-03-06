@@ -2,15 +2,15 @@ import React from "react";
 import "./ConveyerBelt.css";
 
 const books = [
-  { id: 1, title: "Book 1", image: "/bookowl_prev_ui.png" },
-  { id: 2, title: "Book 2", image: "/bookowl_prev_ui.png" },
-  { id: 3, title: "Book 3", image: "/bookowl_prev_ui.png" },
-  { id: 4, title: "Book 4", image: "/bookowl_prev_ui.png" },
-  { id: 5, title: "Book 5", image: "/bookowl_prev_ui.png" },
-  { id: 6, title: "Book 6", image: "/bookowl_prev_ui.png" },
-  { id: 7, title: "Book 7", image: "/bookowl_prev_ui.png" },
-  { id: 8, title: "Book 8", image: "/bookowl_prev_ui.png" },
-  { id: 9, title: "Book 9", image: "/bookowl_prev_ui.png" },
+  { id: 1, title: "Book 1", image: "/BookCarousel1.png" },
+  { id: 2, title: "Book 2", image: "/BookCarousel2.jpg" },
+  { id: 3, title: "Book 3", image: "/BookCarousel3.jpg" },
+  { id: 4, title: "Book 4", image: "/BookCarousel4.jpg" },
+  { id: 5, title: "Book 5", image: "/BookCarousel1.png" },
+  { id: 6, title: "Book 6", image: "/BookCarouselother.png" },
+  { id: 7, title: "Book 7", image: "/BookCarousel2.jpg" },
+  { id: 8, title: "Book 8", image: "/BookCarousel3.jpg" },
+  { id: 9, title: "Book 9", image: "/BookCarousel4.jpg" },
 ];
 
 const NewArrivals = () => {
