@@ -1,37 +1,65 @@
-// SplashPage.js
-import React from 'react';
+// VideoPlayer.js Entegreli SplashPage.js
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import VideoPlayer from './VideoPlayer'; // Mevcut VideoPlayer bileşeninizi kullanın
 import './SplashPage.css';
-import VideoPlayer from './VideoPlayer';
-import TypeWriter from './TypeWriter';
 
 const SplashPage = () => {
   const navigate = useNavigate();
-
+  const [typedText, setTypedText] = useState('');
+  const fullText = "Meet Your Next Favourite Read";
+  
+  // Typewriter efekti
+  useEffect(() => {
+    if (typedText.length < fullText.length) {
+      const timeout = setTimeout(() => {
+        setTypedText(fullText.slice(0, typedText.length + 1));
+      }, 100);
+      
+      return () => clearTimeout(timeout);
+    }
+  }, [typedText, fullText]);
+  
+  // Ana sayfaya yönlendirme
   const handleGetStarted = () => {
     navigate('/HomePage');
   };
+  
+  // 12 saniye sonra otomatik yönlendirme (opsiyonel)
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      navigate('/HomePage');
+    }, 12000);
+    
+    return () => clearTimeout(timer);
+  }, [navigate]);
 
   return (
-    <div className="splash-container">
-         {/* Video Container */}
-         <div className="my-video">
-            <VideoPlayer />
-         </div>
-
+    <div className="splash-page">
+      {/* Karartma Katmanı */}
+      <div className="overlay"></div>
       
-
-      {/* Overlay Content */}
-      <div className="overlay3">
-        <div className='main-title3'>
-            <TypeWriter text="Meet Your Next Favourite Read" />
-        </div>
+      {/* Video Arka Plan - Mevcut VideoPlayer bileşeninizi kullanın */}
+      <div className="video-background">
+        <VideoPlayer />
+      </div>
       
-        <div className="logo-container3">
-          <img src="/bookowl_prev_ui.png" alt="Book Owl Logo" className="logo3" />
-          <h2 className="sub-title3">THE <br /> BOOK <br /> OWL</h2>
+      {/* Ana İçerik */}
+      <div className="content">
+        <div className="title-container">
+          <h1 className="title">{typedText}</h1>
         </div>
-        <button className="get-started-btn3" onClick={handleGetStarted}>GET STARTED</button>
+        
+        <div className="logo-and-cta">
+          <div className="logo-container">
+            <img src="/bookowl_prev_ui.png" alt="The Book Owl Logo" className="logo" />
+            <div className="logo-text">THE BOOK OWL</div>
+          </div>
+          
+          <button className="cta-button" onClick={handleGetStarted}>
+            GET STARTED
+          </button>
+        </div>
       </div>
     </div>
   );
