@@ -77,24 +77,32 @@
   }
   
   .logo {
-    width: 120px;
+    width: 170px;
     height: auto;
     margin-bottom: 15px;
   }
   
   .logo-text {
     color: #FCE8C8;
-    font-size: 2.2rem;
+    font-size: 2.8rem;
     font-weight: 900;
     text-transform: uppercase;
     letter-spacing: 2px;
     line-height: 1.1;
     text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+    color: #FCE8C8;
+     gap: 5px;
+  font-weight: 900;
+  text-transform: uppercase;
+  font-family: "Prompt", sans-serif;
+  letter-spacing: 2px;
+  line-height: 1;
+  text-shadow: 3px 3px 0px #613B1F;
   }
   
   /* Buton */
   .cta-button {
-    background-color: #FFDAB9;
+    background-color: #fcdf82;
     color: #000;
     font-size: 1.2rem;
     font-weight: bold;
