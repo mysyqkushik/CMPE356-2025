@@ -17,6 +17,10 @@ import NewArrivals from './pages/NewArrivals';
 import SearchResults from './pages/SearchResults';
 import OurMission from './pages//AboutUs/OurMission';
 import Team from './pages/AboutUs/Team';
+import BookRatings from './pages/BookRatings';
+import ExploreGenres from './pages/ExploreGenres';
+import ViewCatalog from './pages/ViewCatalog';
+
 
 
 import './App.css';
@@ -42,6 +46,9 @@ const App = () => {
         <Route path="/search-results" element={<SearchResults />} />
         <Route path="/OurMission" element={<OurMission/>} />
         <Route path="/Team" element={<Team/>} />
+        <Route path="/BookRatings" element={<BookRatings/>} />
+        <Route path="/ExploreGenres" element={<ExploreGenres/>} />
+        <Route path="/ViewCatalog" element={<ViewCatalog/>} />
       </Routes>
     </>
   );

@@ -19,6 +19,9 @@ import NewArrivals from './pages/NewArrivals';
 import SearchResults from './pages/SearchResults';
 import OurMission from './pages//AboutUs/OurMission';
 import Team from './pages/AboutUs/Team';
+import BookRatings from './pages/BookRatings';
+import ExploreGenres from './pages/ExploreGenres';
+import ViewCatalog from './pages/ViewCatalog';
 import './index.css';
 
 const router = createBrowserRouter([
@@ -93,6 +96,18 @@ const router = createBrowserRouter([
   {
     path: "/Team",
     element: <Team />,
+  },
+  {
+    path: "/BookRatings",
+    element: <BookRatings />,
+  },
+  {
+    path: "/ExploreGenres",
+    element: <ExploreGenres />,
+  },
+  {
+    path: "/ViewCatalog",
+    element: <ViewCatalog />,
   }
 ]);
 

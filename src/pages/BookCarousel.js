@@ -12,18 +12,24 @@ const slides = [
   },
   {
     content: (
-        <img src="/BookCarouselother.png" alt="New Arrivals" className="book-image7" />
+      <Link to="/BookRatings">
+        <img src="/BookCarousel2.jpg" alt="Book Ratings" className="book-image7" />
+      </Link>
     )
   },
   {
     content: (
-      <img src="/BookCarouselother.png" alt="New Arrivals" className="book-image7" />
-  )
+      <Link to="/ExploreGenres">
+        <img src="/BookCarousel3.jpg" alt="Explore Genres" className="book-image7" />
+      </Link>
+    )
   },
   {
     content: (
-      <img src="/BookCarouselother.png" alt="New Arrivals" className="book-image7" />
-  )
+      <Link to="/ViewCatalog">
+        <img src="/BookCarousel4.jpg" alt="View Catalog" className="book-image7" />
+      </Link>
+    )
   },
   {
     content: (
