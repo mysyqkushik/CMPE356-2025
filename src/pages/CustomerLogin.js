@@ -9,12 +9,11 @@ const CustomerLogin = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
-  const [usersData, setUserData] = useState(bookData.userslogin); // Directly use the users data
   const navigate = useNavigate();
 
   // Handle login
   const handleLogin = () => {
-    const user = usersData.find(
+    const user = bookData.userslogin.find(
       (user) => user.username === username && user.email === email
     );
 

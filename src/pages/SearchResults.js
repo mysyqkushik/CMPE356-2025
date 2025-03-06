@@ -1,19 +1,26 @@
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom'; 
 import bookData from './ManagerPages/bookdata.json';  // Import your book data (adjust path accordingly)
 import './SearchResults.css'
 
 const SearchResults = () => {
   const [filteredBooks, setFilteredBooks] = useState([]);
   const searchTerm = sessionStorage.getItem('searchTerm'); // Get the search term from sessionStorage
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (searchTerm) {
       const results = bookData.books.filter((book) =>
         book.title.toLowerCase().includes(searchTerm.toLowerCase())  // Filter the books
       );
-      setFilteredBooks(results); // Update the state with the filtered books
+      setFilteredBooks(results); 
     }
   }, [searchTerm]);  // Re-run effect when searchTerm changes
+
+  const handleBorrow = (bookTitle) => {
+    // Navigate to the customer login page
+    navigate('/CustomerLogin'); // Update with the correct path to the login page
+  };
 
   return (
     <div className="searchbox4-results-container"> {/* Add the container class here */}
@@ -27,6 +34,12 @@ const SearchResults = () => {
               <p>Author: {book.author}</p>
               <p>Published: {book.publishedDate}</p>
               <p>Category: {book.category}</p>
+              <button 
+                  className="borrow-btn" 
+                  onClick={() => handleBorrow(book.title)}
+                >
+                  Borrow
+                </button>
             </li>
           ))}
         </ul>

@@ -9,7 +9,7 @@ const Typewriter = ({ text }) => {
       const interval = setInterval(() => {
         setDisplayText((prev) => prev + text[index]); // Add the next character
         setIndex((prevIndex) => prevIndex + 1); // Increment the index
-      }, 70); // Typing speed
+      }, 30); // Typing speed
 
       return () => clearInterval(interval); // Cleanup on unmount or change
     }

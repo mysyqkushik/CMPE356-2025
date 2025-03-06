@@ -4,33 +4,42 @@ import "./CustomerDashboard.css";
 
 const CustomerDashboard = () => {
   const [borrowedBooks, setBorrowedBooks] = useState([]);
-  const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+  const currentUser = JSON.parse(localStorage.getItem("currentUser"));
 
   useEffect(() => {
-    // Fetch book data from localStorage
-    const bookData = JSON.parse(localStorage.getItem('bookData'));
+    // Get the user's borrowed books from bookdata.json (bookData)
+    const bookData = JSON.parse(localStorage.getItem("bookData")); // Fetch from localStorage
 
-    // Ensure bookData and booksBorrowed exist before filtering
     if (bookData && Array.isArray(bookData.booksBorrowed)) {
-      const userBooks = bookData.booksBorrowed.filter(book => book.userId === currentUser.id);
+      const userBooks = bookData.booksBorrowed.filter(
+        (book) => book.userId === currentUser.id
+      );
       setBorrowedBooks(userBooks);
-    } else {
-      console.error("bookData or booksBorrowed is not properly structured.");
     }
   }, [currentUser.id]);
 
   return (
     <div className="dashboard-container">
       <aside className="sidebar">
-        <div className="logo">Customer Dashboard</div>
+        <div className="logo">Welcome, {currentUser.username}</div> {/* Display username */}
         <nav>
           <ul>
-            <li className="active"><span>🏠</span> My Dashboard</li>
-            <li><span>📚</span> Borrow Book</li>
-            <li><span>🔄</span> Return Book</li>
-            <li><span>📜</span> View Issued Books</li>
-            <li><span>⭐</span> Rate Books</li>
-            <li><span>🚪</span> Log Out</li>
+            <li className="active">
+              <span>🏠</span> My Dashboard
+            </li>
+            <li>
+              <span>📚</span> Borrow Book
+            </li>
+            <li>
+              <span>🔄</span> Return Book
+            </li>
+            <li>
+              <span>📜</span> View Issued Books
+            </li>
+            <li>
+              <span>⭐</span> Rate Books
+            </li>
+            <li><span>📊</span> <Link to="/HomePage">Log Out</Link></li>
           </ul>
         </nav>
       </aside>
@@ -47,7 +56,9 @@ const CustomerDashboard = () => {
         <section className="dashboard-cards">
           <div>
             <Link to="/BorrowBook">
-              <button className="card blue"><h3>Borrow a Book</h3></button>
+              <button className="card blue">
+                <h3>Borrow a Book</h3>
+              </button>
             </Link>
           </div>
           <div className="card green">
@@ -60,10 +71,12 @@ const CustomerDashboard = () => {
             <ul>
               {borrowedBooks.length > 0 ? (
                 borrowedBooks.map((book, index) => (
-                  <li key={index}>{book.bookTitle} - Due: {book.dueDate}</li>
+                  <li key={index}>
+                    {book.bookTitle} - Due: {book.dueDate}
+                  </li>
                 ))
               ) : (
-                <li>No books issued yet.</li>
+                <li></li>
               )}
             </ul>
           </div>
