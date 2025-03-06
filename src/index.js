@@ -25,6 +25,7 @@ import ViewCatalog from './pages/ViewCatalog';
 import CustomerDashboard from './pages/CustomerPages/CustomerDashboard';
 import UserViewIssuedBooks from './pages/CustomerPages/UserViewIssuedBooks';
 import ReturnBook from './pages/CustomerPages/ReturnBook'
+import BookNews from './pages/BookNews';
 import './index.css';
 
 const router = createBrowserRouter([
@@ -123,6 +124,10 @@ const router = createBrowserRouter([
   {
     path: "/ReturnBook",
     element: <ReturnBook />,
+  },
+  {
+    path: "/BookNews",
+    element: <BookNews />,
   }
 ]);
 

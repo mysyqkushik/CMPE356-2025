@@ -22,7 +22,8 @@ import ExploreGenres from './pages/ExploreGenres';
 import ViewCatalog from './pages/ViewCatalog';
 import CustomerDashboard from './pages/CustomerPages/CustomerDashboard';
 import UserViewIssuedBooks from './pages/CustomerPages/UserViewIssuedBooks';
-import ReturnBook from './pages/CustomerPages/ReturnBook'
+import ReturnBook from './pages/CustomerPages/ReturnBook';
+import BookNews from './pages/BookNews';
 import './App.css';
 
 const App = () => {
@@ -52,6 +53,7 @@ const App = () => {
         <Route path="/CustomerDashboard" element={<CustomerDashboard />} />
         <Route path="/UserViewIssuedBooks" element={<UserViewIssuedBooks />} />
         <Route path="/ReturnBook" element={<ReturnBook />} />
+        <Route path="/BookNews" element={<BookNews />} />
       </Routes>
     </>
   );

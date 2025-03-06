@@ -23,7 +23,7 @@
     "react-typewriter-effect": "^1.1.0",
     "scroll-carousel-react": "^1.0.0",
     "slick-carousel": "^1.8.1",
-    "swiper": "^11.2.4",
+    "swiper": "^11.2.5",
     "web-vitals": "^2.1.4"
   },
   "scripts": {

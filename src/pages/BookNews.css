@@ -1,0 +1,95 @@
+.booknews-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    min-height: 50vh;
+    background-color: #faccb5a1;
+    padding: 20px;
+  }
+  
+  .booknews-swiper {
+    width: 90%;
+    max-width: 1100px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+  }
+  
+  .booknews-slide {
+    display: flex;
+    align-items: center;
+    padding: 15px;
+  }
+  
+  .booknews-content {
+    display: flex;
+    width: 100%;
+    gap: 20px;
+  }
+  
+  .booknews-image {
+    width: 40%;
+    border-radius: 8px;
+  }
+  
+  .booknews-text {
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  
+  .news-category {
+    font-size: 25px;
+    font-weight: bold;
+    color: rgb(128, 128, 128);
+    text-transform: uppercase;
+  }
+  
+  .news-title {
+    font-size: 20px;
+    font-weight: bold;
+    color: #000;
+    text-decoration: none;
+  }
+  
+  .news-title:hover {
+    color: #4a3107;
+  }
+  
+  .news-description {
+    font-size: 16px;
+    color: #444;
+    margin-top: 5px;
+  }
+  
+  .news-meta {
+    font-size: 14px;
+    color: #6e1919;
+    margin-top: 5px;
+  }
+  
+  .news-date {
+    font-size: 12px;
+    color: #722121;
+    margin-top: 5px;
+  }
+  
+  /* Responsive */
+  @media (max-width: 768px) {
+    .booknews-content {
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+  
+    .booknews-image {
+      width: 100%;
+    }
+  
+    .booknews-text {
+      width: 100%;
+    }
+  }
+  

@@ -5,6 +5,7 @@ import NavBar from './NavBar';
 import Footer from './Footer';
 import BookCarousel from './BookCarousel';
 import ConveyerBelt from './ConveyerBelt';
+import BookNews from './BookNews';
 
 const HomePage = () => {
     const [searchTerm, setSearchTerm] = useState('');
@@ -50,6 +51,10 @@ const HomePage = () => {
       {/* Book Carousel */}
       <div className="tilt-container">
         <BookCarousel /> 
+      </div>
+
+      <div className="booknews-container">
+        <BookNews /> 
       </div>
 
       <div className="belt-container">
