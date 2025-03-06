@@ -17,6 +17,8 @@ import ConveyerBelt from './pages/ConveyerBelt';
 import ManagerDashboard from './pages/ManagerPages/ManagerDashboard';
 import NewArrivals from './pages/NewArrivals';
 import SearchResults from './pages/SearchResults';
+import OurMission from './pages//AboutUs/OurMission';
+import Team from './pages/AboutUs/Team';
 import './index.css';
 
 const router = createBrowserRouter([
@@ -84,6 +86,14 @@ const router = createBrowserRouter([
     path: "/search-results",
     element: <SearchResults />,
   },
+  {
+    path: "/OurMission",
+    element: <OurMission />,
+  },
+  {
+    path: "/Team",
+    element: <Team />,
+  }
 ]);
 
 const root = ReactDOM.createRoot(document.getElementById("root"));

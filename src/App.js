@@ -15,6 +15,8 @@ import ConveyerBelt from './pages/ConveyerBelt';
 import ManagerDashboard from './pages/ManagerPages/ManagerDashboard';
 import NewArrivals from './pages/NewArrivals';
 import SearchResults from './pages/SearchResults';
+import OurMission from './pages//AboutUs/OurMission';
+import Team from './pages/AboutUs/Team';
 
 
 import './App.css';
@@ -37,7 +39,9 @@ const App = () => {
         <Route path="/ConveyerBelt" element={<ConveyerBelt/>} />
         <Route path="/ManagerDashboard" element={<ManagerDashboard />} />
         <Route path="/NewArrivals" element={<NewArrivals/>} />
-         <Route path="/search-results" element={<SearchResults />} />
+        <Route path="/search-results" element={<SearchResults />} />
+        <Route path="/OurMission" element={<OurMission/>} />
+        <Route path="/Team" element={<Team/>} />
       </Routes>
     </>
   );
