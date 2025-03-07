@@ -1,13 +1,9 @@
-/* NavBar.css */
-
-/* GENEL STİLLER */
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
 
-/* NAVBAR */
 .navbar {
   position: fixed;
   top: 0;
@@ -24,9 +20,9 @@
   font-weight: bold;
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
   z-index: 9999;
+  box-sizing: border-box;
 }
 
-/* LOGO VE BAŞLIK */
 .content-container {
   display: flex;
   align-items: center;
@@ -36,8 +32,9 @@
 .owl-image {
   width: 180px;
   height: auto;
-  margin-left: -55px;
-  margin-top: -29px;
+  max-width: 100%;
+  margin-left: -40px;
+  margin-top: -20px; 
 }
 
 .book-title {
@@ -50,7 +47,7 @@
   font-weight: 900;
   text-transform: uppercase;
   text-align: left;
-  margin-left: -28px;
+  margin-left: -20px;
   margin-top: -5px;
   font-family: "Prompt", sans-serif;
   letter-spacing: 2px;
@@ -69,7 +66,6 @@
   padding: 5px;
 }
 
-/* NAV-LINKS - MASAÜSTÜ */
 .nav-links {
   list-style: none;
   display: flex;
@@ -95,7 +91,6 @@
   border-radius: 8px;
 }
 
-/* DROPDOWN */
 .dropdown {
   position: relative;
 }
@@ -129,12 +124,10 @@
   background: rgba(222, 138, 82, 0.3);
 }
 
-/* Hover ile Açılma */
 .dropdown:hover .dropdown-menu {
   display: block;
 }
 
-/* NAV-RIGHT */
 .nav-right {
   display: flex;
   align-items: center;
@@ -176,7 +169,6 @@
   border-radius: 8px;
 }
 
-/* MyAccount Dropdown */
 .account-dropdown {
   position: relative;
   display: inline-block;
@@ -232,7 +224,6 @@
     justify-content: space-between;
   }
 
-  /* Logo & Başlık mobilde daha küçük */
   .owl-image {
     width: 100px;
     margin-left: 0;
