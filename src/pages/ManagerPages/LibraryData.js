@@ -248,57 +248,79 @@ const libraryData = {
       { 
         id: 1, 
         name: "Harry Potter", 
-        email: "harry.potter@hogwarts.com", 
+        email: "harry@hogwarts.com", 
         phone: "123-456-7890", 
         borrowedBooks: ["To Kill a Mockingbird", "Game of Thrones"]
       },
       { 
         id: 2, 
         name: "Hermione Granger", 
-        email: "hermione.granger@hogwarts.com", 
+        email: "hermione@hogwarts.com", 
         phone: "987-654-3210", 
         borrowedBooks: ["Pride and Prejudice", "Yellowface", "Jane Eyre", "Wuthering Heights"]
       },
       { 
         id: 3, 
         name: "Ron Weasley", 
-        email: "ron.weasley@hogwarts.com", 
+        email: "ron@hogwarts.com", 
         phone: "555-123-9876", 
         borrowedBooks: []
       },
       { 
         id: 4, 
         name: "Draco Malfoy", 
-        email: "draco.malfoy@hogwarts.com", 
+        email: "draco@hogwarts.com", 
         phone: "444-555-6666", 
         borrowedBooks: ["War and Peace"]
       },
       { 
         id: 5, 
         name: "Luna Lovegood", 
-        email: "luna.lovegood@hogwarts.com", 
+        email: "luna@hogwarts.com", 
         phone: "111-222-3333", 
         borrowedBooks: ["The Lord of the Rings"]
       },
     ],
   
 
-  userslogin: [
-    {
-      username: "harrypotter",
-      email: "harry@example.com",
-      password: "1234",
-      active: true,
-      borrowedBooks: ["To Kill a Mockingbird", "Game of Thrones"]
-    },
-    {
-      username: "hermionegranger",
-      email: "hermione@example.com",
-      password: "5678",
-      active: true,
-      borrowedBooks: ["Pride and Prejudice", "Yellowface", "Jane Eyre", "Wuthering Heights"]
-    },
-  ],
+    userslogin: [
+      {
+        username: "harrypotter",
+        email: "harry@hogwarts.com",
+        password: "1234",
+        active: true,
+        borrowedBooks: ["To Kill a Mockingbird", "Game of Thrones"]
+      },
+      {
+        username: "hermionegranger",
+        email: "hermione@hogwarts.com",
+        password: "5678",
+        active: true,
+        borrowedBooks: ["Pride and Prejudice", "Yellowface", "Jane Eyre", "Wuthering Heights"]
+      },
+      {
+        username: "ronweasley",
+        email: "ron@hogwarts.com",
+        password: "abcd1234",
+        active: true,
+        borrowedBooks: []
+      },
+      {
+        username: "dracomalfoy",
+        email: "draco@hogwarts.com",
+        password: "secret666",
+        active: true,
+        borrowedBooks: ["War and Peace"]
+      },
+      {
+        username: "lunalovegood",
+        email: "luna@ehogwartscom",
+        password: "moonlight123",
+        active: true,
+        borrowedBooks: ["The Lord of the Rings"]
+      }
+    ],
+    
 
   overdueBooks: [
     { id: 5, title: "Pride and Prejudice", borrower: "Hermione Granger", dueDate: "2025-03-14" },

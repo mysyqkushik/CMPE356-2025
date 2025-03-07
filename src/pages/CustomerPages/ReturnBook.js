@@ -28,7 +28,7 @@ const ReturnBook = () => {
     // After a short delay, redirect back to the dashboard
     setTimeout(() => {
       navigate('/CustomerDashboard');
-    }, 2000); // 2 seconds delay for message visibility
+    }, 1000); // 2 seconds delay for message visibility
   };
 
   return (
