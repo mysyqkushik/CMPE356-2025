@@ -84,7 +84,7 @@ const libraryData = {
       publishedDate: "1869-01-01", 
       quantity: 2, 
       status: "available", 
-      category: "Historical", 
+      category: "Classic", 
       dueDate: null,
       borrower: null 
     },
@@ -95,7 +95,7 @@ const libraryData = {
       publishedDate: "1866-11-01", 
       quantity: 5, 
       status: "available", 
-      category: "Crime", 
+      category: "Classic", 
       dueDate: null,
       borrower: null 
     },

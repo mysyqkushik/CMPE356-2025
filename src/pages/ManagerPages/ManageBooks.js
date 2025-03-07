@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import ManageBar from './ManageBar';  
 import './ManageBooks.css';
+import { books as booksData } from './LibraryData';  // Import books data from librarydata.js
 
 const ManageBooks = () => {
     const [bookTitle, setBookTitle] = useState('');
@@ -15,39 +16,13 @@ const ManageBooks = () => {
         const savedBooks = JSON.parse(localStorage.getItem('books'));
         console.log(savedBooks); // Add a log here to see if data is loading
         if (!savedBooks || savedBooks.length === 0) {
-            const defaultBooks = [
-                { id: 1, title: "The Great Gatsby", author: "F. Scott Fitzgerald", publishedDate: "1925-04-10", quantity: 5 },
-                { id: 2, title: "To Kill a Mockingbird", author: "Harper Lee", publishedDate: "1960-07-11", quantity: 8 },
-                { id: 3, title: "1984", author: "George Orwell", publishedDate: "1949-06-08", quantity: 4 },
-                { id: 4, title: "Moby-Dick", author: "Herman Melville", publishedDate: "1851-10-18", quantity: 3 },
-                { id: 5, title: "Pride and Prejudice", author: "Jane Austen", publishedDate: "1813-01-28", quantity: 6 },
-                { id: 6, title: "The Catcher in the Rye", author: "J.D. Salinger", publishedDate: "1951-07-16", quantity: 7 },
-                { id: 7, title: "The Hobbit", author: "J.R.R. Tolkien", publishedDate: "1937-09-21", quantity: 10 },
-                { id: 8, title: "War and Peace", author: "Leo Tolstoy", publishedDate: "1869-01-01", quantity: 2 },
-                { id: 9, title: "Crime and Punishment", author: "Fyodor Dostoevsky", publishedDate: "1866-11-01", quantity: 5 },
-                { id: 10, title: "The Lord of the Rings", author: "J.R.R. Tolkien", publishedDate: "1954-07-29", quantity: 9 },
-                { id: 11, title: "Jane Eyre", author: "Charlotte Brontë", publishedDate: "1847-10-16", quantity: 4 },
-                { id: 12, title: "Wuthering Heights", author: "Emily Brontë", publishedDate: "1847-12-17", quantity: 3 },
-                { id: 13, title: "The Odyssey", author: "Homer", publishedDate: "-700-01-01", quantity: 2 },
-                { id: 14, title: "The Brothers Karamazov", author: "Fyodor Dostoevsky", publishedDate: "1880-11-01", quantity: 4 }, 
-                    { id: 15, title: "Beautiful World, Where Are You", author: "Sally Rooney", publishedDate: "2021-09-07", quantity: 6 },
-                    { id: 16, title: "Babel: An Arcane History", author: "R.F. Kuang", publishedDate: "2022-08-23", quantity: 8 },
-                    { id: 17, title: "The Man Who Died Twice", author: "Richard Osman", publishedDate: "2021-09-16", quantity: 7 },
-                    { id: 18, title: "Severance", author: "Ling Ma", publishedDate: "2019-05-07", quantity: 5 },
-                    { id: 19, title: "House of Sky and Breath", author: "Sarah J. Maas", publishedDate: "2022-02-15", quantity: 9 },
-                    { id: 20, title: "Tomorrow, and Tomorrow, and Tomorrow", author: "Gabrielle Zevin", publishedDate: "2022-07-05", quantity: 6 },
-                    { id: 21, title: "Yellowface", author: "R.F. Kuang", publishedDate: "2023-05-16", quantity: 10 },
-                    { id: 22, title: "The Bullet That Missed", author: "Richard Osman", publishedDate: "2022-09-15", quantity: 4 },
-                    { id: 23, title: "Bliss Montage", author: "Ling Ma", publishedDate: "2022-09-13", quantity: 3 }
-            ];
-            localStorage.setItem('books', JSON.stringify(defaultBooks));
-            setBooks(defaultBooks);
+            // Use the imported booksData as the fallback when there is no saved data
+            localStorage.setItem('books', JSON.stringify(booksData));
+            setBooks(booksData);
         } else {
             setBooks(savedBooks);
         }
     }, []);
-    
-    
 
     const handleAddBook = () => {
         if (editingBookId) {
@@ -56,7 +31,8 @@ const ManageBooks = () => {
                     ? { ...book, title: bookTitle, author, publishedDate, quantity }
                     : book
             );
-            setBooks(updatedBooks);
+            setBooks(updatedBooks);  // Update the state here
+            localStorage.setItem('books', JSON.stringify(updatedBooks));  // Save the updated list
             setEditingBookId(null);
         } else {
             const newBook = {
@@ -66,9 +42,10 @@ const ManageBooks = () => {
                 publishedDate,
                 quantity,
             };
-            setBooks([...books, newBook]);
+            const updatedBooks = [...books, newBook];
+            setBooks(updatedBooks);  // Update the state here
+            localStorage.setItem('books', JSON.stringify(updatedBooks));  // Save the updated list
         }
-        localStorage.setItem('books', JSON.stringify(books));
         setBookTitle('');
         setAuthor('');
         setPublishedDate('');
@@ -86,14 +63,13 @@ const ManageBooks = () => {
     const handleDelete = (id) => {
         const updatedBooks = books.filter((book) => book.id !== id);
         setBooks(updatedBooks);
-        localStorage.setItem('books', JSON.stringify(updatedBooks));
+        localStorage.setItem('books', JSON.stringify(updatedBooks));  // Save the updated list
     };
 
     const toggleBookList = () => {
         console.log('Toggling book list visibility'); // Log state toggle
         setShowBookList(!showBookList);
     };
-    
 
     return (
         <>

@@ -1,6 +1,7 @@
 import React, { useReducer } from "react";
 import { Link } from 'react-router-dom';
 import "./BookCarousel.css";
+import ExploreGenres from "./ExploreGenres";
 
 const slides = [
   {
