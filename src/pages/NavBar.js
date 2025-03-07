@@ -77,25 +77,25 @@ const NavBar = () => {
         <li className={`dropdown ${activeDropdown === 0 ? 'open' : ''}`}>
           <a href="#" onClick={(e) => toggleDropdown(0, e)}>Books&More</a>
           <ul className="dropdown-menu">
-            <li><a href="#">Fiction</a></li>
-            <li><a href="#">Non-Fiction</a></li>
-            <li><a href="#">New Arrivals</a></li>
+            <li><a href="/ViewCatalog">View Catalog</a></li>
+            <li><a href="/BookRatings">Book Ratings</a></li>
+            <li><a href="/NewArrivals">New Arrivals</a></li>
           </ul>
         </li>
         <li className={`dropdown ${activeDropdown === 1 ? 'open' : ''}`}>
           <a href="#" onClick={(e) => toggleDropdown(1, e)}>Learning</a>
           <ul className="dropdown-menu">
-            <li><a href="#">Library Cards</a></li>
-            <li><a href="#">Research Help</a></li>
-            <li><a href="#">E-Books</a></li>
+            <li><a href="/LibraryCard">Library Cards</a></li>
+            <li><a href="/ResearchHelp">Search Books</a></li>
+            <li><a href="/EResources">E-Resources</a></li>
           </ul>
         </li>
         <li className={`dropdown ${activeDropdown === 2 ? 'open' : ''}`}>
           <a href="#" onClick={(e) => toggleDropdown(2, e)}>Services</a>
           <ul className="dropdown-menu">
-            <li><a href="#">Library Cards</a></li>
-            <li><a href="#">Research Help</a></li>
-            <li><a href="#">E-Books</a></li>
+            <li><a href="/BorrowBookInfo">Borrow Book</a></li>
+            <li><a href="/ReturnBookInfo">Return Book</a></li>
+            <li><a href="/AccontInfo">Account Info</a></li>
           </ul>
         </li>
         <li className={`dropdown ${activeDropdown === 3 ? 'open' : ''}`}>

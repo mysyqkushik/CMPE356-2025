@@ -26,6 +26,12 @@ import CustomerDashboard from './pages/CustomerPages/CustomerDashboard';
 import UserViewIssuedBooks from './pages/CustomerPages/UserViewIssuedBooks';
 import ReturnBook from './pages/CustomerPages/ReturnBook'
 import BookNews from './pages/BookNews';
+import LibraryCard from './pages/NavBarPages/LibraryCard';
+import ResearchHelp from './pages/NavBarPages/ResearchHelp';
+import EResources from './pages/NavBarPages/EResources';
+import BorrowBookInfo from './pages/NavBarPages/BorrowBookInfo';
+import ReturnBookInfo from './pages/NavBarPages/ReturnBookInfo';
+import AccountInfo from './pages/NavBarPages/AccountInfo';
 import './index.css';
 
 const router = createBrowserRouter([
@@ -128,7 +134,32 @@ const router = createBrowserRouter([
   {
     path: "/BookNews",
     element: <BookNews />,
+  },
+  {
+    path: "/LibraryCard",
+    element: <LibraryCard />,
+  },
+  {
+    path: "/ResearchHelp",
+    element: <ResearchHelp />,
+  },
+  {
+    path: "/EResources",
+    element: <EResources />,
+  },
+  {
+    path: "/BorrowBookInfo",
+    element: <BorrowBookInfo />,
+  },
+  {
+    path: "/ReturnBookInfo",
+    element: <ReturnBookInfo />,
+  },
+  {
+    path: "/AccountInfo",
+    element: <AccountInfo />,
   }
+
 ]);
 
 const root = ReactDOM.createRoot(document.getElementById("root"));

@@ -24,6 +24,12 @@ import CustomerDashboard from './pages/CustomerPages/CustomerDashboard';
 import UserViewIssuedBooks from './pages/CustomerPages/UserViewIssuedBooks';
 import ReturnBook from './pages/CustomerPages/ReturnBook';
 import BookNews from './pages/BookNews';
+import LibraryCard from './pages/NavBarPages/LibraryCard';
+import ResearchHelp from './pages/NavBarPages/ResearchHelp';
+import EResources from './pages/NavBarPages/EResources';
+import BorrowBookInfo from './pages/NavBarPages/BorrowBookInfo';
+import ReturnBookInfo from './pages/NavBarPages/ReturnBookInfo';
+import AccountInfo from './pages/NavBarPages/AccountInfo';
 import './App.css';
 
 const App = () => {
@@ -54,6 +60,12 @@ const App = () => {
         <Route path="/UserViewIssuedBooks" element={<UserViewIssuedBooks />} />
         <Route path="/ReturnBook" element={<ReturnBook />} />
         <Route path="/BookNews" element={<BookNews />} />
+        <Route path="/LibraryCard" element={<LibraryCard />} />
+        <Route path="/ResearchHelp" element={<ResearchHelp />} />
+        <Route path="/EResources" element={<EResources />} />
+        <Route path="/BorrowBookInfo" element={<BorrowBookInfo />} />
+        <Route path="/ReturnBookInfo" element={<ReturnBookInfo />} />
+        <Route path="/AccountInfo" element={<AccountInfo />} />
       </Routes>
     </>
   );
