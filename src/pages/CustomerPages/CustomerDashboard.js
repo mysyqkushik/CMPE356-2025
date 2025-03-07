@@ -1,27 +1,31 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import LibraryData from "../ManagerPages/LibraryData";
 import "./CustomerDashboard.css";
 
 const CustomerDashboard = () => {
   const [borrowedBooks, setBorrowedBooks] = useState([]);
+  
+  // Retrieve current user from local storage
   const currentUser = JSON.parse(localStorage.getItem("currentUser"));
 
   useEffect(() => {
-    // Get the user's borrowed books from bookdata.json (bookData)
-    const bookData = JSON.parse(localStorage.getItem("bookData")); // Fetch from localStorage
-
-    if (bookData && Array.isArray(bookData.booksBorrowed)) {
-      const userBooks = bookData.booksBorrowed.filter(
-        (book) => book.userId === currentUser.id
+    if (currentUser) {
+      // Find the user in libraryData
+      const user = LibraryData.userslogin.find(
+        (user) => user.username === currentUser.username
       );
-      setBorrowedBooks(userBooks);
+
+      if (user) {
+        setBorrowedBooks(user.borrowedBooks);
+      }
     }
-  }, [currentUser.id]);
+  }, [currentUser]);
 
   return (
     <div className="dashboard-container">
       <aside className="sidebar">
-        <div className="logo">Welcome, {currentUser.username}</div> {/* Display username */}
+        <div className="logo">Welcome, {currentUser?.username}</div> {/* Display username */}
         <nav>
           <ul>
             <li className="active">
@@ -39,7 +43,9 @@ const CustomerDashboard = () => {
             <li>
               <span>⭐</span> Rate Books
             </li>
-            <li><span>📊</span> <Link to="/HomePage">Log Out</Link></li>
+            <li>
+              <span>📊</span> <Link to="/HomePage">Log Out</Link>
+            </li>
           </ul>
         </nav>
       </aside>
@@ -71,12 +77,10 @@ const CustomerDashboard = () => {
             <ul>
               {borrowedBooks.length > 0 ? (
                 borrowedBooks.map((book, index) => (
-                  <li key={index}>
-                    {book.bookTitle} - Due: {book.dueDate}
-                  </li>
+                  <li key={index}>{book}</li>
                 ))
               ) : (
-                <li></li>
+                <li>No books borrowed</li>
               )}
             </ul>
           </div>
