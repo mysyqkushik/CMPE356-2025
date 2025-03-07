@@ -1,13 +1,14 @@
-.new-arrivals {
+.new-arrivals39 {
     text-align: center;
     margin: 50px 0;
     overflow: hidden;
   }
   
-  h2 {
-    font-size: 2rem;
+.new-arrivals39 h2 {
+    font-size: 3.1rem;
     margin-bottom: 20px;
     font-family: "Prompt", sans-serif;
+    color:beige;
   }
   
   .conveyor-belt {

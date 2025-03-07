@@ -2,21 +2,34 @@ import React from "react";
 import "./ConveyerBelt.css";
 
 const books = [
-  { id: 1, title: "Book 1", image: "/BookCarousel1.png" },
-  { id: 2, title: "Book 2", image: "/BookCarousel2.jpg" },
-  { id: 3, title: "Book 3", image: "/BookCarousel3.jpg" },
-  { id: 4, title: "Book 4", image: "/BookCarousel4.jpg" },
-  { id: 5, title: "Book 5", image: "/BookCarousel1.png" },
-  { id: 6, title: "Book 6", image: "/BookCarouselother.png" },
-  { id: 7, title: "Book 7", image: "/BookCarousel2.jpg" },
-  { id: 8, title: "Book 8", image: "/BookCarousel3.jpg" },
-  { id: 9, title: "Book 9", image: "/BookCarousel4.jpg" },
+  { id: 1,  image: "/1984.png" },
+  { id: 2,  image: "/blissmontage.jpg" },
+  { id: 3,  image: "/brothers.jpg" },
+  { id: 4,  image: "/crime.jpg" },
+  { id: 5,  image: "/fourthwing.jpg" },
+  { id: 6,  image: "/got.jpg" },
+  { id: 7,  image: "/lotr.jpg" },
+  { id: 8,  image: "/mobydick.jpg" },
+  { id: 9,  image: "/p&p.jpg" },
+  { id: 10,  image: "/richardosman.jpg" },
+  { id: 11,  image: "/richardosman2.jpg" },
+  { id: 12,  image: "/sallyrooney.jpg" },
+  { id: 13,  image: "/severance.jpg" },
+  { id: 14,  image: "/sarahjmaas.jpg" },
+  { id: 15,  image: "/theodyssey.jpg" },
+  { id: 16,  image: "/thegreatgatsby.jpg" },
+  { id: 17,  image: "/tokillamockingbird.jpg" },
+  { id: 18,  image: "war&peace.jpg" },
+  { id: 19,  image: "/tomo.jpg" },
+  { id: 20,  image: "/wutheringheights.jpg" },
+  { id: 21,  image: "/yellowface.jpg" },
+  { id: 22,  image: "/animalfarm.jpg" },
 ];
 
 const NewArrivals = () => {
   return (
-    <div className="new-arrivals">
-      <h2>New Arrivals</h2>
+    <div className="new-arrivals39">
+      <h2>Library</h2>
       <div className="conveyor-belt">
         <div className="book-track">
           {books.concat(books).map((book) => (
