@@ -1,88 +1,79 @@
 import React, { useState, useEffect } from "react";
-import "./ManagerDashboard.css"; 
+import "./ManagerDashboard.css";
 import { Link } from "react-router-dom";
-import bookData from './bookdata.json'; 
+import LibraryData from "./LibraryData"; // Import data file
 
 const ManagerDashboard = () => {
   const [books, setBooks] = useState([]);
   const [users, setUsers] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState(null);
+  const [usersCount, setUsersCount] = useState(0);
+
+// Example: Fetch user count from an API
+useEffect(() => {
+  fetch("/api/users/count")
+    .then((res) => res.json())
+    .then((data) => setUsersCount(data.count));
+}, []);
+
 
   useEffect(() => {
-    console.log(bookData); // Check if bookData is loaded correctly
-    if (bookData.books && bookData.users) {
-      setBooks(bookData.books);
-      setUsers(bookData.users);
+    if (LibraryData && LibraryData.books && LibraryData.users) {
+      console.log("Library Data Loaded:", LibraryData);
+      setBooks([...LibraryData.books]);
+      setUsers([...LibraryData.users]);
     } else {
-      console.error('Error: Missing books or users data in bookData.');
+      console.error("LibraryData is not properly loaded");
     }
   }, []);
-  
 
   // Book Statistics
   const totalBooks = books.length;
-  console.log("Books:", books);
-  const booksBorrowed = bookData.booksBorrowed.books.length;
+  const booksBorrowed = books.filter(book => book.status === "borrowed").length;
   const overdueBooks = books.filter(book => book.dueDate && new Date(book.dueDate) < new Date()).length;
-  const newBooks = books.filter(book => book.id >= 15 && book.id <= 23).length;
+  const newBooks = books.filter(book => new Date(book.publishedDate).getFullYear() > 2010).length;
 
   // Click Handlers
- const handleCardClick = (category) => {
-  console.log("Category selected: ", category);  // Debug log to ensure category is set
-  setSelectedCategory(category);
-};
+  const handleCardClick = (category) => {
+    setSelectedCategory(category);
+  };
 
+  const getFilteredBooks = () => {
+    if (!books.length) return [];
+    switch (selectedCategory) {
+      case "total":
+        return books;
+      case "borrowed":
+        return books.filter(book => book.status === "borrowed");
+      case "due":
+        return books.filter(book => book.dueDate && new Date(book.dueDate) < new Date());
+      case "new":
+        return books.filter(book => new Date(book.publishedDate).getFullYear() > 2010);
+      default:
+        return [];
+    }
+  };
 
-const getFilteredBooks = () => {
-  console.log("Selected category:", selectedCategory);  // Log selected category
-  switch (selectedCategory) {
-    case "total":
-      return books;
-    case "borrowed":
-      return bookData.booksBorrowed.books.map((borrowedBook) => {
-        // Find the corresponding book in the main books array to get the author
-        const book = books.find(book => book.id === borrowedBook.id);
-        return {
-          ...borrowedBook,
-          author: book ? book.author : "Unknown",  // Get author from the books array
-          status: "borrowed"  // Mark as borrowed
-        };
-      });
-    case "due":
-      return books.filter(book => book.dueDate && new Date(book.dueDate) < new Date());
-    case "new":
-      return books.filter(book => book.id >= 15 && book.id <= 23);
-    default:
-      return [];
-  }
-};
-
-
-  // Return Book Logic
-  const returnBook = (bookId) => {
-    setBooks(prevBooks =>
-      prevBooks.map(book =>
-        book.id === bookId ? { ...book, status: "available" } : book
-      )
-    );
+  const getBorrowerName = (bookId) => {
+    const borrowedBook = books.find(book => book.id === bookId && book.status === "borrowed");
+    return borrowedBook ? borrowedBook.borrower : "N/A";
   };
 
   return (
     <div className="dashboard-container">
-      {/* Sidebar */}
       <aside className="sidebar">
         <div className="logo">Manager Dashboard</div>
         <nav>
           <ul>
             <li className="active"><span>🏠</span> Statistics Panel</li>
             <li><span>📦</span> <Link to="/ManageBooks">Book Inventory</Link></li>
+            <li><span>👥</span> <Link to="/ViewUsers" onClick={() => handleCardClick("users")}>View Users</Link></li>
             <li><span>🔒</span> User Management</li>
             <li><span>📊</span> <Link to="/HomePage">Log Out</Link></li>
           </ul>
         </nav>
       </aside>
 
-      {/* Main Content */}
       <div className="main-content">
         <header className="navbar3">
           <div className="navbar-icons">
@@ -92,7 +83,6 @@ const getFilteredBooks = () => {
           </div>
         </header>
 
-        {/* Dashboard Cards */}
         <section className="dashboard-cards">
           <div className="card blue" onClick={() => handleCardClick("total")}>
             <h3>Total Books in Library</h3>
@@ -110,10 +100,13 @@ const getFilteredBooks = () => {
             <h3>New Book Arrivals</h3>
             <p className="big-number">{newBooks}</p>
           </div>
+          <div className="card purple" onClick={() => handleCardClick("users")}>
+          <h3>View Users</h3>
+          <p className="big-number">{users.length}</p>
+          </div>
         </section>
 
-        {/* Display Selected Books */}
-        {selectedCategory && (
+        {selectedCategory && selectedCategory !== "users" && (
           <section className="filtered-books">
             <h3>
               {selectedCategory === "total" && "All Books"}
@@ -127,26 +120,50 @@ const getFilteredBooks = () => {
                   <th>Title</th>
                   <th>Author</th>
                   <th>Status</th>
-                  <th>Borrower</th>
                   <th>Due Date</th>
+                  <th>Borrower</th>
                 </tr>
               </thead>
               <tbody>
-  {getFilteredBooks().map((book) => (
-    <tr key={book.id}>
-      <td>{book.title}</td>
-      <td>{book.author}</td>  {/* Display Author */}
-      <td>{book.status}</td> 
-      <td>{book.borrower}</td> {/* Display Status */}
-      <td>{book.dueDate || "N/A"}</td>  {/* Display Due Date */}
-    </tr>
-  ))}
-</tbody>
+                {getFilteredBooks().map((book) => (
+                  <tr key={book.id}>
+                    <td>{book.title}</td>
+                    <td>{book.author}</td>
+                    <td>{book.status}</td>
+                    <td>{book.dueDate || "N/A"}</td>
+                    <td>{getBorrowerName(book.id)}</td>
+                  </tr>
+                ))}
+              </tbody>
             </table>
           </section>
         )}
 
-        
+        {selectedCategory === "users" && (
+          <section className="users-list">
+            <h3>All Users</h3>
+            <table>
+              <thead>
+                <tr>
+                  <th>User ID</th>
+                  <th>Name</th>
+                  <th>Email</th>
+                  <th>Phone</th>
+                </tr>
+              </thead>
+              <tbody>
+                {users.map(user => (
+                  <tr key={user.id}>
+                    <td>{user.id}</td>
+                    <td>{user.name}</td>
+                    <td>{user.email}</td>
+                    <td>{user.phone}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </section>
+        )}
       </div>
     </div>
   );
