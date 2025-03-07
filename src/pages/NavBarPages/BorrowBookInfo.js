@@ -25,14 +25,15 @@ const BorrowBookInfo = () => {
         </p>
       </div>
 
+      <div className="button-container">
+        <a href="/CustomerLogin" className="go-to-borrow-buttonb35">
+          Go to Borrow
+        </a>
 
-      <a href="/CustomerLogin" className="go-to-borrow-buttonb35">
-        Go to Borrow
-      </a>
-
-      <a href="/HomePage" className="return-home-buttonb35">
-        Return to Home Page
-      </a>
+        <a href="/HomePage" className="return-home-buttonb35">
+          Return to Home Page
+        </a>
+      </div>
     </div>
   );
 };
