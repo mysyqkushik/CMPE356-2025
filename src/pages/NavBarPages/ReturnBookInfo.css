@@ -1,0 +1,73 @@
+/* Return Book Info Page */
+.returnbook-info-container67 {
+    font-family: 'Prompt', sans-serif;
+    padding: 40px 20px;  /* Add more padding around the container */
+    text-align: center;
+    background: linear-gradient(to bottom, #fddbb0, #d2a679);
+    width: 80%;  /* Make the container narrower */
+    max-width: 900px;  /* Ensure the container doesn't get too wide */
+    margin: 0 auto;  /* Center the container */
+    border-radius: 15px;  /* Rounded corners for the container */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);  /* Add a subtle shadow around the container */
+  }
+  
+  .title67 {
+    font-size: 2.5rem;
+    color: #6a4e3b;
+    margin-bottom: 20px;
+  }
+  
+  .description67 {
+    font-size: 1.1rem;
+    color: #3a2a1d;
+    margin-bottom: 20px;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  
+  .image-container67 {
+    margin: 30px 0;
+  }
+  
+  .returnbook-image67 {
+    width: 750px;
+    height: auto;
+    border-radius: 10px;
+  }
+  
+  .image-caption67 {
+    font-size: 0.9rem;
+    color: #e9e0d9;
+    margin-top: 10px;
+  }
+  
+  .account-details67 {
+    font-size: 1rem;
+    color: #3a2a1d;
+    margin: 20px 0;
+  }
+  .go-to-return-buttonb67,
+  .return-home-buttonb67 {
+    display: inline-block;
+    background-color: #8c5930e7;
+    color: white;
+    padding: 15px 25px;
+    border-radius: 8px;
+    font-size: 1.2rem;
+    text-decoration: none;
+    margin-left: 40px;  /* Increase space between buttons */
+  }
+  
+  .go-to-return-buttonb67:hover,
+  .return-home-buttonb67:hover {
+    background-color: #f58300da;
+  }
+  
+  .go-to-return-buttonb67 {
+    margin-bottom: 30px;
+  }
+  
+  .return-home-buttonb67 {
+    margin-top: 20px;  /* Add extra space before the "Return to Home Page" button */
+  }
+  
