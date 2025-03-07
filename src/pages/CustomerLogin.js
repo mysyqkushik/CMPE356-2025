@@ -1,6 +1,5 @@
 import React, { useState } from "react";
-import { useNavigate } from 'react-router-dom';
-import { Link } from "react-router-dom";
+import { useNavigate, Link } from 'react-router-dom';
 import './CustomerLogin.css';
 import bookData from './ManagerPages/bookdata.json'; // Direct import
 
@@ -65,6 +64,11 @@ const CustomerLogin = () => {
       <div className="forgot-password">Forgot Password?<span> Click Here</span></div>
       <div className="submit-container">
         <button className="submit" onClick={handleLogin}>Login</button>
+      </div>
+      <div className="home-button-container">
+        <Link to="/Homepage">
+          <button className="home-button">Return to Homepage</button>
+        </Link>
       </div>
     </div>
   );

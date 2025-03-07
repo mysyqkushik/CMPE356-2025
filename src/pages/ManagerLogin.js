@@ -26,9 +26,14 @@ const ManagerLogin = () => {
       </div>
       <div className="forgot-password">Forgot Password?<span> Click Here</span></div>
       <div className="submit-container">
-      <Link to="/ManagerDashboard">
-      <button className="submit">Login</button>
-      </Link>
+        <Link to="/ManagerDashboard">
+          <button className="submit">Login</button>
+        </Link>
+      </div>
+      <div className="home-button-container">
+        <Link to="/Homepage">
+          <button className="home-button">Return to Homepage</button>
+        </Link>
       </div>
     </div>
   );

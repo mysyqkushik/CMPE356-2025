@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import './SignUp.css';
 
 
@@ -10,7 +11,7 @@ const SignUp = () => {
         <div className="underline"></div>
       </div>
       <div className="inputs"> 
-      <div className="input">
+        <div className="input">
           <img src="user.png" alt="User Icon" /> {/* Ensure correct path */}
           <input type="text" placeholder="First Name" />
         </div>
@@ -33,7 +34,12 @@ const SignUp = () => {
       </div>
       {/*<div className="forgot-password">Forgot Password?<span> Click Here</span></div> */}
       <div className="submit-container">
-      <div className="submit">Sign Up</div>
+        <div className="submit">Sign Up</div>
+      </div>
+      <div className="home-button-container">
+        <Link to="/Homepage">
+          <button className="home-button">Return to Homepage</button>
+        </Link>
       </div>
     </div>
   );

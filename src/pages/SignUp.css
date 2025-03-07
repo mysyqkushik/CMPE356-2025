@@ -112,3 +112,129 @@ body {
     font-weight: 700;
     cursor: pointer;
 }
+
+.submit-container {
+    display: flex;
+    gap: 30px;
+    margin: 30px auto; /* Reduced from 60px to 30px */
+  }
+  
+  .home-button-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 30px;
+    margin-top: 0; /* Ensures no extra space at the top */
+  }
+  
+  .home-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 220px;
+    height: 40px;
+    color: white;
+    background: rgba(101, 68, 56, 0.8);
+    border-radius: 50px;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    border: none;
+    transition: background-color 0.3s ease;
+  }
+  
+  .home-button:hover {
+    background: rgba(101, 68, 56, 1);
+  }
+
+  /* Add this to all your CSS files (CustomerLogin.css, ManagerLogin.css, AdminLogin.css, SignUp.css) */
+
+/* Existing styles remain unchanged */
+
+/* Responsive adjustments */
+@media screen and (max-width: 768px) {
+    .container {
+      width: 90%;
+      max-width: 450px;
+      margin-top: 100px;
+      margin-bottom: 100px;
+      padding: 20px 10px;
+    }
+    
+    .text {
+      font-size: 36px;
+    }
+    
+    .underline {
+      width: 80%;
+      max-width: 300px;
+    }
+  }
+  
+  @media screen and (max-width: 480px) {
+    .container {
+      width: 95%;
+      margin-top: 50px;
+      margin-bottom: 50px;
+    }
+    
+    .text {
+      font-size: 32px;
+    }
+    
+    .underline {
+      width: 90%;
+      max-width: 250px;
+    }
+    
+    .input {
+      width: 90%;
+    }
+    
+    .submit {
+      width: 180px;
+    }
+    
+    .home-button {
+      width: 180px;
+    }
+    
+    .forgot-password {
+      padding-left: 0;
+      text-align: center;
+    }
+  }
+  
+  @media screen and (max-width: 320px) {
+    .container {
+      padding: 15px 5px;
+    }
+    
+    .text {
+      font-size: 28px;
+    }
+    
+    .inputs {
+      margin-top: 30px;
+      gap: 20px;
+    }
+    
+    .input {
+      height: 45px;
+    }
+    
+    .input input {
+      font-size: 16px;
+    }
+    
+    .submit {
+      width: 150px;
+      height: 50px;
+      font-size: 16px;
+    }
+    
+    .home-button {
+      width: 150px;
+      height: 35px;
+      font-size: 14px;
+    }
+  }
