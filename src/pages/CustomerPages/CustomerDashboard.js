@@ -94,7 +94,9 @@ const CustomerDashboard = () => {
             </ul>
           </div>
           <div className="card red">
-            <h3>Rate a Book</h3>
+          <a href="/RateABook">
+              <h3>Rate a Book</h3>
+            </a>
           </div>
         </section>
       </div>

@@ -16,7 +16,6 @@ const UserBar = () => {
                 <div className="nav-links41">
                     <Link to="/borrowBook" className="userbar-link41">Borrow Book</Link>
                     <Link to="/returnBook" className="userbar-link41">Return Book</Link>
-                    <Link to="/viewIssuedBooks" className="userbar-link41">View Issued Books</Link>
                     <Link to="/CustomerDashboard" className="userbar-link41">Return to Dashboard</Link>
                 </div>
             </div>
