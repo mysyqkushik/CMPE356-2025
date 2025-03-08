@@ -5,20 +5,29 @@ import "./CustomerDashboard.css";
 
 const CustomerDashboard = () => {
   const [borrowedBooks, setBorrowedBooks] = useState([]);
-  
+
   // Retrieve current user from local storage
   const currentUser = JSON.parse(localStorage.getItem("currentUser"));
 
   useEffect(() => {
     if (currentUser) {
-      // Find the user in libraryData
-      const user = LibraryData.userslogin.find(
-        (user) => user.username === currentUser.username
-      );
+      // Listen for changes in localStorage and update the borrowed books
+      const handleStorageChange = () => {
+        const updatedLibraryData = JSON.parse(localStorage.getItem("libraryData"));
+        const user = updatedLibraryData.userslogin.find(
+          (user) => user.username === currentUser.username
+        );
+        if (user) {
+          setBorrowedBooks(user.borrowedBooks);
+        }
+      };
 
-      if (user) {
-        setBorrowedBooks(user.borrowedBooks);
-      }
+      window.addEventListener("storage", handleStorageChange);
+      handleStorageChange(); // Initial load
+
+      return () => {
+        window.removeEventListener("storage", handleStorageChange);
+      };
     }
   }, [currentUser]);
 
@@ -32,20 +41,20 @@ const CustomerDashboard = () => {
               <span>🏠</span> My Dashboard
             </li>
             <li>
-              <span>📚</span> Borrow Book
+              <span>📚</span> 
+              <Link to="/UserLibraryCard">My Library Card</Link>
             </li>
             <li>
-              <span>🔄</span> Return Book
+  <span>🔄</span> 
+  <Link to="/UserDetails">My User Details</Link>
+</li>
+            <li>
+              <span>📜</span> Feedback
             </li>
             <li>
-              <span>📜</span> View Issued Books
-            </li>
-            <li>
-              <span>⭐</span> Rate Books
-            </li>
-            <li>
-              <span>📊</span> <Link to="/HomePage">Log Out</Link>
-            </li>
+  <span>📊</span> 
+  <a href="/HomePage">Log Out</a>
+</li>
           </ul>
         </nav>
       </aside>
@@ -61,17 +70,17 @@ const CustomerDashboard = () => {
 
         <section className="dashboard-cards">
           <div>
-            <Link to="/BorrowBook">
-              <button className="card blue">
-                <h3>Borrow a Book</h3>
-              </button>
-            </Link>
+          <a href="/BorrowBook">
+  <button className="card blue">
+    <h3>Borrow a Book</h3>
+  </button>
+  </a>
           </div>
-          <div className="card green">
-            <Link to="/ReturnBook">
-              <h3>Return a Book</h3>
-            </Link>
-          </div>
+          <button className="card green">
+          <a href="/ReturnBook">
+  <h3>Return a Book</h3>
+</a>
+          </button>
           <div className="card yellow">
             <h3>View Issued Books</h3>
             <ul>

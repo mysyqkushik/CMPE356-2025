@@ -11,7 +11,7 @@ const BorrowBookInfo = () => {
       </p>
 
       <p className="descriptionb35">
-        You'll be taken to your personal dashboard where you can browse through available books. Simply select the book you'd like to borrow, and you're all set!
+        You'll be taken to your personal dashboard where you can browse through available books in our catalog. Simply select the book you'd like to borrow, and you're all set!
       </p>
 
       <div className="image-containerbb35">
@@ -27,7 +27,7 @@ const BorrowBookInfo = () => {
 
 
       <a href="/CustomerLogin" className="go-to-borrow-buttonb35">
-        Go to Borrow
+        Borrow Book
       </a>
 
       <a href="/HomePage" className="return-home-buttonb35">

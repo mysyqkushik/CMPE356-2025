@@ -1,34 +1,55 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import LibraryData from "../ManagerPages/LibraryData";
 
 const ReturnBook = () => {
   const navigate = useNavigate();
   const [borrowedBooks, setBorrowedBooks] = useState([]);
-  const [message, setMessage] = useState(""); // To display the success message
+  const [message, setMessage] = useState(""); // Success message
 
-  // Get the currently logged-in user from localStorage
+  // Get the logged-in user
   const currentUser = JSON.parse(localStorage.getItem('currentUser'));
 
   useEffect(() => {
-    const borrowedBooksData = JSON.parse(localStorage.getItem('borrowedBooks')) || [];
-    const userBooks = borrowedBooksData.filter(book => book.userId === currentUser.id);
-    setBorrowedBooks(userBooks);
-  }, []);
+    if (currentUser) {
+      // Find the user in libraryData
+      const user = LibraryData.userslogin.find(
+        (user) => user.username === currentUser.username
+      );
 
-  const handleReturnBook = (bookId, bookTitle) => {
-    // Remove the returned book from the list of borrowed books
-    const updatedBooks = borrowedBooks.filter(book => book.id !== bookId);
+      if (user) {
+        setBorrowedBooks(user.borrowedBooks);
+      }
+    }
+  }, [currentUser]);
 
-    // Update the borrowed books data in localStorage
-    localStorage.setItem('borrowedBooks', JSON.stringify(updatedBooks));
+  const handleReturnBook = (bookTitle) => {
+    // Remove the book from borrowed list
+    const updatedBooks = borrowedBooks.filter(book => book !== bookTitle);
 
-    // Show the success message
-    setMessage(`You have returned "${bookTitle}"`);
+    // Update the state and libraryData
+    setBorrowedBooks(updatedBooks);
 
-    // After a short delay, redirect back to the dashboard
-    setTimeout(() => {
-      navigate('/CustomerDashboard');
-    }, 1000); // 2 seconds delay for message visibility
+    // Update libraryData users' borrowed books (mimicking database update)
+    const updatedLibraryData = {
+      ...LibraryData,
+      userslogin: LibraryData.userslogin.map(user =>
+        user.username === currentUser.username
+          ? { ...user, borrowedBooks: updatedBooks }
+          : user
+      )
+    };
+
+    // Update the file in localStorage (simulating a real database update)
+    localStorage.setItem('libraryData', JSON.stringify(updatedLibraryData));
+
+    // Show success message
+    setMessage(`You have successfully returned "${bookTitle}"`);
+  };
+
+  const handleReturnToDashboard = () => {
+    // Navigate back to the dashboard
+    navigate('/CustomerDashboard');
   };
 
   return (
@@ -36,12 +57,10 @@ const ReturnBook = () => {
       <h2>Issued Books</h2>
       {borrowedBooks.length > 0 ? (
         <div className="books-list">
-          {borrowedBooks.map((book) => (
-            <div key={book.id} className="book-item">
-              <h3>{book.bookTitle}</h3>
-              <p>Author: {book.author}</p>
-              <p>Due Date: {book.returnDate}</p>
-              <button onClick={() => handleReturnBook(book.id, book.bookTitle)} className="return-button">
+          {borrowedBooks.map((book, index) => (
+            <div key={index} className="book-item">
+              <h3>{book}</h3>
+              <button onClick={() => handleReturnBook(book)} className="return-button">
                 Return
               </button>
             </div>
@@ -51,6 +70,11 @@ const ReturnBook = () => {
         <p>You don't have any books issued currently.</p>
       )}
       {message && <div className="return-message">{message}</div>}
+
+      {/* Return to Dashboard Button */}
+      <button onClick={handleReturnToDashboard} className="dashboard-button">
+        Return to Dashboard
+      </button>
     </div>
   );
 };

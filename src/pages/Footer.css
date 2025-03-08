@@ -1,115 +1,242 @@
-body.dark-mode .footer {
-  background-color: #201308; /* Dark background for the whole page */
-  color: white; /* Light text color for readability */
+/* Footer ana stil */
+.footer {
+  background: linear-gradient(to bottom, #513007, #3d2506);
+  color: #fff;
+  padding: 40px 20px 20px;
+  width: 100%;
+  font-family: 'Prompt', sans-serif;
+  position: relative;
+  box-shadow: 0 -5px 15px rgba(0, 0, 0, 0.1);
 }
 
-.footer {
-    background-color: #513007; /* Change the color as you wish */
-    color: #fff;
-    padding: 1px;
-    width: 100%;
+.footer::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(to right, #f9c4a1, #f58a20, #f9c4a1);
+}
+
+.footer-top {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  max-width: 1200px;
+  margin: 0 auto 30px;
+}
+
+.footer-col {
+  flex: 1 1 300px;
+  margin: 0 30px 20px;
+  position: relative;
+}
+
+.footer-col h3 {
+  color: #f9c4a1;
+  font-size: 1.8rem;
+  margin-bottom: 20px;
+  font-weight: 600;
+  position: relative;
+  padding-bottom: 12px;
+  letter-spacing: 1px;
+}
+
+.footer-col h3::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 50px;
+  height: 2px;
+  background-color: #f58a20;
+}
+
+.footer-col p,
+.footer-col ul {
+  margin: 12px 0;
+  line-height: 1.6;
+  font-size: 1rem;
+  opacity: 0.9;
+}
+
+.footer-col ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.footer-col ul li {
+  margin-bottom: 12px;
+  transition: transform 0.3s ease;
+}
+
+.footer-col ul li:hover {
+  transform: translateX(5px);
+}
+
+.footer-col a {
+  color: #fff;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  position: relative;
+  display: inline-block;
+}
+
+.footer-col a:hover {
+  color: #f9c4a1;
+}
+
+.footer-col a::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 1px;
+  bottom: -2px;
+  left: 0;
+  background-color: #f9c4a1;
+  transition: width 0.3s ease;
+}
+
+.footer-col a:hover::after {
+  width: 100%;
+}
+
+.footer-middle {
+  text-align: center;
+  margin: 35px 0;
+  padding: 20px 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.footer-middle a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 15px;
+  color: #fff;
+  font-size: 1.2rem;
+  transition: all 0.4s ease;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.footer-middle a:hover {
+  color: #fff;
+  background-color: #f58a20;
+  transform: translateY(-5px);
+  box-shadow: 0 5px 15px rgba(245, 138, 32, 0.3);
+}
+
+.footer-bottom {
+  text-align: center;
+  padding-top: 20px;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.footer-bottom p {
+  margin: 10px 0;
+  font-size: 0.95rem;
+  opacity: 0.8;
+}
+
+.footer-bottom a {
+  color: #fff;
+  text-decoration: none;
+  margin: 0 10px;
+  font-weight: 500;
+  transition: color 0.3s ease;
+  position: relative;
+}
+
+.footer-bottom a:hover {
+  color: #f9c4a1;
+}
+
+.footer-bottom a::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 1px;
+  bottom: -2px;
+  left: 0;
+  background-color: #f9c4a1;
+  transition: width 0.3s ease;
+}
+
+.footer-bottom a:hover::after {
+  width: 100%;
+}
+
+/* Dark mode için stiller */
+body.dark-mode .footer {
+  background: linear-gradient(to bottom, #201308, #120a04);
+}
+
+body.dark-mode .footer::before {
+  background: linear-gradient(to right, #a06030, #6b4010, #a06030);
+}
+
+body.dark-mode .footer-col h3 {
+  color: #d3a97e;
+}
+
+body.dark-mode .footer-col h3::after {
+  background-color: #a06030;
+}
+
+body.dark-mode .footer-middle a:hover {
+  background-color: #a06030;
+  box-shadow: 0 5px 15px rgba(160, 96, 48, 0.3);
+}
+
+/* Responsive tasarım */
+@media (max-width: 768px) {
+  .footer {
+    padding: 30px 15px 15px;
   }
   
-  /* Top section (3 columns) */
   .footer-top {
-    display: flex;
-    flex-wrap: wrap;          /* Allows columns to wrap on smaller screens */
-    justify-content: space-around;
+    flex-direction: column;
+    align-items: center;
   }
   
   .footer-col {
-    flex: 1 1 200px;          /* Minimum width of 200px, grows if there's space */
-    margin: 10px;
-  }
-  
-  .footer-col h3 {
-    color: #fff;        
-    font-size: 1.5rem;    
-    margin-bottom: 10px;
-    z-index: 1;           
-  }
-  
-  .footer-col p,
-  .footer-col ul {
-    margin: 1px;
-    line-height: 1.2;
-  }
-  
-  .footer-col ul {
-    list-style-type: none;
-    padding: 0;
-  }
-  
-  .footer-col ul li {
-    margin-bottom: 5px;
-  }
-  
-  /* Links inside footer columns */
-  .footer-col a {
-    color: #fff;
-    text-decoration: none;
-  }
-  
-  .footer-col a:hover {
-    text-decoration: underline;
-  }
-  
-  /* Middle section (social media icons) */
-  .footer-middle {
     text-align: center;
-    margin-bottom: 20px;
+    margin: 0 0 25px;
+    width: 100%;
+  }
+  
+  .footer-col h3::after {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  
+  .footer-col ul li:hover {
+    transform: translateY(-3px);
   }
   
   .footer-middle a {
-    display: inline-block;
     margin: 0 10px;
-    color: #fff;
-    font-size: 1.4rem;
-    transition: color 0.3s ease;
+    width: 36px;
+    height: 36px;
   }
-  
-  .footer-middle a:hover {
-    color: #ccc;
-  }
-  
-  /* Bottom section (copyright, policies, etc.) */
-  .footer-bottom {
-    border-top: 1px solid #633e15;
-    text-align: center;
-    padding-top: 10px;
-  }
-  
-  .footer-bottom p {
-    margin: 5px 0;
+}
+
+@media (max-width: 480px) {
+  .footer-middle a {
+    margin: 0 8px;
+    width: 32px;
+    height: 32px;
+    font-size: 1rem;
   }
   
   .footer-bottom a {
-    color: #fff;
-    text-decoration: none;
-    margin: 0 5px;
-    font-weight: bold;
+    display: inline-block;
+    margin: 5px 8px;
   }
-  
-  .footer-bottom a:hover {
-    text-decoration: underline;
-  }
-  
-  /* Optional: special style for "View/Holiday Closings" text */
-  .view-closings {
-    font-style: italic;
-    margin-top: 8px;
-  }
-  
-  /* Responsive design for smaller screens */
-  @media (max-width: 768px) {
-    .footer-top {
-      flex-direction: column;
-      align-items: center;
-    }
-    
-    .footer-col {
-      text-align: center;
-      margin: 15px 0;
-    }
-  }
-  
+}

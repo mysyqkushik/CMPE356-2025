@@ -30,6 +30,8 @@ import EResources from './pages/NavBarPages/EResources';
 import BorrowBookInfo from './pages/NavBarPages/BorrowBookInfo';
 import ReturnBookInfo from './pages/NavBarPages/ReturnBookInfo';
 import AccountInfo from './pages/NavBarPages/AccountInfo';
+import UserDetails from './pages/CustomerPages/UserDetails';
+import UserLibraryCard from './pages/CustomerPages/UserLibraryCard';
 import './App.css';
 
 const App = () => {
@@ -66,6 +68,8 @@ const App = () => {
         <Route path="/BorrowBookInfo" element={<BorrowBookInfo />} />
         <Route path="/ReturnBookInfo" element={<ReturnBookInfo />} />
         <Route path="/AccountInfo" element={<AccountInfo />} />
+        <Route path="/UserDetails" element={<UserDetails />} />
+        <Route path="/UserLibraryCard" element={<UserLibraryCard />} />
       </Routes>
     </>
   );

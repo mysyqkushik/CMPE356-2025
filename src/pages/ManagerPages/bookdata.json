@@ -76,66 +76,38 @@
   "userslogin": [
   {
     "username": "harrypotter",
-    "email": "harry@example.com",
+    "email": "harry@hogwarts.com",
     "password": "1234",
     "active": true,
     "borrowedBooks": ["To Kill a Mockingbird", "Game of Thrones"]
   },
   {
     "username": "hermionegranger",
-    "email": "hermione@example.com",
+    "email": "hermione@hogwarts.com",
     "password": "5678",
     "active": true,
     "borrowedBooks": ["Pride and Prejudice", "Yellowface", "Jane Eyre", "Wuthering Heights"]
   },
   {
     "username": "ronweasley",
-    "email": "ron@example.com",
+    "email": "ron@hogwarts.com",
     "password": "9101",
     "active": true,
     "borrowedBooks": []
   },
   {
     "username": "dracomalfoy",
-    "email": "draco@example.com",
+    "email": "draco@hogwarts.com",
     "password": "1122",
     "active": true,
     "borrowedBooks": ["War and Peace"]
   },
   {
     "username": "lunalovegood",
-    "email": "luna@example.com",
+    "email": "luna@hogwarts.com",
     "password": "3344",
     "active": true,
     "borrowedBooks": ["The Lord of the Rings"]
-  },
-  {
-    "username": "nevillelongbottom",
-    "email": "neville@example.com",
-    "password": "5566",
-    "active": true,
-    "borrowedBooks": []
-  },
-  {
-    "username": "ginnyweasley",
-    "email": "ginny@example.com",
-    "password": "7788",
-    "active": true,
-    "borrowedBooks": ["Beautiful World, Where Are You"]
-  },
-  {
-    "username": "albusdumbledore",
-    "email": "dumbledore@example.com",
-    "password": "9900",
-    "active": true,
-    "borrowedBooks": []
-  },
-  {
-    "username": "severussnape",
-    "email": "snape@example.com",
-    "password": "2233",
-    "active": true,
-    "borrowedBooks": ["The Bullet That Missed"]
   }
 ]
 }

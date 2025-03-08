@@ -32,6 +32,8 @@ import EResources from './pages/NavBarPages/EResources';
 import BorrowBookInfo from './pages/NavBarPages/BorrowBookInfo';
 import ReturnBookInfo from './pages/NavBarPages/ReturnBookInfo';
 import AccountInfo from './pages/NavBarPages/AccountInfo';
+import UserDetails from './pages/CustomerPages/UserDetails';
+import UserLibraryCard from './pages/CustomerPages/UserLibraryCard';
 import './index.css';
 
 const router = createBrowserRouter([
@@ -158,8 +160,15 @@ const router = createBrowserRouter([
   {
     path: "/AccountInfo",
     element: <AccountInfo />,
+  },
+  {
+    path: "/UserDetails",
+    element: <UserDetails />,
+  },
+  {
+    path: "/UserLibraryCard",
+    element: <UserLibraryCard />,
   }
-
 ]);
 
 const root = ReactDOM.createRoot(document.getElementById("root"));

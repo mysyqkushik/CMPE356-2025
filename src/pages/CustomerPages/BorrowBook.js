@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';  // Use useNavigate instead of useHistory
-import UserBar from './UserBar';
+import UserBar from './UserBar.js';
 import './BorrowBook.css';
 
 const BorrowBook = () => {

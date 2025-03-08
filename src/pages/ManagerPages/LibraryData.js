@@ -9,7 +9,8 @@ const libraryData = {
       status: "available", 
       category: "Classic", 
       dueDate: null,
-      borrower: null 
+      borrower: null,
+      image: "/thegreatgatsby.jpg" 
     },
     { 
       id: 2, 
@@ -20,7 +21,8 @@ const libraryData = {
       status: "borrowed", 
       category: "Literary", 
       dueDate: "2025-03-01", 
-      borrower: "Harry Potter"
+      borrower: "Harry Potter",
+      image: "/tokillamockingbird.jpg" 
     },
     { 
       id: 3, 
@@ -31,7 +33,8 @@ const libraryData = {
       status: "available", 
       category: "Classic", 
       dueDate: null,
-      borrower: null 
+      borrower: null,
+      image: "/1984.jpg" 
     },
     { 
       id: 4, 
@@ -42,7 +45,8 @@ const libraryData = {
       status: "available", 
       category: "Classic", 
       dueDate: null,
-      borrower: null 
+      borrower: null,
+      image: "/mobydick.jpg" 
     },
     { 
       id: 5, 
@@ -53,7 +57,8 @@ const libraryData = {
       status: "borrowed", 
       category: "Romance", 
       dueDate: "2025-03-14", 
-      borrower: "Hermione Granger"
+      borrower: "Hermione Granger",
+      image: "/p&p.jpg" 
     },
     { 
       id: 6, 
@@ -64,7 +69,8 @@ const libraryData = {
       status: "available", 
       category: "Classic", 
       dueDate: null,
-      borrower: null 
+      borrower: null,
+      image: "/animalfarm.jpg" 
     },
     { 
       id: 7, 
@@ -75,7 +81,8 @@ const libraryData = {
       status: "borrowed", 
       category: "Fantasy", 
       dueDate: "2025-03-02", 
-      borrower: "Harry Potter"
+      borrower: "Harry Potter",
+      image: "/got.jpg" 
     },
     { 
       id: 8, 
@@ -86,7 +93,8 @@ const libraryData = {
       status: "available", 
       category: "Classic", 
       dueDate: null,
-      borrower: null 
+      borrower: null,
+      image: "/war&peace.jpg" 
     },
     { 
       id: 9, 
@@ -97,7 +105,8 @@ const libraryData = {
       status: "available", 
       category: "Classic", 
       dueDate: null,
-      borrower: null 
+      borrower: null,
+      image: "/crime.jpg" 
     },
     { 
       id: 10, 
@@ -108,7 +117,8 @@ const libraryData = {
       status: "borrowed", 
       category: "Fantasy", 
       dueDate: "2025-03-16", 
-      borrower: "Luna Lovegood"
+      borrower: "Luna Lovegood",
+      image: "/lotr.jpg" 
     },
     { 
       id: 11, 
@@ -119,7 +129,8 @@ const libraryData = {
       status: "available", 
       category: "Thriller", 
       dueDate: null,
-      borrower: null 
+      borrower: null,
+      image: "/yellowface.jpg" 
     },
     { 
       id: 12, 
@@ -130,7 +141,8 @@ const libraryData = {
       status: "available", 
       category: "Fantasy", 
       dueDate: null,
-      borrower: null 
+      borrower: null,
+      image: "/fourthwing.jpg" 
     },
     { 
       id: 13, 
@@ -141,7 +153,8 @@ const libraryData = {
       status: "borrowed", 
       category: "Romance", 
       dueDate: "2025-03-19", 
-      borrower: "Hermione Granger"
+      borrower: "Hermione Granger",
+      image: "/wutheringheights.jpg" 
     },
     { 
       id: 14, 
@@ -152,7 +165,8 @@ const libraryData = {
       status: "available", 
       category: "Classic", 
       dueDate: null,
-      borrower: null 
+      borrower: null,
+      image: "/theodyssey.jpg" 
     },
     { 
       id: 15, 
@@ -163,7 +177,8 @@ const libraryData = {
       status: "available", 
       category: "Classic", 
       dueDate: null,
-      borrower: null 
+      borrower: null,
+      image: "/brothers.jpg" 
     },
     { 
       id: 16, 
@@ -174,7 +189,8 @@ const libraryData = {
       status: "borrowed", 
       category: "Literary", 
       dueDate: "2025-03-14", 
-      borrower: "Hermione Granger"
+      borrower: "Hermione Granger",
+      image: "/sallyrooney.jpg" 
     },
     { 
       id: 17, 
@@ -185,7 +201,8 @@ const libraryData = {
       status: "available", 
       category: "Mystery", 
       dueDate: null,
-      borrower: null 
+      borrower: null,
+      image: "/richardosman.jpg" 
     },
     { 
       id: 18, 
@@ -196,7 +213,8 @@ const libraryData = {
       status: "available", 
       category: "Thriller", 
       dueDate: null,
-      borrower: null 
+      borrower: null,
+      image: "/serverance.jpg" 
     },
     { 
       id: 19, 
@@ -207,7 +225,8 @@ const libraryData = {
       status: "available", 
       category: "Fantasy", 
       dueDate: null,
-      borrower: null 
+      borrower: null,
+      image: "/sarahjmaas.jpg" 
     },
     { 
       id: 20, 
@@ -218,7 +237,8 @@ const libraryData = {
       status: "available", 
       category: "Literary", 
       dueDate: null,
-      borrower: null 
+      borrower: null,
+      image: "/tomo.jpg" 
     },
     { 
       id: 21, 
@@ -229,7 +249,8 @@ const libraryData = {
       status: "borrowed", 
       category: "Mystery", 
       dueDate: "2025-03-22", 
-      borrower: "Draco Malfoy"
+      borrower: "Draco Malfoy",
+      image: "/tomo.jpg" 
     },
     { 
       id: 22, 
@@ -240,7 +261,8 @@ const libraryData = {
       status: "available", 
       category: "Literary", 
       dueDate: null,
-      borrower: null 
+      borrower: null,
+      image: "/blissmontage.jpg" 
     }
   ],
   

@@ -32,10 +32,6 @@ const HomePage = () => {
         <div className="search-container">
           <div className="dropdown">
             <button className="dropdown-button">Collections </button>
-            <div className="dropdown-content">
-              <a href="#">All Books</a>
-              <a href="#">Academic Papers</a>
-            </div>
           </div>
           <input 
             type="text" 
