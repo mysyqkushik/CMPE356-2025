@@ -145,7 +145,7 @@ const WriteAReview = () => {
   const [isReviewSubmitted, setIsReviewSubmitted] = useState(false);
 
   const handleBookSelect = (id) => {
-    const book = libraryData.books.find((book) => book.id === id);
+    const book = libraryData.books.find((book) => book.id === parseInt(id));
     setSelectedBook(book);
     setIsReviewSubmitted(false); // Reset submission state when new book is selected
   };
@@ -161,55 +161,56 @@ const WriteAReview = () => {
     setIsReviewSubmitted(true);
   };
 
+  const handleReturnHome = () => {
+    window.location.href = "/HomePage";
+  };
+
   return (
     <div className="write-review767">
       <h1 className="title767">Write a Review</h1>
       
-      <div className="book-select767">
-        <h2>Select a Book to Review</h2>
-        <select onChange={(e) => handleBookSelect(Number(e.target.value))}>
-          <option value="">--Select a Book--</option>
-          {libraryData.books.map((book) => (
-            <option key={book.id} value={book.id}>
-              {book.title}
-            </option>
-          ))}
-        </select>
-      </div>
+      {!isReviewSubmitted ? (
+        <div className="book-select767">
+          <h2>Select a Book to Review:</h2>
+          <select onChange={(e) => handleBookSelect(e.target.value)}>
+            <option value="">--Choose a book--</option>
+            {libraryData.books.map((book) => (
+              <option key={book.id} value={book.id}>
+                {book.title}
+              </option>
+            ))}
+          </select>
+          
+          {selectedBook && (
+            <div className="selected-book-info767">
+              <img src={selectedBook.image} alt={selectedBook.title} className="book-image767" />
+              <h3>{selectedBook.title}</h3>
+              <p>{selectedBook.author}</p>
 
-      {selectedBook && (
-        <div className="selected-book-info767">
-          <img src={selectedBook.image} alt={selectedBook.title} className="book-image767" />
-          <h3>{selectedBook.title}</h3>
-          <p>{selectedBook.author}</p>
+              <div className="review-section767">
+                <textarea
+                  placeholder="Write your review (max 100 characters)"
+                  value={review}
+                  onChange={handleReviewChange}
+                  className="review-textarea767"
+                  maxLength="100"
+                />
+                <div className="word-count767">{review.length} / 100</div>
+                <button onClick={handleSubmitReview} className="submit-review-button767">
+                  Submit Your Review
+                </button>
+              </div>
+            </div>
+          )}
         </div>
-      )}
-
-      {selectedBook && !isReviewSubmitted && (
-        <div className="review-section767">
-          <textarea
-            placeholder="Max 100 words"
-            value={review}
-            onChange={handleReviewChange}
-            className="review-textarea767"
-            maxLength="100"
-          />
-          <div className="word-count767">{review.length} / 100</div>
-          <button onClick={handleSubmitReview} className="submit-review-button767">
-            Submit Your Review
-          </button>
-        </div>
-      )}
-
-      {isReviewSubmitted && (
+      ) : (
         <div className="review-submitted-message767">
-          <p>Review submitted, thanks!</p>
+          <h2>Review Submitted, Thanks!</h2>
+          <button onClick={handleReturnHome} className="return-home-button767">Return to Home Page</button>
         </div>
       )}
-
-      <div className="return-home-button767">
-        <button onClick={() => window.location.href = "/HomePage"}>Return to Home Page</button>
-      </div>
+      
+      <button onClick={handleReturnHome} className="return-home-button767">Return to Home Page</button>
     </div>
   );
 };
