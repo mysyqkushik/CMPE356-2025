@@ -12,12 +12,15 @@ function ManageBar() {
         <button className="toggle-btn1">
           <span className="icon1"></span>
         </button>
+        <div className="userbar1">
         <div className="nav-links1">
           <ul>
             <li><Link to="/ManageBooks">Add Book</Link></li>
             <li><Link to="/IssueBook">Issue Book</Link></li>
             <li><Link to="/ViewIssuedBooks">View Issued Books</Link></li>
+            <li><Link to="/ManagerDashboard">Return to Dashboard</Link></li>
           </ul>
+        </div>
         </div>
       </div>
     </nav>

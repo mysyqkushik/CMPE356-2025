@@ -1,56 +1,48 @@
-/* UserBar.css */
 * {
     font-family: "Prompt", sans-serif;
 }
 
-.userbar {
+.userbar41 {
     box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
     position: relative;
-    background-color: rgba(255, 136, 77, 0.614); /* White with slight transparency */
+    background-color: rgba(242, 130, 73, 0.791); 
     padding: 10px 25px;
     width: 100%;
 }
 
-.container1 {
+.container41 {
     display: flex;
     justify-content: space-between;
     align-items: center;
     width: 900px;
 }
 
-.brand1 {
+.brand41 {
     font-size: 1.5rem;
     font-weight: bold;
     color: #ffe4cb;
     text-decoration: none;
-    text-shadow: 2px 2px 3px black;
+    text-shadow: 2px 2px 3px black; 
 }
 
-.nav-links1 ul {
+.nav-links41 {
     display: flex;
-    list-style: none;
-    padding: 0;
-    margin: 0;
     gap: 65px;
 }
 
-.nav-links1 ul li {
-    margin: 0 10px;
-}
-
-.nav-links1 ul li a {
+.nav-links41 a {
     text-decoration: none;
     color: #ffffff;
-    text-shadow: 1px 1px 2px black;
+    text-shadow: 1px 1px 2px black; 
     font-weight: bold;
     transition: color 0.3s ease, text-shadow 0.3s ease;
 }
 
-.nav-links1 ul li a:hover {
+.nav-links41 a:hover {
     color: #ffe4cb;
     text-shadow: 1px 1px 3px black;
 }
 
-.toggle-btn1 {
+.toggle-btn41 {
     display: none;
 }
