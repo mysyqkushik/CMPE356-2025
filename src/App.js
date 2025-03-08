@@ -34,7 +34,9 @@ import UserDetails from './pages/CustomerPages/UserDetails';
 import UserLibraryCard from './pages/CustomerPages/UserLibraryCard';
 import ErrorNotFound from './pages/ErrorNotFound';
 import RateABook from './pages/RateABook';
+import WriteAReview from './pages/WriteAReview';
 import './App.css';
+
 
 const App = () => {
   return (
@@ -74,6 +76,7 @@ const App = () => {
         <Route path="/UserLibraryCard" element={<UserLibraryCard />} />
         <Route path="/ErrorNotFound" element={<ErrorNotFound />} />
         <Route path="/RateABook" element={<RateABook />} />
+        <Route path="/WriteAReview" element={<WriteAReview />} />
       </Routes>
     </>
   );

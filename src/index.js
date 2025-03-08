@@ -36,6 +36,7 @@ import UserDetails from './pages/CustomerPages/UserDetails';
 import UserLibraryCard from './pages/CustomerPages/UserLibraryCard';
 import ErrorNotFound from './pages/ErrorNotFound';
 import RateABook from './pages/RateABook';
+import WriteAReview from './pages/WriteAReview';
 import './index.css';
 
 const router = createBrowserRouter([
@@ -178,6 +179,10 @@ const router = createBrowserRouter([
   {
     path: "/RateABook",
     element: <RateABook />,
+  },
+  {
+    path: "/WriteAReview",
+    element: <WriteAReview />,
   }
 ]);
 

@@ -73,22 +73,7 @@ const HomePage = () => {
   </li> 
 
   <li>
-    <Link to="/genres" className="card-link">
-      <div className="library-card">
-        {/* Genres ikonu - Özel SVG */}
-        <svg className="card-icon" width="80" height="80" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M5 3C3.89543 3 3 3.89543 3 5V19C3 20.1046 3.89543 21 5 21H19C20.1046 21 21 20.1046 21 19V5C21 3.89543 20.1046 3 19 3H5Z" stroke="#8B4513" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-          <path d="M7 7H17" stroke="#8B4513" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-          <path d="M7 12H17" stroke="#8B4513" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-          <path d="M7 17H17" stroke="#8B4513" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-        </svg>
-        <h3 className="card-title">Explore Genres</h3>
-      </div>
-    </Link>
-  </li>
-
-  <li>
-    <Link to="/new-arrivals" className="card-link">
+    <Link to="/WriteAReview" className="card-link">
       <div className="library-card">
         {/* New Arrivals ikonu - Özel SVG */}
         <svg className="card-icon" width="80" height="80" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -98,24 +83,7 @@ const HomePage = () => {
           <path d="M6 19H18" stroke="#8B4513" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
           <path d="M12 22C16.4183 22 20 18.4183 20 14C20 9.58172 16.4183 6 12 6C7.58172 6 4 9.58172 4 14C4 18.4183 7.58172 22 12 22Z" stroke="#8B4513" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
         </svg>
-        <h3 className="card-title">New Arrivals</h3>
-      </div>
-    </Link>
-  </li>
-
-  <li>
-    <Link to="/catalog" className="card-link">
-      <div className="library-card">
-        {/* Catalog ikonu - Özel SVG */}
-        <svg className="card-icon" width="80" height="80" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M3 6C3 4.89543 3.89543 4 5 4H19C20.1046 4 21 4.89543 21 6V20C21 21.1046 20.1046 22 19 22H5C3.89543 22 3 21.1046 3 20V6Z" stroke="#8B4513" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-          <path d="M8 2V6" stroke="#8B4513" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-          <path d="M16 2V6" stroke="#8B4513" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-          <path d="M3 10H21" stroke="#8B4513" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-          <path d="M8 14H16" stroke="#8B4513" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-          <path d="M8 18H12" stroke="#8B4513" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-        </svg>
-        <h3 className="card-title">View our Catalog</h3>
+        <h3 className="card-title">Write a Review</h3>
       </div>
     </Link>
   </li>
