@@ -136,12 +136,25 @@ body {
 }
 
 /* Card Colors */
-.card.blue { background-color: #3b82f6; color: white; }
-.card.green { background-color: #10b981; color: white; }
-.card.yellow { background-color: #fbbf24; color: white; }
-.card.red { background-color: #ef4444; color: white; }
-.card.purple { background-color: #8b5cf6; color: white; }
-.card.orange { background-color: #f97316; color: white; }
+.card.blue {
+  background-color: #f1c27d; /* Peachy brown */
+  color: #fff;
+}
+
+.card.green {
+  background-color: #f2c4a1; /* Soft orange */
+  color: #fff;
+}
+
+.card.yellow {
+  background-color: #f3c28f; /* Warm peach */
+  color: #fff;
+}
+
+.card.red {
+  background-color: #f29f6f; /* Light orange */
+  color: #fff;
+}
 
 /* Overdue Books Table */
 .overdue-books {

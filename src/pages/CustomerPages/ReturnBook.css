@@ -4,9 +4,10 @@
     font-family: "Prompt", sans-serif;
   }
   
-  h2 {
+  .return-book-container h2 {
     font-size: 2rem;
     margin-bottom: 20px;
+    color: white;
   }
   
   .books-list {

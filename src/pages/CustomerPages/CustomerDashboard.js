@@ -49,7 +49,8 @@ const CustomerDashboard = () => {
               <Link to="/UserDetails">My User Details</Link>
             </li>
             <li>
-              <span>📜</span> Feedback
+              <span>📜</span>
+              <Link to="/ErrorNotFound">Feedback</Link>
             </li>
             <li>
               <span>📊</span> 
@@ -64,7 +65,6 @@ const CustomerDashboard = () => {
           <div className="navbar-icons">
             <span>🔔</span>
             <span>📧</span>
-            <img className="profile-pic" src="https://via.placeholder.com/40" alt="Profile" />
           </div>
         </header>
 

@@ -15,6 +15,11 @@ const SignUp = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
+    if (!firstName || !lastName || !username || !email || !password) {
+      alert("All fields are required!");
+      return;
+    }
+
     const userDetails = {
       firstName,
       lastName,

@@ -32,6 +32,7 @@ import BorrowBookInfo from './pages/NavBarPages/BorrowBookInfo';
 import ReturnBookInfo from './pages/NavBarPages/ReturnBookInfo';
 import AccountInfo from './pages/NavBarPages/AccountInfo';
 import UserDetails from './pages/CustomerPages/UserDetails';
+import MUserDetails from './pages/ManagerPages/MUserDetails';
 import UserLibraryCard from './pages/CustomerPages/UserLibraryCard';
 import ErrorNotFound from './pages/ErrorNotFound';
 import RateABook from './pages/RateABook';
@@ -79,6 +80,7 @@ const App = () => {
         <Route path="/RateABook" element={<RateABook />} />
         <Route path="/WriteAReview" element={<WriteAReview />} />
         <Route path="/AdminDashboard" element={<AdminDashboard />} />
+        <Route path="/MUserDetails" element={<MUserDetails />} />
       </Routes>
     </>
   );

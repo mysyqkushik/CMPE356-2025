@@ -58,8 +58,8 @@ const AdminDashboard = () => {
           <ul>
             <li className="active"><span>🏠</span> Statistics Panel</li>
             <li><span>📦</span> <Link to="/ManageBooks">Book Inventory</Link></li>
-            <li><span>👥</span> <Link to="/ViewUsers" onClick={() => handleCardClick("users")}>View Users</Link></li>
-            <li><span>🔒</span> Key Metrics</li>
+            <li><span>🔒</span> <Link to="/ErrorNotFound">Key Metrics</Link></li>
+            <li><span>👥</span> <Link to="/ErrorNotFound">User Requests</Link></li>
             <li><span>📊</span> <Link to="/HomePage">Log Out</Link></li>
           </ul>
         </nav>

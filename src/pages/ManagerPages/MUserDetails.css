@@ -1,0 +1,70 @@
+.user-details-container {
+    max-width: 400px;
+    margin: auto;
+    background: rgba(246, 215, 202, 0.871);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+  }
+  
+  .details {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  label {
+    font-weight: bold;
+    margin-top: 10px;
+  }
+  
+  input {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    width: 100%;
+    background-color: white;
+    color: black;
+  }
+  
+  input:disabled {
+    background-color: #f0f0f0;
+    color: gray;
+  }
+  
+  .buttons {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 5px;
+  }
+  
+  button {
+    background: #f06829e5;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+  
+  button:hover {
+    background: #6f3b24;
+  }
+  
+  button:disabled {
+    background: #ccc;
+    cursor: not-allowed;
+  }
+  
+  .return-btn {
+    margin-top: 20px;
+    background: #52340f;
+  }
+  
+  .return-btn:hover {
+    background: #ea8d53;
+  }
+  

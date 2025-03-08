@@ -67,8 +67,7 @@ useEffect(() => {
           <ul>
             <li className="active"><span>🏠</span> Statistics Panel</li>
             <li><span>📦</span> <Link to="/ManageBooks">Book Inventory</Link></li>
-            <li><span>👥</span> <Link to="/ViewUsers" onClick={() => handleCardClick("users")}>View Users</Link></li>
-            <li><span>🔒</span> User Management</li>
+            <li><span>👥</span> <Link to="/MUserDetails">My User Details</Link></li>
             <li><span>📊</span> <Link to="/HomePage">Log Out</Link></li>
           </ul>
         </nav>
@@ -79,7 +78,6 @@ useEffect(() => {
           <div className="navbar-icons">
             <span>🔔</span>
             <span>📧</span>
-            <img className="profile-pic" src="https://via.placeholder.com/40" alt="Profile" />
           </div>
         </header>
 

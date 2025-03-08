@@ -34,6 +34,7 @@ import BorrowBookInfo from './pages/NavBarPages/BorrowBookInfo';
 import ReturnBookInfo from './pages/NavBarPages/ReturnBookInfo';
 import AccountInfo from './pages/NavBarPages/AccountInfo';
 import UserDetails from './pages/CustomerPages/UserDetails';
+import MUserDetails from './pages/ManagerPages/MUserDetails';
 import UserLibraryCard from './pages/CustomerPages/UserLibraryCard';
 import ErrorNotFound from './pages/ErrorNotFound';
 import RateABook from './pages/RateABook';
@@ -188,6 +189,10 @@ const router = createBrowserRouter([
   {
     path: "/AdminDashboard",
     element: <AdminDashboard />,
+  },
+  {
+    path: "/MUserDetails",
+    element: <MUserDetails />,
   }
 ]);
 
