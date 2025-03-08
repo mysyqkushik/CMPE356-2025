@@ -6,7 +6,7 @@ import "./CustomerDashboard.css";
 const CustomerDashboard = () => {
   const [borrowedBooks, setBorrowedBooks] = useState([]);
 
-  // Retrieve current user from local storage
+  // Retrieve current user from localStorage
   const currentUser = JSON.parse(localStorage.getItem("currentUser"));
 
   useEffect(() => {
@@ -14,7 +14,7 @@ const CustomerDashboard = () => {
       // Listen for changes in localStorage and update the borrowed books
       const handleStorageChange = () => {
         const updatedLibraryData = JSON.parse(localStorage.getItem("libraryData"));
-        const user = updatedLibraryData.userslogin.find(
+        const user = updatedLibraryData?.userslogin?.find(
           (user) => user.username === currentUser.username
         );
         if (user) {
@@ -45,16 +45,16 @@ const CustomerDashboard = () => {
               <Link to="/UserLibraryCard">My Library Card</Link>
             </li>
             <li>
-  <span>🔄</span> 
-  <Link to="/UserDetails">My User Details</Link>
-</li>
+              <span>🔄</span> 
+              <Link to="/UserDetails">My User Details</Link>
+            </li>
             <li>
               <span>📜</span> Feedback
             </li>
             <li>
-  <span>📊</span> 
-  <a href="/HomePage">Log Out</a>
-</li>
+              <span>📊</span> 
+              <a href="/HomePage">Log Out</a>
+            </li>
           </ul>
         </nav>
       </aside>
@@ -70,16 +70,16 @@ const CustomerDashboard = () => {
 
         <section className="dashboard-cards">
           <div>
-          <a href="/BorrowBook">
-  <button className="card blue">
-    <h3>Borrow a Book</h3>
-  </button>
-  </a>
+            <a href="/BorrowBook">
+              <button className="card blue">
+                <h3>Borrow a Book</h3>
+              </button>
+            </a>
           </div>
           <button className="card green">
-          <a href="/ReturnBook">
-  <h3>Return a Book</h3>
-</a>
+            <a href="/ReturnBook">
+              <h3>Return a Book</h3>
+            </a>
           </button>
           <div className="card yellow">
             <h3>View Issued Books</h3>

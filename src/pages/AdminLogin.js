@@ -26,7 +26,7 @@ const AdminLogin = () => {
       </div>
       <div className="forgot-password">Forgot Password?<span> Click Here</span></div>
       <div className="submit-container">
-        <Link to="/ManageBooks">
+        <Link to="/AdminDashboard">
           <button className="submit">Login</button>
         </Link>
       </div>

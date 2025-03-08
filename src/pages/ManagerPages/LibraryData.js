@@ -272,7 +272,7 @@ const libraryData = {
         name: "Harry Potter", 
         email: "harry@hogwarts.com", 
         phone: "123-456-7890", 
-        borrowedBooks: ["To Kill a Mockingbird", "Game of Thrones"]
+        borrowedBooks: ["To Kill a Mockingbird", "Game of Thrones", "1984"]
       },
       { 
         id: 2, 
