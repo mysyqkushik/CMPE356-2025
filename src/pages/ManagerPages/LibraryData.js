@@ -214,7 +214,7 @@ const libraryData = {
       category: "Thriller", 
       dueDate: null,
       borrower: null,
-      image: "/serverance.jpg" 
+      image: "/severance.jpg" 
     },
     { 
       id: 19, 
@@ -250,7 +250,7 @@ const libraryData = {
       category: "Mystery", 
       dueDate: "2025-03-22", 
       borrower: "Draco Malfoy",
-      image: "/tomo.jpg" 
+      image: "/richardosman2.jpg" 
     },
     { 
       id: 22, 
@@ -279,7 +279,7 @@ const libraryData = {
         name: "Hermione Granger", 
         email: "hermione@hogwarts.com", 
         phone: "987-654-3210", 
-        borrowedBooks: ["Pride and Prejudice", "Yellowface", "Jane Eyre", "Wuthering Heights"]
+        borrowedBooks: ["Pride and Prejudice", "Yellowface", "Severance", "Wuthering Heights"]
       },
       { 
         id: 3, 
@@ -318,7 +318,7 @@ const libraryData = {
         email: "hermione@hogwarts.com",
         password: "5678",
         active: true,
-        borrowedBooks: ["Pride and Prejudice", "Yellowface", "Jane Eyre", "Wuthering Heights"]
+        borrowedBooks: ["Pride and Prejudice", "Yellowface", "Severance", "Wuthering Heights"]
       },
       {
         username: "ronweasley",

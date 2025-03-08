@@ -32,6 +32,7 @@ import ReturnBookInfo from './pages/NavBarPages/ReturnBookInfo';
 import AccountInfo from './pages/NavBarPages/AccountInfo';
 import UserDetails from './pages/CustomerPages/UserDetails';
 import UserLibraryCard from './pages/CustomerPages/UserLibraryCard';
+import ErrorNotFound from './pages/ErrorNotFound';
 import './App.css';
 
 const App = () => {
@@ -70,6 +71,7 @@ const App = () => {
         <Route path="/AccountInfo" element={<AccountInfo />} />
         <Route path="/UserDetails" element={<UserDetails />} />
         <Route path="/UserLibraryCard" element={<UserLibraryCard />} />
+        <Route path="/ErrorNotFound" element={<ErrorNotFound />} />
       </Routes>
     </>
   );

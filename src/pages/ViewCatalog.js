@@ -219,7 +219,7 @@ const libraryData = {
         category: "Thriller", 
         dueDate: null,
         borrower: null,
-        image: "/serverance.jpg" 
+        image: "/severance.jpg" 
       },
       { 
         id: 19, 
@@ -255,7 +255,7 @@ const libraryData = {
         category: "Mystery", 
         dueDate: "2025-03-22", 
         borrower: "Draco Malfoy",
-        image: "/tomo.jpg" 
+        image: "/richardosman2.jpg" 
       },
       { 
         id: 22, 

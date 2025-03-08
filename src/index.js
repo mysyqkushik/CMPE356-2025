@@ -34,6 +34,7 @@ import ReturnBookInfo from './pages/NavBarPages/ReturnBookInfo';
 import AccountInfo from './pages/NavBarPages/AccountInfo';
 import UserDetails from './pages/CustomerPages/UserDetails';
 import UserLibraryCard from './pages/CustomerPages/UserLibraryCard';
+import ErrorNotFound from './pages/ErrorNotFound';
 import './index.css';
 
 const router = createBrowserRouter([
@@ -168,6 +169,10 @@ const router = createBrowserRouter([
   {
     path: "/UserLibraryCard",
     element: <UserLibraryCard />,
+  },
+  {
+    path: "/ErrorNotFound",
+    element: <ErrorNotFound />,
   }
 ]);
 

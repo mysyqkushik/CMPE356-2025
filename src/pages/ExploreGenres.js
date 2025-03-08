@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import BookCard from "./BookCard";
-import './NewArrivals.css';
+import './ExploreGenres.css';
 import { books as allBooks } from './ManagerPages/LibraryData'; // Import books
 
 const NewArrivals = () => {
@@ -26,32 +26,37 @@ const NewArrivals = () => {
 
   return (
     <div>
-      <h1>New Arrivals</h1>
-      
+      <h1 className="heading88">Explore Genres</h1>
+      <div className="borrow-button-container88">
+        <a href="/CustomerLogin" className="borrow-button88">
+        Borrow
+        </a>
+        </div>
+
       {/* Category Filters */}
-      <div className="category-filters">
+      <div className="category-filters88">
         {['Classic', 'Romance', 'Fantasy', 'Mystery', 'Thriller'].map((category) => (
-          <button key={category} onClick={() => handleCategoryClick(category)}>
+          <button key={category} onClick={() => handleCategoryClick(category)} className="category-button88">
             {category}
           </button>
         ))}
-        <button onClick={() => handleCategoryClick('')}>All Books</button>
+        <button onClick={() => handleCategoryClick('')} className="category-button88">All Books</button>
       </div>
 
       {/* Display filtered books */}
-      <div className="book-list">
+      <div className="book-list88">
         {newArrivals.length > 0 ? (
           newArrivals.map((book) => (
             <BookCard key={book.id} book={book} />
           ))
         ) : (
-          <p>No new arrivals found for the selected category.</p>
+          <p>No different genres found for the selected category.</p>
         )}
       </div>
       
       {/* Back to Home Button */}
-      <div className="back-home">
-        <a href="/HomePage" className="back-home-btn">
+      <div className="back-home88">
+        <a href="/HomePage" className="back-home-btn88">
           Return to Homepage
         </a>
       </div>

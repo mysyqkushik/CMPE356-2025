@@ -34,7 +34,9 @@ const slides = [
   },
   {
     content: (
-      <img src="/BookCarouselother.png" alt="New Arrivals" className="book-image7" />
+      <Link to="/ErrorNotFound">
+        <img src="/BookCarouselother.png" alt="View Catalog" className="book-image7" />
+      </Link>
     )
   }
 ];
