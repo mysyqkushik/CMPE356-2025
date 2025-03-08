@@ -208,7 +208,7 @@ const WriteAReview = () => {
       )}
 
       <div className="return-home-button767">
-        <button onClick={() => window.location.href = "/"}>Return to Home Page</button>
+        <button onClick={() => window.location.href = "/HomePage"}>Return to Home Page</button>
       </div>
     </div>
   );
