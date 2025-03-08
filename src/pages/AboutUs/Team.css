@@ -1,52 +1,141 @@
 .team-container55 {
-    text-align: center;
-    background-color: #f9c4a1b3;
-    padding: 40px;
-    border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  }
-  
-  .team-title55 {
-    font-size: 35px;
-    color: #52320e;
-    margin-bottom: 20px;
-    font-weight: bold;
-  }
-  
+  text-align: center;
+  background-color: #f9c4a1b3;
+  padding: 40px 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.team-title55 {
+  font-size: 35px;
+  color: #52320e;
+  margin-bottom: 20px;
+  font-weight: bold;
+}
+
+.team-members55 {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 40px;
+}
+
+.team-member55 {
+  text-align: center;
+  max-width: 280px;
+  background-color: white;
+  border-radius: 20px;
+  padding: 25px 15px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+
+.team-member55:hover {
+  transform: translateY(-5px);
+}
+
+.team-image55 {
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  border: 4px solid #2e1a0b;
+  object-fit: cover;
+  margin-bottom: 15px;
+}
+
+.team-role54 {
+  font-size: 24px;
+  color: #52320e;
+  margin-top: -10px;
+  word-wrap: break-word;
+}
+
+.team-role55 {
+  font-size: 18px;
+  color: #52320e;
+  margin-top: -10px;
+  word-wrap: break-word;
+}
+
+.team-contact55 {
+  font-size: 16px;
+  color: #666;
+  word-break: break-word;
+}
+
+.team-contact55 a {
+  text-decoration: none;
+  color: #845830;
+  transition: color 0.3s;
+}
+
+.team-contact55 a:hover {
+  color: #52320e;
+  text-decoration: underline;
+}
+
+/* Media Queries for Responsiveness */
+@media screen and (max-width: 992px) {
   .team-members55 {
-    display: flex;
-    justify-content: center;
-    gap: 80px;
+    gap: 30px;
   }
   
   .team-member55 {
-    text-align: center;
     max-width: 250px;
   }
   
   .team-image55 {
-    width: 210px; /* Medium size */
-    height: 210px;
-    border-radius: 50%;
-    border: 4px solid #2e1a0b;
-    object-fit: cover; /* Ensures images are properly cropped */
-    margin-bottom: 15px;
+    width: 160px;
+    height: 160px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .team-title55 {
+    font-size: 30px;
+  }
+  
+  .team-members55 {
+    gap: 20px;
+  }
+  
+  .team-member55 {
+    max-width: 230px;
+  }
+  
+  .team-role54 {
+    font-size: 20px;
   }
   
   .team-role55 {
-    font-size: 20px;
-    color: #52320e;
-    margin-top: -10px;
-  }
-
-  .team-role54 {
-    font-size: 28px;
-    color: #52320e;
-    margin-top: -20px;
-  }
-  
-  .team-contact55 {
     font-size: 16px;
-    color: #666;
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .team-container55 {
+    padding: 30px 15px;
   }
   
+  .team-title55 {
+    font-size: 28px;
+  }
+  
+  .team-members55 {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .team-member55 {
+    max-width: 280px;
+    width: 100%;
+  }
+  
+  .team-image55 {
+    width: 150px;
+    height: 150px;
+  }
+}

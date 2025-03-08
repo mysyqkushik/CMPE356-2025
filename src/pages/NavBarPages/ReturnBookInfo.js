@@ -1,5 +1,5 @@
 import React from 'react';
-import './ReturnBookInfo.css'; // Link to the CSS file
+import './ReturnBookInfo.css';
 
 function ReturnBookInfo() {
   return (
@@ -27,7 +27,7 @@ function ReturnBookInfo() {
 
 
 
-      <a href="/CustomerLogin" className="go-to-return-buttonb67">Return Book</a>
+      <a href="/CustomerLogin" className="go-to-return-buttonb67">Go to Return</a>
       <a href="/HomePage" className="return-home-buttonb67">Return to Homepage</a>
     </div>
   );

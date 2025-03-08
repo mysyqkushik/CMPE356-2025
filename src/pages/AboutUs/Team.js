@@ -6,7 +6,7 @@ const Team = () => {
   return (
     <div className="team-container55">
       <h1 className="team-title55">
-      <a href="./HomePage">🦉Our Team🦉</a>
+        <a href="./HomePage">🦉Our Team🦉</a>
       </h1>
       <div className="team-members55">
         <div className="team-member55">
@@ -28,7 +28,7 @@ const Team = () => {
             <a href="mailto:sarah.nauman@stu.khas.edu.tr.com">Email: sarah.nauman@stu.khas.edu.tr.com</a>
           </p>
           <p className="team-contact55">
-            <a href="linkedin.com/in/sarah-nauman-741788266" target="_blank" rel="noopener noreferrer">LinkedIn Profile</a>
+            <a href="https://linkedin.com/in/sarah-nauman-741788266" target="_blank" rel="noopener noreferrer">LinkedIn Profile</a>
           </p>
         </div>
         <div className="team-member55">
@@ -36,7 +36,7 @@ const Team = () => {
           <h2 className="team-role54">YİĞİT KESER</h2>
           <h3 className="team-role55">Head of Documentarians/Testing</h3>
           <p className="team-contact55">
-            <a href="yigit.keser@stu.khas.edu.tr">Email: yigit.keser@stu.khas.edu.tr</a>
+            <a href="mailto:yigit.keser@stu.khas.edu.tr">Email: yigit.keser@stu.khas.edu.tr</a>
           </p>
           <p className="team-contact55">
             <a href="https://www.linkedin.com/in/yiğit-keser-733058355/" target="_blank" rel="noopener noreferrer">LinkedIn Profile</a>
