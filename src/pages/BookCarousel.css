@@ -28,7 +28,6 @@ body {
 }
 
 .slides {
- 
   display: grid;
   > .slide {
     grid-area: 1 / -1;
@@ -36,37 +35,39 @@ body {
 
   > button {
     appearance: none;
-    background: transparent;
+    background: rgba(3, 0, 0, 0.2);
     border: none;
     color: white;
     position: absolute;
-    font-size: 5rem;
-    width: 5rem;
+    font-size: 3rem;
+    width: 3rem;
     height: 5rem;
     top: 30%;
-    transition: opacity 0.3s;
-    opacity: 0.7;
     z-index: 5;
+    border-radius: 8px;
+    cursor: pointer;
 
     &:hover {
       opacity: 1;
+      background: rgba(255, 255, 255, 0.3);
     }
 
     &:focus {
       outline: none;
     }
 
-    &:first-child {
-      left: -50%;
+    &.prevButton {
+      left: em;
     }
-    &:last-child {
-      right: -50%;
+    
+    &.nextButton {
+      right: 0.5rem;
     }
   }
 }
 
 .slideContent {
-  width: 30vw;
+  width: 25vw; /* Reduced from 30vw to decrease spacing between books */
   height: 40vw;
   background-size: cover;
   background-position: center center;
@@ -78,7 +79,7 @@ body {
   align-content: center;
 
   transform-style: preserve-3d;
-  transform: perspective(1000px) translateX(calc(100% * var(--offset)))
+  transform: perspective(1000px) translateX(calc(95% * var(--offset))) /* Reduced from 100% to tighten spacing */
     rotateY(calc(-45deg * var(--dir)));
 }
 
@@ -134,7 +135,6 @@ body {
   }
 
   .slideContent {
-
     --x: calc(var(--px) - 0.5);
     --y: calc(var(--py) - 0.5);
     opacity: 1;
@@ -151,7 +151,7 @@ body {
 
 .book-image7 {
   width: 20vw;
-  height: 30vw;
+  height: 27vw;
   object-fit: cover;
   cursor: pointer;
 }
