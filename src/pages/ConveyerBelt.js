@@ -30,7 +30,7 @@ const books = [
 const NewArrivals = () => {
   return (
     <div className="new-arrivals39">
-      <h2><a href="/ViewCatalog">Library</a></h2>
+      <h2><a href="/ViewCatalog" color="white">Library</a></h2>
       <div className="conveyor-belt">
         <div className="book-track">
           {books.concat(books).map((book) => (
