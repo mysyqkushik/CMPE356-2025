@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "./BookRatings.css";
 
@@ -28,38 +28,90 @@ const books = [
 ];
 
 const BookRatings = () => {
-    const navigate = useNavigate();
+  const navigate = useNavigate();
   
-    return (
-        <div className="bookRatingsContainer834">
-          <button className="rateButton834" onClick={() => navigate("/RateABook")}>
-            Rate a Book
-          </button>
-          <h1 className="title834">Book Ratings</h1>
-          <h2 className="subtitle834">
-            These ratings have been collected from popular book review sites such as Goodreads.
-          </h2>
+  // Rate a Book butonuna manuel olarak tıklama olayı ekleyen fonksiyon
+  useEffect(() => {
+    const rateButton = document.querySelector('.rateButton834');
     
-          <div className="bookList834">
-            {books.map((book) => (
-              <div key={book.id} className="bookCard834">
-                <img src={book.image} alt={book.title} className="bookImage834" />
-                <h3 className="bookTitle834">{book.title}</h3>
-                <p className="bookAuthor834">{book.author}</p>
-                <div className="stars834">
-                  {[...Array(5)].map((_, i) => (
-                    <span key={i} className={`star834 ${i < book.rating ? "filled834" : "empty834"}`}>★</span>
-                  ))}
-                </div>
-              </div>
-            ))}
-          </div>
-
-        <button className="homeButton834" onClick={() => navigate("/HomePage")}>
-          Return to Home Page
-        </button>
-      </div>
-    );
+    if (rateButton) {
+      // Eski event listener'ları temizle
+      const oldClone = rateButton.cloneNode(true);
+      rateButton.parentNode.replaceChild(oldClone, rateButton);
+      
+      // Yeni bir event listener ekle
+      const newButton = document.querySelector('.rateButton834');
+      newButton.addEventListener('click', function() {
+        window.location.href = '/RateABook';
+      });
+    }
+    
+    // Çıkış anında temizleme
+    return () => {
+      const rateButton = document.querySelector('.rateButton834');
+      if (rateButton) {
+        const clone = rateButton.cloneNode(true);
+        rateButton.parentNode.replaceChild(clone, rateButton);
+      }
+    };
+  }, []);
+  
+  // Normal buton tıklama fonksiyonu
+  const goToRateABook = () => {
+    window.location.href = '/RateABook';
   };
   
-  export default BookRatings;
+  return (
+    <div className="bookRatingsContainer834">
+      {/* Inline style ve href özelliği olan buton */}
+      <a 
+        href="/RateABook" 
+        className="rateButton834"
+        style={{
+          position: 'absolute',
+          top: '20px',
+          right: '20px',
+          padding: '10px 15px',
+          backgroundColor: '#ffcc00',
+          color: 'black',
+          border: 'none',
+          cursor: 'pointer',
+          borderRadius: '5px',
+          fontWeight: 'bold',
+          textDecoration: 'none',
+          display: 'block',
+          zIndex: 1000
+        }}
+      >
+        Rate a Book
+      </a>
+      
+      <h1 className="title834">Book Ratings</h1>
+      <h2 className="subtitle834">
+        These ratings have been collected from popular book review sites such as Goodreads.
+      </h2>
+
+      <div className="bookList834">
+        {books.map((book) => (
+          <div key={book.id} className="bookCard834">
+            <img src={book.image} alt={book.title} className="bookImage834" />
+            <h3 className="bookTitle834">{book.title}</h3>
+            <p className="bookAuthor834">{book.author}</p>
+            <div className="stars834">
+              {[...Array(5)].map((_, i) => (
+                <span key={i} className={`star834 ${i < book.rating ? "filled834" : "empty834"}`}>★</span>
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <button className="homeButton834" onClick={() => navigate("/Homepage")}>
+        Return to Home Page
+      </button>
+      
+    </div>
+  );
+};
+
+export default BookRatings;
