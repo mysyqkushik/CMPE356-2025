@@ -77,7 +77,7 @@
 
 
   .borrow-btn {
-    background-color: #ffbf97;
+    background-color: #ed6816;
     color: white;
     padding: 10px 20px;
     border: none;
@@ -88,13 +88,39 @@
     transition: background-color 0.3s ease;
   }
   
+  .book-image91 {
+    width: 130px; /* Adjust as needed */
+    height: auto;
+    display: block;
+    margin-bottom: 10px;
+  }
+  
   .borrow-btn:hover {
-    background-color: #f0dcb6;
+    background-color: #f3b441;
   }
   
   .borrow-btn:active {
     background-color: #edecc8;
   }
+
+  .return-home-btn156 {
+    display: block;
+    margin: 20px auto;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    background-color: #522e0f;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .return-home-btn:hover {
+    background-color: #0056b3;
+  }
+  
   
   /* Responsive design for mobile */
   @media (max-width: 768px) {
