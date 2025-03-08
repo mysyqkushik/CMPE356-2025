@@ -11,6 +11,23 @@
     color:beige;
   }
   
+  a {
+    color: white; /* Default color */
+    text-decoration: none;
+  }
+  
+  a:visited {
+    color: white; /* Prevent purple color after visiting */
+  }
+  
+  a:hover {
+    color: lightgray; /* Optional: Change color on hover */
+  }
+  
+  a:active {
+    color: white; /* Prevent red color on click */
+  }
+
   .conveyor-belt {
     position: relative;
     width: 100%;
