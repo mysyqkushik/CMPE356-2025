@@ -2,12 +2,14 @@
   font-family: "Prompt", sans-serif;
   padding: 20px;
   text-align: center;
+  position: relative; /* Add this for absolute positioning context */
 }
 
 .heading461 {
   color: rgb(239, 230, 230);
   font-size: 40px;
   margin-bottom: 20px;
+  text-align: left; /* Align heading to the left */
 }
 
 .book-list461 {
@@ -83,19 +85,28 @@
 .return-home61-btn:hover {
   background-color: #c0b08d;
 }
-.borrow-button61-link {
-  background-color: #ff8000;
-  color: white;
-  padding: 10px 20px;
-  border-radius: 5px;
-  text-decoration: none;
+
+/* Position the borrow button container */
+.borrow-button61 {
   position: absolute;
   top: 20px;
   right: 20px;
-  font-size: 18px;
+  z-index: 100; /* Ensure it's above other elements */
+}
+
+/* Style the actual borrow button link */
+.borrow-button61-link {
+  background-color: #ff8000;
+  color: white;
+  padding: 8px 16px;
+  border-radius: 5px;
+  text-decoration: none;
+  font-size: 16px;
+  display: block; /* Make the entire button clickable */
 }
 
 .borrow-button61-link:hover {
   background-color: #eae3c3;
+  color: #44250f;
+  cursor: pointer; /* Add pointer cursor on hover */
 }
-

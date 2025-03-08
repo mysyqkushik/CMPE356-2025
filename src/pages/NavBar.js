@@ -95,7 +95,7 @@ const NavBar = () => {
           <ul className="dropdown-menu">
             <li><a href="/BorrowBookInfo">Borrow Book</a></li>
             <li><a href="/ReturnBookInfo">Return Book</a></li>
-            <li><a href="/AccontInfo">Add Book</a></li>
+            <li><a href="/AccountInfo">Request Book</a></li>
           </ul>
         </li>
         <li className={`dropdown ${activeDropdown === 3 ? 'open' : ''}`}>

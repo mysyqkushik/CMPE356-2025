@@ -4,38 +4,37 @@
   padding: 20px;
   text-align: center;
   background-color: #f9f9f9;
+  position: relative; /* For absolute positioning of the borrow button */
 }
 
 /* Header section */
 .heading88 {
-  font-size: 60px;
+  font-size: 40px;
   color: rgba(255, 255, 255, 0.972);
   margin-bottom: 20px;
+  text-align: left; /* Align heading to the left */
 }
 
-/* Borrow Button Styling */
-.borrow-button-container88 {
-  display: flex;
-  justify-content: flex-end;
-  margin: 20px 0;
-  margin-top: -30px;
-}
-
+/* Borrow Button Styling - positioned at top right */
 .borrow-button88 {
-  background-color: #002fff;
+  background-color: #ff8000;
   color: white;
-  padding: 12px 20px;
-  font-size: 18px;
+  padding: 8px 16px;
+  font-size: 16px;
   cursor: pointer;
   text-decoration: none;
   border-radius: 5px;
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  z-index: 100; /* Ensure it's above other elements */
   transition: background-color 0.3s ease;
 }
 
 .borrow-button88:hover {
   background-color: #eae3c3;
+  color: #44250f;
 }
-
 
 /* Category Filters Section */
 .category-filters88 {
@@ -104,44 +103,27 @@
   font-weight: bold;
 }
 
-/* Button to go back to homepage */
+/* Button to go back to homepage - centered at the bottom */
 .back-home88 {
-  margin-top: 20px;
+  margin-top: 30px;
+  text-align: center; /* Center the button */
 }
 
 .back-home-btn88 {
-  padding: 10px 15px;
-  font-size: 16px;
+  padding: 10px 20px;
+  font-size: 18px;
   background-color: #44250f;
   color: white;
   border: none;
   cursor: pointer;
   border-radius: 5px;
   text-decoration: none;
+  display: inline-block;
   transition: background-color 0.3s ease;
 }
 
 .back-home-btn88:hover {
   background-color: #c0b08d;
-}
-
-/* Styling for Borrow button at the top */
-.borrow-button88 {
-  background-color: #ff8000;
-  color: white;
-  border: none;
-  padding: 10px 15px;
-  font-size: 20px;
-  cursor: pointer;
-  border-radius: 5px;
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  transition: background-color 0.3s ease;
-}
-
-.borrow-button88:hover {
-  background-color: #eae3c3;
 }
 
 /* Media Queries for Responsiveness */
@@ -176,8 +158,8 @@
   }
 
   .borrow-button88 {
-    font-size: 18px; /* Reduce button font size on mobile */
-    padding: 8px 12px;
+    font-size: 14px; /* Reduce button font size on mobile */
+    padding: 6px 12px;
   }
 }
 
@@ -189,8 +171,8 @@
   }
 
   .category-button88 {
-    font-size: 18px;
-    padding: 12px 20px;
+    font-size: 16px;
+    padding: 10px 18px;
   }
 
   .book-list88 {
@@ -199,16 +181,6 @@
 
   .heading88 {
     font-size: 36px; /* Adjust heading font size for tablet */
-  }
-
-  .back-home-btn88 {
-    font-size: 16px; /* Keep font size similar to desktop */
-    padding: 10px 15px;
-  }
-
-  .borrow-button88 {
-    font-size: 20px; /* Adjust font size for tablet */
-    padding: 10px 15px;
   }
 }
 
@@ -220,19 +192,5 @@
 
   .book-list88 {
     grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); /* Default grid layout for desktop */
-  }
-
-  .heading88 {
-    font-size: 40px; /* Default font size for desktop */
-  }
-
-  .back-home-btn88 {
-    font-size: 16px;
-    padding: 10px 15px;
-  }
-
-  .borrow-button88 {
-    font-size: 22px;
-    padding: 12px 18px;
   }
 }
