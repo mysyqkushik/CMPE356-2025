@@ -34,7 +34,6 @@ const BorrowBookInfo = () => {
           Return to Home Page
         </a>
       </div>
-    </div>
   );
 };
 
