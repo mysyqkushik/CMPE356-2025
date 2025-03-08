@@ -35,6 +35,7 @@ import AccountInfo from './pages/NavBarPages/AccountInfo';
 import UserDetails from './pages/CustomerPages/UserDetails';
 import UserLibraryCard from './pages/CustomerPages/UserLibraryCard';
 import ErrorNotFound from './pages/ErrorNotFound';
+import RateABook from './pages/RateABook';
 import './index.css';
 
 const router = createBrowserRouter([
@@ -173,6 +174,10 @@ const router = createBrowserRouter([
   {
     path: "/ErrorNotFound",
     element: <ErrorNotFound />,
+  },
+  {
+    path: "/RateABook",
+    element: <RateABook />,
   }
 ]);
 

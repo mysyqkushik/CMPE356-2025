@@ -56,7 +56,7 @@ const Footer = () => {
       <div className="footer-bottom">
         <p>© 2025 The Book Owl. All Rights Reserved.</p>
         <p>
-          <a href="/privacy-policy">Privacy Policy</a> | <a href="/terms-of-use">Terms of Use</a> | <a href="/cookie-policy">Cookie Policy</a>
+          <a href="/ErrorNotFound">Privacy Policy</a> | <a href="/ErrorNotFound">Terms of Use</a> | <a href="/ErrorNotFound">Cookie Policy</a>
         </p>
       </div>
     </footer>
