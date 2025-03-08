@@ -11,20 +11,20 @@
     color:beige;
   }
   
-  a {
+.new-arrivals39 a {
     color: white; /* Default color */
     text-decoration: none;
   }
   
-  a:visited {
+.new-arrivals39 a:visited {
     color: white; /* Prevent purple color after visiting */
   }
   
-  a:hover {
+.new-arrivals39 a:hover {
     color: lightgray; /* Optional: Change color on hover */
   }
   
-  a:active {
+.new-arrivals39 a:active {
     color: white; /* Prevent red color on click */
   }
 
