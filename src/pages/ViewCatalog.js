@@ -286,7 +286,7 @@ const ViewCatalog = () => {
       <header className="catalog-header61">
         <h1>Our Catalog</h1>
         <button className="borrow-button61" onClick={() => navigate("/CustomerLogin")}>
-          Borrow
+          Borrow a Book
         </button>
       </header>
 

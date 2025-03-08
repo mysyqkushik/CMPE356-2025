@@ -23,12 +23,15 @@ const NewArrivals = () => {
 
   return (
     <div className="app461">
+      {/* Borrow button wrapped in div to ensure clickability */}
+      <div className="borrow-button61">
+        <a href="/CustomerLogin" className="borrow-button61-link">
+          Borrow a Book
+        </a>
+      </div>
+
+      {/* Heading now aligned to the left via CSS */}
       <h1 className="heading461">New Book Arrivals</h1>
-<div className="borrow-button61">
-  <a href="/CustomerLogin" className="borrow-button61-link">
-    Borrow a Book
-  </a>
-</div>
 
       <div className="book-list461">
         {newArrivals.length === 0 ? (
