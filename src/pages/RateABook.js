@@ -164,7 +164,6 @@ function RateABook() {
     return (
       <div className="rate-book-container767">
         <h1 className="rate-book-title767">Rate a Book</h1>
-        <button onClick={handleReturnHome} className="return-home-btn767">Return to Home Page</button>
   
         {!isSubmitted ? (
           <div className="book-selection767">
@@ -204,6 +203,10 @@ function RateABook() {
             <h2 className="rating-message767">Rating Submitted, Thanks!</h2>
             <button onClick={handleReturnHome} className="return-home-btn767">Return to Home Page</button>
           </div>
+        )}
+        
+        {!isSubmitted && (
+          <button onClick={handleReturnHome} className="return-home-btn767">Return to Home Page</button>
         )}
       </div>
     );
