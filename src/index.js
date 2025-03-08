@@ -15,6 +15,7 @@ import BorrowBook from './pages/CustomerPages/BorrowBook';
 import BookCarousel from './pages/BookCarousel';
 import ConveyerBelt from './pages/ConveyerBelt';
 import ManagerDashboard from './pages/ManagerPages/ManagerDashboard';
+import AdminDashboard from './pages/ManagerPages/AdminDashboard';
 import NewArrivals from './pages/NewArrivals';
 import SearchResults from './pages/SearchResults';
 import OurMission from './pages//AboutUs/OurMission';
@@ -183,6 +184,10 @@ const router = createBrowserRouter([
   {
     path: "/WriteAReview",
     element: <WriteAReview />,
+  },
+  {
+    path: "/AdminDashboard",
+    element: <AdminDashboard />,
   }
 ]);
 
