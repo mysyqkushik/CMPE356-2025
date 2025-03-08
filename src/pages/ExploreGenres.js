@@ -3,20 +3,20 @@ import BookCard from "./BookCard";
 import './ExploreGenres.css';
 import { books as allBooks } from './ManagerPages/LibraryData'; // Import books
 
-const NewArrivals = () => {
+const ExploreGenres = () => {
   const [newArrivals, setNewArrivals] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState(''); // State to store selected category
 
   useEffect(() => {
     localStorage.setItem('books', JSON.stringify(allBooks)); // Store books in localStorage
 
-    // Filter books based on selected category and published after 2010
+    // Filter books based on selected category
     const filteredBooks = allBooks.filter(book => {
       const isCategoryMatch = selectedCategory ? book.category === selectedCategory : true; // Match category if selected
-      return  isCategoryMatch;
+      return isCategoryMatch;
     });
 
-    setNewArrivals(filteredBooks); // Set the filtered new arrivals
+    setNewArrivals(filteredBooks); // Set the filtered books
   }, [selectedCategory]); // Runs when selectedCategory changes
 
   // Handle category click
@@ -27,11 +27,11 @@ const NewArrivals = () => {
   return (
     <div>
       <h1 className="heading88">Explore Genres</h1>
-      <div className="borrow-button-container88">
-        <a href="/CustomerLogin" className="borrow-button88">
-        Borrow
-        </a>
-        </div>
+      
+      {/* Borrow a Book button at top right */}
+      <a href="/CustomerLogin" className="borrow-button88">
+        Borrow a Book
+      </a>
 
       {/* Category Filters */}
       <div className="category-filters88">
@@ -54,7 +54,7 @@ const NewArrivals = () => {
         )}
       </div>
       
-      {/* Back to Home Button */}
+      {/* Return to Homepage Button at the bottom middle */}
       <div className="back-home88">
         <a href="/HomePage" className="back-home-btn88">
           Return to Homepage
@@ -64,4 +64,4 @@ const NewArrivals = () => {
   );
 };
 
-export default NewArrivals;
+export default ExploreGenres;
