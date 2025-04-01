@@ -35,7 +35,7 @@ public class UserService {
         Optional<User> optionalUser = userRepository.findById(id);
         if (optionalUser.isPresent()) {
             User user = optionalUser.get();
-            user.setName(userDetails.getName());
+            user.setUsername(userDetails.getUsername());
             user.setEmail(userDetails.getEmail());
             return userRepository.save(user);
         }
@@ -50,4 +50,13 @@ public class UserService {
         }
         return false;
     }
+
+    public Optional<User> findByEmailAndPassword(String email, String password) {
+        return userRepository.findByEmailAndPassword(email, password);
+    }
+
+    public Optional<User> getUserByUsername(String username) {
+        return userRepository.findByUsername(username);
+    }
+
 }
