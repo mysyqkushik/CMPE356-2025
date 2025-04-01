@@ -57,7 +57,6 @@ public class UserController {
         return user.isPresent() ? (ResponseEntity<User>) ResponseEntity.ok() : ResponseEntity.notFound().build();
     }
 
-
     // 6. ✅ **Login API**
     @PostMapping("/login")
     public ResponseEntity<?> loginUser(@RequestBody Map<String, String> loginRequest) {
