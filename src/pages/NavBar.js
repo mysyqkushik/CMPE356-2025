@@ -121,9 +121,7 @@ const NavBar = () => {
           </button>
           {accountOpen && (
             <ul className="account-dropdown-menu">
-              <li><Link to="/AdminLogin">Admin Login</Link></li>
-              <li><Link to="/ManagerLogin">Manager Login</Link></li>
-              <li><Link to="/CustomerLogin">Customer Login</Link></li>
+              <li><Link to="/UnifiedLogin">Login</Link></li>
               <li><Link to="/SignUp">SignUp</Link></li>
             </ul>
           )}

@@ -39,6 +39,7 @@ import UserLibraryCard from './pages/CustomerPages/UserLibraryCard';
 import ErrorNotFound from './pages/ErrorNotFound';
 import RateABook from './pages/RateABook';
 import WriteAReview from './pages/WriteAReview';
+import UnifiedLogin from './pages/UnifiedLogin';
 import './index.css';
 
 const router = createBrowserRouter([
@@ -193,6 +194,10 @@ const router = createBrowserRouter([
   {
     path: "/MUserDetails",
     element: <MUserDetails />,
+  },
+  {
+    path: "/UnifiedLogin",
+    element: <UnifiedLogin />,
   }
 ]);
 

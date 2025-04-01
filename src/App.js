@@ -37,6 +37,7 @@ import UserLibraryCard from './pages/CustomerPages/UserLibraryCard';
 import ErrorNotFound from './pages/ErrorNotFound';
 import RateABook from './pages/RateABook';
 import WriteAReview from './pages/WriteAReview';
+import UnifiedLogin from './pages/UnifiedLogin';
 import './App.css';
 
 
@@ -81,6 +82,7 @@ const App = () => {
         <Route path="/WriteAReview" element={<WriteAReview />} />
         <Route path="/AdminDashboard" element={<AdminDashboard />} />
         <Route path="/MUserDetails" element={<MUserDetails />} />
+        <Route path="/UnifiedLogin" element={<UnifiedLogin />} />
       </Routes>
     </>
   );

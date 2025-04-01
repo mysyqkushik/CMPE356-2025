@@ -24,7 +24,7 @@ const CustomerLogin = () => {
       setError("Invalid username, email, or password");
     }
   };
-
+  
   return (
     <div className="container">
       <div className="header">
