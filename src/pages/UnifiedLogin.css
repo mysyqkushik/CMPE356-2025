@@ -1,0 +1,240 @@
+* {
+    font-family: "Prompt", sans-serif;
+  }
+
+
+body {
+    background: url('/public/bookshelfbg.jpg') no-repeat center center fixed; 
+    background-size: cover;
+  }
+
+.container{
+    display: flex;
+    /*justify-content: center;
+    align-items: center;
+    height: 100vh; */
+    background: #e1b794;
+    flex-direction:column;
+    margin:auto;
+    padding-bottom: 10px;
+    margin-top: 200px;
+    margin-bottom: 200px;
+    width: 500px;
+    border-radius: 55px;
+}
+
+.header{
+    display: flex;
+    gap: 9px;
+    align-items: center;
+    width: 100%;
+    flex-direction:column;
+    margin:auto;
+    padding-bottom: 30px;
+    margin-top: 30px;
+}
+
+.text{
+    color: rgba(165, 75, 42, 0.862);
+    font-size: 48px;
+    font-weight: 700;
+    text-transform: none;
+}
+
+.underline{
+    width: 380px;
+    margin-left: 10px;
+    height: 6px;
+    background: rgba(165, 75, 42, 0.862);
+    border-radius: 9px;
+}
+
+.inputs{
+    margin-top: 55px;
+    display: flex;
+    flex-direction:column;
+    gap: 25px;
+}
+
+.input{
+    display:flex;
+    align-items: center;
+    margin: auto;
+    width: 300px;
+    height: 50px;
+    background: rgba(230, 163, 115, 0.547);
+    border-radius: 6px;
+}
+
+.input img{
+    margin: 0 30px;
+}
+
+.input input{
+    width: 400px;
+    height: 50px;
+    background: transparent;
+    border: none;
+    outline: none;
+    font-size: 19px;
+    color: rgba(101, 68, 56, 0.862);
+}
+
+.forgot-password
+{
+    padding-left: 150px;
+    margin-top: 27px;
+    color: #4a433dc5;
+    font-size: 15px;
+}
+
+.forgot-password span{
+    color: rgba(141, 74, 23, 0.659);
+    cursor: pointer;
+}
+
+.submit-container{
+    display: flex;
+    gap: 30px;
+    margin: 60px auto;
+}
+
+.submit{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 220px;
+    height: 59px;
+    color: white;
+    background: rgba(145, 78, 23, 0.874);
+    border-radius: 50px;
+    font-size: 19px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.submit-container {
+    display: flex;
+    gap: 30px;
+    margin: 30px auto; /* Reduced from 60px to 30px */
+  }
+  
+  .home-button-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 30px;
+    margin-top: 0; /* Ensures no extra space at the top */
+  }
+  
+  .home-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 220px;
+    height: 40px;
+    color: white;
+    background: rgba(101, 68, 56, 0.8);
+    border-radius: 50px;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    border: none;
+    transition: background-color 0.3s ease;
+  }
+  
+  .home-button:hover {
+    background: rgba(101, 68, 56, 1);
+  }
+
+  /* Add this to all your CSS files (CustomerLogin.css, ManagerLogin.css, AdminLogin.css, SignUp.css) */
+
+/* Existing styles remain unchanged */
+
+/* Responsive adjustments */
+@media screen and (max-width: 768px) {
+    .container {
+      width: 90%;
+      max-width: 450px;
+      margin-top: 100px;
+      margin-bottom: 100px;
+      padding: 20px 10px;
+    }
+    
+    .text {
+      font-size: 36px;
+    }
+    
+    .underline {
+      width: 80%;
+      max-width: 300px;
+    }
+  }
+  
+  @media screen and (max-width: 480px) {
+    .container {
+      width: 95%;
+      margin-top: 50px;
+      margin-bottom: 50px;
+    }
+    
+    .text {
+      font-size: 32px;
+    }
+    
+    .underline {
+      width: 90%;
+      max-width: 250px;
+    }
+    
+    .input {
+      width: 90%;
+    }
+    
+    .submit {
+      width: 180px;
+    }
+    
+    .home-button {
+      width: 180px;
+    }
+    
+    .forgot-password {
+      padding-left: 0;
+      text-align: center;
+    }
+  }
+  
+  @media screen and (max-width: 320px) {
+    .container {
+      padding: 15px 5px;
+    }
+    
+    .text {
+      font-size: 28px;
+    }
+    
+    .inputs {
+      margin-top: 30px;
+      gap: 20px;
+    }
+    
+    .input {
+      height: 45px;
+    }
+    
+    .input input {
+      font-size: 16px;
+    }
+    
+    .submit {
+      width: 150px;
+      height: 50px;
+      font-size: 16px;
+    }
+    
+    .home-button {
+      width: 150px;
+      height: 35px;
+      font-size: 14px;
+    }
+  }

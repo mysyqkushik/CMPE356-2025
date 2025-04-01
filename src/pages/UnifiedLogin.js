@@ -1,13 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import "./UnifiedLogin.css";
-
-const users = [
-  { role: "admin", username: "admin123", email: "admin@example.com", password: "5678", dashboard: "/AdminDashboard" },
-  { role: "manager", username: "manager123", email: "manager@example.com", password: "1234", dashboard: "/ManagerDashboard" },
-];
-
-const customerData = require("./ManagerPages/bookdata.json"); // Customer data
+import axios from "axios"; 
 
 const UnifiedLogin = () => {
   const navigate = useNavigate();
@@ -16,26 +10,42 @@ const UnifiedLogin = () => {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
 
-  const handleLogin = () => {
-    // Check if user is admin or manager
-    const user = users.find((u) => u.username === username && u.email === email && u.password === password);
-    
-    if (user) {
-      sessionStorage.setItem("loggedInUser", JSON.stringify(user));
-      navigate(user.dashboard);
-      return;
+  const handleLogin = async () => {
+    try {
+      const response = await axios.post(
+        "http://localhost:8080/api/users/login",
+        { email, password }, // ❌ Remove username from request
+        { headers: { "Content-Type": "application/json" } } // ✅ Ensure proper headers
+      );
+  
+      console.log("API Response:", response.data); // ✅ Debug response
+  
+      if (response.data.message === "Login successful!") {
+        sessionStorage.setItem("loggedInUser", JSON.stringify(response.data));
+  
+        switch (response.data.role) {
+          case "customer":
+            navigate("/CustomerDashboard");
+            break;
+          case "manager":
+            navigate("/ManagerDashboard");
+            break;
+          case "admin":
+            navigate("/AdminDashboard");
+            break;
+          default:
+            setError("Unknown role");
+        }
+      } else {
+        setError(response.data.message);
+      }
+    } catch (error) {
+      console.error("Login error:", error.response ? error.response.data : error);
+      setError("Server error. Please try again.");
     }
-
-    // Check if user is a customer
-    const customer = customerData.userslogin.find((c) => c.username === username && c.email === email);
-    if (customer && customer.password === password) {
-      localStorage.setItem("currentUser", JSON.stringify(customer));
-      navigate("/CustomerDashboard");
-      return;
-    }
-
-    setError("Invalid credentials. Please try again.");
   };
+  
+  
 
   return (
     <div className="container">
@@ -44,9 +54,9 @@ const UnifiedLogin = () => {
         <div className="underline"></div>
       </div>
       <div className="inputs">
-        <div className="input">
+      <div className="input">
           <img src="user.png" alt="User Icon" />
-          <input type="text" placeholder="Username" value={username} onChange={(e) => setUsername(e.target.value)} />
+          <input type="user" placeholder="Username" value={username} onChange={(e) => setUsername(e.target.value)} />
         </div>
         <div className="input">
           <img src="envelope.png" alt="Email Icon" />

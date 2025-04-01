@@ -2,20 +2,32 @@ import React, { useState, useEffect } from "react";
 import "./ManagerDashboard.css";
 import { Link } from "react-router-dom";
 import LibraryData from "./LibraryData"; // Import data file
+import axios from "axios";
 
 const ManagerDashboard = () => {
   const [books, setBooks] = useState([]);
   const [users, setUsers] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState(null);
   const [usersCount, setUsersCount] = useState(0);
+  const [userName, setUserName] = useState(""); // For storing the username
 
-// Example: Fetch user count from an API
-useEffect(() => {
-  fetch("/api/users/count")
-    .then((res) => res.json())
-    .then((data) => setUsersCount(data.count));
-}, []);
+  // Fetch user details (including username) from the backend
+  useEffect(() => {
+    const loggedInUser = JSON.parse(sessionStorage.getItem("loggedInUser"));
+    if (loggedInUser) {
+      axios.get(`http://localhost:8080/api/users/profile/${loggedInUser.username}`)
+        .then(response => {
+          setUserName(response.data.username); // Assuming 'username' is the field in the response
+        })
+        .catch(error => console.error("Error fetching user data:", error));
+    }
+  }, []);
 
+  useEffect(() => {
+    fetch("/api/users/count")
+      .then((res) => res.json())
+      .then((data) => setUsersCount(data.count));
+  }, []);
 
   useEffect(() => {
     if (LibraryData && LibraryData.books && LibraryData.users) {
@@ -79,6 +91,9 @@ useEffect(() => {
             <span>🔔</span>
             <span>📧</span>
           </div>
+          <div className="welcome-message">
+            <h2>Welcome, {userName ? userName : "Manager"}</h2>
+          </div>
         </header>
 
         <section className="dashboard-cards">
@@ -99,8 +114,8 @@ useEffect(() => {
             <p className="big-number">{newBooks}</p>
           </div>
           <div className="card purple" onClick={() => handleCardClick("users")}>
-          <h3>View Users</h3>
-          <p className="big-number">{users.length}</p>
+            <h3>View Users</h3>
+            <p className="big-number">{users.length}</p>
           </div>
         </section>
 

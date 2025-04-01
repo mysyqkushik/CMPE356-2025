@@ -38,6 +38,7 @@ import ErrorNotFound from './pages/ErrorNotFound';
 import RateABook from './pages/RateABook';
 import WriteAReview from './pages/WriteAReview';
 import UnifiedLogin from './pages/UnifiedLogin';
+import Register from './pages/Register';
 import './App.css';
 
 
@@ -83,6 +84,7 @@ const App = () => {
         <Route path="/AdminDashboard" element={<AdminDashboard />} />
         <Route path="/MUserDetails" element={<MUserDetails />} />
         <Route path="/UnifiedLogin" element={<UnifiedLogin />} />
+        <Route path="/Register" element={<Register/>} />
       </Routes>
     </>
   );

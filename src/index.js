@@ -40,6 +40,7 @@ import ErrorNotFound from './pages/ErrorNotFound';
 import RateABook from './pages/RateABook';
 import WriteAReview from './pages/WriteAReview';
 import UnifiedLogin from './pages/UnifiedLogin';
+import Register from './pages/Register';
 import './index.css';
 
 const router = createBrowserRouter([
@@ -198,6 +199,10 @@ const router = createBrowserRouter([
   {
     path: "/UnifiedLogin",
     element: <UnifiedLogin />,
+  },
+  {
+    path: "/Register",
+    element: <Register />,
   }
 ]);
 

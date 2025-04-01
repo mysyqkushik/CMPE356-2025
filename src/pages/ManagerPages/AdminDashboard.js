@@ -8,11 +8,21 @@ const AdminDashboard = () => {
   const [users, setUsers] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState(null);
   const [usersCount, setUsersCount] = useState(0);
+  const [userName, setUserName] = useState(""); // State to store the username
 
   useEffect(() => {
+    // Fetch user count
     fetch("/api/users/count")
       .then((res) => res.json())
       .then((data) => setUsersCount(data.count));
+  }, []);
+
+  useEffect(() => {
+    // Fetch username from backend
+    fetch("/api/users/username")
+      .then((res) => res.json())
+      .then((data) => setUserName(data.username))
+      .catch((error) => console.error("Error fetching username:", error));
   }, []);
 
   useEffect(() => {
@@ -70,6 +80,10 @@ const AdminDashboard = () => {
           <div className="navbar-icons">
             <span>🔔</span>
             <span>📧</span>
+          </div>
+          {/* Display username in the navbar */}
+          <div className="welcome-message">
+            <h2>{userName ? `Welcome, ${userName}` : "Welcome, Admin"}</h2>
           </div>
         </header>
 
