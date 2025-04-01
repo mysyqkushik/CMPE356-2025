@@ -31,6 +31,8 @@ const NavBar = () => {
         setActiveDropdown(null);
       }
     };
+
+    
     
     document.addEventListener('click', handleClickOutside);
     return () => {
@@ -74,32 +76,33 @@ const NavBar = () => {
 
       {/* Menüler: navOpen true ise .show sınıfını ekleyelim */}
       <ul className={`nav-links ${navOpen ? 'show' : ''}`}>
-        <li className={`dropdown ${activeDropdown === 0 ? 'open' : ''}`}>
-          <a href="#" onClick={(e) => toggleDropdown(0, e)}>Books&More</a>
-          <ul className="dropdown-menu">
-            <li><a href="/ViewCatalog">View Catalog</a></li>
-            <li><a href="/BookRatings">Book Ratings</a></li>
-            <li><a href="/NewArrivals">New Arrivals</a></li>
-          </ul>
-        </li>
-        <li className={`dropdown ${activeDropdown === 1 ? 'open' : ''}`}>
-          <a href="#" onClick={(e) => toggleDropdown(1, e)}>Learning</a>
-          <ul className="dropdown-menu">
-            <li><a href="/LibraryCard">Library Cards</a></li>
-            <li><a href="/ResearchHelp">Search Books</a></li>
-            <li><a href="/EResources">E-Resources</a></li>
-          </ul>
-        </li>
-        <li className={`dropdown ${activeDropdown === 2 ? 'open' : ''}`}>
-          <a href="#" onClick={(e) => toggleDropdown(2, e)}>Services</a>
-          <ul className="dropdown-menu">
-            <li><a href="/BorrowBookInfo">Borrow Book</a></li>
-            <li><a href="/ReturnBookInfo">Return Book</a></li>
-            <li><a href="/AccountInfo">Request Book</a></li>
-          </ul>
-        </li>
+      <li className={`dropdown ${activeDropdown === 0 ? 'open' : ''}`}>
+  <Link to="#" onClick={(e) => toggleDropdown(0, e)}>Books&More</Link>
+  <ul className="dropdown-menu">
+    <li><Link to="/ViewCatalog">View Catalog</Link></li>
+    <li><Link to="/BookRatings">Book Ratings</Link></li>
+    <li><Link to="/NewArrivals">New Arrivals</Link></li>
+  </ul>
+</li>
+<li className={`dropdown ${activeDropdown === 1 ? 'open' : ''}`}>
+  <Link to="#" onClick={(e) => toggleDropdown(1, e)}>Learning</Link>
+  <ul className="dropdown-menu">
+    <li><Link to="/LibraryCard">Library Cards</Link></li>
+    <li><Link to="/ResearchHelp">Search Books</Link></li>
+    <li><Link to="/EResources">E-Resources</Link></li>
+  </ul>
+</li>
+<li className={`dropdown ${activeDropdown === 2 ? 'open' : ''}`}>
+  <Link to="#" onClick={(e) => toggleDropdown(2, e)}>Services</Link>
+  <ul className="dropdown-menu">
+    <li><Link to="/BorrowBookInfo">Borrow Book</Link></li>
+    <li><Link to="/ReturnBookInfo">Return Book</Link></li>
+    <li><Link to="/AccountInfo">Request Book</Link></li>
+  </ul>
+</li>
+
         <li className={`dropdown ${activeDropdown === 3 ? 'open' : ''}`}>
-          <a href="#" onClick={(e) => toggleDropdown(3, e)}>AboutUs</a>
+          <Link to="#" onClick={(e) => toggleDropdown(3, e)}>AboutUs</Link>
           <ul className="dropdown-menu">
             <li><Link to="/OurMission">Our Mission</Link></li>
             <li><Link to="/Team">Team</Link></li>
