@@ -2,27 +2,30 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import "./AdminDashboard.css";
 import LibraryData from "./LibraryData"; // Import data file
+import axios from "axios";
 
 const AdminDashboard = () => {
   const [books, setBooks] = useState([]);
   const [users, setUsers] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState(null);
   const [usersCount, setUsersCount] = useState(0);
-  const [userName, setUserName] = useState(""); // State to store the username
+  const [firstName, setFirstName] = useState(""); // Store first name
 
   useEffect(() => {
-    // Fetch user count
-    fetch("/api/users/count")
-      .then((res) => res.json())
-      .then((data) => setUsersCount(data.count));
+    const loggedInUser = JSON.parse(sessionStorage.getItem("loggedInUser"));
+    if (loggedInUser) {
+      axios.get(`http://localhost:8080/api/users/profile/${loggedInUser.username}`)
+        .then(response => {
+          setFirstName(response.data.first_name); // Fetch first_name
+        })
+        .catch(error => console.error("Error fetching user data:", error));
+    }
   }, []);
 
   useEffect(() => {
-    // Fetch username from backend
-    fetch("/api/users/username")
+    fetch("/api/users/count")
       .then((res) => res.json())
-      .then((data) => setUserName(data.username))
-      .catch((error) => console.error("Error fetching username:", error));
+      .then((data) => setUsersCount(data.count));
   }, []);
 
   useEffect(() => {
@@ -83,7 +86,7 @@ const AdminDashboard = () => {
           </div>
           {/* Display username in the navbar */}
           <div className="welcome-message">
-            <h2>{userName ? `Welcome, ${userName}` : "Welcome, Admin"}</h2>
+            <h2>{firstName ? `Welcome, ${firstName}` : "Welcome, Admin"}</h2>
           </div>
         </header>
 

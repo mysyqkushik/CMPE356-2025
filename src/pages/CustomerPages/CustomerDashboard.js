@@ -1,33 +1,29 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import axios from "axios";
 import "./CustomerDashboard.css";
 
 const CustomerDashboard = () => {
   const [borrowedBooks, setBorrowedBooks] = useState([]);
-  const [userName, setUserName] = useState(""); // State to store the username
+  const [firstName, setFirstName] = useState(""); // Store first name
 
-  // Retrieve current user from localStorage
-  const currentUser = JSON.parse(localStorage.getItem("currentUser"));
-
-  // Fetch username when the dashboard is loaded
   useEffect(() => {
-    if (currentUser) {
-      // Simulate fetching user data from the backend (could be replaced with actual API call)
-      fetch(`/api/users/${currentUser.username}`)
-        .then((res) => res.json())
-        .then((data) => {
-          setUserName(data.username || "user"); // Assuming backend returns a username
-          // Set borrowed books if fetched from backend
-          setBorrowedBooks(data.borrowedBooks || []);
+    const loggedInUser = JSON.parse(sessionStorage.getItem("loggedInUser"));
+    if (loggedInUser) {
+      axios
+        .get(`http://localhost:8080/api/users/profile/${loggedInUser.username}`)
+        .then((response) => {
+          setFirstName(response.data.first_name); // Fetch first_name
+          setBorrowedBooks(response.data.borrowedBooks || []);
         })
         .catch((error) => console.error("Error fetching user data:", error));
     }
-  }, [currentUser]);
+  }, []);
 
   return (
     <div className="dashboard-container">
       <aside className="sidebar">
-        <div className="logo">Welcome, {userName || "User"}</div> {/* Dynamically render username */}
+        <div className="logo">Welcome, {firstName ? firstName : "User"}!</div>
         <nav>
           <ul>
             <li className="active">
@@ -78,9 +74,7 @@ const CustomerDashboard = () => {
             <h3>View Issued Books</h3>
             <ul>
               {borrowedBooks.length > 0 ? (
-                borrowedBooks.map((book, index) => (
-                  <li key={index}>{book}</li>
-                ))
+                borrowedBooks.map((book, index) => <li key={index}>{book}</li>)
               ) : (
                 <li>No books borrowed</li>
               )}
