@@ -9,4 +9,6 @@ public interface UserRepository extends JpaRepository<User, Long> {
     Optional<User> findByEmailAndPassword(String email, String password);
     // This will automatically create CRUD operation
     Optional<User> findByUsername(String username);
+
+    Optional<User> findByEmail(String email);
 }

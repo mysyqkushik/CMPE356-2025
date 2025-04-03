@@ -4,6 +4,7 @@ import com.example.myproject.models.User;
 import com.example.myproject.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import com.example.myproject.payload.MessageResponse;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -52,10 +53,20 @@ public class UserController {
 
     // 7. Get User by Username (for Dashboard)
     @GetMapping("/profile/{username}")
-    public ResponseEntity<User> getUserByUsername(@PathVariable String username) {
-        Optional<User> user = userService.getUserByUsername(username);
-        return user.isPresent() ? (ResponseEntity<User>) ResponseEntity.ok() : ResponseEntity.notFound().build();
+    public ResponseEntity<?> getUserByUsername(@PathVariable String username) {
+        Optional<User> userOptional = userService.getUserByUsername(username);
+
+        if (userOptional.isPresent()) {
+            User user = userOptional.get();
+            return ResponseEntity.ok(Map.of(
+                    "username", user.getUsername(),
+                    "first_name", user.getFirstName() // ✅ Ensure first_name is returned
+            ));
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(Map.of("message", "User not found"));
+        }
     }
+
 
     // 6. ✅ **Login API**
     @PostMapping("/login")
@@ -71,10 +82,26 @@ public class UserController {
                     "message", "Login successful!",
                     "username", user.getUsername(),
                     "email", user.getEmail(),
-                    "role", user.getRole()  // ✅ Return user role
+                    "role", user.getRole(),
+                    "first_name", user.getFirstName(),
+                    "last_name", user.getLastName()
             ));
         } else {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(Map.of("message", "Invalid credentials"));
         }
+    }
+
+    // 8. Sign-up User (New Endpoint)
+    @PostMapping("/signup")
+    public ResponseEntity<?> signUpUser(@RequestBody User user) {
+        // Validate if user already exists
+        if (userService.findUserByEmail(user.getEmail()).isPresent()) {
+            return ResponseEntity.badRequest().body(new MessageResponse("Email is already registered!"));
+        }
+
+        // Save new user with the selected role
+        User createdUser = userService.createUser(user);
+
+        return ResponseEntity.ok(new MessageResponse("Sign-up successful!"));
     }
 }

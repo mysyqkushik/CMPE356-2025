@@ -37,6 +37,8 @@ public class UserService {
             User user = optionalUser.get();
             user.setUsername(userDetails.getUsername());
             user.setEmail(userDetails.getEmail());
+            user.setFirstName(userDetails.getFirstName());
+            user.setLastName(userDetails.getLastName());
             return userRepository.save(user);
         }
         return null;
@@ -58,4 +60,9 @@ public class UserService {
         return userRepository.findByUsername(username);
     }
 
+
+    // Method to check if user already exists
+    public Optional<User> findUserByEmail(String email) {
+        return userRepository.findByEmail(email);
+    }
 }

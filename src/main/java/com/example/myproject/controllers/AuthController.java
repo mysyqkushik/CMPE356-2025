@@ -24,7 +24,7 @@ public class AuthController {
 
         if (userOpt.isPresent()) {
             User user = userOpt.get();
-            // Check password (⚠️ Passwords should be encrypted in production!)
+            // Check password (⚠️ Passwords should be encrypted in production! eventually i guess lol)
             if (user.getPassword().equals(loginRequest.getPassword())) {
                 return "Login successful, Role: " + user.getRole();  // Return role to React
             } else {

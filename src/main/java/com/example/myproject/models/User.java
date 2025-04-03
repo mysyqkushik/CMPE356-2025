@@ -1,11 +1,16 @@
 package com.example.myproject.models;
 
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
 
+@Setter
+@Getter
 @Entity
 @Table(name = "users")
 public class User {
 
+    // 🛠 Getters & Setters
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -15,19 +20,11 @@ public class User {
     private String password;
     private String role;  // ✅ Added Role Field
 
-    // 🛠 Getters & Setters
-    public Long getId() { return id; }
-    public void setId(Long id) { this.id = id; }
 
-    public String getUsername() { return username; }
-    public void setUsername(String username) { this.username = username; }
+    @Column(name = "first_name", nullable = false) // this column exists in your DB
+    private String firstName;
 
-    public String getEmail() { return email; }
-    public void setEmail(String email) { this.email = email; }
+    @Column(name = "last_name", nullable = false) // this column exists in your DB
+    private String lastName;
 
-    public String getPassword() { return password; }
-    public void setPassword(String password) { this.password = password; }
-
-    public String getRole() { return role; }
-    public void setRole(String role) { this.role = role; }
 }
