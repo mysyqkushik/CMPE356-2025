@@ -6,6 +6,7 @@ import com.example.myproject.repository.RoleRepository;
 import com.example.myproject.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -76,7 +77,6 @@ public class UserService {
 
 
 
-
     @Autowired
     private RoleRepository roleRepository;
 
@@ -84,7 +84,6 @@ public class UserService {
         if (userRepository.findByEmail(user.getEmail()).isPresent()) {
             return "User already exists with this email.";
         }
-
 
 
         Set<Role> roles = new HashSet<>();
@@ -96,5 +95,22 @@ public class UserService {
         userRepository.save(user);
 
         return "User registered successfully.";
+    }
+
+    @Autowired
+    private JdbcTemplate jdbcTemplate;
+
+    // Method to check if email exists in the database
+    public boolean checkEmailExists(String email) {
+        String sql = "SELECT COUNT(*) FROM users WHERE email = ?";
+        Integer count = jdbcTemplate.queryForObject(sql, new Object[]{email}, Integer.class);
+        return count != null && count > 0;
+    }
+
+    // Method to update the password
+    public boolean resetPassword(String email, String newPassword) {
+        String sql = "UPDATE users SET password = ? WHERE email = ?";
+        int updated = jdbcTemplate.update(sql, newPassword, email);
+        return updated > 0;
     }
 }

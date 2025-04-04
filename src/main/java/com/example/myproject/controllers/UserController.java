@@ -4,6 +4,7 @@ import com.example.myproject.models.Role;
 import com.example.myproject.models.SignUpRequest;
 import com.example.myproject.models.User;
 import com.example.myproject.repository.RoleRepository;
+import com.example.myproject.repository.UserRepository;
 import com.example.myproject.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -101,11 +102,7 @@ public class UserController {
     }
 
 
-
-
     // 8. Sign-up User (New Endpoint)
-
-    // Sign-Up Endpoint
     @PostMapping("/signup")
     public String signUp(@RequestBody SignUpRequest signUpRequest) {
         User user = new User();
@@ -117,5 +114,35 @@ public class UserController {
 
         return userService.registerUser(user);
     }
+
+    // 9. Forgot Password Request
+    @PostMapping("/forgot-password")
+    public ResponseEntity<String> forgotPassword(@RequestBody Map<String, String> emailRequest) {
+        String email = emailRequest.get("email");
+
+        // Check if the email exists using the service
+        if (userService.checkEmailExists(email)) {
+            // You can add logic here to send a password reset email (optional)
+            return ResponseEntity.ok("Password reset request received. Please enter your new password.");
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Email not found.");
+        }
+    }
+
+    // 10. Reset Password
+    @PutMapping("/reset-password/{email}")
+    public ResponseEntity<String> resetPassword(@PathVariable String email, @RequestBody Map<String, String> passwordRequest)
+    {
+        String newPassword = passwordRequest.get("newPassword");
+
+        // Update password in the database
+        if (userService.resetPassword(email, newPassword)) {
+            return ResponseEntity.ok("Password has been reset. Please log in again.");
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Email not found.");
+        }
+
+    }
+
 
 }
