@@ -1,12 +1,19 @@
 package com.example.myproject.services;
 
+import com.example.myproject.models.Role;
 import com.example.myproject.models.User;
+import com.example.myproject.repository.RoleRepository;
 import com.example.myproject.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 @Service
 public class UserService {
@@ -56,6 +63,7 @@ public class UserService {
     public Optional<User> findByEmailAndPassword(String email, String password) {
         return userRepository.findByEmailAndPassword(email, password);
     }
+
     public Optional<User> getUserByUsername(String username) {
         return userRepository.findByUsername(username);
     }
@@ -64,5 +72,29 @@ public class UserService {
     // Method to check if user already exists
     public Optional<User> findUserByEmail(String email) {
         return userRepository.findByEmail(email);
+    }
+
+
+
+
+    @Autowired
+    private RoleRepository roleRepository;
+
+    public String registerUser(User user) {
+        if (userRepository.findByEmail(user.getEmail()).isPresent()) {
+            return "User already exists with this email.";
+        }
+
+
+
+        Set<Role> roles = new HashSet<>();
+        // Assign roles - this is where we assign default role(s), or you can add logic to allow multirole selection
+        Optional<Role> role = roleRepository.findByName("customer");
+        role.ifPresent(roles::add);
+
+        user.setRoles(roles);
+        userRepository.save(user);
+
+        return "User registered successfully.";
     }
 }

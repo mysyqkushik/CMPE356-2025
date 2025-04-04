@@ -1,16 +1,17 @@
 package com.example.myproject.controllers;
 
+import com.example.myproject.models.Role;
+import com.example.myproject.models.SignUpRequest;
 import com.example.myproject.models.User;
+import com.example.myproject.repository.RoleRepository;
 import com.example.myproject.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import com.example.myproject.payload.MessageResponse;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/users")
@@ -69,20 +70,28 @@ public class UserController {
 
 
     // 6. ✅ **Login API**
+    // Login API with Role Handling
     @PostMapping("/login")
     public ResponseEntity<?> loginUser(@RequestBody Map<String, String> loginRequest) {
         String email = loginRequest.get("email");
         String password = loginRequest.get("password");
 
-        Optional<User> foundUser = userService.findByEmailAndPassword(email, password);
+        Optional<User> foundUser = userService.findUserByEmail(email);
 
         if (foundUser.isPresent()) {
             User user = foundUser.get();
+
+            // ✅ Extract role names correctly
+            Set<String> roleNames = user.getRoles().stream()
+                    .map(Role::getName)
+                    .collect(Collectors.toSet());
+
+            // ✅ Return user details
             return ResponseEntity.ok(Map.of(
                     "message", "Login successful!",
                     "username", user.getUsername(),
                     "email", user.getEmail(),
-                    "role", user.getRole(),
+                    "roles", roleNames, // Now correctly fetching role names
                     "first_name", user.getFirstName(),
                     "last_name", user.getLastName()
             ));
@@ -91,17 +100,22 @@ public class UserController {
         }
     }
 
+
+
+
     // 8. Sign-up User (New Endpoint)
+
+    // Sign-Up Endpoint
     @PostMapping("/signup")
-    public ResponseEntity<?> signUpUser(@RequestBody User user) {
-        // Validate if user already exists
-        if (userService.findUserByEmail(user.getEmail()).isPresent()) {
-            return ResponseEntity.badRequest().body(new MessageResponse("Email is already registered!"));
-        }
+    public String signUp(@RequestBody SignUpRequest signUpRequest) {
+        User user = new User();
+        user.setFirstName(signUpRequest.getFirstName());
+        user.setLastName(signUpRequest.getLastName());
+        user.setEmail(signUpRequest.getEmail());
+        user.setUsername(signUpRequest.getUsername());
+        user.setPassword(signUpRequest.getPassword());
 
-        // Save new user with the selected role
-        User createdUser = userService.createUser(user);
-
-        return ResponseEntity.ok(new MessageResponse("Sign-up successful!"));
+        return userService.registerUser(user);
     }
+
 }
