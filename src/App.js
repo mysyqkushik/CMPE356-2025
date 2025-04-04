@@ -85,6 +85,8 @@ const App = () => {
         <Route path="/MUserDetails" element={<MUserDetails />} />
         <Route path="/UnifiedLogin" element={<UnifiedLogin />} />
         <Route path="/Register" element={<Register/>} />
+        <Route path="/signup" element={<SignUp />} />
+        <Route path="/login" element={<UnifiedLogin />} />
       </Routes>
     </>
   );

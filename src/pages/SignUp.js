@@ -1,133 +1,93 @@
+// Signup.js
 import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import axios from 'axios';
-import './SignUp.css';
+import axios from "axios";
+import { useNavigate, Link } from "react-router-dom";
+import "./SignUp.css"; 
 
-const SignUp = () => {
-  const [firstName, setFirstName] = useState('');
-  const [lastName, setLastName] = useState('');
-  const [username, setUsername] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [role, setRole] = useState('customer'); // Default role set to customer
-  const [error, setError] = useState('');
+const Signup = () => {
   const navigate = useNavigate();
 
-  // Handle form submission
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [selectedRoles, setSelectedRoles] = useState(["customer"]);
+  const [error, setError] = useState("");
 
-    // Form validation
-    if (!firstName || !lastName || !username || !email || !password) {
-      alert("All fields are required!");
-      return;
-    }
-
-    // Prepare user details
-    const userDetails = {
-      firstName,
-      lastName,
-      username,
-      email,
-      password,
-      role,  // Include the role selection
-    };
-
+  const handleSignup = async () => {
     try {
-      // Make POST request to backend (Spring Boot)
-      const response = await axios.post('http://localhost:8080/api/users/signup', userDetails);
+      const response = await axios.post("http://localhost:8080/api/users/register", {
+        firstName,
+        lastName,
+        username,
+        email,
+        password,
+        roles: selectedRoles
+      });
 
-      // Check for success message
-      if (response.data.message === "Sign-up successful!") {
-        // Store user details in session storage
-        sessionStorage.setItem('loggedInUser', JSON.stringify({
-          username, 
-          email, 
-          role 
-        }));
-
-        // Redirect based on user role
-        if (role === 'customer') {
-          navigate('/CustomerDashboard');
-        } else if (role === 'manager') {
-          navigate('/ManagerDashboard');
-        } else if (role === 'admin') {
-          navigate('/AdminDashboard');
+      if (response.data.message === "User registered successfully!") {
+        const userRole = selectedRoles[0];
+        if (userRole === "admin") {
+          navigate("/AdminDashboard");
+        } else if (userRole === "manager") {
+          navigate("/ManagerDashboard");
+        } else {
+          navigate("/CustomerDashboard");
         }
       } else {
-        setError(response.data.message);
+        setError(response.data.message || "Registration failed.");
       }
     } catch (error) {
-      console.error("Sign-up error:", error);
-      setError("An error occurred. Please try again.");
+      console.error("Signup error:", error);
+      setError("Server error. Please try again.");
     }
   };
 
   return (
     <div className="container">
       <div className="header">
-        <div className="text">Sign Up</div>
+        <div className="text">Signup</div>
         <div className="underline"></div>
       </div>
-      <form onSubmit={handleSubmit} className="inputs">
+
+      <div className="inputs">
         <div className="input">
           <img src="user.png" alt="User Icon" />
-          <input
-            type="text"
-            placeholder="First Name"
-            value={firstName}
-            onChange={(e) => setFirstName(e.target.value)}
-          />
+          <input type="text" placeholder="First Name" value={firstName} onChange={(e) => setFirstName(e.target.value)} />
         </div>
         <div className="input">
           <img src="user.png" alt="User Icon" />
-          <input
-            type="text"
-            placeholder="Last Name"
-            value={lastName}
-            onChange={(e) => setLastName(e.target.value)}
-          />
+          <input type="text" placeholder="Last Name" value={lastName} onChange={(e) => setLastName(e.target.value)} />
         </div>
         <div className="input">
           <img src="user.png" alt="User Icon" />
-          <input
-            type="text"
-            placeholder="Username"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-          />
+          <input type="text" placeholder="Username" value={username} onChange={(e) => setUsername(e.target.value)} />
         </div>
         <div className="input">
           <img src="envelope.png" alt="Email Icon" />
-          <input
-            type="email"
-            placeholder="Email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-          />
+          <input type="email" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} />
         </div>
         <div className="input">
           <img src="lock.png" alt="Password Icon" />
-          <input
-            type="password"
-            placeholder="Password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
+          <input type="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} />
         </div>
-        <div className="input">
-          <select value={role} onChange={(e) => setRole(e.target.value)}>
+
+        {/* Role Selection Dropdown */}
+        <div className="selectrole1">
+          <select value={selectedRoles[0]} onChange={(e) => setSelectedRoles([e.target.value])}>
             <option value="customer">Customer</option>
             <option value="manager">Manager</option>
             <option value="admin">Admin</option>
           </select>
         </div>
-        <div className="submit-container">
-          <button type="submit" className="submit">Sign Up</button>
-        </div>
-      </form>
+      </div>
 
-      {error && <div className="error-message">{error}</div>}
+      {error && <div className="error">{error}</div>}
+
+      <div className="submit-container">
+        <button className="submit" onClick={handleSignup}>Sign Up</button>
+      </div>
 
       <div className="home-button-container">
         <Link to="/Homepage">
@@ -138,4 +98,4 @@ const SignUp = () => {
   );
 };
 
-export default SignUp;
+export default Signup;

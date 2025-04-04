@@ -146,9 +146,31 @@ body {
     background: rgba(101, 68, 56, 1);
   }
 
-  /* Add this to all your CSS files (CustomerLogin.css, ManagerLogin.css, AdminLogin.css, SignUp.css) */
-
-/* Existing styles remain unchanged */
+  .role-selection-popup {
+    position: fixed;
+    top: 20%;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+  }
+  
+  .role-selection-popup button {
+    margin: 10px;
+    padding: 10px 20px;
+    background-color: #fb8b0b;
+    color: white;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .role-selection-popup button:hover {
+    background-color: #f4d84a;
+  }
+  
 
 /* Responsive adjustments */
 @media screen and (max-width: 768px) {
