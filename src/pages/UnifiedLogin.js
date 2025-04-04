@@ -101,7 +101,12 @@ const UnifiedLogin = () => {
         </div>
       </div>
       {error && <div className="error">{error}</div>}
-      <div className="forgot-password">Forgot Password?<span> Click Here</span></div>
+      <div className="forgot-password">
+        Forgot Password?{" "}
+        <Link to="/ForgotPassword" style={{ textDecoration: "underline" }}>
+          Click Here
+        </Link>
+      </div>
       <div className="submit-container">
         <button className="submit" onClick={handleLogin}>Login</button>
       </div>

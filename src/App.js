@@ -39,6 +39,8 @@ import RateABook from './pages/RateABook';
 import WriteAReview from './pages/WriteAReview';
 import UnifiedLogin from './pages/UnifiedLogin';
 import Register from './pages/Register';
+import ForgotPassword from './pages/ForgotPassword';
+import ResetPassword from './pages/ResetPassword';
 import './App.css';
 
 
@@ -87,6 +89,10 @@ const App = () => {
         <Route path="/Register" element={<Register/>} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/login" element={<UnifiedLogin />} />
+        <Route path="/ForgotPassword" element={<ForgotPassword/>} />
+       
+       
+        <Route path="/reset-password/:email" element={<ResetPassword />} />
       </Routes>
     </>
   );

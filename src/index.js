@@ -41,6 +41,8 @@ import RateABook from './pages/RateABook';
 import WriteAReview from './pages/WriteAReview';
 import UnifiedLogin from './pages/UnifiedLogin';
 import Register from './pages/Register';
+import ForgotPassword from './pages/ForgotPassword';
+import ResetPassword from './pages/ResetPassword';
 import './index.css';
 
 const router = createBrowserRouter([
@@ -203,6 +205,14 @@ const router = createBrowserRouter([
   {
     path: "/Register",
     element: <Register />,
+  },
+  {
+    path: "/ForgotPassword",
+    element: <ForgotPassword />,
+  },
+  {
+    path: "/reset-password/:email",
+    element: <ResetPassword />,
   }
 ]);
 
