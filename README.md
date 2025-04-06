@@ -20,9 +20,9 @@ Welcome to the **The Book Owl 🦉**! This project is designed to help users bor
 - 📡 **Aesthetic Page** - Integrates an easy to use, colorful and animated styles of website.
 
 ## 🛠️ Tech Stack
-- **Frontend:** React JavaScript, CSS
-- **Backend:** N/A (yet)
-- **Database:** N/A (yet)
+- **Frontend:** React (JavaScript), CSS
+- **Backend:** Spring Boot (Java)
+- **Database:** MySQL (MySQL Workbench for management)
 
 ## 📧 Contact
 For any inquiries, reach out via email: [sarah.nauman@stu.khas.edu.tr](mailto:sarah.nauman@stu.khas.edu.tr), [kuandyque@stu.khas.edu.tr](mailto:Kuandyque@stu.khas.edu.tr), [yigit.keser@stu.khas.edu.tr](mailto:yigit.keser@stu.khas.edu.tr)
