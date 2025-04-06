@@ -7,6 +7,7 @@ import com.example.myproject.repository.RoleRepository;
 import com.example.myproject.repository.UserRepository;
 import com.example.myproject.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -143,6 +144,14 @@ public class UserController {
         }
 
     }
+
+    //for admin dashboard to view all users
+    @GetMapping("/no-password")
+    public List<Map<String, Object>> getUsersWithoutPasswords() {
+        return userService.getUsersWithoutPasswords();
+    }
+
+
 
 
 }

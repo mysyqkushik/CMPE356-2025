@@ -11,10 +11,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
-import java.util.HashSet;
-import java.util.List;
-import java.util.Optional;
-import java.util.Set;
+import java.util.*;
+import java.util.stream.Collectors;
 
 @Service
 public class UserService {
@@ -113,4 +111,17 @@ public class UserService {
         int updated = jdbcTemplate.update(sql, newPassword, email);
         return updated > 0;
     }
+
+    public List<Map<String, Object>> getUsersWithoutPasswords() {
+        List<User> users = userRepository.findAll();
+        return users.stream().map(user -> {
+            Map<String, Object> userMap = new HashMap<>();
+            userMap.put("id", user.getId());
+            userMap.put("username", user.getUsername());
+            userMap.put("email", user.getEmail());
+            userMap.put("role", user.getRoles()); // Adjust if roles is a Set
+            return userMap;
+        }).collect(Collectors.toList());
+    }
+
 }
