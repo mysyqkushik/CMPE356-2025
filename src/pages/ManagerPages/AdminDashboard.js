@@ -1,15 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import "./AdminDashboard.css";
-import LibraryData from "./LibraryData"; // Import data file
 import axios from "axios";
 
 const AdminDashboard = () => {
   const [books, setBooks] = useState([]);
   const [users, setUsers] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState(null);
-  const [usersCount, setUsersCount] = useState(0);
-  const [firstName, setFirstName] = useState(""); // Store first name
+  const [firstName, setFirstName] = useState("");
 
   useEffect(() => {
     const loggedInUser = JSON.parse(sessionStorage.getItem("loggedInUser"));
@@ -21,27 +19,32 @@ const AdminDashboard = () => {
         .catch(error => console.error("Error fetching user data:", error));
     }
   }, []);
+  
+  
 
   useEffect(() => {
-    fetch("/api/users/count")
-      .then((res) => res.json())
-      .then((data) => setUsersCount(data.count));
+    axios
+      .get("http://localhost:8080/api/books")
+      .then((response) => setBooks(response.data))
+      .catch((error) => console.error("Error fetching books:", error));
   }, []);
 
   useEffect(() => {
-    if (LibraryData && LibraryData.books && LibraryData.users) {
-      setBooks([...LibraryData.books]);
-      setUsers([...LibraryData.users]);
-    } else {
-      console.error("LibraryData is not properly loaded");
-    }
+    axios
+      .get("http://localhost:8080/api/users")
+      .then((response) => setUsers(response.data))
+      .catch((error) => console.error("Error fetching users:", error));
   }, []);
 
-  // Book Statistics
   const totalBooks = books.length;
-  const booksBorrowed = books.filter(book => book.status === "borrowed").length;
-  const overdueBooks = books.filter(book => book.dueDate && new Date(book.dueDate) < new Date()).length;
-  const newBooks = books.filter(book => new Date(book.publishedDate).getFullYear() > 2010).length;
+  const booksBorrowed = books.filter((book) => book.status === "borrowed").length;
+  const overdueBooks = books.filter(
+    (book) => book.dueDate && new Date(book.dueDate) < new Date()
+  ).length;
+
+  const newBooks = [...books]
+    .sort((a, b) => new Date(b.publicationDate) - new Date(a.publicationDate))
+    .slice(0, 9); // latest 9
 
   const handleCardClick = (category) => {
     setSelectedCategory(category);
@@ -53,11 +56,11 @@ const AdminDashboard = () => {
       case "total":
         return books;
       case "borrowed":
-        return books.filter(book => book.status === "borrowed");
+        return books.filter((book) => book.status === "borrowed");
       case "due":
-        return books.filter(book => book.dueDate && new Date(book.dueDate) < new Date());
+        return books.filter((book) => book.dueDate && new Date(book.dueDate) < new Date());
       case "new":
-        return books.filter(book => new Date(book.publishedDate).getFullYear() > 2010);
+        return newBooks;
       default:
         return [];
     }
@@ -84,7 +87,6 @@ const AdminDashboard = () => {
             <span>🔔</span>
             <span>📧</span>
           </div>
-          {/* Display username in the navbar */}
           <div className="welcome-message">
             <h2>{firstName ? `Welcome, ${firstName}` : "Welcome, Admin"}</h2>
           </div>
@@ -105,7 +107,7 @@ const AdminDashboard = () => {
           </div>
           <div className="card red" onClick={() => handleCardClick("new")}>
             <h3>New Book Arrivals</h3>
-            <p className="big-number">{newBooks}</p>
+            <p className="big-number">{newBooks.length}</p>
           </div>
           <div className="card purple" onClick={() => handleCardClick("users")}>
             <h3>View Users</h3>
@@ -113,46 +115,28 @@ const AdminDashboard = () => {
           </div>
         </section>
 
-        {/* Fake Stats: Pie Chart, Late Fine Slider, Requests from Users */}
-        <section className="fake-stats">
-          <div className="pie-chart">
-            <h3>Books Borrowed This Week</h3>
-            {/* Fake Pie Chart */}
-            <div className="pie-chart-img"></div>
-          </div>
-          <div className="late-fine">
-            <h3>Late Fine Collection</h3>
-            {/* Slider for Late Fine */}
-            <input type="range" min="0" max="500" value="200" className="fine-slider" />
-            <p>Late Fine: $200</p>
-          </div>
-          <div className="user-requests">
-            <h3>User Requests</h3>
-            {/* Fake User Requests */}
-            <ul>
-              <li>Request: Borrow Book for Luna - Status: Pending</li>
-              <li>Request: Extend Borrowing Time for Ron - Status: Approved</li>
-              <li>Request: Add Book : Harry Potter from User:Draco</li>
-            </ul>
-          </div>
-        </section>
-
         {selectedCategory && selectedCategory !== "users" && (
           <section className="filtered-books">
-            <h3>
+          <div className="filtered-header">
+            <h3 className="filtered-title">
               {selectedCategory === "total" && "All Books"}
-              {selectedCategory === "borrowed" && "Books Currently Borrowed"}
-              {selectedCategory === "due" && "Overdue Books"}
-              {selectedCategory === "new" && "New Book Arrivals"}
+         {selectedCategory === "borrowed" && "Books Currently Borrowed"}
+                      {selectedCategory === "due" && "Overdue Books"}
+                      {selectedCategory === "new" && "New Book Arrivals"}
             </h3>
+            <Link to="/ManageBooks" className="edit-button-small">Edit</Link>
+          </div>
+        
             <table>
               <thead>
                 <tr>
                   <th>Title</th>
                   <th>Author</th>
-                  <th>Status</th>
-                  <th>Due Date</th>
-                  <th>Borrower</th>
+                  <th>Genre</th>
+                  <th>Publication Date</th>
+                  <th>Quantity</th>
+                  <th>Added By</th>
+                  <th>Ratings</th>
                 </tr>
               </thead>
               <tbody>
@@ -160,9 +144,12 @@ const AdminDashboard = () => {
                   <tr key={book.id}>
                     <td>{book.title}</td>
                     <td>{book.author}</td>
-                    <td>{book.status}</td>
-                    <td>{book.dueDate || "N/A"}</td>
-                    <td>{book.borrower}</td>
+                    <td>{book.genre}</td>
+                    <td>{book.publicationDate}</td>
+                    <td>{book.quantity}</td>
+                    <td>{book.addedBy === 1 ? "Admin" : book.addedBy === 2 ? "Manager" : "Unknown"}</td>
+                    <td>{book.rating}</td>
+
                   </tr>
                 ))}
               </tbody>
@@ -177,18 +164,18 @@ const AdminDashboard = () => {
               <thead>
                 <tr>
                   <th>User ID</th>
-                  <th>Name</th>
+                  <th>First Name</th>
+                  <th>Last Name</th>
                   <th>Email</th>
-                  <th>Phone</th>
                 </tr>
               </thead>
               <tbody>
-                {users.map(user => (
+                {users.map((user) => (
                   <tr key={user.id}>
                     <td>{user.id}</td>
-                    <td>{user.name}</td>
+                    <td>{user.firstName}</td> {/* fixed field name */}
+                    <td>{user.lastName}</td>   {/* fixed field name */}
                     <td>{user.email}</td>
-                    <td>{user.phone}</td>
                   </tr>
                 ))}
               </tbody>

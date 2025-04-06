@@ -26,6 +26,7 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  transition: all 0.3s ease-in-out;
 }
 
 .sidebar .logo {
@@ -156,6 +157,41 @@ body {
   color: #fff;
 }
 
+
+.filtered-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  margin-bottom: 10px;
+}
+
+.filtered-title {
+  margin: 0 auto;
+  font-size: 22px;
+  font-weight: bold;
+}
+
+/* tiny edit button */
+.edit-button-small {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 21px;
+  padding: 2px 6px;
+  background-color: #e07c24;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+}
+
+.edit-button-small:hover {
+  background-color: #a55310;
+}
+
 /* Overdue Books Table */
 .overdue-books {
   margin-top: 40px;
@@ -262,19 +298,56 @@ body {
     width: 100%;
     height: auto;
     padding: 10px 20px;
+    position: absolute; /* You could also hide this on small screens with JS */
+    z-index: 999;
+  }
+
+  .sidebar nav ul li {
+    font-size: 16px;
+    padding: 8px;
   }
 
   .main-content {
     padding: 20px 10px;
+    margin-top: 60px; /* to avoid overlap with sidebar */
   }
 
   .dashboard-cards {
     grid-template-columns: 1fr;
-    gap: 10px;
+    gap: 15px;
   }
 
-  .analytics {
+  .navbar3 {
     flex-direction: column;
+    text-align: center;
+  }
+
+  .navbar-icons {
+    margin-top: 10px;
+  }
+
+  .card {
+    padding: 15px;
+    font-size: 14px;
+  }
+
+  .filtered-title {
+    font-size: 18px;
+  }
+}
+
+/* For even smaller screens, like mobile phones */
+@media (max-width: 480px) {
+  .sidebar {
+    display: none; /* Hide sidebar on mobile */
+  }
+
+  .main-content {
+    padding: 15px;
+  }
+
+  .card {
+    padding: 10px;
   }
 }
 

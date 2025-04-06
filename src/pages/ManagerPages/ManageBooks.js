@@ -1,120 +1,169 @@
 import React, { useState, useEffect } from 'react';
-import ManageBar from './ManageBar';  
+import axios from 'axios';
+import ManageBar from './ManageBar';
 import './ManageBooks.css';
-import { books as booksData } from './LibraryData';  // Import books data from librarydata.js
 
 const ManageBooks = () => {
-    const [bookTitle, setBookTitle] = useState('');
-    const [author, setAuthor] = useState('');
-    const [publishedDate, setPublishedDate] = useState('');
-    const [quantity, setQuantity] = useState('');
-    const [books, setBooks] = useState([]);
-    const [editingBookId, setEditingBookId] = useState(null);
-    const [showBookList, setShowBookList] = useState(true); // State for Book List visibility
+  const [bookTitle, setBookTitle] = useState('');
+  const [author, setAuthor] = useState('');
+  const [publishedDate, setPublishedDate] = useState('');
+  const [quantity, setQuantity] = useState('');
+  const [genre, setGenre] = useState('');
+  const [books, setBooks] = useState([]);
+  const [editingBookId, setEditingBookId] = useState(null);
+  const [showBookList, setShowBookList] = useState(true);
 
-    useEffect(() => {
-        const savedBooks = JSON.parse(localStorage.getItem('books'));
-        console.log(savedBooks); // Add a log here to see if data is loading
-        if (!savedBooks || savedBooks.length === 0) {
-            // Use the imported booksData as the fallback when there is no saved data
-            localStorage.setItem('books', JSON.stringify(booksData));
-            setBooks(booksData);
-        } else {
-            setBooks(savedBooks);
-        }
-    }, []);
+  const loggedInUser = JSON.parse(sessionStorage.getItem('loggedInUser'));
+  const addedBy = loggedInUser?.role === 'admin' ? 1 : loggedInUser?.role === 'manager' ? 2 : null;
 
-    const handleAddBook = () => {
-        if (editingBookId) {
-            const updatedBooks = books.map((book) =>
-                book.id === editingBookId
-                    ? { ...book, title: bookTitle, author, publishedDate, quantity }
-                    : book
-            );
-            setBooks(updatedBooks);  // Update the state here
-            localStorage.setItem('books', JSON.stringify(updatedBooks));  // Save the updated list
-            setEditingBookId(null);
-        } else {
-            const newBook = {
-                id: Math.floor(Math.random() * 1000),
-                title: bookTitle,
-                author,
-                publishedDate,
-                quantity,
-            };
-            const updatedBooks = [...books, newBook];
-            setBooks(updatedBooks);  // Update the state here
-            localStorage.setItem('books', JSON.stringify(updatedBooks));  // Save the updated list
-        }
-        setBookTitle('');
-        setAuthor('');
-        setPublishedDate('');
-        setQuantity('');
+  useEffect(() => {
+    fetchBooks();
+  }, []);
+
+  const fetchBooks = async () => {
+    try {
+      const response = await axios.get('http://localhost:8080/api/books');
+      setBooks(response.data);
+    } catch (error) {
+      console.error('Error fetching books:', error);
+    }
+  };
+
+  const handleAddBook = async () => {
+    const bookData = {
+      title: bookTitle,
+      author,
+      genre,
+      publicationDate: publishedDate,
+      quantity,
+      ratings: 0,
+      addedBy,
     };
 
-    const handleEdit = (book) => {
-        setBookTitle(book.title);
-        setAuthor(book.author);
-        setPublishedDate(book.publishedDate);
-        setQuantity(book.quantity);
-        setEditingBookId(book.id);
-    };
+    try {
+      if (editingBookId) {
+        await axios.put(`http://localhost:8080/api/books/${editingBookId}`, bookData);
+      } else {
+        await axios.post('http://localhost:8080/api/books', bookData);
+      }
+      resetForm();
+      fetchBooks();
+    } catch (error) {
+      console.error('Error adding/updating book:', error);
+    }
+  };
 
-    const handleDelete = (id) => {
-        const updatedBooks = books.filter((book) => book.id !== id);
-        setBooks(updatedBooks);
-        localStorage.setItem('books', JSON.stringify(updatedBooks));  // Save the updated list
-    };
+  const handleEdit = (book) => {
+    setBookTitle(book.title);
+    setAuthor(book.author);
+    setGenre(book.genre);
+    setPublishedDate(book.publicationDate);
+    setQuantity(book.quantity);
+    setEditingBookId(book.id);
+  };
 
-    const toggleBookList = () => {
-        console.log('Toggling book list visibility'); // Log state toggle
-        setShowBookList(!showBookList);
-    };
+  const handleDelete = async (id) => {
+    try {
+      await axios.delete(`http://localhost:8080/api/books/${id}`);
+      fetchBooks();
+    } catch (error) {
+      console.error('Error deleting book:', error);
+    }
+  };
 
-    return (
-        <>
-            <ManageBar />
-            <div className="manage-books-container">
-                <h2>Add Books</h2>
-                <div className="form-container">
-                    <input type="text" placeholder="Book Title" value={bookTitle} onChange={(e) => setBookTitle(e.target.value)} />
-                    <input type="text" placeholder="Author" value={author} onChange={(e) => setAuthor(e.target.value)} />
-                    <input type="date" value={publishedDate} onChange={(e) => setPublishedDate(e.target.value)} />
-                    <input type="number" placeholder="Quantity" value={quantity} onChange={(e) => setQuantity(e.target.value)} />
-                    <button onClick={handleAddBook}>
-                        {editingBookId ? 'Update Book' : 'Add Book'}
-                    </button>
-                </div>
+  const resetForm = () => {
+    setBookTitle('');
+    setAuthor('');
+    setPublishedDate('');
+    setQuantity('');
+    setGenre('');
+    setEditingBookId(null);
+  };
 
-                {/* Book List Button */}
-                <button className="toggle-book-list-btn" onClick={toggleBookList}>
-                    {showBookList ? 'Hide Book List' : 'Show Book List'}
-                </button>
+  const toggleBookList = () => {
+    setShowBookList(!showBookList);
+  };
 
-                {showBookList && (
-                    <>
-                        <h3>Book List</h3>
-                        <ul className="book-list">
-                            {books.map((book) => (
-                                <li key={book.id} className="book-item">
-                                    <div>
-                                        <h5>{book.title}</h5>
-                                        <p>Author: {book.author}</p>
-                                        <p>Published Date: {book.publishedDate}</p>
-                                        <p>Quantity: {book.quantity}</p>
-                                    </div>
-                                    <div>
-                                        <button className="edit-btn" onClick={() => handleEdit(book)}>Edit</button>
-                                        <button className="delete-btn" onClick={() => handleDelete(book.id)}>Delete</button>
-                                    </div>
-                                </li>
-                            ))}
-                        </ul>
-                    </>
-                )}
-            </div>
-        </>
-    );
+  return (
+    <>
+      <ManageBar />
+      <div className="manage-books-container">
+        <h2>{editingBookId ? 'Edit Book' : 'Add Book'}</h2>
+        <div className="form-container">
+          <input
+            type="text"
+            placeholder="Book Title"
+            value={bookTitle}
+            onChange={(e) => setBookTitle(e.target.value)}
+          />
+          <input
+            type="text"
+            placeholder="Author"
+            value={author}
+            onChange={(e) => setAuthor(e.target.value)}
+          />
+          <select className="genre=dropdown" value={genre} onChange={(e) => setGenre(e.target.value)}>
+            <option value="">Select Genre</option>
+            <option value="Fiction">Literary Fiction</option>
+            <option value="Non-Fiction">Horror</option>
+            <option value="Fantasy">Fantasy</option>
+            <option value="Mystery">Historical Fiction</option>
+            <option value="Romance">Romance</option>
+            <option value="Science Fiction">Adventure</option>
+          </select>
+          <input
+            type="date"
+            value={publishedDate}
+            onChange={(e) => setPublishedDate(e.target.value)}
+          />
+          <input
+            type="number"
+            placeholder="Quantity"
+            value={quantity}
+            onChange={(e) => setQuantity(e.target.value)}
+          />
+          <button onClick={handleAddBook}>
+            {editingBookId ? 'Update Book' : 'Add Book'}
+          </button>
+        </div>
+
+        <button className="toggle-book-list-btn" onClick={toggleBookList}>
+          {showBookList ? 'Hide Book List' : 'Show Book List'}
+        </button>
+
+        {showBookList && (
+          <>
+            <h3>Book List</h3>
+            <ul className="book-list">
+              {books.map((book) => (
+                <li key={book.id} className="book-item">
+                  <div>
+                    <h5>{book.title}</h5>
+                    <p>Author: {book.author}</p>
+                    <p>Genre: {book.genre}</p>
+                    <p>Published: {book.publicationDate}</p>
+                    <p>Quantity: {book.quantity}</p>
+                    <p>
+                      Added By:{' '}
+                      {book.addedBy === 1
+                        ? 'Admin'
+                        : book.addedBy === 2
+                        ? 'Manager'
+                        : 'Unknown'}
+                    </p>
+                  </div>
+                  <div>
+                    <button className="edit-btn" onClick={() => handleEdit(book)}>Edit</button>
+                    <button className="delete-btn" onClick={() => handleDelete(book.id)}>Delete</button>
+                  </div>
+                </li>
+              ))}
+            </ul>
+          </>
+        )}
+      </div>
+    </>
+  );
 };
 
 export default ManageBooks;
