@@ -41,14 +41,26 @@ public class UserService {
         Optional<User> optionalUser = userRepository.findById(id);
         if (optionalUser.isPresent()) {
             User user = optionalUser.get();
+
+            // Log for debugging
+            System.out.println("Updating user with ID: " + id);
+
             user.setUsername(userDetails.getUsername());
             user.setEmail(userDetails.getEmail());
             user.setFirstName(userDetails.getFirstName());
             user.setLastName(userDetails.getLastName());
-            return userRepository.save(user);
+            user.setPassword(userDetails.getPassword()); // Ensure password is being set
+            user.setRoles(userDetails.getRoles()); // Ensure roles are being updated
+
+            // Save and return
+            User updatedUser = userRepository.save(user);
+            System.out.println("User updated: " + updatedUser);
+            return updatedUser;
         }
-        return null;
+        return null;  // If user not found
     }
+
+
 
     // 5. Delete User
     public boolean deleteUser(Long id) {

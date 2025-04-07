@@ -41,11 +41,18 @@ public class UserController {
         return userService.createUser(user);
     }
 
+
     // 4. Update User
     @PutMapping("/{id}")
-    public User updateUser(@PathVariable Long id, @RequestBody User userDetails) {
-        return userService.updateUser(id, userDetails);
+    public ResponseEntity<User> updateUser(@PathVariable Long id, @RequestBody User userDetails) {
+        User updatedUser = userService.updateUser(id, userDetails);
+        if (updatedUser != null) {
+            return ResponseEntity.ok(updatedUser);
+        }
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);  // Handle not found case
     }
+
+
 
     // 5. Delete User
     @DeleteMapping("/{id}")
