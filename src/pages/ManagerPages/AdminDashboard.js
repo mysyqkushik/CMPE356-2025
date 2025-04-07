@@ -15,6 +15,13 @@ const [filterType, setFilterType] = useState('');
 const [filterValue, setFilterValue] = useState('');
 const [sortOption, setSortOption] = useState('');
 
+const [showEditPopup, setShowEditPopup] = useState(false);
+const [showDeletePopup, setShowDeletePopup] = useState(false);
+const [showEditForm, setShowEditForm] = useState(false);
+const [editUserId, setEditUserId] = useState('');
+const [deleteUserId, setDeleteUserId] = useState('');
+const [editUserData, setEditUserData] = useState(null);
+
 
 
   useEffect(() => {
@@ -137,6 +144,71 @@ if (sortOption === "addedNewest") {
   };
   
 
+
+
+  const handleAddUser = () => {
+    if (window.confirm("You will be redirected to the signup page. Continue?")) {
+      window.location.href = "/SignUp";
+    }
+  };
+  
+  const handleEditUser = () => {
+    const id = prompt("Enter the ID of the user you want to edit:");
+    if (id) {
+      axios.get(`http://localhost:8080/api/users/${id}`)
+        .then(response => {
+          setEditUserData(response.data);
+          setEditUserId(id);
+          setShowEditForm(true);
+        })
+        .catch(err => alert("User not found with this ID."));
+    }
+  };
+  
+  
+  const handleEditSubmit = () => {
+    const updatedUser = {
+      ...editUserData,
+      roles: editUserData.roles.map(role => ({
+        id: role.id,
+        name: role.name
+      }))
+    };
+  
+    axios.put(`http://localhost:8080/api/users/${editUserId}`, updatedUser)
+      .then(() => {
+        alert("User edits saved!");
+        setShowEditForm(false);
+        refreshUsers(); // re-fetch users list
+      })
+      .catch(err => {
+        console.error("Error saving user:", err.response?.data || err.message);
+        alert("Failed to save edits. Check required fields.");
+      });
+  };
+  
+  
+  const handleDeleteUser = () => {
+    const id = prompt("Enter the ID of the user you want to delete:");
+    if (id && window.confirm("Are you sure you want to delete this user?")) {
+      axios.delete(`http://localhost:8080/api/users/${id}`)
+        .then(() => {
+          alert("User deleted successfully.");
+          refreshUsers();
+        })
+        .catch(err => alert("User not found or delete failed."));
+    }
+  };
+  
+  const refreshUsers = () => {
+    axios
+      .get("http://localhost:8080/api/users")
+      .then((response) => setUsers(response.data))
+      .catch((error) => console.error("Error fetching users:", error));
+  };
+  
+
+
   return (
     <div className="dashboard-container">
       <aside className="sidebar">
@@ -193,6 +265,35 @@ if (sortOption === "addedNewest") {
           <div className="card purple" onClick={() => handleCardClick("users")}>
             <h3>View Users</h3>
             <p className="big-number">{users.length}</p>
+            {showEditForm && editUserData && (
+  <div className="popup-form">
+    <div className="popup-content">
+      <h3>Edit User ID: {editUserId}</h3>
+      <label>First Name:</label>
+      <input
+        type="text"
+        value={editUserData.firstName}
+        onChange={(e) => setEditUserData({ ...editUserData, firstName: e.target.value })}
+      />
+      <label>Last Name:</label>
+      <input
+        type="text"
+        value={editUserData.lastName}
+        onChange={(e) => setEditUserData({ ...editUserData, lastName: e.target.value })}
+      />
+      <label>Email:</label>
+      <input
+        type="email"
+        value={editUserData.email}
+        onChange={(e) => setEditUserData({ ...editUserData, email: e.target.value })}
+      />
+      <br />
+      <button onClick={handleEditSubmit}>Save</button>
+      <button onClick={() => setShowEditForm(false)}>Cancel</button>
+    </div>
+  </div>
+)}
+
           </div>
         </section>
 
@@ -313,6 +414,12 @@ if (sortOption === "addedNewest") {
         {selectedCategory === "users" && (
           <section className="users-list">
             <h3>All Users</h3>
+            <div className="user-actions">
+  <button onClick={() => handleAddUser()}>➕ Add User</button>
+  <button onClick={() => handleEditUser()}>✏️ Edit User</button>
+  <button onClick={() => handleDeleteUser()}>🗑️ Delete User</button>
+</div>
+
             <table>
               <thead>
                 <tr>
