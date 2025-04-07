@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom'; 
-import bookData from './ManagerPages/LibraryData.js';  // Import your book data (adjust path accordingly)
-import './SearchResults.css'
+import bookData from './ManagerPages/LibraryData.js';  // Import your book data
+import './SearchResults.css';
 
 const SearchResults = () => {
   const [filteredBooks, setFilteredBooks] = useState([]);
@@ -22,6 +22,10 @@ const SearchResults = () => {
     navigate('/CustomerLogin'); 
   };
 
+  const handleReturnHome = () => {
+    navigate('/HomePage');
+  };
+
   return (
     <>
       <div className="searchbox4-results-container"> 
@@ -37,11 +41,11 @@ const SearchResults = () => {
                   <p>Published: {book.publishedDate}</p>
                   <p>Category: {book.category}</p>
                   <button 
-                      className="borrow-btn" 
-                      onClick={() => handleBorrow(book.title)}
-                    >
-                      Borrow
-                    </button>
+                    className="borrow-btn" 
+                    onClick={() => handleBorrow(book.title)}
+                  >
+                    Borrow
+                  </button>
                 </li>
               ))}
             </ul>
@@ -51,15 +55,14 @@ const SearchResults = () => {
         </div>
       </div>
       
-      {/* ✅ Return to Homepage Button */}
+      {/* Return to Homepage Button */}
       <div>
-        <button className="return-home-btn156" onClick={() => navigate('/HomePage')}>
+        <button className="return-home-btn156" onClick={handleReturnHome}>
           Return to Homepage
         </button>
       </div>
     </>
   );
-  
 };
 
 export default SearchResults;
