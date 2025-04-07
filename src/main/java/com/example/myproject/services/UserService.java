@@ -2,14 +2,12 @@ package com.example.myproject.services;
 
 import com.example.myproject.models.Role;
 import com.example.myproject.models.User;
+import com.example.myproject.models.UserUpdateRequest;
 import com.example.myproject.repository.RoleRepository;
 import com.example.myproject.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -37,27 +35,32 @@ public class UserService {
     }
 
     // 4. Update User
-    public User updateUser(Long id, User userDetails) {
+    public String updateUser(Long id, UserUpdateRequest userUpdateRequest) {
         Optional<User> optionalUser = userRepository.findById(id);
         if (optionalUser.isPresent()) {
             User user = optionalUser.get();
 
-            // Log for debugging
-            System.out.println("Updating user with ID: " + id);
+            // Update only the fields that are provided
+            if (userUpdateRequest.getUsername() != null) {
+                user.setUsername(userUpdateRequest.getUsername());
+            }
+            if (userUpdateRequest.getEmail() != null) {
+                user.setEmail(userUpdateRequest.getEmail());
+            }
+            if (userUpdateRequest.getFirstName() != null) {
+                user.setFirstName(userUpdateRequest.getFirstName());
+            }
+            if (userUpdateRequest.getLastName() != null) {
+                user.setLastName(userUpdateRequest.getLastName());
+            }
+            if (userUpdateRequest.getPassword() != null) {
+                user.setPassword(userUpdateRequest.getPassword());  // Consider hashing the password here
+            }
 
-            user.setUsername(userDetails.getUsername());
-            user.setEmail(userDetails.getEmail());
-            user.setFirstName(userDetails.getFirstName());
-            user.setLastName(userDetails.getLastName());
-            user.setPassword(userDetails.getPassword()); // Ensure password is being set
-            user.setRoles(userDetails.getRoles()); // Ensure roles are being updated
-
-            // Save and return
-            User updatedUser = userRepository.save(user);
-            System.out.println("User updated: " + updatedUser);
-            return updatedUser;
+            userRepository.save(user);
+            return "User updated successfully.";
         }
-        return null;  // If user not found
+        return "User not found.";
     }
 
 

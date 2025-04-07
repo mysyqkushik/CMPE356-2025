@@ -3,6 +3,7 @@ package com.example.myproject.controllers;
 import com.example.myproject.models.Role;
 import com.example.myproject.models.SignUpRequest;
 import com.example.myproject.models.User;
+import com.example.myproject.models.UserUpdateRequest;
 import com.example.myproject.repository.RoleRepository;
 import com.example.myproject.repository.UserRepository;
 import com.example.myproject.services.UserService;
@@ -35,7 +36,7 @@ public class UserController {
         return userService.getUserById(id);
     }
 
-    // 3. Create New User
+    // 3. Create New User //actually signup is used
     @PostMapping
     public User createUser(@RequestBody User user) {
         return userService.createUser(user);
@@ -44,13 +45,10 @@ public class UserController {
 
     // 4. Update User
     @PutMapping("/{id}")
-    public ResponseEntity<User> updateUser(@PathVariable Long id, @RequestBody User userDetails) {
-        User updatedUser = userService.updateUser(id, userDetails);
-        if (updatedUser != null) {
-            return ResponseEntity.ok(updatedUser);
-        }
-        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);  // Handle not found case
+    public String updateUser(@PathVariable Long id, @RequestBody UserUpdateRequest userUpdateRequest) {
+        return String.valueOf(userService.updateUser(id, userUpdateRequest));
     }
+
 
 
 
