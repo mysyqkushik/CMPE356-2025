@@ -8,6 +8,14 @@ const AdminDashboard = () => {
   const [users, setUsers] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState(null);
   const [firstName, setFirstName] = useState("");
+const [genreFilter, setGenreFilter] = useState('');
+const [ratingFilter, setRatingFilter] = useState('');
+const [searchTerm, setSearchTerm] = useState('');
+const [filterType, setFilterType] = useState('');
+const [filterValue, setFilterValue] = useState('');
+const [sortOption, setSortOption] = useState('');
+
+
 
   useEffect(() => {
     const loggedInUser = JSON.parse(sessionStorage.getItem("loggedInUser"));
@@ -43,28 +51,91 @@ const AdminDashboard = () => {
   ).length;
 
   const newBooks = [...books]
-    .sort((a, b) => new Date(b.publicationDate) - new Date(a.publicationDate))
-    .slice(0, 9); // latest 9
+  .sort((a, b) => b.ID - a.ID) // newest id = newest book
+  .slice(-9)                   // get the last 9 added
+  .reverse();  
 
   const handleCardClick = (category) => {
     setSelectedCategory(category);
   };
 
   const getFilteredBooks = () => {
-    if (!books.length) return [];
+    let filtered = [...books];
+  
+    // Filter by category
     switch (selectedCategory) {
       case "total":
-        return books;
+        break;
       case "borrowed":
-        return books.filter((book) => book.status === "borrowed");
+        filtered = filtered.filter(book => book.status === "borrowed");
+        break;
       case "due":
-        return books.filter((book) => book.dueDate && new Date(book.dueDate) < new Date());
+        filtered = filtered.filter(book => book.dueDate && new Date(book.dueDate) < new Date());
+        break;
       case "new":
-        return newBooks;
+        filtered = newBooks;
+        break;
       default:
         return [];
     }
+  
+    // Search by title or author
+filtered = filtered.filter((book) =>
+  book.title.toLowerCase().includes(searchTerm) ||
+  book.author.toLowerCase().includes(searchTerm)
+);
+
+  
+    // Apply Filter Type
+    if (filterType && filterValue) {
+      filtered = filtered.filter(book => {
+        switch (filterType) {
+          case "genre":
+            return book.genre === filterValue;
+          case "rating":
+            return parseInt(book.rating) === parseInt(filterValue);
+          case "addedBy":
+            return book.addedBy === parseInt(filterValue);
+          default:
+            return true;
+        }
+      });
+    }
+
+    // Sorting logic
+if (sortOption === "addedNewest") {
+  filtered.reverse(); // reverse to show bottom entries first
+} else if (sortOption === "addedOldest") {
+  // no need to change, default order
+}
+
+    // Apply Sorting
+    switch (sortOption) {
+      case "titleAZ":
+        filtered.sort((a, b) => a.title.localeCompare(b.title));
+        break;
+      case "authorAZ":
+        filtered.sort((a, b) => a.author.localeCompare(b.author));
+        break;
+      case "publicationOldest":
+        filtered.sort((a, b) => new Date(a.publicationDate) - new Date(b.publicationDate));
+        break;
+      case "publicationNewest":
+        filtered.sort((a, b) => new Date(b.publicationDate) - new Date(a.publicationDate));
+        break;
+      case "quantityAsc":
+        filtered.sort((a, b) => a.quantity - b.quantity);
+        break;
+      case "quantityDesc":
+        filtered.sort((a, b) => b.quantity - a.quantity);
+        break;
+    }
+    
+  
+    return filtered;
+
   };
+  
 
   return (
     <div className="dashboard-container">
@@ -83,10 +154,20 @@ const AdminDashboard = () => {
 
       <div className="main-content">
         <header className="navbar3">
-          <div className="navbar-icons">
-            <span>🔔</span>
-            <span>📧</span>
-          </div>
+        <div className="navbar-icons">
+  <div className="icon-with-tooltip">
+    <span role="img" aria-label="bell">🔔</span>
+    <div className="tooltip">
+    <div>No</div>
+    <div>Notifications!</div>
+    </div>
+  </div>
+  <div className="icon-with-tooltip">
+    <span role="img" aria-label="email">📧</span>
+    <div className="tooltip">No emails yet!</div>
+  </div>
+</div>
+
           <div className="welcome-message">
             <h2>{firstName ? `Welcome, ${firstName}` : "Welcome, Admin"}</h2>
           </div>
@@ -126,6 +207,78 @@ const AdminDashboard = () => {
             </h3>
             <Link to="/ManageBooks" className="edit-button-small">Edit</Link>
           </div>
+
+
+
+          {/* Search and Filter Bar */}
+          <div className="search-filter-bar">
+  <input
+    type="text"
+    placeholder="Search by Title or Author"
+    onChange={(e) => setSearchTerm(e.target.value.toLowerCase())}
+    className="search-input"
+  />
+
+  {/* Filter By Dropdown */}
+  <select
+    onChange={(e) => {
+      const [type, value] = e.target.value.split(":");
+      setFilterType(type);
+      setFilterValue(value);
+    }}
+    className="filter-dropdown"
+  >
+    <option value="">Filter by...</option>
+    {/* Genre */}
+    {[...new Set(books.map(book => book.genre))].map((genre, i) => (
+      <option key={`genre-${i}`} value={`genre:${genre}`}>Genre: {genre}</option>
+    ))}
+
+    {/* Ratings (exact, not 5 & up) */}
+    <option value="rating:1">Rating: 1 ⭐</option>
+    <option value="rating:2">Rating: 2 ⭐⭐</option>
+    <option value="rating:3">Rating: 3 ⭐⭐⭐</option>
+    <option value="rating:4">Rating: 4 ⭐⭐⭐⭐</option>
+    <option value="rating:5">Rating: 5 ⭐⭐⭐⭐⭐</option>
+
+    {/* Added By */}
+    <option value="addedBy:1">Added By: Admin</option>
+    <option value="addedBy:2">Added By: Manager</option>
+  </select>
+
+  {/* Sort Dropdown */}
+  <select
+  onChange={(e) => setSortOption(e.target.value)}
+  className="filter-dropdown"
+>
+  <option value="">Sort by...</option>
+  <option value="titleAZ">Book Title A-Z</option>
+  <option value="authorAZ">Author A-Z</option>
+  <option value="publicationOldest">Publication Date: Oldest First</option>
+  <option value="publicationNewest">Publication Date: Newest First</option>
+  <option value="addedOldest">Added Oldest</option>
+  <option value="addedNewest">Added Newest</option>
+  <option value="quantityAsc">Quantity (Lowest First)</option>
+  <option value="quantityDesc">Quantity (Highest First)</option>
+</select>
+
+
+  <button
+  className="clear-button"
+  onClick={() => {
+    setSearchTerm('');
+    setGenreFilter('');
+    setRatingFilter('');
+    setFilterType('');
+    setFilterValue('');
+    setSortOption('');
+  }}
+>
+  Clear Filters
+</button>
+</div>
+
+
         
             <table>
               <thead>
