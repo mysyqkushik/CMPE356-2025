@@ -9,12 +9,13 @@ const ManageBooks = () => {
   const [publishedDate, setPublishedDate] = useState('');
   const [quantity, setQuantity] = useState('');
   const [genre, setGenre] = useState('');
+  const [ratings, setRatings] = useState(0);
+  const [addedBy, setAddedBy] = useState(null);
   const [books, setBooks] = useState([]);
   const [editingBookId, setEditingBookId] = useState(null);
   const [showBookList, setShowBookList] = useState(true);
 
   const loggedInUser = JSON.parse(sessionStorage.getItem('loggedInUser'));
-  const addedBy = loggedInUser?.role === 'admin' ? 1 : loggedInUser?.role === 'manager' ? 2 : null;
 
   useEffect(() => {
     fetchBooks();
@@ -30,18 +31,26 @@ const ManageBooks = () => {
   };
 
   const handleAddBook = async () => {
+    const isEditing = Boolean(editingBookId);
+
     const bookData = {
       title: bookTitle,
       author,
       genre,
       publicationDate: publishedDate,
       quantity,
-      ratings: 0,
-      addedBy,
+      ratings,
+      addedBy: isEditing
+        ? addedBy
+        : loggedInUser?.role === 'admin'
+        ? 1
+        : loggedInUser?.role === 'manager'
+        ? 2
+        : null,
     };
 
     try {
-      if (editingBookId) {
+      if (isEditing) {
         await axios.put(`http://localhost:8080/api/books/${editingBookId}`, bookData);
       } else {
         await axios.post('http://localhost:8080/api/books', bookData);
@@ -59,6 +68,8 @@ const ManageBooks = () => {
     setGenre(book.genre);
     setPublishedDate(book.publicationDate);
     setQuantity(book.quantity);
+    setRatings(book.ratings || 0);
+    setAddedBy(book.addedBy || null);
     setEditingBookId(book.id);
   };
 
@@ -77,12 +88,46 @@ const ManageBooks = () => {
     setPublishedDate('');
     setQuantity('');
     setGenre('');
+    setRatings(0);
+    setAddedBy(null);
     setEditingBookId(null);
   };
 
   const toggleBookList = () => {
     setShowBookList(!showBookList);
   };
+  const renderInteractiveStars = (ratingValue, setRatingValue) => {
+    return (
+      <div className="rating-stars">
+        {[1, 2, 3, 4, 5].map((starVal) => (
+          <span
+            key={starVal}
+            className={`star ${starVal <= ratingValue ? 'filled' : ''}`}
+            onClick={() => setRatingValue(starVal)}
+          >
+            ⭐
+          </span>
+        ))}
+      </div>
+    );
+  };
+  
+  const renderStaticStars = (ratingValue) => {
+    const rounded = Math.round(ratingValue);
+    return (
+      <div className="rating-stars">
+        {[1, 2, 3, 4, 5].map((starVal) => (
+          <span
+            key={starVal}
+            className={`star ${starVal <= rounded ? 'filled' : ''}`}
+          >
+            ⭐
+          </span>
+        ))}
+      </div>
+    );
+  };
+  
 
   return (
     <>
@@ -102,7 +147,7 @@ const ManageBooks = () => {
             value={author}
             onChange={(e) => setAuthor(e.target.value)}
           />
-          <select className="genre=dropdown" value={genre} onChange={(e) => setGenre(e.target.value)}>
+          <select className="genre-dropdown" value={genre} onChange={(e) => setGenre(e.target.value)}>
             <option value="">Select Genre</option>
             <option value="Fiction">Literary Fiction</option>
             <option value="Non-Fiction">Horror</option>
@@ -122,6 +167,21 @@ const ManageBooks = () => {
             value={quantity}
             onChange={(e) => setQuantity(e.target.value)}
           />
+
+<div>
+  <label>Ratings:</label>
+  {renderInteractiveStars(ratings, setRatings)}
+</div>
+
+
+          {editingBookId && (
+            <select value={addedBy} onChange={(e) => setAddedBy(Number(e.target.value))}>
+              <option value="">Select Added By</option>
+              <option value={1}>Admin</option>
+              <option value={2}>Manager</option>
+            </select>
+          )}
+
           <button onClick={handleAddBook}>
             {editingBookId ? 'Update Book' : 'Add Book'}
           </button>
@@ -143,6 +203,8 @@ const ManageBooks = () => {
                     <p>Genre: {book.genre}</p>
                     <p>Published: {book.publicationDate}</p>
                     <p>Quantity: {book.quantity}</p>
+                    <p>Ratings: {renderStaticStars(book.ratings)}</p>
+
                     <p>
                       Added By:{' '}
                       {book.addedBy === 1

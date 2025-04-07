@@ -115,7 +115,7 @@ h2, h3 {
   
   .genre-dropdown:focus {
     outline: none;
-    border-color: #FFA500; /* Bright orange on focus */
+    border-color: #fffcf5; /* Bright orange on focus */
     box-shadow: 0 0 5px #FFA50088;
   }
   
@@ -123,6 +123,30 @@ h2, h3 {
     background-color: #FFE5B4; /* Peachy dropdown */
     color: #5C3A21;
   }
+  
+
+
+
+  .rating-stars {
+    display: flex;
+    gap: 5px;
+    cursor: pointer;
+  }
+  
+  .star {
+    font-size: 24px;
+    color: transparent;
+    border: 1px solid brown;
+    border-radius: 3px;
+    padding: 2px;
+    transition: color 0.2s ease;
+  }
+  
+  .star.filled {
+    color: brown;
+    background-color: #fff5e6;
+  }
+  
   
 
 .edit-btn, .delete-btn {
