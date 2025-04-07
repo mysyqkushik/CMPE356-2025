@@ -103,7 +103,7 @@ const UnifiedLogin = () => {
       {error && <div className="error">{error}</div>}
       <div className="forgot-password">
         Forgot Password?{" "}
-        <Link to="/ForgotPassword" style={{ textDecoration: "underline" }}>
+        <Link to="/ForgotPassword" >
           Click Here
         </Link>
       </div>
