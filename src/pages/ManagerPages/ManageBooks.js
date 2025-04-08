@@ -9,11 +9,12 @@ const ManageBooks = () => {
   const [publishedDate, setPublishedDate] = useState('');
   const [quantity, setQuantity] = useState('');
   const [genre, setGenre] = useState('');
-  const [ratings, setRatings] = useState(0);
+  const [rating, setRating] = useState(0);
   const [addedBy, setAddedBy] = useState(null);
   const [books, setBooks] = useState([]);
   const [editingBookId, setEditingBookId] = useState(null);
   const [showBookList, setShowBookList] = useState(true);
+  const [showSuccessMessage, setShowSuccessMessage] = useState(false); // New state for success message
 
   const loggedInUser = JSON.parse(sessionStorage.getItem('loggedInUser'));
 
@@ -39,7 +40,7 @@ const ManageBooks = () => {
       genre,
       publicationDate: publishedDate,
       quantity,
-      ratings,
+      rating,
       addedBy: isEditing
         ? addedBy
         : loggedInUser?.role === 'admin'
@@ -55,8 +56,11 @@ const ManageBooks = () => {
       } else {
         await axios.post('http://localhost:8080/api/books', bookData);
       }
+
       resetForm();
       fetchBooks();
+      setShowSuccessMessage(true); // Show success message after adding the book
+      setTimeout(() => setShowSuccessMessage(false), 3000); // Hide message after 3 seconds
     } catch (error) {
       console.error('Error adding/updating book:', error);
     }
@@ -68,7 +72,7 @@ const ManageBooks = () => {
     setGenre(book.genre);
     setPublishedDate(book.publicationDate);
     setQuantity(book.quantity);
-    setRatings(book.ratings || 0);
+    setRating(book.rating || 0);
     setAddedBy(book.addedBy || null);
     setEditingBookId(book.id);
   };
@@ -88,7 +92,7 @@ const ManageBooks = () => {
     setPublishedDate('');
     setQuantity('');
     setGenre('');
-    setRatings(0);
+    setRating(0);
     setAddedBy(null);
     setEditingBookId(null);
   };
@@ -96,6 +100,7 @@ const ManageBooks = () => {
   const toggleBookList = () => {
     setShowBookList(!showBookList);
   };
+
   const renderInteractiveStars = (ratingValue, setRatingValue) => {
     return (
       <div className="rating-stars">
@@ -127,7 +132,6 @@ const ManageBooks = () => {
       </div>
     );
   };
-  
 
   return (
     <>
@@ -168,11 +172,10 @@ const ManageBooks = () => {
             onChange={(e) => setQuantity(e.target.value)}
           />
 
-<div>
-  <label>Ratings:</label>
-  {renderInteractiveStars(ratings, setRatings)}
-</div>
-
+          <div>
+            <label>Rating:</label>
+            {renderInteractiveStars(rating, setRating)}
+          </div>
 
           {editingBookId && (
             <select value={addedBy} onChange={(e) => setAddedBy(Number(e.target.value))}>
@@ -186,6 +189,9 @@ const ManageBooks = () => {
             {editingBookId ? 'Update Book' : 'Add Book'}
           </button>
         </div>
+
+        {/* Success message */}
+        {showSuccessMessage && <div className="success-message">Book List updated!</div>}
 
         <button className="toggle-book-list-btn" onClick={toggleBookList}>
           {showBookList ? 'Hide Book List' : 'Show Book List'}
@@ -203,7 +209,7 @@ const ManageBooks = () => {
                     <p>Genre: {book.genre}</p>
                     <p>Published: {book.publicationDate}</p>
                     <p>Quantity: {book.quantity}</p>
-                    <p>Ratings: {renderStaticStars(book.ratings)}</p>
+                    <p>Rating: {renderStaticStars(book.rating)}</p>
 
                     <p>
                       Added By:{' '}
