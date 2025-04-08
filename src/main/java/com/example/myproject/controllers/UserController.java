@@ -6,6 +6,7 @@ import com.example.myproject.models.User;
 import com.example.myproject.models.UserUpdateRequest;
 import com.example.myproject.repository.RoleRepository;
 import com.example.myproject.repository.UserRepository;
+import com.example.myproject.services.BorrowedBookService;
 import com.example.myproject.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -110,16 +111,41 @@ public class UserController {
 
     // 8. Sign-up User (New Endpoint)
     @PostMapping("/signup")
-    public String signUp(@RequestBody SignUpRequest signUpRequest) {
-        User user = new User();
-        user.setFirstName(signUpRequest.getFirstName());
-        user.setLastName(signUpRequest.getLastName());
-        user.setEmail(signUpRequest.getEmail());
-        user.setUsername(signUpRequest.getUsername());
-        user.setPassword(signUpRequest.getPassword());
+    public ResponseEntity<?> signUp(@RequestBody SignUpRequest signUpRequest) {
+        try {
+            User user = new User();
+            user.setFirstName(signUpRequest.getFirstName());
+            user.setLastName(signUpRequest.getLastName());
+            user.setUsername(signUpRequest.getUsername());
+            user.setEmail(signUpRequest.getEmail());
+            user.setPassword(signUpRequest.getPassword());
 
-        return userService.registerUser(user);
+            Set<Role> userRoles = new HashSet<>();
+            for (String roleStr : signUpRequest.getRoles()) {
+                Role role = roleRepository.findByName(roleStr)
+                        .orElseThrow(() -> new RuntimeException("Role not found: " + roleStr));
+                userRoles.add(role);
+            }
+
+            user.setRoles(userRoles);
+            userRepository.save(user);
+
+            Map<String, String> response = new HashMap<>();
+            response.put("message", "User registered successfully!");
+            return ResponseEntity.ok(response);
+        } catch (Exception e) {
+            e.printStackTrace();
+            Map<String, String> error = new HashMap<>();
+            error.put("message", "Registration failed: " + e.getMessage());
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(error);
+        }
     }
+
+    @Autowired
+    private UserRepository userRepository;
+
+    @Autowired
+    private RoleRepository roleRepository;
 
     // 9. Forgot Password Request
     @PostMapping("/forgot-password")
