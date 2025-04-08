@@ -263,38 +263,9 @@ if (sortOption === "addedNewest") {
             <p className="big-number">{newBooks.length}</p>
           </div>
           <div className="card purple" onClick={() => handleCardClick("users")}>
-            <h3>View Users</h3>
-            <p className="big-number">{users.length}</p>
-            {showEditForm && editUserData && (
-  <div className="popup-form">
-    <div className="popup-content">
-      <h3>Edit User ID: {editUserId}</h3>
-      <label>First Name:</label>
-      <input
-        type="text"
-        value={editUserData.firstName}
-        onChange={(e) => setEditUserData({ ...editUserData, firstName: e.target.value })}
-      />
-      <label>Last Name:</label>
-      <input
-        type="text"
-        value={editUserData.lastName}
-        onChange={(e) => setEditUserData({ ...editUserData, lastName: e.target.value })}
-      />
-      <label>Email:</label>
-      <input
-        type="email"
-        value={editUserData.email}
-        onChange={(e) => setEditUserData({ ...editUserData, email: e.target.value })}
-      />
-      <br />
-      <button onClick={handleEditSubmit}>Save</button>
-      <button onClick={() => setShowEditForm(false)}>Cancel</button>
-    </div>
-  </div>
-)}
-
-          </div>
+  <h3>View Users</h3>
+  <p className="big-number">{users.length}</p>
+</div>
         </section>
 
         {selectedCategory && selectedCategory !== "users" && (
@@ -443,7 +414,37 @@ if (sortOption === "addedNewest") {
           </section>
         )}
       </div>
+      {showEditForm && editUserData && (
+  <div className="popup-form">
+    <div className="popup-content">
+      <h3>Edit User ID: {editUserId}</h3>
+      <label>First Name:</label>
+      <input
+        type="text"
+        value={editUserData.firstName}
+        onChange={(e) => setEditUserData({ ...editUserData, firstName: e.target.value })}
+      />
+      <label>Last Name:</label>
+      <input
+        type="text"
+        value={editUserData.lastName}
+        onChange={(e) => setEditUserData({ ...editUserData, lastName: e.target.value })}
+      />
+      <label>Email:</label>
+      <input
+        type="email"
+        value={editUserData.email}
+        onChange={(e) => setEditUserData({ ...editUserData, email: e.target.value })}
+      />
+      <br />
+      <button onClick={handleEditSubmit}>Save</button>
+      <button onClick={() => setShowEditForm(false)}>Cancel</button>
     </div>
+  </div>
+)}
+
+    </div>
+
   );
 };
 

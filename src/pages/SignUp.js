@@ -17,7 +17,7 @@ const Signup = () => {
 
   const handleSignup = async () => {
     try {
-      const response = await axios.post("http://localhost:8080/api/users/register", {
+      const response = await axios.post("http://localhost:8080/api/users/signup", {
         firstName,
         lastName,
         username,
@@ -25,8 +25,12 @@ const Signup = () => {
         password,
         roles: selectedRoles
       });
-
+  
       if (response.data.message === "User registered successfully!") {
+        // Save to sessionStorage
+        sessionStorage.setItem("loggedInUser", JSON.stringify({ username }));
+  
+        // Navigate to role-specific dashboard
         const userRole = selectedRoles[0];
         if (userRole === "admin") {
           navigate("/AdminDashboard");
@@ -43,6 +47,7 @@ const Signup = () => {
       setError("Server error. Please try again.");
     }
   };
+  
 
   return (
     <div className="container">
