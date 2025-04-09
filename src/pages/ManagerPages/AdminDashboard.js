@@ -21,6 +21,9 @@ const [showEditForm, setShowEditForm] = useState(false);
 const [editUserId, setEditUserId] = useState('');
 const [deleteUserId, setDeleteUserId] = useState('');
 const [editUserData, setEditUserData] = useState(null);
+const [borrowedBooksList, setBorrowedBooksList] = useState([]);
+const [borrowedBooks, setBorrowedBooks] = useState([]);
+
 
 
 
@@ -35,6 +38,14 @@ const [editUserData, setEditUserData] = useState(null);
     }
   }, []);
   
+  useEffect(() => {
+    axios.get("http://localhost:8080/api/borrow/all")
+    .then(response => {
+      setBorrowedBooksList(response.data);
+      setBorrowedBooks(response.data);  
+    })
+      .catch(error => console.error("Error fetching borrowed books:", error));
+  }, []);
   
 
   useEffect(() => {
@@ -52,7 +63,7 @@ const [editUserData, setEditUserData] = useState(null);
   }, []);
 
   const totalBooks = books.length;
-  const booksBorrowed = books.filter((book) => book.status === "borrowed").length;
+  const booksBorrowed = borrowedBooksList.length;
   const overdueBooks = books.filter(
     (book) => book.dueDate && new Date(book.dueDate) < new Date()
   ).length;
@@ -442,6 +453,43 @@ if (sortOption === "addedNewest") {
     </div>
   </div>
 )}
+{/* Add this part below where you handle selectedCategory */}
+{selectedCategory === "borrowed" && (
+      <section className="filtered-books4">
+        <div className="filtered-header4">
+          <h3 className="filtered-title4">Books Currently Borrowed</h3>
+        </div>
+        {borrowedBooks.length === 0 ? (
+  <p>No books currently borrowed.</p>
+) : (
+  <table>
+    <thead>
+      <tr>
+        <th>Borrow ID</th>
+        <th>User ID</th>
+        <th>Book ID</th>
+        <th>Borrow Date</th>
+        <th>Return Date</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      {borrowedBooks.map((borrow) => (
+        <tr key={borrow.id}>
+          <td>{borrow.id}</td>
+          <td>{borrow.userId}</td>
+          <td>{borrow.bookId}</td>
+          <td>{borrow.borrowDate}</td>
+          <td>{borrow.returnDate}</td>
+          <td>{borrow.Returned ? "Returned" : "Borrowed"}</td>
+        </tr>
+      ))}
+    </tbody>
+  </table>
+)}
+
+      </section>
+    )}
 
     </div>
 
