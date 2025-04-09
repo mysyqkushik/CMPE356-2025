@@ -20,6 +20,20 @@ const CustomerDashboard = () => {
     }
   }, []);
 
+  useEffect(() => {
+    const loggedInUser = JSON.parse(sessionStorage.getItem("loggedInUser"));
+    if (loggedInUser) {
+      axios
+        .get(`http://localhost:8080/api/borrow/username/${loggedInUser.username}`)
+        .then((response) => {
+          console.log(response.data);  // Check the structure of the data
+          setBorrowedBooks(response.data || []);
+        })
+        .catch((error) => console.error("Error fetching borrowed books:", error));
+    }
+  }, []);
+  
+
   return (
     <div className="dashboard-container">
       <aside className="sidebar">
@@ -71,15 +85,22 @@ const CustomerDashboard = () => {
             </a>
           </button>
           <div className="card yellow">
-            <h3>View Issued Books</h3>
-            <ul>
-              {borrowedBooks.length > 0 ? (
-                borrowedBooks.map((book, index) => <li key={index}>{book}</li>)
-              ) : (
-                <li>No books borrowed</li>
-              )}
-            </ul>
-          </div>
+  <h3>View Issued Books</h3>
+  <ul>
+    {borrowedBooks.length > 0 ? (
+      borrowedBooks.map((book, index) => (
+        <li key={index}>
+          <strong>{book.bookTitle}</strong><br />
+          Borrowed on: {new Date(book.borrowDate).toLocaleDateString()}<br />
+          Return by: {new Date(book.returnDate).toLocaleDateString()}
+        </li>
+      ))
+    ) : (
+      <li>No books borrowed</li>
+    )}
+  </ul>
+</div>
+
           <div className="card red">
             <a href="/RateABook">
               <h3>Rate a Book</h3>
