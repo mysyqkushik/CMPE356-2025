@@ -8,4 +8,8 @@ import java.util.List;
 
 public interface BorrowedBookRepository extends JpaRepository<BorrowedBook, Long> {
     List<BorrowedBook> findByUserIdAndIsReturnedFalse(Long userId);
+
+    List<BorrowedBook> findAll();
+    List<BorrowedBook> findByUserId(Long userId);
+
 }

@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Service
 public class BorrowedBookService {
@@ -73,4 +74,13 @@ public class BorrowedBookService {
     }
         return false;
     }
+
+    public List<BorrowedBook> getAllBorrowedBooks() {
+        return borrowedBookRepository.findAll();
+    }
+
+    public List<BorrowedBook> getBorrowedBooksByUserId(Long userId) {
+        return borrowedBookRepository.findByUserId(userId);
+    }
+
 }

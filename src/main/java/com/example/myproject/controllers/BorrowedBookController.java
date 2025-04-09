@@ -1,10 +1,13 @@
 package com.example.myproject.controllers;
 
 import com.example.myproject.models.BorrowRequest;
+import com.example.myproject.models.BorrowedBook;
 import com.example.myproject.services.BorrowedBookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/borrow")
@@ -44,4 +47,17 @@ public class BorrowedBookController {
             return ResponseEntity.status(400).body("Error while returning the book");
         }
     }
+
+    // View all borrowed books
+    @GetMapping("/all")
+    public ResponseEntity<List<BorrowedBook>> getAllBorrowedBooks() {
+        return ResponseEntity.ok(borrowService.getAllBorrowedBooks());
+    }
+
+    // View borrowed books by user ID
+    @GetMapping("/user/{userId}")
+    public ResponseEntity<List<BorrowedBook>> getBorrowedBooksByUser(@PathVariable Long userId) {
+        return ResponseEntity.ok(borrowService.getBorrowedBooksByUserId(userId));
+    }
+
 }
