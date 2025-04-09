@@ -24,6 +24,10 @@ public class BorrowedBook {
 
     private boolean isReturned = false;
 
+    private String username;
+    private String bookTitle;
+
+
     // Getters and Setters
 
 }

@@ -4,6 +4,7 @@ import com.example.myproject.models.Book;
 import com.example.myproject.models.BorrowedBook;
 import com.example.myproject.repository.BookRepository;
 import com.example.myproject.repository.BorrowedBookRepository;
+import com.example.myproject.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,7 +18,10 @@ public class BorrowedBookService {
     private BookRepository bookRepository;
 
     @Autowired
-    private BorrowedBookRepository borrowedBookRepository; // ✅ Inject repository
+    private BorrowedBookRepository borrowedBookRepository;
+
+    @Autowired
+    private UserRepository userRepository;
 
     // Borrow Book
     public boolean borrowBook(Long userId, Long bookId) {
@@ -39,6 +43,9 @@ public class BorrowedBookService {
             borrowedBook.setBorrowDate(LocalDate.now());
             borrowedBook.setReturnDate(LocalDate.now().plusMonths(1));
             borrowedBook.setReturned(false);
+
+            borrowedBook.setBookTitle(book.getTitle());
+            borrowedBook.setUsername(userRepository.findById(userId).get().getUsername());
 
             borrowedBookRepository.save(borrowedBook); // ✅ Save to SQL table
 
