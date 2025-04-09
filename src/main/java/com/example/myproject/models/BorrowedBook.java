@@ -25,4 +25,5 @@ public class BorrowedBook {
     private boolean isReturned = false;
 
     // Getters and Setters
+
 }

@@ -21,7 +21,7 @@ public class BorrowedBookController {
         Long bookId = borrowRequest.getBookId();
 
         // Call the service to handle the business logic
-        boolean success = borrowService.borrowBook(userId, bookId);
+        boolean success = Boolean.parseBoolean(String.valueOf(borrowService.borrowBook(userId, bookId)));
 
         if (success) {
             return ResponseEntity.ok("Book borrowed successfully!");
