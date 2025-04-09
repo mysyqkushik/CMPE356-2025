@@ -12,4 +12,5 @@ public interface BorrowedBookRepository extends JpaRepository<BorrowedBook, Long
     List<BorrowedBook> findAll();
     List<BorrowedBook> findByUserId(Long userId);
 
+    List<BorrowedBook> findByUsername(String username);
 }

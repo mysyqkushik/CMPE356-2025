@@ -77,8 +77,8 @@ public class BorrowedBookService {
             borrowedBook.setReturnDate(LocalDate.now());
             borrowedBookRepository.save(borrowedBook);
 
-        return true; // Return successful
-    }
+            return true; // Return successful
+        }
         return false;
     }
 
@@ -88,6 +88,10 @@ public class BorrowedBookService {
 
     public List<BorrowedBook> getBorrowedBooksByUserId(Long userId) {
         return borrowedBookRepository.findByUserId(userId);
+    }
+
+    public List<BorrowedBook> getBorrowedBooksByUsername(String username) {
+        return borrowedBookRepository.findByUsername(username);
     }
 
 }

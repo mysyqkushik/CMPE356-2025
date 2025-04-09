@@ -60,4 +60,10 @@ public class BorrowedBookController {
         return ResponseEntity.ok(borrowService.getBorrowedBooksByUserId(userId));
     }
 
+    @GetMapping("/username/{username}")
+    public ResponseEntity<List<BorrowedBook>> getBorrowedBooksByUsername(@PathVariable String username) {
+        return ResponseEntity.ok(borrowService.getBorrowedBooksByUsername(username));
+    }
+
+
 }
