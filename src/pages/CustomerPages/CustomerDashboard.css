@@ -104,67 +104,33 @@
   }
   
   /* Dashboard Cards */
-  .dashboard-cards {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-    gap: 20px;
-    .card {
-      background-color: #fbe4b7; /* Light peachy color */
-      border-radius: 12px;
-      padding: 40px; /* Increased padding */
-      min-width: 300px; /* Increased minimum width */
-      height: 200px; /* Increased height */
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-      cursor: pointer;
-    }
-    
-    .card h3 {
-      font-size: 24px; /* Increased font size */
-      margin-bottom: 10px;
-      color: #333;
-      text-align: center;
-    }
-    
-    .card .big-number {
-      font-size: 40px; /* Increased font size for emphasis */
-      font-weight: bold;
-      color: #333;
-    }
-    
-    .card p {
-      color: #555;
-      font-size: 18px; /* Increased font size for readability */
-      text-align: center;
-    }
-    
-    .card:hover {
-      transform: translateY(-8px);
-      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-    }
-    
-    margin-top: 30px;
-   
-  }
   
-  .card {
-    background-color: #fbe4b7; /* Light peachy color */
-    border-radius: 12px;
-    padding: 40px; /* Increased padding */
-    min-width: 300px; /* Increased minimum width */
-    height: 200px; /* Increased height */
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    cursor: pointer;
-  }
+  
+  /* Adjust card margin-top to align with other cards */
+.card {
+  background-color: #fbe4b7; /* Light peachy color */
+  border-radius: 12px;
+  padding: 40px; /* Increased padding */
+  min-width: 300px; /* Increased minimum width */
+  height: 200px; /* Increased height */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+  margin-top: 0; /* Ensure no extra top margin is applied */
+}
+
+/* Alternatively, apply uniform spacing for cards */
+.dashboard-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 20px;
+  padding-top: 20px; /* Consistent spacing between cards */
+}
+
   
   .card h3 {
     font-size: 24px; /* Increased font size */
@@ -249,6 +215,7 @@
     font-size: 14px;
     color: #555;
   }
+  
   
   /* Responsive Design */
   @media (max-width: 768px) {

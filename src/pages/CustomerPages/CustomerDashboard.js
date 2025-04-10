@@ -6,19 +6,9 @@ import "./CustomerDashboard.css";
 const CustomerDashboard = () => {
   const [borrowedBooks, setBorrowedBooks] = useState([]);
   const [firstName, setFirstName] = useState(""); // Store first name
+  const [isIssuedBooksVisible, setIsIssuedBooksVisible] = useState(false); // Toggle visibility
 
-  useEffect(() => {
-    const loggedInUser = JSON.parse(sessionStorage.getItem("loggedInUser"));
-    if (loggedInUser) {
-      axios
-        .get(`http://localhost:8080/api/users/profile/${loggedInUser.username}`)
-        .then((response) => {
-          setFirstName(response.data.first_name); // Fetch first_name
-          setBorrowedBooks(response.data.borrowedBooks || []);
-        })
-        .catch((error) => console.error("Error fetching user data:", error));
-    }
-  }, []);
+  
 
   useEffect(() => {
     const loggedInUser = JSON.parse(sessionStorage.getItem("loggedInUser"));
@@ -26,12 +16,17 @@ const CustomerDashboard = () => {
       axios
         .get(`http://localhost:8080/api/borrow/username/${loggedInUser.username}`)
         .then((response) => {
-          console.log(response.data);  // Check the structure of the data
+          setFirstName(loggedInUser.first_name); // Fetch first_name
           setBorrowedBooks(response.data || []);
         })
-        .catch((error) => console.error("Error fetching borrowed books:", error));
+        .catch((error) => console.error("Error fetching user data:", error));
     }
   }, []);
+
+  const toggleIssuedBooks = () => {
+    setIsIssuedBooksVisible(!isIssuedBooksVisible);
+  };
+
   
 
   return (
@@ -84,29 +79,49 @@ const CustomerDashboard = () => {
               <h3>Return a Book</h3>
             </a>
           </button>
-          <div className="card yellow">
-  <h3>View Issued Books</h3>
-  <ul>
-    {borrowedBooks.length > 0 ? (
-      borrowedBooks.map((book, index) => (
-        <li key={index}>
-          <strong>{book.bookTitle}</strong><br />
-          Borrowed on: {new Date(book.borrowDate).toLocaleDateString()}<br />
-          Return by: {new Date(book.returnDate).toLocaleDateString()}
-        </li>
-      ))
-    ) : (
-      <li>No books borrowed</li>
-    )}
-  </ul>
-</div>
-
+          <div
+            className="card yellow"
+            onClick={toggleIssuedBooks} // Toggle the issued books section
+          >
+            <h3>View Issued Books</h3>
+          </div>
           <div className="card red">
             <a href="/RateABook">
               <h3>Rate a Book</h3>
             </a>
           </div>
         </section>
+
+        {/* Conditionally render the borrowed books table */}
+        {isIssuedBooksVisible && (
+          <section className="issued-books-section">
+            <h2>Issued Books</h2>
+            {borrowedBooks.length > 0 ? (
+              <table className="borrowed-books-table">
+                <thead>
+                  <tr>
+                    <th>Title</th>
+          
+                    <th>Borrow Date</th>
+                    <th>Return Date</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {borrowedBooks.map((book, index) => (
+                    <tr key={index}>
+                      <td>{book.bookTitle}</td>
+        
+                      <td>{new Date(book.borrowDate).toLocaleDateString()}</td>
+                      <td>{new Date(book.returnDate).toLocaleDateString()}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            ) : (
+              <p>No books borrowed</p>
+            )}
+          </section>
+        )}
       </div>
     </div>
   );
