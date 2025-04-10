@@ -36,13 +36,15 @@ public class BorrowedBookController {
         }
     }
 
-    @PostMapping("/return")
+    @DeleteMapping("/return")
     public ResponseEntity<String> returnBook(@RequestBody BorrowRequest borrowRequest) {
         Long userId = borrowRequest.getUserId();
         Long bookId = borrowRequest.getBookId();
+        LocalDate borrowDate = borrowRequest.getBorrowDate();
+        LocalDate returnDate = borrowRequest.getReturnDate();
 
-        // Call the service to handle the return logic
-        boolean success = borrowService.returnBook(userId, bookId);
+        // Call the service to handle the return logic and deletion
+        boolean success = borrowService.returnBook(userId, bookId, borrowDate, returnDate); // Call the correct service method
 
         if (success) {
             return ResponseEntity.ok("Book returned successfully!");
@@ -50,6 +52,7 @@ public class BorrowedBookController {
             return ResponseEntity.status(400).body("Error while returning the book");
         }
     }
+
 
     // View all borrowed books
     @GetMapping("/all")

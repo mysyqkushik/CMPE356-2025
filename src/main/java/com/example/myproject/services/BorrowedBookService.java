@@ -55,16 +55,16 @@ public class BorrowedBookService {
         }
     }
 
-    // Return Book
-    public boolean returnBook(Long userId, Long bookId) {
-        // Find the book by its ID
-        Book book = bookRepository.findById(bookId).orElseThrow(() -> new RuntimeException("Book not found"));
-        // Increase the quantity by 1 as the book is returned
+    public boolean returnBook(Long userId, Long bookId, LocalDate borrowDate, LocalDate returnDate) {
+        // Step 1: Find the book
+        Book book = bookRepository.findById(bookId)
+                .orElseThrow(() -> new RuntimeException("Book not found"));
+
+        // Step 2: Increase book quantity since it's being returned
         book.setQuantity(book.getQuantity() + 1);
-        // Save the updated book information
         bookRepository.save(book);
 
-        // ✅ Update borrow record
+        // Step 3: Find the borrowed record by userId and bookId
         BorrowedBook borrowedBook = borrowedBookRepository
                 .findByUserIdAndIsReturnedFalse(userId)
                 .stream()
@@ -73,14 +73,15 @@ public class BorrowedBookService {
                 .orElse(null);
 
         if (borrowedBook != null) {
-            borrowedBook.setReturned(true);
-            borrowedBook.setReturnDate(LocalDate.now());
-            borrowedBookRepository.save(borrowedBook);
-
-            return true; // Return successful
+            // Delete the borrowedBook record when the book is returned
+            borrowedBookRepository.delete(borrowedBook);
+            return true;
         }
-        return false;
+
+        return false; // No borrowed book found for the given userId and bookId
     }
+
+
 
     public List<BorrowedBook> getAllBorrowedBooks() {
         return borrowedBookRepository.findAll();
