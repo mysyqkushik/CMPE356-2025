@@ -69,7 +69,8 @@ public class UserController {
             User user = userOptional.get();
             return ResponseEntity.ok(Map.of(
                     "username", user.getUsername(),
-                    "first_name", user.getFirstName() // ✅ Ensure first_name is returned
+                    "first_name", user.getFirstName(),
+                    "id", user.getId()// ✅ Ensure first_name is returned
             ));
         } else {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(Map.of("message", "User not found"));
