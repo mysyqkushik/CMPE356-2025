@@ -48,7 +48,7 @@ const CustomerDashboard = () => {
             </li>
             <li>
               <span>📜</span>
-              <Link to="/ErrorNotFound">Feedback</Link>
+              <Link to="/BorrowBook">Feedback</Link>
             </li>
             <li>
               <span>📊</span>
