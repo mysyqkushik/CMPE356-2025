@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @RestController
@@ -22,9 +23,11 @@ public class BorrowedBookController {
         // Extract userId and bookId from the BorrowRequest object
         Long userId = borrowRequest.getUserId();
         Long bookId = borrowRequest.getBookId();
+        LocalDate borrowDate = borrowRequest.getBorrowDate();
+        LocalDate returnDate = borrowRequest.getReturnDate();
 
         // Call the service to handle the business logic
-        boolean success = Boolean.parseBoolean(String.valueOf(borrowService.borrowBook(userId, bookId)));
+        boolean success = Boolean.parseBoolean(String.valueOf(borrowService.borrowBook(userId, bookId, borrowDate, returnDate)));
 
         if (success) {
             return ResponseEntity.ok("Book borrowed successfully!");

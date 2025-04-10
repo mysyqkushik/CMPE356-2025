@@ -24,7 +24,7 @@ public class BorrowedBookService {
     private UserRepository userRepository;
 
     // Borrow Book
-    public boolean borrowBook(Long userId, Long bookId) {
+    public boolean borrowBook(Long userId, Long bookId, LocalDate borrowDate, LocalDate returnDate) {
         // Find the book by its ID
         Book book = bookRepository.findById(bookId).orElseThrow(() -> new RuntimeException("Book not found"));
 
@@ -89,6 +89,7 @@ public class BorrowedBookService {
     public List<BorrowedBook> getBorrowedBooksByUserId(Long userId) {
         return borrowedBookRepository.findByUserId(userId);
     }
+
 
     public List<BorrowedBook> getBorrowedBooksByUsername(String username) {
         return borrowedBookRepository.findByUsername(username);
