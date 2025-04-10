@@ -6,7 +6,6 @@ import "./CustomerDashboard.css";
 const CustomerDashboard = () => {
   const [borrowedBooks, setBorrowedBooks] = useState([]);
   const [firstName, setFirstName] = useState(""); // Store first name
-  const [Id, setId] = useState(""); // Store user ID
   const [isIssuedBooksVisible, setIsIssuedBooksVisible] = useState(false); // Toggle visibility
 
   
@@ -18,13 +17,11 @@ const CustomerDashboard = () => {
         .get(`http://localhost:8080/api/borrow/username/${loggedInUser.username}`)
         .then((response) => {
           setFirstName(loggedInUser.first_name); // Fetch first_name
-          setId(loggedInUser.id);
           setBorrowedBooks(response.data || []);
         })
         .catch((error) => console.error("Error fetching user data:", error));
     }
   }, []);
-
 
   const toggleIssuedBooks = () => {
     setIsIssuedBooksVisible(!isIssuedBooksVisible);
@@ -67,7 +64,7 @@ const CustomerDashboard = () => {
             <span>🔔</span>
             <span>📧</span>
           </div>
-          <div className="user-id-display">Your user ID is: {Id ? Id : "User"}</div>
+          <div className="user-id-display">Your user ID is: {JSON.parse(sessionStorage.getItem("loggedInUser"))?.userId}</div>
         </header>
 
         <section className="dashboard-cards">

@@ -89,7 +89,6 @@
   .navbar-icons {
     display: flex;
     align-items: center;
-    gap: 20px;
   }
   
   .navbar-icons span {
@@ -99,10 +98,10 @@
   }
   
   .user-id-display {
-    font-size: 20px;
+    font-size: 10px;
     color: #5d4037;
-    margin: 0;
-    padding: 0;
+    text-align: right;
+    margin-top: 5px;
   }
   
   .profile-pic {

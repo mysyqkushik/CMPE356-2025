@@ -4,7 +4,7 @@
   padding: 0;
 }
 
-.navbar {
+.navbar-124 {
   position: fixed;
   top: 0;
   left: 0;
@@ -23,13 +23,13 @@
   box-sizing: border-box;
 }
 
-.content-container {
+.content-container-124 {
   display: flex;
   align-items: center;
   gap: 10px;
 }
 
-.owl-image {
+.owl-image-124 {
   width: 180px;
   height: auto;
   max-width: 100%;
@@ -37,7 +37,7 @@
   margin-top: -20px; 
 }
 
-.book-title {
+.book-title-124 {
   color: #FCE8C8;
   font-size: 2.3rem;
   display: flex;
@@ -56,7 +56,7 @@
 }
 
 /* Hamburger button */
-.hamburger-button {
+.hamburger-button-124 {
   display: none;
   background: transparent;
   border: none;
@@ -66,7 +66,7 @@
   padding: 5px;
 }
 
-.nav-links {
+.nav-links-124 {
   list-style: none;
   display: flex;
   align-items: center;
@@ -76,7 +76,7 @@
   justify-content: center;
 }
 
-.nav-links a {
+.nav-links-124 a {
   text-decoration: none;
   font-family: "Prompt", sans-serif;
   font-size: 1.3rem;
@@ -86,16 +86,17 @@
   transition: 0.3s ease-in-out;
 }
 
-.nav-links a:hover {
+.nav-links-124 a:hover {
   background: rgba(247, 203, 171, 0.8);
   border-radius: 8px;
 }
 
-.dropdown {
+.dropdown-124 {
   position: relative;
+  display: inline-block;
 }
 
-.dropdown-menu {
+.dropdown-menu-124 {
   position: absolute;
   top: 100%;
   left: 0;
@@ -107,35 +108,41 @@
   border-radius: 8px;
   min-width: 180px;
   z-index: 1100;
+  opacity: 0;
+  transition: opacity 0.3s ease, display 0.3s ease;
 }
 
-.dropdown-menu li {
+.dropdown-124:hover .dropdown-menu-124 {
+  display: block;
+  opacity: 1;
+}
+
+.dropdown-menu-124 li {
   padding: 10px 20px;
+  white-space: nowrap;
 }
 
-.dropdown-menu li a {
+.dropdown-menu-124 li a {
   text-decoration: none;
   font-size: 1rem;
   color: black;
   display: block;
+  transition: background-color 0.3s ease;
 }
 
-.dropdown-menu li a:hover {
+.dropdown-menu-124 li a:hover {
   background: rgba(222, 138, 82, 0.3);
 }
 
-.dropdown:hover .dropdown-menu {
-  display: block;
-}
-
-.nav-right {
+.nav-right-124 {
   display: flex;
   align-items: center;
   gap: 21px;
+  margin-bottom: 0;
 }
 
-.nav-right button,
-.navbar button {
+.nav-right-124 button,
+.navbar-124 button {
   font-family: "Prompt", sans-serif;
   background-color: rgba(247, 203, 171, 0.8);
   padding: 6px 12px;
@@ -145,15 +152,15 @@
   border: none;
   cursor: pointer;
   transition: 0.3s ease-in-out;
-  margin-bottom: 25px;
+  margin-bottom: 0;
 }
 
-.nav-right button:hover,
-.navbar button:hover {
+.nav-right-124 button:hover,
+.navbar-124 button:hover {
   background-color: rgba(179, 106, 58, 0.9);
 }
 
-.nav-right select {
+.nav-right-124 select {
   font-family: "Prompt", sans-serif;
   font-size: 0.8rem;
   font-weight: bold;
@@ -164,27 +171,28 @@
   transition: 0.3s ease-in-out;
 }
 
-.nav-right select:hover {
+.nav-right-124 select:hover {
   background-color: rgba(255, 255, 255, 0.2);
   border-radius: 8px;
 }
 
-.account-dropdown {
+.account-dropdown-124 {
   position: relative;
   display: inline-block;
 }
 
-.account-btn {
+.account-btn-124 {
   background-color: #ff9100;
   border: none;
   padding: 10px 29px;
   cursor: pointer;
   font-size: 16px;
   border-radius: 25px;
+  margin-bottom: 0;
 }
 
-.account-dropdown-menu {
-  display: block;
+.account-dropdown-menu-124 {
+  display: none;
   position: absolute;
   top: 100%;
   right: 0;
@@ -196,18 +204,25 @@
   width: 130px;
   border-radius: 5px;
   z-index: 100;
+  opacity: 0;
+  transition: opacity 0.3s ease, display 0.3s ease;
 }
 
-.account-dropdown-menu li {
+.account-dropdown-124:hover .account-dropdown-menu-124 {
+  display: block;
+  opacity: 1;
+}
+
+.account-dropdown-menu-124 li {
   padding: 10px 20px;
   text-align: center;
 }
 
-.account-dropdown-menu li:hover {
+.account-dropdown-menu-124 li:hover {
   background: rgba(222, 138, 82, 0.3);
 }
 
-.account-dropdown-menu a {
+.account-dropdown-menu-124 a {
   text-decoration: none;
   color: black;
   display: block;
@@ -215,38 +230,34 @@
   width: 100%;
 }
 
-
-/* ------------------------- MOBİL (max-width: 768px) ------------------------- */
+/* Mobile styles */
 @media (max-width: 768px) {
-  /* Navbar layout for mobile */
-  .navbar {
+  .navbar-124 {
     padding: 10px 20px;
     justify-content: space-between;
   }
 
-  .owl-image {
+  .owl-image-124 {
     width: 100px;
     margin-left: 0;
     margin-top: 0;
   }
 
-  .book-title {
+  .book-title-124 {
     font-size: 1.4rem;
     margin-left: 0;
     margin-top: 0;
     line-height: 1.2; 
   }
 
-  /* Hamburger button show */
-  .hamburger-button {
+  .hamburger-button-124 {
     display: block;
     order: 3;
     margin-bottom: 0;
     background-color: transparent;
   }
 
-  /* Nav links - mobile version */
-  .nav-links {
+  .nav-links-124 {
     display: none;
     width: 100%;
     flex-direction: column;
@@ -256,46 +267,45 @@
     order: 4;
   }
 
-  .nav-links.show {
+  .nav-links-124.show {
     display: flex;
   }
 
-  .nav-links li {
+  .nav-links-124 li {
     width: 100%;
   }
 
-  .nav-links a {
+  .nav-links-124 a {
     display: block;
     padding: 10px 0;
     width: 100%;
     font-size: 1.1rem;
   }
 
-  /* Dropdown positioning for mobile */
-  .dropdown {
+  .dropdown-124 {
     position: static;
     width: 100%;
   }
 
-  .dropdown-menu {
+  .dropdown-menu-124 {
     position: static;
     width: 100%;
     box-shadow: none;
     padding-left: 20px;
     background: rgba(247, 203, 171, 0.3);
     border-radius: 0;
+    opacity: 1;
   }
 
-  .dropdown:hover .dropdown-menu {
-    display: none;
-  }
-
-  .dropdown.open .dropdown-menu {
+  .dropdown-124:hover .dropdown-menu-124 {
     display: block;
   }
 
-  /* Right nav section */
-  .nav-right {
+  .dropdown-124.open .dropdown-menu-124 {
+    display: block;
+  }
+
+  .nav-right-124 {
     display: none;
     width: 100%;
     flex-direction: column;
@@ -305,147 +315,121 @@
     order: 5;
   }
 
-  .nav-right.show {
+  .nav-right-124.show {
     display: flex;
   }
 
-  .account-dropdown {
+  .account-dropdown-124 {
     width: 100%;
   }
 
-  .account-btn {
+  .account-btn-124 {
     width: 100%;
     text-align: left;
     margin-bottom: 10px;
   }
 
-  .account-dropdown-menu {
+  .account-dropdown-menu-124 {
     position: static;
     width: 100%;
     margin-bottom: 10px;
+    opacity: 1;
   }
 
-  .language-dropdown {
+  .language-dropdown-124 {
     width: 100%;
     margin-bottom: 10px;
   }
 
-  /* Mobile-friendly nested elements */
-  .dropdown-menu li a {
+  .dropdown-menu-124 li a {
     padding: 8px 0;
   }
 }
 
-/* Add click behavior for touch devices */
-@media (hover: none) {
-  .dropdown:hover .dropdown-menu {
-    display: none;
-  }
-  
-  .dropdown.touched .dropdown-menu {
-    display: block;
-  }
-}
-
-
-.nav-right-right {
-  display: flex;
-  align-items: center;
-}
-
-
-/* DARK MODE STYLES */
+/* Dark mode styles */
 body.dark-mode {
   background-color: black;
   color: white;
 }
 
-/* Navbar */
-.dark-mode .navbar {
+.dark-mode .navbar-124 {
   background: rgba(33, 17, 4, 0.8);
   box-shadow: 0px 2px 4px rgba(255, 255, 255, 0.1);
 }
 
-/* Logo & Title */
-.dark-mode .book-title {
+.dark-mode .book-title-124 {
   color: #FCE8C8;
   text-shadow: 3px 3px 0px #8B5A2B;
 }
 
-/* Hamburger Button */
-.dark-mode .hamburger-button {
+.dark-mode .hamburger-button-124 {
   color: #FCE8C8;
 }
 
-/* Nav Links */
-.dark-mode .nav-links a {
+.dark-mode .nav-links-124 a {
   color: white;
 }
 
-.dark-mode .nav-links a:hover {
+.dark-mode .nav-links-124 a:hover {
   background: rgba(100, 100, 100, 0.8);
 }
 
-/* Dropdown */
-.dark-mode .dropdown-menu {
+.dark-mode .dropdown-menu-124 {
   background: #222;
   box-shadow: 0px 4px 6px rgba(255, 255, 255, 0.1);
 }
 
-.dark-mode .dropdown-menu li a {
+.dark-mode .dropdown-menu-124 li a {
   color: white;
 }
 
-.dark-mode .dropdown-menu li a:hover {
+.dark-mode .dropdown-menu-124 li a:hover {
   background: rgba(150, 75, 0, 0.3);
 }
 
-/* Nav Right (Buttons & Select) */
-.dark-mode .nav-right button,
-.dark-mode .navbar button {
+.dark-mode .nav-right-124 button,
+.dark-mode .navbar-124 button {
   background-color: rgba(150, 75, 0, 0.8);
   color: white;
 }
 
-.dark-mode .nav-right button:hover,
-.dark-mode .navbar button:hover {
+.dark-mode .nav-right-124 button:hover,
+.dark-mode .navbar-124 button:hover {
   background-color: rgba(100, 50, 0, 0.9);
 }
 
-.dark-mode .nav-right select {
+.dark-mode .nav-right-124 select {
   color: white;
 }
 
-.dark-mode .nav-right select:hover {
+.dark-mode .nav-right-124 select:hover {
   background-color: rgba(255, 255, 255, 0.2);
 }
 
-/* MyAccount Dropdown */
-.dark-mode .account-btn {
+.dark-mode .account-btn-124 {
   background-color: #B55B00;
   color: white;
 }
 
-.dark-mode .account-dropdown-menu {
+.dark-mode .account-dropdown-menu-124 {
   background: #222;
   box-shadow: 0px 4px 6px rgba(255, 255, 255, 0.1);
 }
 
-.dark-mode .account-dropdown-menu li a {
+.dark-mode .account-dropdown-menu-124 li a {
   color: white;
 }
 
-.dark-mode .account-dropdown-menu li:hover {
+.dark-mode .account-dropdown-menu-124 li:hover {
   background: rgba(150, 75, 0, 0.3);
 }
 
-/* Mobile Styles */
 @media (max-width: 768px) {
-  .dark-mode .nav-links a {
+  .dark-mode .nav-links-124 a {
     color: white;
   }
 
-  .dark-mode .dropdown-menu {
+  .dark-mode .dropdown-menu-124 {
     background: #222;
   }
 }
