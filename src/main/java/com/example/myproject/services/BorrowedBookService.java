@@ -77,7 +77,6 @@ public class BorrowedBookService {
             borrowedBookRepository.delete(borrowedBook);
             return true;
         }
-
         return false; // No borrowed book found for the given userId and bookId
     }
 
