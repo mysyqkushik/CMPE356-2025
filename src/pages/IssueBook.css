@@ -1,88 +1,225 @@
-/* IssueBooks.css */
-.issue-book-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    padding: 20px;
-    background: url('/public/bookshelfbg.jpg') center/cover no-repeat;
-}
-
-.card {
-    background-color: white;
-    border-radius: 16px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    width: 100%;
-    max-width: 600px;
-    padding: 30px;
+/* Reset & Font */
+* {
     box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 
-/* Card title styling */
-.card-title {
-    font-size: 24px;
-    font-weight: bold;
+
+
+/* Main Container */
+.borrow-container-739 {
+    max-width: 900px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #f8f4e9;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Title */
+.borrow-container-739 h2 {
+    color: #5d4037;
+    text-align: center;
     margin-bottom: 20px;
-    color: #7a4422; 
+    font-size: 24px;
 }
 
-/* Form label styling */
-label {
-    font-size: 16px;
-    font-weight: bold;
-    color: #763f12; 
+/* Form Container */
+.borrow-form-739 {
+    background-color: #f8f4e9;
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 20px;
 }
 
-/* Form select dropdown styling */
-.select, .form-control {
+.borrow-form-739 h3 {
+    color: #5d4037;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.borrow-form-739 input,
+.borrow-form-739 select {
     width: 100%;
     padding: 10px;
-    border: 1px solid #f0b073; /* Similar border color */
-    border-radius: 8px;
-    font-size: 16px;
-    margin-top: 5px;
+    margin-bottom: 15px;
+    border: 1px solid #d7ccc8;
+    border-radius: 4px;
     background-color: #fff;
-    color: #333;
 }
 
-/* Button styling */
-button {
-    background-color: #da8311; 
+/* Buttons */
+.borrow-btn-739 {
+    width: 100%;
+    padding: 14px;
+    background-color: #5d4037; /* Rich chocolately brown */
     color: white;
-    padding: 10px 20px;
-    border-radius: 8px;
     border: none;
+    border-radius: 6px;
     cursor: pointer;
-    margin-top: 20px;
-    font-size: 16px;
-    transition: background 0.3s ease;
+    font-size: 18px;
+    transition: background-color 0.3s;
+    display: block;
+    margin-top: 10px;
 }
 
-button:hover {
-    background-color: #895520; /* Match the hover effect */
+
+.borrow-btn-739:hover {
+    background-color: #4e342e; /* Darker chocolate on hover */
 }
 
-/* Form group spacing */
-.form-group {
-    margin-bottom: 20px;
+
+.see-books-btn-739 {
+    width: 95%;
+    padding: 14px;
+    font-size: 18px;
+    background-color: #5d4037; /* Chocolately brown */
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    display: block;
+    margin: 20px auto;
+    /* Removed font-weight: bold; */
 }
 
-.form-group.issue-date {
-    margin-right: auto; 
+.see-books-btn-739:hover {
+    background-color: #4e342e; /* Darker chocolate on hover */
 }
 
-.form-group.select-fields {
+
+/* Search and Sort Container */
+.search-sort-container-739 {
     display: flex;
-    justify-content: flex-end; 
+    gap: 10px;
+    margin-bottom: 20px;
+    align-items: center;
 }
 
-.form-group select,
-.form-group input {
-    width: 45%; 
-    margin: 0 10px; 
+.search-bar-739 {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #d7ccc8;
+    border-radius: 4px;
+    background-color: #fff;
 }
 
-/* Specific adjustments for Issue Date field */
-.form-group.issue-date input {
-    margin-left: -10px; 
+.sort-dropdown-739 {
+    padding: 10px;
+    border: 1px solid #d7ccc8;
+    border-radius: 4px;
+    background-color: #fff;
 }
+
+.clear-filter-btn-739 {
+    padding: 10px 15px;
+    background-color: #a1887f;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.clear-filter-btn-739:hover {
+    background-color: #8d6e63;
+}
+
+/* Book Table */
+.book-table-739 {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.book-table-739 th,
+.book-table-739 td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #d7ccc8;
+}
+
+.book-table-739 th {
+    background-color: #8d6e63;
+    color: white;
+}
+
+.book-table-739 tr:hover {
+    background-color: #f5f5f5;
+}
+
+/* Message Styles */
+.borrow-message-739 {
+    padding: 15px;
+    margin: 20px 0;
+    border-radius: 4px;
+    text-align: center;
+    font-weight: bold;
+}
+
+.borrow-message-739.success {
+    background-color: #dcedc8;
+    color: #2e7d32;
+    border: 1px solid #c5e1a5;
+}
+
+.borrow-message-739.error {
+    background-color: #ffebee;
+    color: #c62828;
+    border: 1px solid #ffcdd2;
+}
+
+.borrow-message-739.info {
+    background-color: #e1f5fe;
+    color: #0277bd;
+    border: 1px solid #b3e5fc;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .borrow-container-739 {
+        padding: 15px;
+    }
+
+    .search-sort-container-739 {
+        flex-direction: column;
+    }
+
+    .search-bar-739,
+    .sort-dropdown-739,
+    .clear-filter-btn-739 {
+        width: 100%;
+    }
+
+    .book-table-739 {
+        font-size: 14px;
+    }
+
+    .book-table-739 th,
+    .book-table-739 td {
+        padding: 8px;
+    }
+}
+
+/* Scrollbar Styles */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #8d6e63;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #6d4c41;
+} 
