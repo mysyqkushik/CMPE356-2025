@@ -100,8 +100,8 @@ const CustomerDashboard = () => {
               <table className="borrowed-books-table">
                 <thead>
                   <tr>
+                    <th>Book ID</th>
                     <th>Title</th>
-          
                     <th>Borrow Date</th>
                     <th>Return Date</th>
                   </tr>
@@ -109,8 +109,8 @@ const CustomerDashboard = () => {
                 <tbody>
                   {borrowedBooks.map((book, index) => (
                     <tr key={index}>
+                      <td>{book.bookId}</td>
                       <td>{book.bookTitle}</td>
-        
                       <td>{new Date(book.borrowDate).toLocaleDateString()}</td>
                       <td>{new Date(book.returnDate).toLocaleDateString()}</td>
                     </tr>

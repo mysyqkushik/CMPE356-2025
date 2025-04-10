@@ -14,12 +14,15 @@ const ManagerDashboard = () => {
   const [filterType, setFilterType] = useState("");
   const [filterValue, setFilterValue] = useState("");
   const [sortOption, setSortOption] = useState("");
+  const [borrowedBooksList, setBorrowedBooksList] = useState([]);
   const [borrowedBooks, setBorrowedBooks] = useState([]);
   const [borrowedSearchTerm, setBorrowedSearchTerm] = useState("");
   const [borrowedSortOption, setBorrowedSortOption] = useState("");
   const [overdueSearchTerm, setOverdueSearchTerm] = useState("");
   const [overdueSortOption, setOverdueSortOption] = useState("");
 
+
+  
   useEffect(() => {
     const loggedInUser = JSON.parse(sessionStorage.getItem("loggedInUser"));
     if (loggedInUser) {
@@ -31,32 +34,28 @@ const ManagerDashboard = () => {
     }
   }, []);
 
-  useEffect(() => {
-    fetch("/api/users/count")
-      .then((res) => res.json())
-      .then((data) => setUsersCount(data.count));
-  }, []);
-
-  useEffect(() => {
-    if (LibraryData && LibraryData.books && LibraryData.users) {
-      console.log("Library Data Loaded:", LibraryData);
-      setBooks([...LibraryData.books]);
-      setUsers([...LibraryData.users]);
-    } else {
-      console.error("LibraryData is not properly loaded");
-    }
-  }, []);
+ 
 
   useEffect(() => {
     axios
-      .get("http://localhost:8080/api/borrow/all")
-      .then((response) => {
-        setBorrowedBooks(response.data);
-      })
-      .catch((error) =>
-        console.error("Error fetching borrowed books:", error)
-      );
-  }, []);
+        .get("http://localhost:8080/api/borrow/all")
+        .then((response) => {
+            setBorrowedBooksList(response.data);
+            setBorrowedBooks(response.data);
+        })
+        .catch((error) =>
+            console.error("Error fetching borrowed books:", error)
+        );
+}, []);
+
+useEffect(() => {
+    axios
+        .get("http://localhost:8080/api/books")
+        .then((response) => setBooks(response.data))
+        .catch((error) => console.error("Error fetching books:", error));
+}, []);
+
+
 
   const getOverdueBooks = () => {
     const cutoffDate = new Date("2025-04-09");

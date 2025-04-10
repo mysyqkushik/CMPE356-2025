@@ -109,7 +109,7 @@ const BorrowBook = () => {
           <h3>Borrow a Book</h3>
           <input
             type="number"
-            placeholder="Enter User ID"
+            placeholder="Confirm your User ID"
             value={userId}
             onChange={(e) => setUserId(e.target.value)}
           />

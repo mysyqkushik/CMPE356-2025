@@ -82,7 +82,7 @@ body {
   color: #ffffff;
   font-weight: bold;
   text-shadow: 3px 3px 0px #965a32;
-  font-size: 1.35rem;
+  font-size: 1.5rem;
   padding: 5px 10px;
   transition: color 0.3s ease, transform 0.3s ease; /* Smooth transition for hover effect */
 }
