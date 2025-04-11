@@ -14,7 +14,8 @@ const ManageBooks = () => {
   const [books, setBooks] = useState([]);
   const [editingBookId, setEditingBookId] = useState(null);
   const [showBookList, setShowBookList] = useState(true);
-  const [showSuccessMessage, setShowSuccessMessage] = useState(false); // New state for success message
+  const [showSuccessMessage, setShowSuccessMessage] = useState(false);
+  const [error, setError] = useState('');
 
   const loggedInUser = JSON.parse(sessionStorage.getItem('loggedInUser'));
 
@@ -31,7 +32,36 @@ const ManageBooks = () => {
     }
   };
 
+  const validateForm = () => {
+    if (!bookTitle.trim()) {
+      setError('Empty/incorrect values');
+      return false;
+    }
+    if (!author.trim()) {
+      setError('Empty/incorrect values');
+      return false;
+    }
+    if (!genre) {
+      setError('Empty/incorrect values');
+      return false;
+    }
+    if (!publishedDate) {
+      setError('Empty/incorrect values');
+      return false;
+    }
+    if (!quantity || quantity < 0) {
+      setError('Empty/incorrect values');
+      return false;
+    }
+    setError('');
+    return true;
+  };
+
   const handleAddBook = async () => {
+    if (!validateForm()) {
+      return;
+    }
+
     const isEditing = Boolean(editingBookId);
 
     const bookData = {
@@ -59,10 +89,11 @@ const ManageBooks = () => {
 
       resetForm();
       fetchBooks();
-      setShowSuccessMessage(true); // Show success message after adding the book
-      setTimeout(() => setShowSuccessMessage(false), 3000); // Hide message after 3 seconds
+      setShowSuccessMessage(true);
+      setTimeout(() => setShowSuccessMessage(false), 3000);
     } catch (error) {
       console.error('Error adding/updating book:', error);
+      setError('Empty/incorrect values');
     }
   };
 
@@ -75,6 +106,7 @@ const ManageBooks = () => {
     setRating(book.rating || 0);
     setAddedBy(book.addedBy || null);
     setEditingBookId(book.id);
+    setError('');
   };
 
   const handleDelete = async (id) => {
@@ -83,6 +115,7 @@ const ManageBooks = () => {
       fetchBooks();
     } catch (error) {
       console.error('Error deleting book:', error);
+      setError('Empty/incorrect values');
     }
   };
 
@@ -95,6 +128,7 @@ const ManageBooks = () => {
     setRating(0);
     setAddedBy(null);
     setEditingBookId(null);
+    setError('');
   };
 
   const toggleBookList = () => {
@@ -170,6 +204,7 @@ const ManageBooks = () => {
             placeholder="Quantity"
             value={quantity}
             onChange={(e) => setQuantity(e.target.value)}
+            min="0"
           />
 
           <div>
@@ -177,20 +212,15 @@ const ManageBooks = () => {
             {renderInteractiveStars(rating, setRating)}
           </div>
 
-          {editingBookId && (
-            <select value={addedBy} onChange={(e) => setAddedBy(Number(e.target.value))}>
-              <option value="">Select Added By</option>
-              <option value={1}>Admin</option>
-              <option value={2}>Manager</option>
-            </select>
-          )}
+          
+
+          {error && <div className="error-message">{error}</div>}
 
           <button onClick={handleAddBook}>
             {editingBookId ? 'Update Book' : 'Add Book'}
           </button>
         </div>
 
-        {/* Success message */}
         {showSuccessMessage && <div className="success-message">Book List updated!</div>}
 
         <button className="toggle-book-list-btn" onClick={toggleBookList}>
@@ -211,14 +241,7 @@ const ManageBooks = () => {
                     <p>Quantity: {book.quantity}</p>
                     <p>Rating: {renderStaticStars(book.rating)}</p>
 
-                    <p>
-                      Added By:{' '}
-                      {book.addedBy === 1
-                        ? 'Admin'
-                        : book.addedBy === 2
-                        ? 'Manager'
-                        : 'Unknown'}
-                    </p>
+                    
                   </div>
                   <div>
                     <button className="edit-btn" onClick={() => handleEdit(book)}>Edit</button>

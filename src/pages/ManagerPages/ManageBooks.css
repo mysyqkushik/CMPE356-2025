@@ -201,3 +201,13 @@ h2, h3 {
 .toggle-book-list-btn:hover {
     background-color: #7a4616;
 }
+
+.error-message {
+    color: #b91c1c;
+    background-color: #fee2e2;
+    padding: 0.5rem;
+    border-radius: 4px;
+    margin: 0.5rem 0;
+    font-size: 0.9rem;
+    text-align: center;
+}

@@ -1,0 +1,348 @@
+/* IssueBook.css */
+.issue-container-439 {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f8f4e9;
+    min-height: 100vh;
+}
+
+.title-439 {
+    text-align: center;
+    color: #4E3524;
+    font-size: 35px;
+    margin-bottom: 20px;
+    padding: 15px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.issue-form-439 {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+
+.issue-form-439 h3 {
+    color: #5d4037;
+    margin-bottom: 15px;
+    text-align: center;
+    font-size: 35px;
+}
+
+.issue-form-439 input {
+    width: 100%;
+    padding: 10px;
+    margin: 8px 0;
+    border: 2px solid #d7ccc8;
+    border-radius: 8px;
+    font-size: 16px;
+    background-color: #fff;
+}
+
+.issue-form-439 input[type="text"] {
+    background-color: #f8f4e9;
+    cursor: not-allowed;
+}
+
+.issue-btn-439 {
+    width: 100%;
+    padding: 12px;
+    margin-top: 15px;
+    background-color: #5D4037;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.issue-btn-439:hover {
+    background-color: #4E3524;
+}
+
+.see-books-btn-439 {
+    display: block;
+    width: 180px;
+    margin: 20px auto;
+    padding: 10px 15px;
+    background-color: #5D4037;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.see-books-btn-439:hover {
+    background-color: #4E3524;
+}
+
+.search-bar-439 {
+    width: 100%;
+    max-width: 400px;
+    padding: 10px;
+    margin: 15px auto;
+    display: block;
+    border: 2px solid #d7ccc8;
+    border-radius: 8px;
+    font-size: 16px;
+    background-color: #fff;
+}
+
+.sort-dropdown-439 {
+    width: 100%;
+    max-width: 400px;
+    padding: 10px;
+    margin: 10px auto;
+    display: block;
+    border: 2px solid #d7ccc8;
+    border-radius: 8px;
+    font-size: 16px;
+    background-color: #fff;
+}
+
+.book-table-439 {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    background-color: #fff;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.book-table-439 th {
+    background-color: #5D4037;
+    color: white;
+    padding: 12px;
+    text-align: left;
+    font-weight: 600;
+}
+
+.book-table-439 td {
+    padding: 10px 12px;
+    border-bottom: 1px solid #d7ccc8;
+    color: #5d4037;
+}
+
+.book-table-439 tr:hover {
+    background-color: #f8f4e9;
+}
+
+.book-table-439 tr:last-child td {
+    border-bottom: none;
+}
+
+.issue-message-439 {
+    text-align: center;
+    padding: 12px;
+    margin: 15px 0;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.issue-message-439.success {
+    background-color: #dcedc8;
+    color: #2e7d32;
+    padding: 15px;
+    border-radius: 8px;
+    margin: 20px 0;
+    text-align: center;
+    font-size: 18px;
+    font-weight: 500;
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+.issue-message-439.error {
+    background-color: #ffebee;
+    color: #c62828;
+}
+
+.issue-message-439.info {
+    background-color: #e3f2fd;
+    color: #1565c0;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .issue-container-439 {
+        padding: 10px;
+        max-width: 100%;
+    }
+
+    .title-439 {
+        font-size: 20px;
+        padding: 10px;
+        margin-bottom: 15px;
+    }
+
+    .issue-form-439 {
+        padding: 15px;
+        margin-bottom: 15px;
+    }
+
+    .issue-form-439 h3 {
+        font-size: 18px;
+    }
+
+    .issue-form-439 input {
+        padding: 8px;
+        font-size: 14px;
+    }
+
+    .issue-btn-439 {
+        padding: 10px;
+        font-size: 14px;
+    }
+
+    .see-books-btn-439 {
+        width: 160px;
+        padding: 8px 12px;
+        font-size: 14px;
+    }
+
+    .search-sort-container-439 {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 10px;
+        padding: 0 10px;
+        margin: 15px auto;
+    }
+
+    .search-bar-439,
+    .sort-dropdown-439,
+    .clear-filter-btn-439 {
+        width: 100%;
+        font-size: 14px;
+        padding: 8px;
+    }
+
+    .book-table-439 {
+        display: block;
+        overflow-x: auto;
+        margin: 15px 0;
+    }
+
+    .book-table-439 th,
+    .book-table-439 td {
+        padding: 8px;
+        font-size: 14px;
+    }
+
+    .issue-message-439 {
+        font-size: 14px;
+        padding: 10px;
+        margin: 10px 0;
+    }
+}
+
+/* Navigation Bar */
+.navbar-439 {
+    background-color: #5D4037;
+    padding: 15px 30px;
+    margin-bottom: 30px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-container-439 {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.navbar-brand-439 {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.navbar-owl-439 {
+    font-size: 24px;
+}
+
+.navbar-title-439 {
+    color: white;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.navbar-title-439 span {
+    color: #d7ccc8;
+}
+
+.navbar-links-439 {
+    display: flex;
+    gap: 20px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.navbar-links-439 li {
+    margin: 0;
+}
+
+.navbar-link-439 {
+    color: white;
+    text-decoration: none;
+    font-size: 16px;
+    padding: 8px 16px;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+}
+
+.navbar-link-439:hover {
+    background-color: #4E3524;
+}
+
+.navbar-link-439:active {
+    background-color: #3E2524;
+}
+
+/* Search and Sort Container */
+.search-sort-container-439 {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin: 20px auto;
+    padding: 0 20px;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Scrollbar Styling */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #5D4037;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #4E3524;
+} 
