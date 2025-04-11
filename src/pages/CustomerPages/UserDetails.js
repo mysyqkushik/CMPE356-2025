@@ -1,18 +1,17 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import "./UserDetails.css";  // Updated CSS file name
+import axios from "axios";
+import "./UserDetails.css";
 
-const UserDetails923 = () => {  // Updated component name
-  const [userData923, setUserData923] = useState({  // Updated state name
+const UserDetails = () => {
+  const [userDetails, setUserDetails] = useState({
     username: "",
     email: "",
     firstName: "",
     lastName: "",
-    currentPassword: "",
-    newPassword: "",
   });
 
-  const [isEditing923, setIsEditing923] = useState({  // Updated state name
+  const [isEditing, setIsEditing] = useState({
     username: false,
     email: false,
     password: false,
@@ -20,192 +19,201 @@ const UserDetails923 = () => {  // Updated component name
     lastName: false,
   });
 
-  const [currentPassword923, setCurrentPassword923] = useState("");  // Updated state name
-  const [error923, setError923] = useState("");  // Updated state name
-  const [successMessage923, setSuccessMessage923] = useState("");  // Updated state name
+  // Added for password changes
+  const [newPassword, setNewPassword] = useState("");
+  const [currentPassword, setCurrentPassword] = useState("");
+  const [error, setError] = useState("");
+  const [successMessage, setSuccessMessage] = useState("");
 
   const navigate = useNavigate();
 
   useEffect(() => {
-    const currentUser = JSON.parse(localStorage.getItem("currentUser"));
-    if (currentUser) {
-      setUserData923({
-        username: currentUser.username || "",
-        email: currentUser.email || "",
-        firstName: currentUser.firstName || "",
-        lastName: currentUser.lastName || "",
-      });
+    // Get logged in user from sessionStorage instead of localStorage
+    const loggedInUser = JSON.parse(sessionStorage.getItem("loggedInUser"));
+    if (loggedInUser) {
+      // Fetch user profile data
+      axios.get(`http://localhost:8080/api/users/profile/${loggedInUser.username}`)
+        .then((response) => {
+          setUserDetails({
+            username: loggedInUser.username,
+            email: loggedInUser.email,
+            firstName: response.data.first_name,
+            lastName: response.data.last_name || ""
+          });
+        })
+        .catch((error) => {
+          console.error("Error fetching user profile:", error);
+          setError("Failed to load user details");
+        });
+    } else {
+      navigate("/login"); // Redirect to login if not logged in
     }
-  }, []);
+  }, [navigate]);
 
-  const handleEdit923 = (field) => {  // Updated function name
-    setIsEditing923((prev) => ({ ...prev, [field]: true }));
-    setError923("");
-    setSuccessMessage923("");
+  const handleEdit = (field) => {
+    setIsEditing((prev) => ({ ...prev, [field]: true }));
+    setError("");
+    setSuccessMessage("");
   };
 
-  const handleSave923 = async (field) => {  // Updated function name
+  const handleSave = async (field) => {
     try {
-      if (!currentPassword923) {
-        setError923("Please enter your current password to save changes");
+      if (!currentPassword) {
+        setError("Please enter your current password to save changes");
         return;
       }
 
       const updateData = {
-        currentPassword: currentPassword923
+        currentPassword: currentPassword
       };
 
+      // Set the field being updated
       if (field === "password") {
-        updateData.newPassword = userData923.newPassword;
+        if (!newPassword) {
+          setError("Please enter a new password");
+          return;
+        }
+        updateData.newPassword = newPassword;
       } else {
-        updateData[field] = userData923[field];
+        updateData[field] = userDetails[field];
       }
 
-      const response = await fetch(`http://localhost:8080/api/users/profile/${userData923.email}`, {
-        method: 'PUT',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(updateData)
-      });
+      // Make API call to update the field
+      const response = await axios.put(
+        `http://localhost:8080/api/users/profile/${userDetails.email}`,
+        updateData
+      );
 
-      const data = await response.json();
-
-      if (!response.ok) {
-        throw new Error(data.message || 'Failed to update profile');
+      // Update sessionStorage with new data
+      const loggedInUser = JSON.parse(sessionStorage.getItem("loggedInUser"));
+      const updatedUser = { ...loggedInUser };
+      
+      if (field !== "password") {
+        updatedUser[field] = userDetails[field];
       }
+      
+      sessionStorage.setItem("loggedInUser", JSON.stringify(updatedUser));
 
-      const currentUser = JSON.parse(localStorage.getItem("currentUser"));
-      const updatedUser = { ...currentUser, [field]: userData923[field] };
-      localStorage.setItem("currentUser", JSON.stringify(updatedUser));
-
-      setIsEditing923((prev) => ({ ...prev, [field]: false }));
-      setCurrentPassword923("");
-      setSuccessMessage923(`${field} updated successfully!`);
-      setError923("");
+      // Reset states
+      setIsEditing((prev) => ({ ...prev, [field]: false }));
+      setCurrentPassword("");
+      if (field === "password") {
+        setNewPassword("");
+      }
+      setSuccessMessage(`${field} updated successfully!`);
+      setError("");
 
     } catch (error) {
-      setError923(error.message);
+      setError(error.response?.data?.message || "Failed to update profile");
     }
   };
 
-  const handleChange923 = (field, value) => {  // Updated function name
-    setUserData923((prev) => ({ ...prev, [field]: value }));
+  const handleChange = (field, value) => {
+    setUserDetails((prev) => ({ ...prev, [field]: value }));
   };
 
-  const handleReturn923 = () => {  // Updated function name
+  const handleReturn = () => {
     navigate("/CustomerDashboard");
   };
 
   return (
-    <div className="user-details-container923">
+    <div className="user-details-container">
       <h2>My User Details</h2>
       
-      {error923 && <div className="error-message923">{error923}</div>}
-      {successMessage923 && <div className="success-message923">{successMessage923}</div>}
+      {error && <div className="error-message">{error}</div>}
+      {successMessage && <div className="success-message">{successMessage}</div>}
 
-      <div className="details923">
-        {/* Username Field */}
-        <label className="label923">Username:</label>
+      <div className="details">
+        <label>Username:</label>
         <input
-          className="input923"
           type="text"
-          value={userData923.username}
-          onChange={(e) => handleChange923("username", e.target.value)}
-          disabled={!isEditing923.username}
+          value={userDetails.username}
+          onChange={(e) => handleChange("username", e.target.value)}
+          disabled={!isEditing.username}
         />
-        <div className="buttons923">
-          <button className="button923" onClick={() => handleEdit923("username")}>Edit</button>
-          <button className="button923" onClick={() => handleSave923("username")} disabled={!isEditing923.username}>
+        <div className="buttons">
+          <button onClick={() => handleEdit("username")}>Edit</button>
+          <button onClick={() => handleSave("username")} disabled={!isEditing.username}>
             Save
           </button>
         </div>
 
-        {/* Email Field */}
-        <label className="label923">Email:</label>
+        <label>Email:</label>
         <input
-          className="input923"
           type="email"
-          value={userData923.email}
-          onChange={(e) => handleChange923("email", e.target.value)}
-          disabled={!isEditing923.email}
+          value={userDetails.email}
+          onChange={(e) => handleChange("email", e.target.value)}
+          disabled={!isEditing.email}
         />
-        <div className="buttons923">
-          <button className="button923" onClick={() => handleEdit923("email")}>Edit</button>
-          <button className="button923" onClick={() => handleSave923("email")} disabled={!isEditing923.email}>
+        <div className="buttons">
+          <button onClick={() => handleEdit("email")}>Edit</button>
+          <button onClick={() => handleSave("email")} disabled={!isEditing.email}>
             Save
           </button>
         </div>
 
-        {/* First Name Field */}
-        <label className="label923">First Name:</label>
+        <label>First Name:</label>
         <input
-          className="input923"
           type="text"
-          value={userData923.firstName}
-          onChange={(e) => handleChange923("firstName", e.target.value)}
-          disabled={!isEditing923.firstName}
+          value={userDetails.firstName}
+          onChange={(e) => handleChange("firstName", e.target.value)}
+          disabled={!isEditing.firstName}
         />
-        <div className="buttons923">
-          <button className="button923" onClick={() => handleEdit923("firstName")}>Edit</button>
-          <button className="button923" onClick={() => handleSave923("firstName")} disabled={!isEditing923.firstName}>
+        <div className="buttons">
+          <button onClick={() => handleEdit("firstName")}>Edit</button>
+          <button onClick={() => handleSave("firstName")} disabled={!isEditing.firstName}>
             Save
           </button>
         </div>
 
-        {/* Last Name Field */}
-        <label className="label923">Last Name:</label>
+        <label>Last Name:</label>
         <input
-          className="input923"
           type="text"
-          value={userData923.lastName}
-          onChange={(e) => handleChange923("lastName", e.target.value)}
-          disabled={!isEditing923.lastName}
+          value={userDetails.lastName}
+          onChange={(e) => handleChange("lastName", e.target.value)}
+          disabled={!isEditing.lastName}
         />
-        <div className="buttons923">
-          <button className="button923" onClick={() => handleEdit923("lastName")}>Edit</button>
-          <button className="button923" onClick={() => handleSave923("lastName")} disabled={!isEditing923.lastName}>
+        <div className="buttons">
+          <button onClick={() => handleEdit("lastName")}>Edit</button>
+          <button onClick={() => handleSave("lastName")} disabled={!isEditing.lastName}>
             Save
           </button>
         </div>
 
-        {/* Password Field */}
-        <label className="label923">New Password:</label>
+        <label>New Password:</label>
         <input
-          className="input923"
           type="password"
-          value={userData923.newPassword || ""}
-          onChange={(e) => handleChange923("newPassword", e.target.value)}
-          disabled={!isEditing923.password}
+          value={newPassword}
+          onChange={(e) => setNewPassword(e.target.value)}
+          disabled={!isEditing.password}
           placeholder="Enter new password"
         />
-        <div className="buttons923">
-          <button className="button923" onClick={() => handleEdit923("password")}>Edit</button>
-          <button className="button923" onClick={() => handleSave923("password")} disabled={!isEditing923.password}>
+        <div className="buttons">
+          <button onClick={() => handleEdit("password")}>Edit</button>
+          <button onClick={() => handleSave("password")} disabled={!isEditing.password}>
             Save
           </button>
         </div>
 
-        {/* Current Password Field */}
-        {Object.values(isEditing923).some(value => value) && (
-          <div className="current-password-section923">
-            <label className="label923">Current Password (required to save changes):</label>
+        {/* Current Password Field - Shows when any field is being edited */}
+        {Object.values(isEditing).some(value => value) && (
+          <div className="current-password-section">
+            <label>Current Password (required to save changes):</label>
             <input
-              className="input923"
               type="password"
-              value={currentPassword923}
-              onChange={(e) => setCurrentPassword923(e.target.value)}
+              value={currentPassword}
+              onChange={(e) => setCurrentPassword(e.target.value)}
               placeholder="Enter current password to confirm changes"
             />
           </div>
         )}
       </div>
 
-      <button className="button923 return-btn923" onClick={handleReturn923}>
+      <button className="return-btn" onClick={handleReturn}>
         Return to Dashboard
       </button>
     </div>
   );
 };
 
-export default UserDetails923;
+export default UserDetails;
