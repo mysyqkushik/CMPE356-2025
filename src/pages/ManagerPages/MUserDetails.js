@@ -56,7 +56,7 @@ const MUserDetails = () => {
           </div>
           <ul className="managebar-links629">
             <li><Link to="/MUserDetails">Send Messages</Link></li>
-            <li><Link to="/ViewMessages">View Messages</Link></li>
+            <li><Link to="/ViewIssuedBooks">View Messages</Link></li>
             <li><Link to="/AdminDashboard">Return to Dashboard</Link></li>
           </ul>
         </div>

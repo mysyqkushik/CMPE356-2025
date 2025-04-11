@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 import "./IssueBook.css";
 
 const IssueBook = () => {
-  const [books, setBooks] = useState([]);
+    const [books, setBooks] = useState([]);
   const [showTable, setShowTable] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
   const [sortBy, setSortBy] = useState("id");
@@ -16,10 +16,10 @@ const IssueBook = () => {
   const [borrowDate, setBorrowDate] = useState("");
   const [returnDate, setReturnDate] = useState("");
   const [message, setMessage] = useState({ text: "", type: "" });
-  const navigate = useNavigate();
+    const navigate = useNavigate();
   const [isConfettiVisible, setConfettiVisible] = useState(false);
 
-  useEffect(() => {
+    useEffect(() => {
     axios.get("http://localhost:8080/api/books")
       .then(res => {
         const filtered = res.data.filter(book => book.id >= 100);
@@ -27,7 +27,7 @@ const IssueBook = () => {
         setBooks(sorted);
       })
       .catch(err => console.error("Error fetching books:", err));
-  }, []);
+    }, []);
 
 
   // Confetti effect
@@ -66,9 +66,9 @@ const IssueBook = () => {
   };
 
   const filteredBooks = books.filter(book =>
-    book.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    book.author.toLowerCase().includes(searchTerm.toLowerCase())
-  );
+                book.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                book.author.toLowerCase().includes(searchTerm.toLowerCase())
+            );
 
   const sortedBooks = [...filteredBooks].sort((a, b) => {
     const aVal = a[sortBy];
@@ -79,7 +79,7 @@ const IssueBook = () => {
     return aVal - bVal;
   });
 
-  return (
+    return (
     <div>
       <ManageBar />
 
@@ -103,11 +103,11 @@ const IssueBook = () => {
             value={bookId}
             onChange={(e) => setBookId(e.target.value)}
           />
-          <input
-            type="date"
+                    <input
+                        type="date"
             placeholder="Select Borrow Date"
-            value={borrowDate}
-            onChange={(e) => setBorrowDate(e.target.value)}
+                        value={borrowDate}
+                        onChange={(e) => setBorrowDate(e.target.value)}
           />
           <input
             type="text"
@@ -116,13 +116,13 @@ const IssueBook = () => {
             readOnly
           />
           <button className="borrow-btn-739" onClick={handleBorrow}>Issue to User</button>
-        </div>
+            </div>
 
-        {message.text && (
+            {message.text && (
           <div className={`borrow-message-739 ${message.type}`}>
-            {message.text}
-          </div>
-        )}
+                    {message.text}
+                </div>
+            )}
 
         {/* BOOK LIST */}
         <button onClick={() => setShowTable(!showTable)} className="see-books-btn-739">
@@ -132,58 +132,58 @@ const IssueBook = () => {
         {showTable && (
           <>
             <div className="search-sort-container-739">
-              <input
-                type="text"
-                placeholder="Search books..."
-                value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
+                <input
+                    type="text"
+                    placeholder="Search books..."
+                    value={searchTerm}
+                    onChange={(e) => setSearchTerm(e.target.value)}
                 className="search-bar-739"
               />
               <select onChange={(e) => setSortBy(e.target.value)} className="sort-dropdown-739">
                 <option value="id">Sort by Book ID</option>
                 <option value="title">Sort by Title (A-Z)</option>
-                <option value="author">Sort by Author</option>
-                <option value="quantity">Sort by Quantity</option>
-                <option value="genre">Sort by Genre</option>
-              </select>
-              <button 
+                    <option value="author">Sort by Author</option>
+                    <option value="quantity">Sort by Quantity</option>
+                    <option value="genre">Sort by Genre</option>
+                </select>
+                <button 
                 onClick={() => {
                   setSearchTerm("");
                   setSortBy("id");
                 }} 
                 className="clear-filter-btn-739"
-              >
-                Clear Filters
-              </button>
+                >
+                    Clear Filters
+                </button>
             </div>
 
             <table className="book-table-739">
-              <thead>
-                <tr>
+                <thead>
+                    <tr>
                   <th>ID</th>
-                  <th>Title</th>
-                  <th>Author</th>
+                        <th>Title</th>
+                        <th>Author</th>
                   <th>Genre</th>
-                  <th>Quantity</th>
-                </tr>
-              </thead>
-              <tbody>
+                        <th>Quantity</th>
+                    </tr>
+                </thead>
+                <tbody>
                 {sortedBooks.map(book => (
                   <tr key={book.id}>
                     <td>{book.id}</td>
-                    <td>{book.title}</td>
-                    <td>{book.author}</td>
+                            <td>{book.title}</td>
+                            <td>{book.author}</td>
                     <td>{book.genre}</td>
-                    <td>{book.quantity}</td>
-                  </tr>
-                ))}
-              </tbody>
+                            <td>{book.quantity}</td>
+                        </tr>
+                    ))}
+                </tbody>
             </table>
           </>
         )}
       </div>
-    </div>
-  );
+        </div>
+    );
 };
 
-export default IssueBook;
+export default IssueBook; 

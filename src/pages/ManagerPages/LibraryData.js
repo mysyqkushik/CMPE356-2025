@@ -161,7 +161,7 @@ const libraryData = {
       title: "The Odyssey", 
       author: "Homer", 
       publishedDate: null, 
-      quantity: 2, 
+      quantity: 2,
       status: "available", 
       category: "Classic", 
       dueDate: null,

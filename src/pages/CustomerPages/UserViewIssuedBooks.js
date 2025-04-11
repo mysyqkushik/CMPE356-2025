@@ -1,57 +1,104 @@
-import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom'; // Import useNavigate
-import './UserViewIssuedBooks.css';
+// InboxView.js
+import React, { useState } from "react";
+import axios from "axios";
+import { Link } from "react-router-dom";
+import "./UserViewIssuedBooks.css";
 
 const UserViewIssuedBooks = () => {
-    const [issuedBooks, setIssuedBooks] = useState([]);
-    const navigate = useNavigate(); // Hook to navigate
+  const [userId, setUserId] = useState("");
+  const [messages, setMessages] = useState([]);
+  const [loading, setLoading] = useState(false);
 
-    useEffect(() => {
-        const borrowedBooks = JSON.parse(localStorage.getItem('borrowedBooks')) || [];
-        setIssuedBooks(borrowedBooks);
-    }, []);
+  const fetchMessages = () => {
+    if (!userId) {
+      alert("Please enter your User ID.");
+      return;
+    }
 
-    // Function to handle redirection to the dashboard
-    const handleReturnToDashboard = () => {
-        navigate('/CustomerDashboard');
-    };
+    setLoading(true);
 
-    return (
-        <div className="issued-books-container1">
-            <h2>Issued Books</h2>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Book Title</th>
-                        <th>Author</th>
-                        <th>Borrow Date</th>
-                        <th>Due Date</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {issuedBooks.length === 0 ? (
-                        <tr><td colSpan="4">No issued books yet.</td></tr>
-                    ) : (
-                        issuedBooks.map((book, index) => (
-                            <tr key={index}>
-                                <td>{book.bookTitle}</td>
-                                <td>{book.author}</td>
-                                <td>{book.borrowDate}</td>
-                                <td>{book.returnDate}</td>
-                            </tr>
-                        ))
-                    )}
-                </tbody>
-            </table>
+    axios.get(`http://localhost:8080/api/messages/received/${userId}`)
+      .then(res => {
+        setMessages(res.data);
+        setLoading(false);
+      })
+      .catch(err => {
+        console.error("Error fetching messages:", err);
+        setLoading(false);
+      });
+  };
 
-            {/* Button to return to dashboard */}
-            <div className="return-dashboard-container">
-                <button onClick={handleReturnToDashboard} className="return-dashboard-button">
-                    Return to Dashboard
-                </button>
-            </div>
+  return (
+    <>
+      <nav className="managebar629">
+        <div className="managebar-container629">
+          <div className="managebar-brand629">
+            <img src="bookowl_prev_ui.png" alt="Owl Logo" className="managebar-owl629" />
+            <Link to="/HomePage" className="managebar-title629">
+              THE<br />
+              BOOK<br />
+              OWL
+            </Link>
+          </div>
+          <ul className="managebar-links629">
+            <li><Link to="/UserLibraryCard">Message Admin</Link></li>
+            <li><Link to="/UserViewIssuedBooks">View Messages</Link></li>
+            <li><Link to="/CustomerDashboard">Return to Dashboard</Link></li>
+          </ul>
         </div>
-    );
+      </nav>
+
+      <div className="issued-books-container1">
+        <h2 className="message-title594">View My Messages</h2>
+
+        <div className="input-group594">
+          <label className="input-label594">Enter Your User ID:</label>
+          <input
+            type="number"
+            value={userId}
+            onChange={e => setUserId(e.target.value)}
+            className="input-field594"
+          />
+          <button
+            onClick={fetchMessages}
+            className="submit-button594"
+          >
+            View
+          </button>
+        </div>
+
+        {loading && <p className="no-messages-text">Loading messages...</p>}
+
+        {messages.length > 0 && (
+          <div className="mt-6">
+            <h3 className="message-title594">🗂️ Your Inbox</h3>
+            <table className="issued-books-container1">
+              <thead>
+                <tr>
+                  <th>From User ID</th>
+                  <th>Message</th>
+                  <th>Timestamp</th>
+                </tr>
+              </thead>
+              <tbody>
+                {messages.map((msg, idx) => (
+                  <tr key={idx}>
+                    <td>{msg.fromUserId}</td>
+                    <td>{msg.message}</td>
+                    <td>{new Date(msg.timestamp).toLocaleString()}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        )}
+
+        {!loading && messages.length === 0 && (
+          <p className="no-messages-text">No messages yet.</p>
+        )}
+      </div>
+    </>
+  );
 };
 
 export default UserViewIssuedBooks;

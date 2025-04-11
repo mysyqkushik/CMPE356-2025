@@ -46,15 +46,11 @@ const CustomerDashboard = () => {
             </li>
             <li>
               <span>📚</span>
-              <Link to="/UserLibraryCard">My Library Card</Link>
-            </li>
-            <li>
-              <span>🔄</span>
               <Link to="/UserDetails">My User Details</Link>
             </li>
             <li>
               <span>📜</span>
-              <Link to="/BorrowBook">Feedback</Link>
+              <Link to="/UserLibraryCard">Send Feedback</Link>
             </li>
             <li>
               <span>📊</span>
