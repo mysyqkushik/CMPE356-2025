@@ -84,24 +84,63 @@
     justify-content: space-between;
     padding: 10px 0;
     border-bottom: 1px solid #ddd;
+    position: relative;
+    z-index: 1;
   }
   
   .navbar-icons {
     display: flex;
     align-items: center;
+    position: relative;
   }
   
-  .navbar-icons span {
+  .icon-with-tooltip {
+    position: relative;
     margin-right: 20px;
-    font-size: 20px;
     cursor: pointer;
   }
   
+  .icon-with-tooltip span {
+    font-size: 20px;
+    transition: transform 0.3s ease;
+  }
+  
+  .icon-with-tooltip:hover span {
+    transform: scale(1.1);
+  }
+  
+  .tooltip {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background-color: #5d4037;
+    color: #fff;
+    padding: 8px 12px;
+    border-radius: 4px;
+    font-size: 14px;
+    white-space: nowrap;
+    display: none;
+    z-index: 1000;
+    margin-top: 10px;
+  }
+  
+  .icon-with-tooltip:hover .tooltip {
+    display: block;
+  }
+  
   .user-id-display {
-    font-size: 10px;
-    color: #5d4037;
+    font-size: 20px;
+    color: #653d1f;
     text-align: right;
     margin-top: 5px;
+    padding: 8px 15px;
+    background-color: rgba(253, 216, 190, 0.6); 
+    border-radius: 4px;
+    box-shadow: 0 10px 10px rgba(0, 0, 0, 0.3);
+    font-weight: 900;
+    display: inline-block;
+    margin-left: auto;
+    margin-right: 20px;
   }
   
   .profile-pic {
@@ -310,5 +349,47 @@
   
   .program-card1 h3, .program-card2 h3, .program-card3 h3 {
     color: #333; /* Ensure headings are visible */
+  }
+  
+  .notification-icon, .email-icon {
+    position: relative;
+    margin-right: 20px;
+    cursor: pointer;
+    z-index: 3;
+  }
+  
+  .notification-icon span, .email-icon span {
+    font-size: 20px;
+    transition: transform 0.3s ease;
+  }
+  
+  .notification-icon:hover span, .email-icon:hover span {
+    transform: scale(1.1);
+  }
+  
+  .notification-dropdown, .email-dropdown {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background-color: #5d4037;
+    border-radius: 4px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    padding: 10px;
+    min-width: 150px;
+    display: none;
+    z-index: 1000;
+    margin-top: 10px;
+  }
+  
+  .notification-icon:hover .notification-dropdown,
+  .email-icon:hover .email-dropdown {
+    display: block;
+  }
+  
+  .notification-dropdown p, .email-dropdown p {
+    margin: 0;
+    color: #fff; /* White text */
+    font-size: 14px;
+    text-align: center;
   }
   

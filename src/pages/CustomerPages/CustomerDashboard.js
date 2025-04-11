@@ -6,17 +6,25 @@ import "./CustomerDashboard.css";
 const CustomerDashboard = () => {
   const [borrowedBooks, setBorrowedBooks] = useState([]);
   const [firstName, setFirstName] = useState(""); // Store first name
+  const [userId, setUserId] = useState(""); // Store user ID
   const [isIssuedBooksVisible, setIsIssuedBooksVisible] = useState(false); // Toggle visibility
-
-  
 
   useEffect(() => {
     const loggedInUser = JSON.parse(sessionStorage.getItem("loggedInUser"));
     if (loggedInUser) {
+      // Fetch user profile data including ID
+      axios
+        .get(`http://localhost:8080/api/users/profile/${loggedInUser.username}`)
+        .then((response) => {
+          setFirstName(response.data.first_name);
+          setUserId(response.data.id);
+        })
+        .catch((error) => console.error("Error fetching user profile:", error));
+
+      // Fetch borrowed books
       axios
         .get(`http://localhost:8080/api/borrow/username/${loggedInUser.username}`)
         .then((response) => {
-          setFirstName(loggedInUser.first_name); // Fetch first_name
           setBorrowedBooks(response.data || []);
         })
         .catch((error) => console.error("Error fetching user data:", error));
@@ -26,8 +34,6 @@ const CustomerDashboard = () => {
   const toggleIssuedBooks = () => {
     setIsIssuedBooksVisible(!isIssuedBooksVisible);
   };
-
-  
 
   return (
     <div className="dashboard-container">
@@ -61,10 +67,19 @@ const CustomerDashboard = () => {
       <div className="main-content">
         <header className="navbar3">
           <div className="navbar-icons">
-            <span>🔔</span>
-            <span>📧</span>
+            <div className="icon-with-tooltip">
+              <span role="img" aria-label="bell">🔔</span>
+              <div className="tooltip">
+                <div>No</div>
+                <div>Notifications!</div>
+              </div>
+            </div>
+            <div className="icon-with-tooltip">
+              <span role="img" aria-label="email">📧</span>
+              <div className="tooltip">No emails yet!</div>
+            </div>
           </div>
-          <div className="user-id-display">Your user ID is: {JSON.parse(sessionStorage.getItem("loggedInUser"))?.userId}</div>
+          <div className="user-id-display">Your user ID is: {userId}</div>
         </header>
 
         <section className="dashboard-cards">
@@ -129,3 +144,4 @@ const CustomerDashboard = () => {
 };
 
 export default CustomerDashboard;
+
