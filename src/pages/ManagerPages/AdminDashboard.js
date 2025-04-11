@@ -339,11 +339,11 @@ const AdminDashboard = () => {
                         </li>
                         <li>
                             <span>🔒</span>{" "}
-                            <Link to="/ErrorNotFound">Key Metrics</Link>
+                            <Link to="/UserDetails">My User Details</Link>
                         </li>
                         <li>
                             <span>👥</span>{" "}
-                            <Link to="/ErrorNotFound">User Requests</Link>
+                            <Link to="/MUserDetails">Customer Requests</Link>
                         </li>
                         <li>
                             <span>📊</span> <Link to="/HomePage">Log Out</Link>

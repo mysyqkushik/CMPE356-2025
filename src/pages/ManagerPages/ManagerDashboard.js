@@ -233,7 +233,7 @@ const ManagerDashboard = () => {
           <ul>
             <li className="active"><span>🏠</span> Statistics Panel</li>
             <li><span>📦</span> <Link to="/ManageBooks">Book Inventory</Link></li>
-            <li><span>🔒</span> <Link to="/ErrorNotFound">Key Metrics</Link></li>
+            <li><span>🔒</span> <Link to="/UserDetails">My User Details</Link></li>
             <li><span>📊</span> <Link to="/HomePage">Log Out</Link></li>
           </ul>
         </nav>

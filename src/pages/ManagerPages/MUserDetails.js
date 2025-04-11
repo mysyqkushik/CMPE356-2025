@@ -1,119 +1,105 @@
-import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+// this is AdminMessageSender.js
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+import { Link } from "react-router-dom";
 import "./MUserDetails.css";
 
-const UserDetails = () => {
-  const [userData, setUserData] = useState({
-    username: "",
-    email: "",
-    password: "",
-    phone: "",
-    active: false,
-  });
-
-  const [isEditing, setIsEditing] = useState({
-    username: false,
-    email: false,
-    password: false,
-    phone: false,
-  });
-
-  const navigate = useNavigate();
+const MUserDetails = () => {
+  const [users, setUsers] = useState([]);
+  const [selectedUserId, setSelectedUserId] = useState("");
+  const [message, setMessage] = useState("");
+  const [confirmation, setConfirmation] = useState("");
 
   useEffect(() => {
-    const currentUser = JSON.parse(localStorage.getItem("currentUser"));
-    if (currentUser) {
-      setUserData(currentUser);
-    }
+    // Fetch all users except admin (ID 1)
+    axios.get("http://localhost:8080/api/users/all-except-admin")
+      .then(res => setUsers(res.data))
+      .catch(err => console.error("Error fetching users:", err));
   }, []);
 
-  const handleEdit = (field) => {
-    setIsEditing((prev) => ({ ...prev, [field]: true }));
-  };
+  const handleSend = () => {
+    if (!selectedUserId || !message.trim()) {
+      alert("Please select a user and enter a message.");
+      return;
+    }
 
-  const handleSave = (field) => {
-    setIsEditing((prev) => ({ ...prev, [field]: false }));
-    localStorage.setItem("currentUser", JSON.stringify(userData));
-    alert("You have saved your changes!");
-  };
+    const payload = {
+      fromUserId: 1,  // Admin ID is 1
+      toUserId: selectedUserId,
+      message: message
+    };
 
-  const handleChange = (field, value) => {
-    setUserData((prev) => ({ ...prev, [field]: value }));
-  };
-
-  const handleReturn = () => {
-    navigate("/ManagerDashboard");
+    axios.post("http://localhost:8080/api/messages/send", payload)
+      .then(() => {
+        setConfirmation("✅ Message sent!");
+        setMessage("");
+        setSelectedUserId("");
+        setTimeout(() => setConfirmation(""), 3000);
+      })
+      .catch(err => {
+        console.error("Failed to send message:", err);
+        setConfirmation("❌ Failed to send message.");
+      });
   };
 
   return (
-    <div className="user-details-container">
-      <h2>My User Details</h2>
-      <div className="details">
-        <label>Username:</label>
-        <input
-          type="text"
-          value={userData.username}
-          onChange={(e) => handleChange("username", e.target.value)}
-          disabled={!isEditing.username}
-        />
-        <div className="buttons">
-          <button onClick={() => handleEdit("username")}>Edit</button>
-          <button onClick={() => handleSave("username")} disabled={!isEditing.username}>
-            Save
-          </button>
+    <>
+      <nav className="managebar629">
+        <div className="managebar-container629">
+          <div className="managebar-brand629">
+            <img src="bookowl_prev_ui.png" alt="Owl Logo" className="managebar-owl629" />
+            <Link to="/HomePage" className="managebar-title629">
+              THE<br />
+              BOOK<br />
+              OWL
+            </Link>
+          </div>
+          <ul className="managebar-links629">
+            <li><Link to="/MUserDetails">Send Messages</Link></li>
+            <li><Link to="/ViewMessages">View Messages</Link></li>
+            <li><Link to="/AdminDashboard">Return to Dashboard</Link></li>
+          </ul>
         </div>
+      </nav>
 
-        <label>Email:</label>
-        <input
-          type="text"
-          value={userData.email}
-          onChange={(e) => handleChange("email", e.target.value)}
-          disabled={!isEditing.email}
+      <div className="m-user-details-container629">
+        <h2 className="m-user-details-title629">Send Message to User</h2>
+
+        <label className="m-user-details-label629">Select User</label>
+        <select
+          className="m-user-details-select629"
+          value={selectedUserId}
+          onChange={e => setSelectedUserId(e.target.value)}
+        >
+          <option value="">-- Select a user --</option>
+          {users.map(user => (
+            <option key={user.id} value={user.id}>
+              {user.name || `User ${user.id}`} (ID: {user.id})
+            </option>
+          ))}
+        </select>
+
+        <label className="m-user-details-label629">Message</label>
+        <textarea
+          className="m-user-details-textarea629"
+          placeholder="Type your message..."
+          value={message}
+          onChange={e => setMessage(e.target.value)}
         />
-        <div className="buttons">
-          <button onClick={() => handleEdit("email")}>Edit</button>
-          <button onClick={() => handleSave("email")} disabled={!isEditing.email}>
-            Save
-          </button>
-        </div>
 
-        <label>Password:</label>
-        <input
-          type="password"
-          value={userData.password}
-          onChange={(e) => handleChange("password", e.target.value)}
-          disabled={!isEditing.password}
-        />
-        <div className="buttons">
-          <button onClick={() => handleEdit("password")}>Edit</button>
-          <button onClick={() => handleSave("password")} disabled={!isEditing.password}>
-            Save
-          </button>
-        </div>
+        <button
+          onClick={handleSend}
+          className="m-user-details-button629"
+        >
+          Send Message
+        </button>
 
-        <label>Phone Number:</label>
-        <input
-          type="text"
-          value={userData.phone || ""}
-          onChange={(e) => handleChange("phone", e.target.value)}
-          disabled={!isEditing.phone}
-        />
-        <div className="buttons">
-          <button onClick={() => handleEdit("phone")}>Edit</button>
-          <button onClick={() => handleSave("phone")} disabled={!isEditing.phone}>
-            Save
-          </button>
-        </div>
-
-        <label>Active Status:</label>
-        <input type="text" value={userData.active ? "Active" : "Inactive"} disabled />
+        {confirmation && (
+          <div className="m-user-details-confirmation629">{confirmation}</div>
+        )}
       </div>
-
-      <button className="return-btn" onClick={handleReturn}>
-        Return to Dashboard
-      </button>
-    </div>
+    </>
   );
 };
 
-export default UserDetails;
+export default MUserDetails;

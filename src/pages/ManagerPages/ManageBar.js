@@ -18,7 +18,6 @@ function ManageBar() {
         <ul className="managebar-links">
           <li><Link to="/ManageBooks">Add Book</Link></li>
           <li><Link to="/IssueBook">Issue Book</Link></li>
-        
           <li><Link to="/AdminDashboard">Return to Dashboard</Link></li>
         </ul>
       </div>
