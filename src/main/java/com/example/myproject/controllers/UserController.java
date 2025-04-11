@@ -270,4 +270,26 @@ public class UserController {
         ));
     }
 
+    @GetMapping("/all-except-admin")
+    public ResponseEntity<List<Map<String, Object>>> getAllUsersExceptAdmin() {
+        List<User> allUsers = userService.getAllUsers();
+
+        List<Map<String, Object>> usersList = allUsers.stream()
+                .filter(user -> !user.getRoles().stream()
+                        .map(Role::getName)
+                        .collect(Collectors.toSet())
+                        .contains("admin")) // Filter out admin users
+                .map(user -> {
+                    Map<String, Object> userMap = new HashMap<>();
+                    userMap.put("id", user.getId());
+                    userMap.put("name", user.getFirstName() + " " + user.getLastName());
+                    userMap.put("username", user.getUsername());
+                    userMap.put("email", user.getEmail());
+                    return userMap;
+                })
+                .collect(Collectors.toList());
+
+        return ResponseEntity.ok(usersList);
+    }
+
 }
