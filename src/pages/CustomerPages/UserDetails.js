@@ -11,13 +11,7 @@ const UserDetails = () => {
     lastName: "",
   });
 
-  const [isEditing, setIsEditing] = useState({
-    username: false,
-    email: false,
-    password: false,
-    firstName: false,
-    lastName: false,
-  });
+  const [isEditing, setIsEditing] = useState(false);
 
   // Added for password changes
   const [newPassword, setNewPassword] = useState("");
@@ -50,13 +44,13 @@ const UserDetails = () => {
     }
   }, [navigate]);
 
-  const handleEdit = (field) => {
-    setIsEditing((prev) => ({ ...prev, [field]: true }));
+  const handleEdit = () => {
+    setIsEditing(true);
     setError("");
     setSuccessMessage("");
   };
 
-  const handleSave = async (field) => {
+  const handleSave = async () => {
     try {
       if (!currentPassword) {
         setError("Please enter your current password to save changes");
@@ -64,21 +58,18 @@ const UserDetails = () => {
       }
 
       const updateData = {
-        currentPassword: currentPassword
+        currentPassword: currentPassword,
+        username: userDetails.username,
+        email: userDetails.email,
+        first_name: userDetails.firstName,
+        last_name: userDetails.lastName
       };
 
-      // Set the field being updated
-      if (field === "password") {
-        if (!newPassword) {
-          setError("Please enter a new password");
-          return;
-        }
+      if (newPassword) {
         updateData.newPassword = newPassword;
-      } else {
-        updateData[field] = userDetails[field];
       }
 
-      // Make API call to update the field
+      // Make API call to update all fields
       const response = await axios.put(
         `http://localhost:8080/api/users/profile/${userDetails.email}`,
         updateData
@@ -86,21 +77,19 @@ const UserDetails = () => {
 
       // Update sessionStorage with new data
       const loggedInUser = JSON.parse(sessionStorage.getItem("loggedInUser"));
-      const updatedUser = { ...loggedInUser };
-      
-      if (field !== "password") {
-        updatedUser[field] = userDetails[field];
-      }
+      const updatedUser = {
+        ...loggedInUser,
+        username: userDetails.username,
+        email: userDetails.email
+      };
       
       sessionStorage.setItem("loggedInUser", JSON.stringify(updatedUser));
 
       // Reset states
-      setIsEditing((prev) => ({ ...prev, [field]: false }));
+      setIsEditing(false);
       setCurrentPassword("");
-      if (field === "password") {
-        setNewPassword("");
-      }
-      setSuccessMessage(`${field} updated successfully!`);
+      setNewPassword("");
+      setSuccessMessage("Profile updated successfully!");
       setError("");
 
     } catch (error) {
@@ -117,99 +106,97 @@ const UserDetails = () => {
   };
 
   return (
-    <div className="user-details-container">
+    <div className="user-details-container828">
       <h2>My User Details</h2>
       
-      {error && <div className="error-message">{error}</div>}
-      {successMessage && <div className="success-message">{successMessage}</div>}
+      {error && <div className="error-message828">{error}</div>}
+      {successMessage && <div className="success-message828">{successMessage}</div>}
 
-      <div className="details">
-        <label>Username:</label>
-        <input
-          type="text"
-          value={userDetails.username}
-          onChange={(e) => handleChange("username", e.target.value)}
-          disabled={!isEditing.username}
-        />
-        <div className="buttons">
-          <button onClick={() => handleEdit("username")}>Edit</button>
-          <button onClick={() => handleSave("username")} disabled={!isEditing.username}>
-            Save
-          </button>
+      <div className="details828">
+        <div className="detail-group828">
+          <label className="label828">Username:</label>
+          <input
+            type="text"
+            value={userDetails.username}
+            onChange={(e) => handleChange("username", e.target.value)}
+            disabled={!isEditing}
+            className="input828"
+          />
         </div>
 
-        <label>Email:</label>
-        <input
-          type="email"
-          value={userDetails.email}
-          onChange={(e) => handleChange("email", e.target.value)}
-          disabled={!isEditing.email}
-        />
-        <div className="buttons">
-          <button onClick={() => handleEdit("email")}>Edit</button>
-          <button onClick={() => handleSave("email")} disabled={!isEditing.email}>
-            Save
-          </button>
+        <div className="detail-group828">
+          <label className="label828">Email:</label>
+          <input
+            type="email"
+            value={userDetails.email}
+            onChange={(e) => handleChange("email", e.target.value)}
+            disabled={!isEditing}
+            className="input828"
+          />
         </div>
 
-        <label>First Name:</label>
-        <input
-          type="text"
-          value={userDetails.firstName}
-          onChange={(e) => handleChange("firstName", e.target.value)}
-          disabled={!isEditing.firstName}
-        />
-        <div className="buttons">
-          <button onClick={() => handleEdit("firstName")}>Edit</button>
-          <button onClick={() => handleSave("firstName")} disabled={!isEditing.firstName}>
-            Save
-          </button>
+        <div className="detail-group828">
+          <label className="label828">First Name:</label>
+          <input
+            type="text"
+            value={userDetails.firstName}
+            onChange={(e) => handleChange("firstName", e.target.value)}
+            disabled={!isEditing}
+            className="input828"
+          />
         </div>
 
-        <label>Last Name:</label>
-        <input
-          type="text"
-          value={userDetails.lastName}
-          onChange={(e) => handleChange("lastName", e.target.value)}
-          disabled={!isEditing.lastName}
-        />
-        <div className="buttons">
-          <button onClick={() => handleEdit("lastName")}>Edit</button>
-          <button onClick={() => handleSave("lastName")} disabled={!isEditing.lastName}>
-            Save
-          </button>
+        <div className="detail-group828">
+          <label className="label828">Last Name:</label>
+          <input
+            type="text"
+            value={userDetails.lastName}
+            onChange={(e) => handleChange("lastName", e.target.value)}
+            disabled={!isEditing}
+            className="input828"
+          />
         </div>
 
-        <label>New Password:</label>
-        <input
-          type="password"
-          value={newPassword}
-          onChange={(e) => setNewPassword(e.target.value)}
-          disabled={!isEditing.password}
-          placeholder="Enter new password"
-        />
-        <div className="buttons">
-          <button onClick={() => handleEdit("password")}>Edit</button>
-          <button onClick={() => handleSave("password")} disabled={!isEditing.password}>
-            Save
-          </button>
+        <div className="detail-group828">
+          <label className="label828">New Password:</label>
+          <input
+            type="password"
+            value={newPassword}
+            onChange={(e) => setNewPassword(e.target.value)}
+            disabled={!isEditing}
+            placeholder="Enter new password"
+            className="input828"
+          />
         </div>
 
-        {/* Current Password Field - Shows when any field is being edited */}
-        {Object.values(isEditing).some(value => value) && (
-          <div className="current-password-section">
-            <label>Current Password (required to save changes):</label>
+        {/* Current Password Field - Shows when editing */}
+        {isEditing && (
+          <div className="current-password-section828">
+            <label className="label828">Current Password (required to save changes):</label>
             <input
               type="password"
               value={currentPassword}
               onChange={(e) => setCurrentPassword(e.target.value)}
               placeholder="Enter current password to confirm changes"
+              className="input828"
             />
           </div>
         )}
+
+        <div className="global-buttons828">
+          {!isEditing ? (
+            <button className="global-button828" onClick={handleEdit}>
+              Edit Profile
+            </button>
+          ) : (
+            <button className="global-button828" onClick={handleSave}>
+              Save Changes
+            </button>
+          )}
+        </div>
       </div>
 
-      <button className="return-btn" onClick={handleReturn}>
+      <button className="return-btn828" onClick={handleReturn}>
         Return to Dashboard
       </button>
     </div>

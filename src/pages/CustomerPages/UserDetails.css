@@ -1,132 +1,124 @@
-.user-details-container {
-  max-width: 900px;
-  margin: 20px auto;
+.user-details-container828 {
+  max-width: 1200px;
+  margin: 2rem auto;
   background: rgba(246, 215, 202, 0.871);
-  padding: 30px;
+  padding: 2rem;
   border-radius: 8px;
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
 }
 
-.details {
+.details828 {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 20px;
+  gap: 2rem;
 }
 
-.detail-group {
+.detail-group828 {
   display: flex;
   flex-direction: column;
-  gap: 5px;
+  gap: 0.5rem;
 }
 
-.label {
+.label828 {
   font-weight: bold;
   color: #5d4037;
-  font-size: 16px;
 }
 
-.input {
-  padding: 10px;
-  border: 1px solid #d7ccc8;
+.input828 {
+  padding: 0.8rem;
+  border: 1px solid #ccc;
   border-radius: 5px;
-  font-size: 16px;
+  font-size: 1rem;
   background-color: white;
-  color: #5d4037;
-  width: 100%;
+  color: black;
 }
 
-.input:disabled {
-  background-color: #f8f4e9;
-  color: #8d6e63;
+.input828:disabled {
+  background-color: #f0f0f0;
+  color: gray;
 }
 
-.buttons {
+.global-buttons828 {
   display: flex;
-  gap: 10px;
-  margin-top: 10px;
+  justify-content: flex-start;
+  margin: 2rem 0 0 0;
+  grid-column: 1 / -1;
 }
 
-.button {
-  background: #5d4037;
+.global-button828 {
+  background: #f06829e5;
   color: white;
   border: none;
-  padding: 8px 15px;
+  padding: 0.8rem 1.5rem;
   cursor: pointer;
   border-radius: 5px;
-  font-size: 14px;
-  transition: background-color 0.3s;
+  transition: background-color 0.3s ease;
+  font-size: 1rem;
+  font-weight: bold;
 }
 
-.button:hover {
-  background: #4e3524;
+.global-button828:hover {
+  background: #6f3b24;
 }
 
-.button:disabled {
-  background: #a1887f;
+.global-button828:disabled {
+  background: #ccc;
   cursor: not-allowed;
 }
 
-.return-btn {
-  margin-top: 20px;
-  background: #5d4037;
-  padding: 10px 20px;
-  font-size: 16px;
+.return-btn828 {
+  margin-top: 1rem;
+  background: #52340f;
+  padding: 0.8rem 1.5rem;
+  font-size: 1rem;
+  align-self: flex-start;
 }
 
-.return-btn:hover {
-  background: #4e3524;
+.return-btn828:hover {
+  background: #ea8d53;
 }
 
-.error-message {
-  color: #c62828;
-  background-color: #ffebee;
-  padding: 12px;
-  margin: 15px 0;
+.error-message828 {
+  color: #ff0000;
+  background-color: #ffe6e6;
+  padding: 1rem;
+  margin: 1rem 0;
   border-radius: 4px;
   text-align: center;
-  font-size: 16px;
-}
-
-.success-message {
-  color: #2e7d32;
-  background-color: #dcedc8;
-  padding: 12px;
-  margin: 15px 0;
-  border-radius: 4px;
-  text-align: center;
-  font-size: 16px;
-}
-
-.current-password-section {
   grid-column: 1 / -1;
-  margin-top: 20px;
-  padding: 20px;
+}
+
+.success-message828 {
+  color: #008000;
+  background-color: #e6ffe6;
+  padding: 1rem;
+  margin: 1rem 0;
+  border-radius: 4px;
+  text-align: center;
+  grid-column: 1 / -1;
+}
+
+.current-password-section828 {
+  margin-top: 2rem;
+  padding: 1.5rem;
   background-color: rgba(246, 215, 202, 0.95);
-  border-radius: 8px;
-  border: 1px solid #d7ccc8;
+  border-radius: 4px;
+  grid-column: 1 / -1;
 }
 
-.current-password-section label {
-  color: #5d4037;
+.current-password-section828 label {
+  color: #dc3545;
   font-weight: bold;
-  font-size: 16px;
-  margin-bottom: 8px;
-  display: block;
+  margin-bottom: 0.5rem;
 }
 
-.current-password-section input {
+.current-password-section828 input {
+  margin-top: 0.5rem;
   width: 100%;
-  padding: 10px;
-  border: 1px solid #d7ccc8;
-  border-radius: 5px;
-  font-size: 16px;
-  background-color: white;
-  color: #5d4037;
 }
 
-/* Responsive Design */
 @media (max-width: 768px) {
-  .details {
+  .details828 {
     grid-template-columns: 1fr;
   }
 }
