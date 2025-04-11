@@ -11,6 +11,7 @@ import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -25,6 +26,7 @@ import com.example.myproject.models.Role;
 import com.example.myproject.models.SignUpRequest;
 import com.example.myproject.models.User;
 import com.example.myproject.models.UserUpdateRequest;
+import com.example.myproject.models.ProfileUpdateRequest;
 import com.example.myproject.repository.RoleRepository;
 import com.example.myproject.repository.UserRepository;
 import com.example.myproject.services.UserService;
@@ -36,6 +38,9 @@ public class UserController {
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     // 1. Get All Users
     @GetMapping
@@ -195,7 +200,74 @@ public class UserController {
         return userService.getUsersWithoutPasswords();
     }
 
+    // Added profile update endpoint
+    @PutMapping("/profile/{email}")
+    public ResponseEntity<?> updateProfile(
+            @PathVariable String email,
+            @RequestBody ProfileUpdateRequest updateRequest) {
+        
+        // Find the user
+        Optional<User> userOpt = userService.findUserByEmail(email);
+        if (userOpt.isEmpty()) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                .body(Map.of("message", "User not found"));
+        }
 
+        User user = userOpt.get();
 
+        // Verify current password
+        if (!passwordEncoder.matches(updateRequest.getCurrentPassword(), user.getPassword())) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
+                .body(Map.of("message", "Current password is incorrect"));
+        }
+
+        // Update user details
+        if (updateRequest.getUsername() != null && !updateRequest.getUsername().isEmpty()) {
+            // Check if username is already taken by another user
+            Optional<User> existingUser = userService.getUserByUsername(updateRequest.getUsername());
+            if (existingUser.isPresent() && !existingUser.get().getId().equals(user.getId())) {
+                return ResponseEntity.status(HttpStatus.CONFLICT)
+                    .body(Map.of("message", "Username is already taken"));
+            }
+            user.setUsername(updateRequest.getUsername());
+        }
+
+        if (updateRequest.getEmail() != null && !updateRequest.getEmail().isEmpty()) {
+            // Check if email is already taken by another user
+            Optional<User> existingUser = userService.findUserByEmail(updateRequest.getEmail());
+            if (existingUser.isPresent() && !existingUser.get().getId().equals(user.getId())) {
+                return ResponseEntity.status(HttpStatus.CONFLICT)
+                    .body(Map.of("message", "Email is already taken"));
+            }
+            user.setEmail(updateRequest.getEmail());
+        }
+
+        if (updateRequest.getFirstName() != null) {
+            user.setFirstName(updateRequest.getFirstName());
+        }
+
+        if (updateRequest.getLastName() != null) {
+            user.setLastName(updateRequest.getLastName());
+        }
+
+        // Update password if new password is provided
+        if (updateRequest.getNewPassword() != null && !updateRequest.getNewPassword().isEmpty()) {
+            user.setPassword(passwordEncoder.encode(updateRequest.getNewPassword()));
+        }
+
+        // Save the updated user
+        userRepository.save(user);
+
+        // Return updated user details (excluding password)
+        return ResponseEntity.ok(Map.of(
+            "message", "Profile updated successfully",
+            "user", Map.of(
+                "username", user.getUsername(),
+                "email", user.getEmail(),
+                "firstName", user.getFirstName(),
+                "lastName", user.getLastName()
+            )
+        ));
+    }
 
 }
