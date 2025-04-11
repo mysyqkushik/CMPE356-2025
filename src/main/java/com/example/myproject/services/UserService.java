@@ -1,16 +1,22 @@
 package com.example.myproject.services;
 
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
+import java.util.Set;
+import java.util.stream.Collectors;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.stereotype.Service;
+
 import com.example.myproject.models.Role;
 import com.example.myproject.models.User;
 import com.example.myproject.models.UserUpdateRequest;
 import com.example.myproject.repository.RoleRepository;
 import com.example.myproject.repository.UserRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.stereotype.Service;
-
-import java.util.*;
-import java.util.stream.Collectors;
 
 @Service
 public class UserService {
