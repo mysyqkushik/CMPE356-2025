@@ -64,7 +64,7 @@ const ReturnBook = () => {
             setBorrowedBooks(response.data || []);
           });
         // Refresh issued books list
-        const loggedInUser = JSON.parse(sessionStorage.getItem("loggedInUser"));
+    const loggedInUser = JSON.parse(sessionStorage.getItem("loggedInUser"));
         if (loggedInUser) {
           axios
             .get(`http://localhost:8080/api/borrow/username/${loggedInUser.username}`)

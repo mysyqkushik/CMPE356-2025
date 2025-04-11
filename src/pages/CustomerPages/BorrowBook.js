@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 import "./BorrowBook.css";
 
 const BorrowBook = () => {
-  const [books, setBooks] = useState([]);
+    const [books, setBooks] = useState([]);
   const [showTable, setShowTable] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
   const [sortBy, setSortBy] = useState("id");
@@ -15,22 +15,22 @@ const BorrowBook = () => {
   const [borrowDate, setBorrowDate] = useState("");
   const [returnDate, setReturnDate] = useState("");
   const [message, setMessage] = useState({ text: "", type: "" });
-  const navigate = useNavigate();
+    const navigate = useNavigate();
   const [isConfettiVisible, setConfettiVisible] = useState(false);
 
-  useEffect(() => {
+    useEffect(() => {
     axios.get("http://localhost:8080/api/books")
-      .then(res => {
+            .then(res => {
         const filtered = res.data.filter(book => book.id >= 100);
         const sorted = filtered.sort((a, b) => a.id - b.id);
         setBooks(sorted);
-      })
-      .catch(err => console.error("Error fetching books:", err));
-  }, []);
+            })
+            .catch(err => console.error("Error fetching books:", err));
+    }, []);
 
 
   // Confetti effect
-  useEffect(() => {
+    useEffect(() => {
     if (message.type === 'success') {
       setConfettiVisible(true);
       setTimeout(() => setConfettiVisible(false), 5000); // Hide confetti after 5 seconds
@@ -61,8 +61,8 @@ const BorrowBook = () => {
       setReturnDate("");
     }).catch(err => {
       setMessage({ text: "Error borrowing the book.", type: "error" });
-    });
-  };
+            });
+    };
 
   const filteredBooks = books.filter(book =>
     book.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -78,7 +78,7 @@ const BorrowBook = () => {
     return aVal - bVal;
   });
 
-  return (
+    return (
     <div>
       {/* Navigation Bar */}
       <nav className="navbar-439">
@@ -113,18 +113,18 @@ const BorrowBook = () => {
             value={userId}
             onChange={(e) => setUserId(e.target.value)}
           />
-          <input
+                        <input
             type="number"
             placeholder="Enter Book ID"
             value={bookId}
             onChange={(e) => setBookId(e.target.value)}
           />
-          <input
-            type="date"
+                            <input
+                                type="date"
             placeholder="Select Borrow Date"
-            value={borrowDate}
-            onChange={(e) => setBorrowDate(e.target.value)}
-          />
+                                value={borrowDate}
+                                onChange={(e) => setBorrowDate(e.target.value)}
+                            />
           <input
             type="text"
             placeholder="Auto Return Date"
@@ -132,7 +132,7 @@ const BorrowBook = () => {
             readOnly
           />
           <button className="borrow-btn-439" onClick={handleBorrow}>Borrow</button>
-        </div>
+                        </div>
 
         {message.text && (
           <div className={`borrow-message-439 ${message.type}`}>
@@ -148,8 +148,8 @@ const BorrowBook = () => {
         {showTable && (
           <>
             <div className="search-sort-container-439">
-              <input
-                type="text"
+                            <input
+                                type="text"
                 placeholder="Search books..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
@@ -162,7 +162,7 @@ const BorrowBook = () => {
                 <option value="quantity">Sort by Quantity</option>
                 <option value="genre">Sort by Genre</option>
               </select>
-              <button 
+                        <button
                 onClick={() => {
                   setSearchTerm("");
                   setSortBy("id");
@@ -170,8 +170,8 @@ const BorrowBook = () => {
                 className="clear-filter-btn-439"
               >
                 Clear Filters
-              </button>
-            </div>
+                        </button>
+                    </div>
 
             <table className="book-table-439">
               <thead>
@@ -197,9 +197,9 @@ const BorrowBook = () => {
             </table>
           </>
         )}
-      </div>
-    </div>
-  );
+                </div>
+            </div>
+    );
 };
 
 export default BorrowBook;

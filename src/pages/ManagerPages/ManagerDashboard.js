@@ -22,7 +22,7 @@ const ManagerDashboard = () => {
   const [overdueSortOption, setOverdueSortOption] = useState("");
 
 
-  
+
   useEffect(() => {
     const loggedInUser = JSON.parse(sessionStorage.getItem("loggedInUser"));
     if (loggedInUser) {
@@ -46,14 +46,14 @@ const ManagerDashboard = () => {
         .catch((error) =>
             console.error("Error fetching borrowed books:", error)
         );
-}, []);
+  }, []);
 
-useEffect(() => {
+  useEffect(() => {
     axios
         .get("http://localhost:8080/api/books")
         .then((response) => setBooks(response.data))
         .catch((error) => console.error("Error fetching books:", error));
-}, []);
+  }, []);
 
 
 
