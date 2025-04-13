@@ -41,6 +41,9 @@ import UnifiedLogin from './pages/UnifiedLogin';
 import Register from './pages/Register';
 import ForgotPassword from './pages/ForgotPassword';
 import ResetPassword from './pages/ResetPassword';
+import ManagerIssueBook from './pages//ManagerIssueBook';
+import ManagerAddBook from './pages/ManagerAddBook';
+import ManagerNavBar from './pages/ManagerNavBar';
 import './App.css';
 
 
@@ -90,6 +93,9 @@ const App = () => {
         <Route path="/signup" element={<SignUp />} />
         <Route path="/login" element={<UnifiedLogin />} />
         <Route path="/ForgotPassword" element={<ForgotPassword/>} />
+        <Route path="/ManagerIssueBook" element={<ManagerIssueBook/>} />
+        <Route path="/ManagerAddBook" element={<ManagerAddBook/>} />
+        <Route path="/ManagerNavBar" element={<ManagerNavBar />} />
        
        
         <Route path="/reset-password/:email" element={<ResetPassword />} />

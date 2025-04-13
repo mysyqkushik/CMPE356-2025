@@ -43,6 +43,9 @@ import UnifiedLogin from './pages/UnifiedLogin';
 import Register from './pages/Register';
 import ForgotPassword from './pages/ForgotPassword';
 import ResetPassword from './pages/ResetPassword';
+import ManagerIssueBook from './pages//ManagerIssueBook';
+import ManagerAddBook from './pages/ManagerAddBook';
+import ManagerNavBar from './pages/ManagerNavBar';
 import './index.css';
 
 const router = createBrowserRouter([
@@ -213,7 +216,20 @@ const router = createBrowserRouter([
   {
     path: "/reset-password/:email",
     element: <ResetPassword />,
+  },
+  {
+    path: "/ManagerIssueBook",
+    element: <ManagerIssueBook />,
+  },
+  {
+    path: "/ManagerAddBook",
+    element: <ManagerAddBook />,
+  },
+  {
+    path: "/ManagerNavBar",
+    element: <ManagerNavBar />,
   }
+
 ]);
 
 const root = ReactDOM.createRoot(document.getElementById("root"));

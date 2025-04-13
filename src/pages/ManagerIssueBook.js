@@ -6,7 +6,7 @@ import Confetti from 'react-confetti';
 import { useNavigate } from "react-router-dom";
 import "./IssueBook.css";
 
-const IssueBook = () => {
+const ManagerIssueBook = () => {
     const [books, setBooks] = useState([]);
     const [users, setUsers] = useState([]);
     const [showTable, setShowTable] = useState(false);
@@ -195,4 +195,4 @@ const IssueBook = () => {
     );
 };
 
-export default IssueBook; 
+export default ManagerIssueBook; 
