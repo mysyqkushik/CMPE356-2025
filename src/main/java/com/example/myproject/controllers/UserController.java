@@ -87,7 +87,8 @@ public class UserController {
             return ResponseEntity.ok(Map.of(
                     "username", user.getUsername(),
                     "first_name", user.getFirstName(),
-                    "id", user.getId()// ✅ Ensure first_name is returned
+                    "last_name", user.getLastName(),
+                    "id", user.getId()
             ));
         } else {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(Map.of("message", "User not found"));
@@ -136,7 +137,8 @@ public class UserController {
             user.setLastName(signUpRequest.getLastName());
             user.setUsername(signUpRequest.getUsername());
             user.setEmail(signUpRequest.getEmail());
-            user.setPassword(signUpRequest.getPassword());
+            // Hash the password before saving
+            user.setPassword(passwordEncoder.encode(signUpRequest.getPassword()));
 
             Set<Role> userRoles = new HashSet<>();
             for (String roleStr : signUpRequest.getRoles()) {
@@ -184,14 +186,14 @@ public class UserController {
     public ResponseEntity<String> resetPassword(@PathVariable String email, @RequestBody Map<String, String> passwordRequest)
     {
         String newPassword = passwordRequest.get("newPassword");
+        String hashedPassword = passwordEncoder.encode(newPassword);
 
-        // Update password in the database
-        if (userService.resetPassword(email, newPassword)) {
+        // Update password in the database with hashed password
+        if (userService.resetPassword(email, hashedPassword)) {
             return ResponseEntity.ok("Password has been reset. Please log in again.");
         } else {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Email not found.");
         }
-
     }
 
     //for admin dashboard to view all users
@@ -264,8 +266,8 @@ public class UserController {
             "user", Map.of(
                 "username", user.getUsername(),
                 "email", user.getEmail(),
-                "firstName", user.getFirstName(),
-                "lastName", user.getLastName()
+                "first_name", user.getFirstName(),
+                "last_name", user.getLastName()
             )
         ));
     }
