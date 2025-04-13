@@ -1,17 +1,15 @@
 package com.example.myproject.controllers;
 
 import com.example.myproject.models.Messages;
-import com.example.myproject.models.User;
 import com.example.myproject.payload.MessagesRequest;
 import com.example.myproject.repository.MessageRepository;
-
-import com.example.myproject.repository.UserRepository;
+import com.example.myproject.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.stream.Collectors;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api/messages")
@@ -21,27 +19,51 @@ public class MessageController {
     @Autowired
     private MessageRepository messageRepository;
 
+    @Autowired
+    private UserService userService;
+
+    // I am Cursor, this change I made: Updated validation to match your UserService
     @PostMapping("/send")
-    public ResponseEntity<String> sendMessage(@RequestBody MessagesRequest request) {
-        Messages message = new Messages(request.getFromUserId(), request.getToUserId(), request.getMessage());
-        messageRepository.save(message);
-        return ResponseEntity.ok("Message sent!");
+    public ResponseEntity<?> sendMessage(@RequestBody MessagesRequest request) {
+        try {
+            // Validate fromUserId exists
+            if (userService.getUserById(request.getFromUserId()) == null) {
+                return ResponseEntity.badRequest()
+                        .body(Map.of("error", "Invalid sender ID"));
+            }
+
+            // Validate toUserId exists
+            if (userService.getUserById(request.getToUserId()) == null) {
+                return ResponseEntity.badRequest()
+                        .body(Map.of("error", "Invalid recipient ID"));
+            }
+
+            // Validate message is not empty
+            if (request.getMessage() == null || request.getMessage().trim().isEmpty()) {
+                return ResponseEntity.badRequest()
+                        .body(Map.of("error", "Message cannot be empty"));
+            }
+
+            Messages message = new Messages(
+                    request.getFromUserId(),
+                    request.getToUserId(),
+                    request.getMessage().trim()
+            );
+
+            messageRepository.save(message);
+
+            return ResponseEntity.ok(Map.of(
+                    "message", "Message sent successfully!",
+                    "timestamp", message.getTimestamp()
+            ));
+        } catch (Exception e) {
+            return ResponseEntity.badRequest()
+                    .body(Map.of("error", "Failed to send message: " + e.getMessage()));
+        }
     }
 
     @GetMapping("/received/{userId}")
     public List<Messages> getReceivedMessages(@PathVariable Long userId) {
         return messageRepository.findByToUserIdOrderByTimestampDesc(userId);
     }
-
-    @Autowired
-    private UserRepository userRepository;
-
-    @GetMapping("/users/all-except-admin")
-    public List<User> getAllUsersExceptAdmin() {
-        return userRepository.findAll()
-                .stream()
-                .filter(user -> user.getId() != 1)
-                .collect(Collectors.toList());
-    }
-
 }
