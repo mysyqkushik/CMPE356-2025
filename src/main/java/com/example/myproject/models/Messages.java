@@ -17,6 +17,10 @@ public class Messages {
     private Long id;
 
     @Setter
+    private boolean isRead = false;
+
+
+    @Setter
     private Long fromUserId;
     @Setter
     private Long toUserId;
@@ -27,6 +31,10 @@ public class Messages {
 
     @Setter
     private LocalDateTime timestamp = LocalDateTime.now();
+
+    public boolean isRead() { return isRead; }
+
+    public void setIsRead(boolean isRead) { this.isRead = isRead; }
 
     // Constructors
     public Messages() {}

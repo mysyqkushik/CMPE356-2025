@@ -3,6 +3,7 @@ package com.example.myproject.controllers;
 import com.example.myproject.models.Messages;
 import com.example.myproject.payload.MessagesRequest;
 import com.example.myproject.repository.MessageRepository;
+import com.example.myproject.services.MessageService;
 import com.example.myproject.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -22,7 +23,9 @@ public class MessageController {
     @Autowired
     private UserService userService;
 
-    // I am Cursor, this change I made: Updated validation to match your UserService
+    @Autowired
+    private MessageService messageService;
+
     @PostMapping("/send")
     public ResponseEntity<?> sendMessage(@RequestBody MessagesRequest request) {
         try {
@@ -66,4 +69,16 @@ public class MessageController {
     public List<Messages> getReceivedMessages(@PathVariable Long userId) {
         return messageRepository.findByToUserIdOrderByTimestampDesc(userId);
     }
+
+    @GetMapping("/unread-count/{userId}")
+    public int getUnreadMessages(@PathVariable int userId) {
+        return messageService.getUnreadMessageCount(userId);
+    }
+
+    @PutMapping("/mark-read/{userId}")
+    public ResponseEntity<?> markAllRead(@PathVariable int userId) {
+        messageService.markMessagesAsRead(userId);
+        return ResponseEntity.ok("Marked all messages as read.");
+    }
+
 }
