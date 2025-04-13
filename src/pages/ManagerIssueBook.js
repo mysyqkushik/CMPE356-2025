@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Link } from 'react-router-dom';
-import ManageBar from './ManagerPages/ManageBar';
+import ManagerNavBar from './ManagerNavBar';
 import Confetti from 'react-confetti';
 import { useNavigate } from "react-router-dom";
 import "./IssueBook.css";
@@ -85,7 +85,7 @@ const ManagerIssueBook = () => {
 
     return (
         <div>
-            <ManageBar />
+            <ManagerNavBar />
 
             <div className="borrow-container-739">
                 {/* Confetti */}
