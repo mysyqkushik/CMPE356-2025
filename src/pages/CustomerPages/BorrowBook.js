@@ -48,92 +48,21 @@ const BorrowBook = () => {
   }, [borrowDate]);
   
 
-  const handleBorrow = async (e) => {
-    e.preventDefault();
-    try {
-        // Validate inputs
-        if (!userId || !bookId || !borrowDate || !returnDate) {
-            setMessage({ 
-                text: 'Please fill in all fields.', 
-                type: 'error' 
+  const handleBorrow = () => {
+    axios.post("http://localhost:8080/api/borrow/borrow", {
+      userId: parseInt(userId),
+      bookId: parseInt(bookId)
+    }).then(res => {
+      setMessage({ text: "Book borrowed successfully! To view, go to View Your Issued Books", type: "success" });
+      // Clear form
+      setUserId("");
+      setBookId("");
+      setBorrowDate("");
+      setReturnDate("");
+    }).catch(err => {
+      setMessage({ text: "Error borrowing the book.", type: "error" });
             });
-            return;
-        }
-
-        if (parseInt(userId) <= 0) {
-            setMessage({ 
-                text: 'User ID must be a positive number.', 
-                type: 'error' 
-            });
-            return;
-        }
-
-        if (parseInt(bookId) <= 0) {
-            setMessage({ 
-                text: 'Book ID must be a positive number.', 
-                type: 'error' 
-            });
-            return;
-        }
-
-        const today = new Date();
-        const selectedBorrowDate = new Date(borrowDate);
-        const selectedReturnDate = new Date(returnDate);
-
-        if (selectedBorrowDate < today) {
-            setMessage({ 
-                text: 'Borrow date cannot be in the past.', 
-                type: 'error' 
-            });
-            return;
-        }
-
-        if (selectedReturnDate <= selectedBorrowDate) {
-            setMessage({ 
-                text: 'Return date must be after borrow date.', 
-                type: 'error' 
-            });
-            return;
-        }
-
-        const response = await axios.post('http://localhost:8080/api/transactions', {
-            userId: parseInt(userId),
-            bookId: parseInt(bookId),
-            borrowDate,
-            returnDate
-        });
-        
-        if (response.status === 201) {
-            setMessage({ 
-                text: 'Book borrowed successfully!', 
-                type: 'success' 
-            });
-            // Clear form
-            setUserId('');
-            setBookId('');
-            setBorrowDate('');
-            setReturnDate('');
-        }
-    } catch (error) {
-        let errorMessage = 'Error borrowing book. Please try again.';
-        if (error.response) {
-            switch (error.response.status) {
-                case 400:
-                    errorMessage = 'Invalid input. Please check your details.';
-                    break;
-                case 404:
-                    errorMessage = 'User or book not found.';
-                    break;
-                case 409:
-                    errorMessage = 'Book is not available or user has reached borrowing limit.';
-                    break;
-                default:
-                    errorMessage = 'Server error. Please try again later.';
-            }
-        }
-        setMessage({ text: errorMessage, type: 'error' });
-    }
-};
+    };
 
   const filteredBooks = books.filter(book =>
     book.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
