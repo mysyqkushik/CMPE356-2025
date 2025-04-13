@@ -3,13 +3,104 @@ import "./ManagerDashboard.css";
 import { Link } from "react-router-dom";
 import LibraryData from "./LibraryData";
 import axios from "axios";
+import { toast } from "react-toastify";
+
+const NotificationBell = ({ userId }) => {
+  const [unreadCount, setUnreadCount] = useState(0);
+  const [showTooltip, setShowTooltip] = useState(false);
+
+  const fetchUnreadCount = () => {
+    if (userId) {
+      axios
+        .get(`http://localhost:8080/api/messages/unread-count/${userId}`)
+        .then((res) => setUnreadCount(res.data))
+        .catch((err) => console.error(err));
+    }
+  };
+
+  useEffect(() => {
+    fetchUnreadCount();
+    const interval = setInterval(fetchUnreadCount, 30000);
+    return () => clearInterval(interval);
+  }, [userId]);
+
+  const handleBellClick = (e) => {
+    e.stopPropagation();
+    setShowTooltip(!showTooltip);
+  };
+
+  const handleMarkAsRead = async (e) => {
+    e.stopPropagation();
+    if (unreadCount > 0) {
+      try {
+        await axios.put(`http://localhost:8080/api/messages/mark-read/${userId}`);
+        setUnreadCount(0);
+        toast.success("Notifications marked as read!");
+      } catch (err) {
+        console.error("Failed to mark messages as read:", err);
+        toast.error("Failed to update notifications.");
+      }
+    }
+  };
+
+  useEffect(() => {
+    const handleClickOutside = (e) => {
+      if (showTooltip && !e.target.closest('.notification-bell-wrapper')) {
+        setShowTooltip(false);
+      }
+    };
+
+    document.addEventListener('click', handleClickOutside);
+    return () => document.removeEventListener('click', handleClickOutside);
+  }, [showTooltip]);
+
+  return (
+    <div className="notification-bell-wrapper">
+      <div 
+        className="notification-bell" 
+        onClick={handleBellClick}
+      >
+        <span role="img" aria-label="bell" className="bell-icon">🔔</span>
+        {unreadCount > 0 && (
+          <span className="unread-count">
+            {unreadCount}
+          </span>
+        )}
+      </div>
+      
+      {showTooltip && (
+        <div className="notification-tooltip">
+          {unreadCount > 0 ? (
+            <>
+              <div className="notification-message">
+                You have {unreadCount} unread message(s)
+              </div>
+              <div className="notification-actions">
+                <Link to="/ViewIssuedBooks" className="view-messages-link">
+                  View Messages
+                </Link>
+                <button onClick={handleMarkAsRead} className="mark-read-link">
+                  Mark as Read
+                </button>
+              </div>
+            </>
+          ) : (
+            <div className="notification-message">
+              No new notifications
+            </div>
+          )}
+        </div>
+      )}
+    </div>
+  );
+};
 
 const ManagerDashboard = () => {
   const [books, setBooks] = useState([]);
   const [users, setUsers] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState(null);
   const [usersCount, setUsersCount] = useState(0);
-  const [firstName, setFirstName] = useState(""); // Store first name
+  const [firstName, setFirstName] = useState("");
   const [searchTerm, setSearchTerm] = useState("");
   const [filterType, setFilterType] = useState("");
   const [filterValue, setFilterValue] = useState("");
@@ -20,21 +111,24 @@ const ManagerDashboard = () => {
   const [borrowedSortOption, setBorrowedSortOption] = useState("");
   const [overdueSearchTerm, setOverdueSearchTerm] = useState("");
   const [overdueSortOption, setOverdueSortOption] = useState("");
-
-
+  const [userId, setUserId] = useState("");
 
   useEffect(() => {
     const loggedInUser = JSON.parse(sessionStorage.getItem("loggedInUser"));
     if (loggedInUser) {
-      axios.get(`http://localhost:8080/api/users/profile/${loggedInUser.username}`)
-        .then(response => {
-          setFirstName(response.data.first_name); // Fetch first_name
+      axios
+        .get(
+          `http://localhost:8080/api/users/profile/${loggedInUser.username}`
+        )
+        .then((response) => {
+          setFirstName(response.data.first_name);
+          setUserId(response.data.id);
         })
-        .catch(error => console.error("Error fetching user data:", error));
+        .catch((error) =>
+          console.error("Error fetching user data:", error)
+        );
     }
   }, []);
-
- 
 
   useEffect(() => {
     axios
@@ -54,8 +148,6 @@ const ManagerDashboard = () => {
         .then((response) => setBooks(response.data))
         .catch((error) => console.error("Error fetching books:", error));
   }, []);
-
-
 
   const getOverdueBooks = () => {
     const cutoffDate = new Date("2025-04-09");
@@ -246,13 +338,7 @@ const ManagerDashboard = () => {
       <div className="main-content">
         <header className="navbar3">
           <div className="navbar-icons">
-            <div className="icon-with-tooltip">
-              <span role="img" aria-label="bell">🔔</span>
-              <div className="tooltip">
-                <div>No</div>
-                <div>Notifications!</div>
-              </div>
-            </div>
+            <NotificationBell userId={userId} />
             <div className="icon-with-tooltip">
               <span role="img" aria-label="email">📧</span>
               <div className="tooltip">No emails yet!</div>
