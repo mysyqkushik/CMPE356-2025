@@ -106,99 +106,98 @@ const UserDetails = () => {
   };
 
   return (
-    <div className="user-details-container828">
-      <h2>My User Details</h2>
+    <div className="user-details-container518">
+      <h2 className="user-details-title518">My User Details</h2>
       
-      {error && <div className="error-message828">{error}</div>}
-      {successMessage && <div className="success-message828">{successMessage}</div>}
+      {error && <div className="user-details-message518 error">{error}</div>}
+      {successMessage && <div className="user-details-message518 success">{successMessage}</div>}
 
-      <div className="details828">
-        <div className="detail-group828">
-          <label className="label828">Username:</label>
+      <div className="user-details-content518">
+        <div className="user-details-item518">
+          <label className="user-details-label518">Username:</label>
           <input
             type="text"
             value={userDetails.username}
             onChange={(e) => handleChange("username", e.target.value)}
             disabled={!isEditing}
-            className="input828"
+            className="user-details-value518"
           />
         </div>
 
-        <div className="detail-group828">
-          <label className="label828">Email:</label>
+        <div className="user-details-item518">
+          <label className="user-details-label518">Email:</label>
           <input
             type="email"
             value={userDetails.email}
             onChange={(e) => handleChange("email", e.target.value)}
             disabled={!isEditing}
-            className="input828"
+            className="user-details-value518"
           />
         </div>
 
-        <div className="detail-group828">
-          <label className="label828">First Name:</label>
+        <div className="user-details-item518">
+          <label className="user-details-label518">First Name:</label>
           <input
             type="text"
             value={userDetails.firstName}
             onChange={(e) => handleChange("firstName", e.target.value)}
             disabled={!isEditing}
-            className="input828"
+            className="user-details-value518"
           />
         </div>
 
-        <div className="detail-group828">
-          <label className="label828">Last Name:</label>
+        <div className="user-details-item518">
+          <label className="user-details-label518">Last Name:</label>
           <input
             type="text"
             value={userDetails.lastName}
             onChange={(e) => handleChange("lastName", e.target.value)}
             disabled={!isEditing}
-            className="input828"
+            className="user-details-value518"
           />
         </div>
 
-        <div className="detail-group828">
-          <label className="label828">New Password:</label>
+        <div className="user-details-item518">
+          <label className="user-details-label518">New Password:</label>
           <input
             type="password"
             value={newPassword}
             onChange={(e) => setNewPassword(e.target.value)}
             disabled={!isEditing}
             placeholder="Enter new password"
-            className="input828"
+            className="user-details-value518"
           />
         </div>
 
         {/* Current Password Field - Shows when editing */}
         {isEditing && (
-          <div className="current-password-section828">
-            <label className="label828">Current Password (required to save changes):</label>
+          <div className="user-details-item518">
+            <label className="user-details-label518">Current Password (required to save changes):</label>
             <input
               type="password"
               value={currentPassword}
               onChange={(e) => setCurrentPassword(e.target.value)}
               placeholder="Enter current password to confirm changes"
-              className="input828"
+              className="user-details-value518"
             />
           </div>
         )}
 
-        <div className="global-buttons828">
+        <div className="user-details-buttons518">
           {!isEditing ? (
-            <button className="global-button828" onClick={handleEdit}>
+            <button onClick={handleEdit}>
               Edit Profile
             </button>
           ) : (
-            <button className="global-button828" onClick={handleSave}>
+            <button onClick={handleSave}>
               Save Changes
             </button>
           )}
+          <button onClick={handleReturn}>
+            Return to Dashboard
+          </button>
         </div>
       </div>
-
-      <button className="return-btn828" onClick={handleReturn}>
-        Return to Dashboard
-      </button>
     </div>
   );
 };

@@ -339,7 +339,7 @@ const AdminDashboard = () => {
                         </li>
                         <li>
                             <span>🔒</span>{" "}
-                            <Link to="/UserDetails">My User Details</Link>
+                            <Link to="/AdminLogin">My User Details</Link>
                         </li>
                         <li>
                             <span>👥</span>{" "}
