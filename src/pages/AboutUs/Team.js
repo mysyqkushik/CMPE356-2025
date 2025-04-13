@@ -23,7 +23,7 @@ const Team = () => {
         <div className="team-member55">
           <img src="sarah.jpg" alt="Head of Front-End" className="team-image55" />
           <h2 className="team-role54">SARAH NAUMAN</h2>
-          <h3 className="team-role55">Head of Front-End Development</h3>
+          <h3 className="team-role55">Head of Front-End Development and Head of Back-End Development</h3>
           <p className="team-contact55">
             <a href="mailto:sarah.nauman@stu.khas.edu.tr.com">Email: sarah.nauman@stu.khas.edu.tr.com</a>
           </p>

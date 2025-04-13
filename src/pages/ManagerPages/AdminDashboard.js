@@ -750,8 +750,8 @@ const AdminDashboard = () => {
                 )}
             </div>
             {showEditForm && editUserData && (
-                <div className="popup-form">
-                    <div className="popup-content">
+                <div className="popup-form872">
+                    <div className="popup-content872">
                         <h3>Edit User ID: {editUserId}</h3>
                         <label>First Name:</label>
                         <input
