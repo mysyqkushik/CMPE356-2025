@@ -44,6 +44,8 @@ import ResetPassword from './pages/ResetPassword';
 import ManagerIssueBook from './pages//ManagerIssueBook';
 import ManagerAddBook from './pages/ManagerAddBook';
 import ManagerNavBar from './pages/ManagerNavBar';
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import './App.css';
 
 
@@ -99,6 +101,7 @@ const App = () => {
        
        
         <Route path="/reset-password/:email" element={<ResetPassword />} />
+        
       </Routes>
     </>
   );

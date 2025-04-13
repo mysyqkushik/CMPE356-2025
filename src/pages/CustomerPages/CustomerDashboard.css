@@ -29,16 +29,13 @@
   }
   
   .sidebar .logo {
-
     max-width: 250px; /* Restrict width to prevent overflow */
     flex-wrap: wrap; /* Forces text to break when too long */
-  text-align: left;
+    text-align: left;
     font-size: 38px;
     font-weight: bold;
     margin-bottom: 30px;
     max-width: 100%; /* Ensures it doesn't exceed the navbar width */
-
-  
   }
   
   .sidebar nav ul {
@@ -76,6 +73,8 @@
     padding: 20px;
     background-color: #fcf2e5ce;
     overflow-y: auto;
+    position: relative;
+    z-index: 1;
   }
   
   .navbar3 {
@@ -115,13 +114,36 @@
     right: 0;
     background-color: #5d4037;
     color: #fff;
-    padding: 8px 12px;
-    border-radius: 4px;
+    padding: 12px;
+    border-radius: 8px;
     font-size: 14px;
     white-space: nowrap;
-    display: none;
-    z-index: 1000;
+    z-index: 1003;
     margin-top: 10px;
+    min-width: 200px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+  
+  .tooltip div {
+    margin-bottom: 8px;
+    text-align: center;
+  }
+  
+  .tooltip .view-messages-link {
+    display: block;
+    color: #fff;
+    background-color: #8B4513;
+    padding: 6px 12px;
+    border-radius: 4px;
+    text-align: center;
+    text-decoration: none;
+    margin-top: 8px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .tooltip .view-messages-link:hover {
+    background-color: #A0522D;
   }
   
   .icon-with-tooltip:hover .tooltip {
@@ -392,4 +414,186 @@
     font-size: 14px;
     text-align: center;
   }
+  
+/* Responsive Design for Phone Screens */
+@media (max-width: 768px) {
+  .dashboard-container {
+    flex-direction: column;
+    height: auto;
+    min-height: 100vh;
+  }
+
+  .sidebar {
+    width: 100%;
+    padding: 15px;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+  }
+
+  .sidebar .logo {
+    font-size: 28px;
+    margin-bottom: 15px;
+  }
+
+  .sidebar nav ul li {
+    margin: 10px 0;
+    font-size: 16px;
+    padding: 8px;
+  }
+
+  .sidebar nav ul li span {
+    font-size: 18px;
+    margin-right: 10px;
+  }
+
+  .main-content {
+    padding: 15px;
+  }
+
+  .navbar3 {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .navbar-icons {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .icon-with-tooltip {
+    margin-right: 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  .sidebar {
+    padding: 10px;
+  }
+
+  .sidebar .logo {
+    font-size: 24px;
+  }
+
+  .sidebar nav ul li {
+    font-size: 14px;
+    padding: 6px;
+  }
+
+  .sidebar nav ul li span {
+    font-size: 16px;
+  }
+
+  .main-content {
+    padding: 10px;
+  }
+
+  .navbar-icons {
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .icon-with-tooltip {
+    margin-right: 10px;
+  }
+}
+  
+/* Notification Bell Styles */
+.notification-bell-wrapper {
+    position: relative;
+    display: inline-block;
+    margin-right: 20px;
+}
+
+.notification-bell {
+    position: relative;
+    cursor: pointer;
+    display: inline-block;
+    padding: 5px;
+}
+
+.notification-bell .bell-icon {
+    font-size: 24px;
+    transition: transform 0.3s ease;
+    display: block;
+}
+
+.notification-bell:hover .bell-icon {
+    transform: scale(1.1);
+}
+
+.notification-bell .unread-count {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    background-color: #ff0000;
+    color: white;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 2px 6px;
+    border-radius: 50%;
+    min-width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: pulse 2s infinite;
+}
+
+.notification-tooltip {
+    position: absolute;
+    top: 55%;
+    left: 30px; /* Move it more to the left */
+    background-color: #5d4037;
+    color: #fff;
+    padding: 12px;
+    border-radius: 8px;
+    font-size: 14px;
+    z-index: 9999;
+    margin-top: 10px;
+    min-width: 200px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    pointer-events: auto;
+}
+
+.notification-message {
+    text-align: center;
+    margin-bottom: 12px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.notification-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.view-messages-link,
+.mark-read-link {
+    display: block;
+    color: #fff;
+    background-color: #8B4513;
+    padding: 8px 12px;
+    border-radius: 4px;
+    text-align: center;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-size: 14px;
+}
+
+.view-messages-link:hover,
+.mark-read-link:hover {
+    background-color: #A0522D;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}
   
