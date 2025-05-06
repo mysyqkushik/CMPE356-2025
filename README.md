@@ -25,7 +25,7 @@ Welcome to the **The Book Owl 🦉**! This project is designed to help users bor
 - **Database:** MySQL (MySQL Workbench for management)
 
 ## 📧 Contact
-For any inquiries, reach out via email: [sarah.nauman@stu.khas.edu.tr](mailto:sarah.nauman@stu.khas.edu.tr), [kuandyque@stu.khas.edu.tr](mailto:Kuandyque@stu.khas.edu.tr), [yigit.keser@stu.khas.edu.tr](mailto:yigit.keser@stu.khas.edu.tr)
+For any inquiries, reach out via email: [sarah.nauman@stu.khas.edu.tr](mailto:sarah.nauman@stu.khas.edu.tr)
 
 ---
-Made with ❤️ by Sarah Nauman, Kuandyk Kyrykbayev, Yiğit Keser.
+Made with ❤️ by Sarah Nauman
