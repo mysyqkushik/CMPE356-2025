@@ -50,8 +50,23 @@ const HeaderSplash = () => {
               value: ["#FF6347", "#FF4500", "#D2691E", "#8B4513", "#A52A2A"] // Reds, oranges, and browns
             },
             shape: {
-              type: "circle"
-            },
+                type: "image",
+                image: [
+                 
+                  {
+                    src: "/bookmark (1).png",
+                    width: 40,
+                    height: 40
+                  },
+                  {
+                    src: "/bookmark (2).png",
+                    width: 40,
+                    height: 40
+                  }
+                ]
+              },
+              
+              
             opacity: {
               value: 0.7,
               random: true,
@@ -110,9 +125,9 @@ const HeaderSplash = () => {
         }}
       />
       <div className="header-content">
-      <div className="logo-container">
+      <div className="logo-container slide-up">
   <img src="/bookowl_prev_ui.png" alt="The Book Owl Logo" className="logo" />
-  <div className="logo-text">
+  <div className="logo-text slide-up">
     <div>THE</div>
     <div>BOOK</div>
     <div>OWL</div>
@@ -120,7 +135,8 @@ const HeaderSplash = () => {
 </div>
 
 
-        <h1 className="typed-text">{typedText}</h1>
+<h1 className="splash-text slide-up">Welcome to Your Next Favourite Read</h1>
+
 
         <button className="cta-button" onClick={handleGetStarted}>
           GET STARTED
