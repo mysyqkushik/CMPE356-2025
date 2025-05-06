@@ -119,23 +119,22 @@
     background-color: #FFA500;
     color: white;
     font-size: 1.2rem;
-    padding: 10px 20px;
+    padding: 12px 28px;
     border: none;
     cursor: pointer;
     margin-top: 20px;
     transition: background-color 0.3s;
+    border-radius: 50px; /* Rounded corners */
+    opacity: 0; /* Initially hidden for animation */
+    transform: translateY(30px); /* Prepare for slide-up */
+    animation: fadeSlideUp 1.5s ease-out forwards;
+  }
+  
+  .cta12-button.slide-up {
+    animation-delay: 1.2s; /* Appear after text */
   }
   
   .cta12-button:hover {
     background-color: #FF4500;
-  }
-  
-  @keyframes fadeIn {
-    from {
-      opacity: 0;
-    }
-    to {
-      opacity: 1;
-    }
   }
   
