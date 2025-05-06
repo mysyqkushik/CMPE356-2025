@@ -124,10 +124,10 @@ const HeaderSplash = () => {
           detectRetina: true
         }}
       />
-      <div className="header-content">
-      <div className="logo-container slide-up">
-  <img src="/bookowl_prev_ui.png" alt="The Book Owl Logo" className="logo" />
-  <div className="logo-text slide-up">
+      <div className="header12-content">
+      <div className="logo12-container slide-up">
+  <img src="/bookowl_prev_ui.png" alt="The Book Owl Logo" className="logo12" />
+  <div className="logo12-text slide-up">
     <div>THE</div>
     <div>BOOK</div>
     <div>OWL</div>
@@ -138,7 +138,7 @@ const HeaderSplash = () => {
 <h1 className="splash-text slide-up">Welcome to Your Next Favourite Read</h1>
 
 
-        <button className="cta-button" onClick={handleGetStarted}>
+        <button className="cta12-button" onClick={handleGetStarted}>
           GET STARTED
         </button>
       </div>

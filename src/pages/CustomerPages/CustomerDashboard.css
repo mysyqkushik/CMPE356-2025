@@ -28,7 +28,7 @@
     justify-content: space-between;
   }
   
-  .sidebar .logo {
+  .sidebar .logo12 {
     max-width: 250px; /* Restrict width to prevent overflow */
     flex-wrap: wrap; /* Forces text to break when too long */
     text-align: left;
@@ -431,7 +431,7 @@
     z-index: 1000;
   }
 
-  .sidebar .logo {
+  .sidebar .logo12 {
     font-size: 28px;
     margin-bottom: 15px;
   }
@@ -472,7 +472,7 @@
     padding: 10px;
   }
 
-  .sidebar .logo {
+  .sidebar .logo12 {
     font-size: 24px;
   }
 

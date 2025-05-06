@@ -130,7 +130,7 @@ const CustomerDashboard = () => {
   return (
     <div className="dashboard-container">
       <aside className="sidebar">
-        <div className="logo">Welcome, {firstName ? firstName : "User"}!</div>
+        <div className="logo12">Welcome, {firstName ? firstName : "User"}!</div>
         <nav>
           <ul>
             <li className="active"><span>🏠</span> My Dashboard</li>

@@ -335,7 +335,7 @@ const ManagerDashboard = () => {
         </nav>
       </aside>
 
-      <div className="main-content">
+      <div className="main-content1">
         <header className="navbar3">
           <div className="navbar-icons">
             <NotificationBell userId={userId} />

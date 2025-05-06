@@ -20,7 +20,7 @@
     }
   }
   
-  .header-content {
+  .header12-content {
     position: absolute;
     top: 50%;
     left: 50%;
@@ -35,28 +35,28 @@
     flex-direction: column;
   }
   
-  .logo-container {
+  .logo12-container {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 40px;
+    gap: -90px;
     margin-bottom: -20px;
     margin-left: -330px;
   }
   
-  .logo {
+  .logo12 {
     width: 260px; /* Increased size for big owl */
     height: auto;
-    margin-left: 200px;
+    margin-left: 250px;
   }
   
-  .logo-text {
+  .logo12-text {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    margin-left: 470px;
-    margin-top: -210px;
-    font-size: 2.8rem;  /* Bigger stacked font */
+    margin-top: 30px;
+    margin-left: -50px;
+    font-size: 2.9rem;  /* Bigger stacked font */
     font-weight: 900;
     color: #FCE8C8;
     text-align: left;
@@ -89,11 +89,11 @@
     animation: fadeSlideUp 1.5s ease-out forwards;
   }
   
-  .logo-container.slide-up {
+  .logo12-container.slide-up {
     animation-delay: 0.3s;
   }
   
-  .logo-text.slide-up {
+  .logo12-text.slide-up {
     animation-delay: 0.6s;
   }
   
@@ -115,7 +115,7 @@
     margin-top: 20px;
   }
   
-  .cta-button {
+  .cta12-button {
     background-color: #FFA500;
     color: white;
     font-size: 1.2rem;
@@ -126,7 +126,7 @@
     transition: background-color 0.3s;
   }
   
-  .cta-button:hover {
+  .cta12-button:hover {
     background-color: #FF4500;
   }
   
