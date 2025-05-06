@@ -46,6 +46,7 @@ import ResetPassword from './pages/ResetPassword';
 import ManagerIssueBook from './pages//ManagerIssueBook';
 import ManagerAddBook from './pages/ManagerAddBook';
 import ManagerNavBar from './pages/ManagerNavBar';
+import HeaderSplash from './pages/HeaderSplash';
 import './index.css';
 
 const router = createBrowserRouter([
@@ -228,6 +229,10 @@ const router = createBrowserRouter([
   {
     path: "/ManagerNavBar",
     element: <ManagerNavBar />,
+  },
+  {
+    path: "/HeaderSplash",
+    element: <HeaderSplash />,
   }
 
 ]);

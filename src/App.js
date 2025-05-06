@@ -44,16 +44,20 @@ import ResetPassword from './pages/ResetPassword';
 import ManagerIssueBook from './pages//ManagerIssueBook';
 import ManagerAddBook from './pages/ManagerAddBook';
 import ManagerNavBar from './pages/ManagerNavBar';
+import HeaderSplash from './pages/HeaderSplash';
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import './App.css';
 
 
 const App = () => {
+
   return (
+    
     <>
+  
       <Routes>
-        <Route path="/" element ={<SplashPage />} />
+        <Route path="/" element ={<HeaderSplash />} />
         <Route path="/HomePage" element={<HomePage />} /> 
         <Route path="/CustomerLogin" element={<CustomerLogin />} />
         <Route path="/AdminLogin" element={<AdminLogin />} />
@@ -98,6 +102,7 @@ const App = () => {
         <Route path="/ManagerIssueBook" element={<ManagerIssueBook/>} />
         <Route path="/ManagerAddBook" element={<ManagerAddBook/>} />
         <Route path="/ManagerNavBar" element={<ManagerNavBar />} />
+        <Route path="/HeaderSplash" element={<HeaderSplash />} />
        
        
         <Route path="/reset-password/:email" element={<ResetPassword />} />
