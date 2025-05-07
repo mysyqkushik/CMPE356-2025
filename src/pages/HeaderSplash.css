@@ -6,6 +6,7 @@
     background: linear-gradient(45deg, #ff0077, #ff9900, #ffcc00, #00ffcc, #0000ff);
     background-size: 400% 400%;
     animation: gradientAnimation 15s ease infinite;
+    font-family: 'Poppins', sans-serif;
   }
   
   @keyframes gradientAnimation {

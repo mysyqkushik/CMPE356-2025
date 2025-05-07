@@ -105,6 +105,10 @@ const AdminDashboard = () => {
     const [filterValue, setFilterValue] = useState("");
     const [sortOption, setSortOption] = useState("");
 
+    const [showTable, setShowTable] = useState(false);
+const [searchQuery, setSearchQuery] = useState("");
+
+
     const [showEditPopup, setShowEditPopup] = useState(false);
     const [showDeletePopup, setShowDeletePopup] = useState(false);
     const [showEditForm, setShowEditForm] = useState(false);
@@ -793,45 +797,58 @@ const AdminDashboard = () => {
                     </section>
                 )}
 
-                {selectedCategory === "users" && (
-                    <section className="users-list">
-                        <h3>All Users</h3>
-                        <div className="user-actions">
-                            <button onClick={() => handleAddUser()}>
-                                ➕ Add User
-                            </button>
-                            <button onClick={() => handleEditUser()}>
-                                ✏️ Edit User
-                            </button>
-                            <button onClick={() => handleDeleteUser()}>
-                                🗑️ Delete User
-                            </button>
-                        </div>
+{selectedCategory === "users" && (
+    <section className="users-list">
+        <h3>All Users</h3>
 
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th>User ID</th>
-                                    <th>First Name</th>
-                                    <th>Last Name</th>
-                                    <th>Email</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {users.map((user) => (
-                                    <tr key={user.id}>
-                                        <td>{user.id}</td>
-                                        <td>{user.firstName}</td>{" "}
-                                        {/* fixed field name */}
-                                        <td>{user.lastName}</td>{" "}
-                                        {/* fixed field name */}
-                                        <td>{user.email}</td>
-                                    </tr>
-                                ))}
-                            </tbody>
-                        </table>
-                    </section>
-                )}
+        <div className="user-actions">
+            <button onClick={() => handleAddUser()}>➕ Add User</button>
+            <button onClick={() => handleEditUser()}>✏️ Edit User</button>
+            <button onClick={() => handleDeleteUser()}>🗑️ Delete User</button>
+        </div>
+
+        <div className="search-bar552">
+            <input
+                type="text"
+                placeholder="🔍 Search by ID, username, or email"
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                className="styled-search-input"
+            />
+        </div>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>User ID</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Email</th>
+                    <th>Username</th>
+                </tr>
+            </thead>
+            <tbody>
+                {users
+                    .filter((user) =>
+                        user.id.toString().includes(searchQuery) ||
+                        user.username?.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                        user.email?.toLowerCase().includes(searchQuery.toLowerCase())
+                    )
+                    .map((user) => (
+                        <tr key={user.id}>
+                            <td>{user.id}</td>
+                            <td>{user.firstName}</td>
+                            <td>{user.lastName}</td>
+                            <td>{user.email}</td>
+                            <td>{user.username}</td>
+                        </tr>
+                    ))}
+            </tbody>
+        </table>
+    </section>
+)}
+
+
             </div>
             {showEditForm && editUserData && (
                 <div className="popup-form872">
