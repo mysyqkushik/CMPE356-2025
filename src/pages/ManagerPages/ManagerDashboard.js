@@ -160,11 +160,11 @@ const ManagerDashboard = () => {
   const totalBooks = books.length;
   const booksBorrowed = borrowedBooks.length;
   const overdueBooks = getOverdueBooks().length;
+  const totalQuantity = books.reduce((sum, book) => sum + book.quantity, 0);
   const newBooks = [...books]
     .sort((a, b) => b.ID - a.ID)
     .slice(-9)
     .reverse();
-  const totalQuantity = books.reduce((sum, book) => sum + book.quantity, 0);
 
   const handleCardClick = (category) => {
     setSelectedCategory(category);
@@ -187,6 +187,8 @@ const ManagerDashboard = () => {
       case "new":
         filtered = newBooks;
         break;
+      case "inventory":
+        return books;
       default:
         return [];
     }
@@ -351,23 +353,38 @@ const ManagerDashboard = () => {
         </header>
 
         <section className="dashboard-cards">
-          <div className="card blue" onClick={() => handleCardClick("total")}>
+          <div
+            className="card blue"
+            onClick={() => handleCardClick("total")}
+          >
             <h3>Total Books in Library</h3>
             <p className="big-number">{totalBooks}</p>
           </div>
-          <div className="card green" onClick={() => handleCardClick("borrowed")}>
+          <div
+            className="card green"
+            onClick={() => handleCardClick("borrowed")}
+          >
             <h3>Books Currently Borrowed</h3>
             <p className="big-number">{booksBorrowed}</p>
           </div>
-          <div className="card yellow" onClick={() => handleCardClick("due")}>
-            <h3>Books Due for Return</h3>
+          <div
+            className="card yellow"
+            onClick={() => handleCardClick("due")}
+          >
+            <h3>Overdue Books</h3>
             <p className="big-number">{overdueBooks}</p>
           </div>
-          <div className="card red" onClick={() => handleCardClick("new")}>
+          <div
+            className="card red"
+            onClick={() => handleCardClick("new")}
+          >
             <h3>New Book Arrivals</h3>
             <p className="big-number">{newBooks.length}</p>
           </div>
-          <div className="card orange" onClick={() => handleCardClick("inventory")}>
+          <div
+            className="card orange"
+            onClick={() => handleCardClick("inventory")}
+          >
             <h3>Book Quantity</h3>
             <p className="big-number">{totalQuantity}</p>
           </div>
@@ -381,6 +398,7 @@ const ManagerDashboard = () => {
                 {selectedCategory === "borrowed" && "Books Currently Borrowed"}
                 {selectedCategory === "due" && "Overdue Books"}
                 {selectedCategory === "new" && "New Book Arrivals"}
+                {selectedCategory === "inventory" && "Books Inventory"}
               </h3>
               {selectedCategory !== "borrowed" && selectedCategory !== "due" && (
                 <Link
@@ -528,6 +546,77 @@ const ManagerDashboard = () => {
                   </table>
                 )}
               </div>
+            ) : selectedCategory === "inventory" ? (
+              <div className="books-table">
+                <div className="search-filter-bar">
+                  <input
+                    type="text"
+                    placeholder="Search by Book ID, Title, or Quantity"
+                    onChange={(e) => setSearchTerm(e.target.value.toLowerCase())}
+                    className="search-input"
+                  />
+                  <select
+                    onChange={(e) => setSortOption(e.target.value)}
+                    className="filter-dropdown"
+                  >
+                    <option value="">Sort by...</option>
+                    <option value="quantityDesc">Quantity (Highest First)</option>
+                    <option value="quantityAsc">Quantity (Lowest First)</option>
+                    <option value="titleAZ">Book Title A-Z</option>
+                    <option value="titleZA">Book Title Z-A</option>
+                  </select>
+                  <button
+                    className="clear-button"
+                    onClick={() => {
+                      setSearchTerm("");
+                      setSortOption("");
+                    }}
+                  >
+                    Clear Filters
+                  </button>
+                </div>
+                <table>
+                  <thead>
+                    <tr>
+                      <th>Book ID</th>
+                      <th>Book Title</th>
+                      <th>Quantity</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {books
+                      .filter(book => 
+                        book.id.toString().includes(searchTerm) ||
+                        book.title.toLowerCase().includes(searchTerm) ||
+                        book.quantity.toString().includes(searchTerm)
+                      )
+                      .sort((a, b) => {
+                        switch(sortOption) {
+                          case 'quantityDesc':
+                            return b.quantity - a.quantity;
+                          case 'quantityAsc':
+                            return a.quantity - b.quantity;
+                          case 'titleAZ':
+                            return a.title.localeCompare(b.title);
+                          case 'titleZA':
+                            return b.title.localeCompare(a.title);
+                          default:
+                            return 0;
+                        }
+                      })
+                      .map((book) => (
+                        <tr key={book.id}>
+                          <td>{book.id}</td>
+                          <td>{book.title}</td>
+                          <td>{book.quantity}</td>
+                        </tr>
+                      ))}
+                  </tbody>
+                </table>
+                <div className="total-quantity">
+                  <h4>Total Quantity of Books: {totalQuantity}</h4>
+                </div>
+              </div>
             ) : (
               <>
                 <div className="search-filter-bar">
@@ -628,39 +717,9 @@ const ManagerDashboard = () => {
                 </table>
               </>
             )}
-            
           </section>
         )}
-        <section className="books-table">
-        <h3>Books Inventory</h3>
-        <table>
-          <thead>
-            <tr>
-              <th>Book ID</th>
-              <th>Book Title</th>
-              <th>Quantity</th>
-            </tr>
-          </thead>
-          <tbody>
-            {books.map((book) => (
-              <tr key={book.id}>
-                <td>{book.id}</td>
-                <td>{book.title}</td>
-                <td>{book.quantity}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-
-        <div className="total-quantity">
-          <h4>Total Quantity of Books: {totalQuantity}</h4>
-        </div>
-      </section>
-
-
-        
       </div>
-      
     </div>
   );
 };
