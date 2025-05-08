@@ -123,6 +123,8 @@ const [searchQuery, setSearchQuery] = useState("");
 
     const [overdueSearchTerm, setOverdueSearchTerm] = useState("");
     const [overdueSortOption, setOverdueSortOption] = useState("");
+
+    const totalQuantity = books.reduce((sum, book) => sum + book.quantity, 0);
     
 
     const [userId, setUserId] = useState("");
@@ -505,6 +507,14 @@ const [searchQuery, setSearchQuery] = useState("");
                         <h3>View Users</h3>
                         <p className="big-number">{users.length}</p>
                     </div>
+                    <div
+    className="card orange"
+    onClick={() => handleCardClick("inventory")}
+>
+    <h3>Book Quantity</h3>
+    <p className="big-number">{totalQuantity}</p>
+</div>
+
                 </section>
 
                 {selectedCategory && selectedCategory !== "users" && (
@@ -847,6 +857,31 @@ const [searchQuery, setSearchQuery] = useState("");
         </table>
     </section>
 )}
+<section className="books-table">
+        <h3>Books Inventory</h3>
+        <table>
+          <thead>
+            <tr>
+              <th>Book ID</th>
+              <th>Book Title</th>
+              <th>Quantity</th>
+            </tr>
+          </thead>
+          <tbody>
+            {books.map((book) => (
+              <tr key={book.id}>
+                <td>{book.id}</td>
+                <td>{book.title}</td>
+                <td>{book.quantity}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+
+        <div className="total-quantity">
+          <h4>Total Quantity of Books: {totalQuantity}</h4>
+        </div>
+      </section>
 
 
             </div>

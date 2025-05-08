@@ -5,6 +5,8 @@ import './ManageBooks.css';
 
 const ManageBooks = () => {
   const [bookTitle, setBookTitle] = useState('');
+  const [searchTerm, setSearchTerm] = useState('');
+
   const [author, setAuthor] = useState('');
   const [publishedDate, setPublishedDate] = useState('');
   const [quantity, setQuantity] = useState('');
@@ -14,7 +16,11 @@ const ManageBooks = () => {
   const [books, setBooks] = useState([]);
   const [editingBookId, setEditingBookId] = useState(null);
   const [showBookList, setShowBookList] = useState(true);
-  const [showSuccessMessage, setShowSuccessMessage] = useState(false); // New state for success message
+  const [showSuccessMessage, setShowSuccessMessage] = useState(false); 
+  const [showDeleteMessage, setShowDeleteMessage] = useState(false); 
+  const [showDeletePopup, setShowDeletePopup] = useState(false);
+
+
 
   const loggedInUser = JSON.parse(sessionStorage.getItem('loggedInUser'));
 
@@ -30,6 +36,19 @@ const ManageBooks = () => {
       console.error('Error fetching books:', error);
     }
   };
+
+  const filteredBooks = books.filter((book) => {
+    const lowerTerm = searchTerm.toLowerCase();
+    return (
+      book.id.toString().includes(lowerTerm) ||
+      book.title.toLowerCase().includes(lowerTerm) ||
+      book.author.toLowerCase().includes(lowerTerm) ||
+      book.genre.toLowerCase().includes(lowerTerm) ||
+      book.quantity.toString().includes(lowerTerm) ||
+      book.publicationDate.toLowerCase().includes(lowerTerm)
+    );
+  });
+  
 
   const handleAddBook = async () => {
     const isEditing = Boolean(editingBookId);
@@ -81,11 +100,14 @@ const ManageBooks = () => {
     try {
       await axios.delete(`http://localhost:8080/api/books/${id}`);
       fetchBooks();
+      setShowDeletePopup(true);
+      setTimeout(() => setShowDeletePopup(false), 3000); // Hide popup after 3s
     } catch (error) {
       console.error('Error deleting book:', error);
     }
   };
-
+  
+  
   const resetForm = () => {
     setBookTitle('');
     setAuthor('');
@@ -190,18 +212,32 @@ const ManageBooks = () => {
           </button>
         </div>
 
-        {/* Success message */}
+        {/* Success / delete message */}
         {showSuccessMessage && <div className="success-message">Book List updated!</div>}
+        {showDeleteMessage && <div className="delete-message">Book deleted successfully!</div>}
+
 
         <button className="toggle-book-list-btn" onClick={toggleBookList}>
           {showBookList ? 'Hide Book List' : 'Show Book List'}
         </button>
 
+        {/* Search Bar */}
+        <div className="search-container442">
+  <input
+    type="text"
+    placeholder="Search by Book ID, Title, Author, Genre, Date, Quantity..."
+    value={searchTerm}
+    onChange={(e) => setSearchTerm(e.target.value)}
+    className="search-input442"
+  />
+</div>
+
         {showBookList && (
           <>
             <h3>Book List</h3>
             <ul className="book-list">
-              {books.map((book) => (
+            {filteredBooks.map((book) => (
+
                 <li key={book.id} className="book-item">
                   <div>
                     <h5>{book.title}</h5>
@@ -229,6 +265,15 @@ const ManageBooks = () => {
             </ul>
           </>
         )}
+        
+        {showDeletePopup && (
+  <div className="popup-overlay442">
+    <div className="popup-message442">
+      📚 Book deleted successfully!
+    </div>
+  </div>
+)}
+
       </div>
     </>
   );

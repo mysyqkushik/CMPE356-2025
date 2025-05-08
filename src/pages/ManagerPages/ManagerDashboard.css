@@ -155,6 +155,11 @@ body {
   color: #fff;
 }
 
+.card.orange {
+  background-color: #f1a66a; /* Warm orange */
+  color: #fff;
+}
+
 /* Overdue Books Table */
 .overdue-books {
   margin-top: 40px;
@@ -407,4 +412,18 @@ button:hover {
     width: 90%;
     max-width: 300px;
   }
+}
+.total-quantity {
+  background-color: #ffd7b3;
+  padding: 16px 24px;
+  margin: 20px 0;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.total-quantity h4 {
+  margin: 0;
+  font-size: 18px;
+  color: #333;
 }

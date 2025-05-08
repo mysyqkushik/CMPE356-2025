@@ -695,3 +695,30 @@ button:hover {
 .mark-read-link:hover {
     background-color: #e9ecef;
 }
+
+.card.orange {
+  background-color: #fbbea0; /* Or any other shade of orange */
+  /* Other styles to match existing cards */
+}
+
+.book-inventory-table {
+  margin-top: 20px;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+}
+
+.book-inventory-table table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.book-inventory-table th, .book-inventory-table td {
+  padding: 12px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+.book-inventory-table th {
+  background-color: #f4f4f4;
+}

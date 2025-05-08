@@ -164,6 +164,7 @@ const ManagerDashboard = () => {
     .sort((a, b) => b.ID - a.ID)
     .slice(-9)
     .reverse();
+  const totalQuantity = books.reduce((sum, book) => sum + book.quantity, 0);
 
   const handleCardClick = (category) => {
     setSelectedCategory(category);
@@ -365,6 +366,10 @@ const ManagerDashboard = () => {
           <div className="card red" onClick={() => handleCardClick("new")}>
             <h3>New Book Arrivals</h3>
             <p className="big-number">{newBooks.length}</p>
+          </div>
+          <div className="card orange" onClick={() => handleCardClick("inventory")}>
+            <h3>Book Quantity</h3>
+            <p className="big-number">{totalQuantity}</p>
           </div>
         </section>
 
@@ -623,9 +628,39 @@ const ManagerDashboard = () => {
                 </table>
               </>
             )}
+            
           </section>
         )}
+        <section className="books-table">
+        <h3>Books Inventory</h3>
+        <table>
+          <thead>
+            <tr>
+              <th>Book ID</th>
+              <th>Book Title</th>
+              <th>Quantity</th>
+            </tr>
+          </thead>
+          <tbody>
+            {books.map((book) => (
+              <tr key={book.id}>
+                <td>{book.id}</td>
+                <td>{book.title}</td>
+                <td>{book.quantity}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+
+        <div className="total-quantity">
+          <h4>Total Quantity of Books: {totalQuantity}</h4>
+        </div>
+      </section>
+
+
+        
       </div>
+      
     </div>
   );
 };
