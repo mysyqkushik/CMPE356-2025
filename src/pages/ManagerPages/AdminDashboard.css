@@ -722,3 +722,56 @@ button:hover {
 .book-inventory-table th {
   background-color: #f4f4f4;
 }
+
+.books-table {
+    width: 100%;
+    margin-top: 20px;
+    padding: 0;
+}
+
+.books-table table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+    table-layout: fixed;
+}
+
+.books-table th,
+.books-table td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+    word-wrap: break-word;
+}
+
+.books-table th {
+    background-color: #f4f4f4;
+    color: #333;
+    font-weight: bold;
+    position: sticky;
+    top: 0;
+}
+
+.books-table tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.books-table tr:hover {
+    background-color: #f5f5f5;
+}
+
+.total-quantity {
+    text-align: center;
+    margin-top: 30px;
+    padding: 20px;
+}
+
+.total-quantity h4 {
+    display: inline-block;
+    background-color: #f29f6f;
+    color: #fff;
+    padding: 15px 30px;
+    border-radius: 25px;
+    font-size: 24px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}

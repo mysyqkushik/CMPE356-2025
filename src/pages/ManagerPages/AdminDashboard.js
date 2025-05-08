@@ -508,12 +508,12 @@ const [searchQuery, setSearchQuery] = useState("");
                         <p className="big-number">{users.length}</p>
                     </div>
                     <div
-    className="card orange"
-    onClick={() => handleCardClick("inventory")}
->
-    <h3>Book Quantity</h3>
-    <p className="big-number">{totalQuantity}</p>
-</div>
+                        className="card orange"
+                        onClick={() => handleCardClick("inventory")}
+                    >
+                        <h3>Book Quantity</h3>
+                        <p className="big-number">{totalQuantity}</p>
+                    </div>
 
                 </section>
 
@@ -527,6 +527,8 @@ const [searchQuery, setSearchQuery] = useState("");
                                 {selectedCategory === "due" && "Overdue Books"}
                                 {selectedCategory === "new" &&
                                     "New Book Arrivals"}
+                                {selectedCategory === "inventory" &&
+                                    "Book Quantity"}
                             </h3>
                             {selectedCategory !== "borrowed" && (
                                 <Link
@@ -673,6 +675,77 @@ const [searchQuery, setSearchQuery] = useState("");
                                         </tbody>
                                     </table>
                                 )}
+                            </div>
+                        ) : selectedCategory === "inventory" ? (
+                            <div className="books-table">
+                                <div className="search-filter-bar">
+                                    <input
+                                        type="text"
+                                        placeholder="Search by Book ID, Title, or Quantity"
+                                        onChange={(e) => setSearchTerm(e.target.value.toLowerCase())}
+                                        className="search-input"
+                                    />
+                                    <select
+                                        onChange={(e) => setSortOption(e.target.value)}
+                                        className="filter-dropdown"
+                                    >
+                                        <option value="">Sort by...</option>
+                                        <option value="quantityDesc">Quantity (Highest First)</option>
+                                        <option value="quantityAsc">Quantity (Lowest First)</option>
+                                        <option value="titleAZ">Book Title A-Z</option>
+                                        <option value="titleZA">Book Title Z-A</option>
+                                    </select>
+                                    <button
+                                        className="clear-button"
+                                        onClick={() => {
+                                            setSearchTerm("");
+                                            setSortOption("");
+                                        }}
+                                    >
+                                        Clear Filters
+                                    </button>
+                                </div>
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th>Book ID</th>
+                                            <th>Book Title</th>
+                                            <th>Quantity</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {books
+                                            .filter(book => 
+                                                book.id.toString().includes(searchTerm) ||
+                                                book.title.toLowerCase().includes(searchTerm) ||
+                                                book.quantity.toString().includes(searchTerm)
+                                            )
+                                            .sort((a, b) => {
+                                                switch(sortOption) {
+                                                    case 'quantityDesc':
+                                                        return b.quantity - a.quantity;
+                                                    case 'quantityAsc':
+                                                        return a.quantity - b.quantity;
+                                                    case 'titleAZ':
+                                                        return a.title.localeCompare(b.title);
+                                                    case 'titleZA':
+                                                        return b.title.localeCompare(a.title);
+                                                    default:
+                                                        return 0;
+                                                }
+                                            })
+                                            .map((book) => (
+                                                <tr key={book.id}>
+                                                    <td>{book.id}</td>
+                                                    <td>{book.title}</td>
+                                                    <td>{book.quantity}</td>
+                                                </tr>
+                                            ))}
+                                    </tbody>
+                                </table>
+                                <div className="total-quantity">
+                                    <h4>Total Quantity of Books: {totalQuantity}</h4>
+                                </div>
                             </div>
                         ) : (
                             <>
@@ -857,32 +930,6 @@ const [searchQuery, setSearchQuery] = useState("");
         </table>
     </section>
 )}
-<section className="books-table">
-        <h3>Books Inventory</h3>
-        <table>
-          <thead>
-            <tr>
-              <th>Book ID</th>
-              <th>Book Title</th>
-              <th>Quantity</th>
-            </tr>
-          </thead>
-          <tbody>
-            {books.map((book) => (
-              <tr key={book.id}>
-                <td>{book.id}</td>
-                <td>{book.title}</td>
-                <td>{book.quantity}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-
-        <div className="total-quantity">
-          <h4>Total Quantity of Books: {totalQuantity}</h4>
-        </div>
-      </section>
-
 
             </div>
             {showEditForm && editUserData && (
