@@ -9,10 +9,46 @@ const UnifiedLogin = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const [validationErrors, setValidationErrors] = useState({});
   const [showRoleSelection, setShowRoleSelection] = useState(false); // state to handle role selection popup
   const [roles, setRoles] = useState([]); // state to store the user's roles
 
+  const validateForm = () => {
+    const errors = {};
+    
+    // Username validation
+    if (!username.trim()) {
+      errors.username = "Field required";
+    }
+
+    // Email validation
+    if (!email.trim()) {
+      errors.email = "Field required";
+    } else if (!email.includes('@')) {
+      errors.email = "Please enter a valid email address";
+    }
+
+    // Password validation
+    if (!password) {
+      errors.password = "Field required";
+    } else if (password.length < 3) {
+      errors.password = "Password must be at least 3 characters long";
+    }
+
+    setValidationErrors(errors);
+    return Object.keys(errors).length === 0;
+  };
+
   const handleLogin = async () => {
+    // Clear previous errors
+    setError("");
+    setValidationErrors({});
+
+    // Validate form before submission
+    if (!validateForm()) {
+      return;
+    }
+
     try {
       const response = await axios.post(
         "http://localhost:8080/api/users/login",
@@ -38,7 +74,11 @@ const UnifiedLogin = () => {
       }
     } catch (error) {
       console.error("Login error:", error.response ? error.response.data : error);
-      setError("Server error. Please try again.");
+      if (error.response && error.response.status === 401) {
+        setError("Invalid email or password");
+      } else {
+        setError("Server error. Please try again.");
+      }
     }
   };
 
@@ -79,7 +119,11 @@ const UnifiedLogin = () => {
             placeholder="Username"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
+            className={validationErrors.username ? "error-input" : ""}
           />
+          {validationErrors.username && (
+            <div className="validation-error">{validationErrors.username}</div>
+          )}
         </div>
         <div className="input">
           <img src="envelope.png" alt="Email Icon" />
@@ -88,7 +132,11 @@ const UnifiedLogin = () => {
             placeholder="Email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
+            className={validationErrors.email ? "error-input" : ""}
           />
+          {validationErrors.email && (
+            <div className="validation-error">{validationErrors.email}</div>
+          )}
         </div>
         <div className="input">
           <img src="lock.png" alt="Password Icon" />
@@ -97,7 +145,11 @@ const UnifiedLogin = () => {
             placeholder="Password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
+            className={validationErrors.password ? "error-input" : ""}
           />
+          {validationErrors.password && (
+            <div className="validation-error">{validationErrors.password}</div>
+          )}
         </div>
       </div>
       {error && <div className="error">{error}</div>}

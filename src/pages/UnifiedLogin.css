@@ -6,80 +6,88 @@
 body {
     background: url('/public/bookshelfbg.jpg') no-repeat center center fixed; 
     background-size: cover;
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
   }
 
 .container{
     display: flex;
-    /*justify-content: center;
-    align-items: center;
-    height: 100vh; */
-    background: #e1b794;
+    background: rgba(225, 183, 148, 0.95);
     flex-direction:column;
-    margin:auto;
-    padding-bottom: 10px;
-    margin-top: 200px;
-    margin-bottom: 200px;
-    width: 500px;
-    border-radius: 55px;
+    margin: 80px auto;
+    padding: 25px 35px;
+    width: 450px;
+    border-radius: 65px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(4px);
 }
 
 .header{
     display: flex;
-    gap: 9px;
+    gap: 6px;
     align-items: center;
     width: 100%;
     flex-direction:column;
-    margin:auto;
-    padding-bottom: 30px;
-    margin-top: 30px;
+    margin: 0 auto;
+    padding-bottom: 20px;
 }
 
 .text{
-    color: rgba(165, 75, 42, 0.862);
-    font-size: 48px;
+    color: rgba(165, 75, 42, 0.95);
+    font-size: 42px;
     font-weight: 700;
     text-transform: none;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .underline{
-    width: 380px;
-    margin-left: 10px;
-    height: 6px;
-    background: rgba(165, 75, 42, 0.862);
+    width: 320px;
+    height: 5px;
+    background: rgba(165, 75, 42, 0.95);
     border-radius: 9px;
 }
 
 .inputs{
-    margin-top: 55px;
+    margin-top: 25px;
     display: flex;
     flex-direction:column;
-    gap: 25px;
+    gap: 20px;
 }
 
 .input{
     display:flex;
     align-items: center;
-    margin: auto;
-    width: 300px;
-    height: 50px;
-    background: rgba(230, 163, 115, 0.547);
-    border-radius: 6px;
+    margin: 0 auto;
+    width: 280px;
+    height: 45px;
+    background: rgba(230, 163, 115, 0.7);
+    border-radius: 12px;
     overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.input:hover {
+    background: rgba(230, 163, 115, 0.9);
+    transform: translateY(-2px);
 }
 
 .input img{
-    margin: 0 30px;
+    margin: 0 25px;
     flex-shrink: 0;
+    opacity: 0.8;
+    width: 20px;
+    height: 20px;
 }
 
 .input input{
     width: 100%;
-    height: 50px;
+    height: 45px;
     background: transparent;
     border: none;
     outline: none;
-    font-size: 19px;
-    color: rgba(101, 68, 56, 0.862);
+    font-size: 17px;
+    color: rgba(101, 68, 56, 0.95);
     padding-right: 10px;
     min-width: 0;
     overflow: hidden;
@@ -87,107 +95,152 @@ body {
     white-space: nowrap;
 }
 
+.input input::placeholder {
+    color: rgba(101, 68, 56, 0.6);
+}
+
+.validation-error {
+    color: #d32f2f;
+    font-size: 0.7rem;
+    margin-top: 3px;
+    margin-left: 10px;
+    text-align: left;
+    font-weight: 500;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.error-input {
+    background: rgba(254, 214, 178, 0.7) !important;
+    border: 2px solid #d32f2f !important;
+}
+
+.error-input:focus {
+    box-shadow: 0 0 0 2px rgba(211, 47, 47, 0.2) !important;
+}
+
 .forgot-password
 {
     padding-left: 150px;
-    margin-top: 27px;
+    margin-top: 20px;
     margin-left: -150px;
-    color: #4a433dc5;
-    font-size: 15px;
+    color: rgba(74, 67, 61, 0.9);
+    font-size: 14px;
 }
 
-.forgot-password span{
-    color: rgba(141, 74, 23, 0.659);
-    cursor: pointer;
+.forgot-password a {
+    color: rgba(141, 74, 23, 0.9);
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.forgot-password a:hover {
+    color: rgba(165, 75, 42, 0.95);
+    text-decoration: underline;
 }
 
 .submit-container{
     display: flex;
     gap: 30px;
-    margin: 60px auto;
+    margin: 30px auto;
 }
 
 .submit{
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 220px;
-    height: 59px;
+    width: 200px;
+    height: 50px;
     color: white;
-    background: rgba(145, 78, 23, 0.874);
+    background: rgba(145, 78, 23, 0.95);
     border-radius: 50px;
-    font-size: 19px;
+    font-size: 18px;
     font-weight: 700;
     cursor: pointer;
+    border: none;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-.submit-container {
-    display: flex;
-    gap: 30px;
-    margin: 30px auto; /* Reduced from 60px to 30px */
-  }
-  
-  .home-button-container {
+.submit:hover {
+    background: rgba(165, 75, 42, 0.95);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+}
+
+.home-button-container {
     display: flex;
     justify-content: center;
-    margin-bottom: 30px;
-    margin-top: 0; /* Ensures no extra space at the top */
-  }
-  
-  .home-button {
+    margin-bottom: 15px;
+}
+
+.home-button {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 220px;
-    height: 40px;
+    width: 200px;
+    height: 35px;
     color: white;
-    background: rgba(101, 68, 56, 0.8);
+    background: rgba(101, 68, 56, 0.9);
     border-radius: 50px;
-    font-size: 16px;
+    font-size: 15px;
     font-weight: 500;
     cursor: pointer;
     border: none;
-    transition: background-color 0.3s ease;
-  }
-  
-  .home-button:hover {
-    background: rgba(101, 68, 56, 1);
-  }
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
 
-  .role-selection-popup {
+.home-button:hover {
+    background: rgba(101, 68, 56, 1);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+}
+
+.role-selection-popup {
     position: fixed;
     top: 20%;
     left: 50%;
     transform: translateX(-50%);
-    background-color: white;
+    background: rgba(225, 183, 148, 0.98);
     padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 30px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
     z-index: 1000;
-  }
-  
-  .role-selection-popup button {
+    backdrop-filter: blur(4px);
+}
+
+.role-selection-popup h3 {
+    color: rgba(165, 75, 42, 0.95);
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.role-selection-popup button {
     margin: 10px;
-    padding: 10px 20px;
-    background-color: #fb8b0b;
+    padding: 12px 24px;
+    background: rgba(145, 78, 23, 0.95);
     color: white;
     border: none;
+    border-radius: 25px;
     cursor: pointer;
-  }
-  
-  .role-selection-popup button:hover {
-    background-color: #f4d84a;
-  }
-  
+    transition: all 0.3s ease;
+    font-weight: 500;
+}
+
+.role-selection-popup button:hover {
+    background: rgba(165, 75, 42, 0.95);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
 
 /* Responsive adjustments */
 @media screen and (max-width: 768px) {
     .container {
       width: 90%;
       max-width: 450px;
-      margin-top: 100px;
-      margin-bottom: 100px;
-      padding: 20px 10px;
+      margin: 100px auto;
+      padding: 25px 20px;
     }
     
     .text {
@@ -203,8 +256,8 @@ body {
   @media screen and (max-width: 480px) {
     .container {
       width: 95%;
-      margin-top: 50px;
-      margin-bottom: 50px;
+      margin: 50px auto;
+      padding: 20px 15px;
     }
     
     .text {
@@ -220,23 +273,20 @@ body {
       width: 90%;
     }
     
-    .submit {
-      width: 180px;
-    }
-    
-    .home-button {
+    .submit, .home-button {
       width: 180px;
     }
     
     .forgot-password {
       padding-left: 0;
       text-align: center;
+      margin-left: 0;
     }
   }
   
   @media screen and (max-width: 320px) {
     .container {
-      padding: 15px 5px;
+      padding: 15px 10px;
     }
     
     .text {
@@ -244,7 +294,7 @@ body {
     }
     
     .inputs {
-      margin-top: 30px;
+      margin-top: 25px;
       gap: 20px;
     }
     

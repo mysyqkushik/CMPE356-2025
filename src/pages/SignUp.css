@@ -1,6 +1,6 @@
 /* General Styles */
 * {
-  font-family: "Prompt", sans-serif;
+  font-family: "Poppins", sans-serif;
 }
 
 body {
@@ -19,7 +19,7 @@ body {
   margin-top: 200px;
   margin-bottom: 200px;
   width: 500px;
-  border-radius: 55px;
+  border-radius: 65px;
 }
 
 .header {
@@ -62,7 +62,7 @@ body {
   width: 300px;
   height: 50px;
   background: rgba(230, 163, 115, 0.547);
-  border-radius: 6px;
+  border-radius: 12px;
 }
 
 .input img {
@@ -108,12 +108,12 @@ body {
   width: 300px;
   height: 50px;
   background: rgba(230, 163, 115, 0.547);
-  border-radius: 6px;
-  padding: 0 10px;
-  position: relative; /* Needed for custom dropdown arrow */
+  border-radius: 16px;
+  padding: 6px;
+  position: relative; 
 }
 
-/* Styling the dropdown */
+
 .selectrole1 select {
   width: 100%;
   height: 100%;
@@ -123,11 +123,11 @@ body {
   color: rgba(101, 68, 56, 0.862);
   outline: none;
   cursor: pointer;
-  appearance: none; /* Hides default dropdown arrow */
+  appearance: none; 
   padding: 0 10px;
 }
 
-/* Adding a custom dropdown arrow */
+
 .selectrole1::after {
   content: "▼";
   font-size: 14px;
@@ -137,7 +137,7 @@ body {
   pointer-events: none;
 }
 
-/* Remove default dropdown styling in some browsers */
+
 .selectrole1 select:-moz-focusring {
   color: transparent;
   text-shadow: 0 0 0 rgba(101, 68, 56, 0.862);
@@ -268,4 +268,42 @@ body {
     height: 35px;
     font-size: 14px;
   }
+}
+
+
+.role-selection-popup {
+  position: fixed;
+  top: 20%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(225, 183, 148, 0.98);
+  padding: 20px;
+  border-radius: 50px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+  backdrop-filter: blur(4px);
+}
+
+.role-selection-popup h3 {
+  color: rgba(165, 75, 42, 0.95);
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.role-selection-popup button {
+  margin: 10px;
+  padding: 12px 24px;
+  background: rgba(145, 78, 23, 0.95);
+  color: white;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-weight: 500;
+}
+
+.role-selection-popup button:hover {
+  background: rgba(165, 75, 42, 0.95);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
