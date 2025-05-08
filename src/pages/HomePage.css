@@ -58,6 +58,7 @@ html, body {
   margin-top: 80px;
   max-width: 800px;
   z-index: 950;
+  animation: fadeInUp 0.5s ease-out;
 }
 
 .search-bar {
@@ -67,6 +68,7 @@ html, body {
   border: none;
   outline: none;
   border-radius: 20px;
+  animation: fadeIn 0.5s ease-out 0.2s;
 }
 
 .search-button {
@@ -80,6 +82,7 @@ html, body {
   margin-left: 8px;
   position: relative;
   z-index: 960;
+  animation: fadeIn 0.5s ease-out 0.3s;
 }
 
 .search-container .search-bar,
@@ -107,6 +110,7 @@ html, body {
   margin: 10px;
   position: relative;
   z-index: 960;
+  animation: fadeIn 0.5s ease-out 0.1s;
 }
 
 .dropdown {
@@ -155,6 +159,7 @@ html, body {
   max-height: 350px;
   overflow-y: auto;
   width: 100%;
+  animation: fadeIn 0.3s ease-out;
 }
 
 .suggestions-list {
@@ -174,6 +179,7 @@ html, body {
   border-bottom: 1px solid #eee;
   transition: background-color 0.2s ease;
   background-color: white;
+  animation: fadeIn 0.3s ease-out;
 }
 
 .suggestion-item:last-child {
@@ -436,5 +442,26 @@ body.dark-mode .search-bar {
   .suggestion-image {
     width: 30px;
     margin-right: 10px;
+  }
+}
+
+/* Add keyframes for animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
