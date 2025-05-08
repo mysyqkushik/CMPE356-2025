@@ -10,8 +10,10 @@ const UnifiedLogin = () => {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [validationErrors, setValidationErrors] = useState({});
-  const [showRoleSelection, setShowRoleSelection] = useState(false); // state to handle role selection popup
-  const [roles, setRoles] = useState([]); // state to store the user's roles
+  const [showRoleSelection, setShowRoleSelection] = useState(false); 
+  const [showPassword, setShowPassword] = useState(false);
+
+  const [roles, setRoles] = useState([]); 
 
   const validateForm = () => {
     const errors = {};
@@ -140,13 +142,22 @@ const UnifiedLogin = () => {
         </div>
         <div className="input">
           <img src="lock.png" alt="Password Icon" />
-          <input
-            type="password"
-            placeholder="Password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            className={validationErrors.password ? "error-input" : ""}
-          />
+          <div className="password-input-wrapper">
+  <input
+    type={showPassword ? "text" : "password"}
+    placeholder="Password"
+    value={password}
+    onChange={(e) => setPassword(e.target.value)}
+    className={validationErrors.password ? "error-input" : ""}
+  />
+  <span
+    className="toggle-password"
+    onClick={() => setShowPassword(!showPassword)}
+  >
+    {showPassword ? "😳" : "😌"}
+  </span>
+</div>
+
           {validationErrors.password && (
             <div className="validation-error">{validationErrors.password}</div>
           )}
@@ -170,13 +181,15 @@ const UnifiedLogin = () => {
 
       {/* Role selection popup */}
       {showRoleSelection && (
-        <div className="role-selection-popup">
+        <div className="role-selection-popup22">
           <h3>Hi, {username}! Please select your role:</h3>
+          <div className="role-button-group">
           {roles.map((role) => (
             <button key={role} onClick={() => handleRoleSelection(role)}>
               {role.charAt(0).toUpperCase() + role.slice(1)}
             </button>
           ))}
+           </div>
         </div>
       )}
     </div>

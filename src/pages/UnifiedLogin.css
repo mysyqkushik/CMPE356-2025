@@ -196,41 +196,50 @@ body {
     box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
 }
 
-.role-selection-popup {
+.role-selection-popup22 {
     position: fixed;
     top: 20%;
     left: 50%;
     transform: translateX(-50%);
-    background: rgba(225, 183, 148, 0.98);
-    padding: 20px;
+    background: rgba(253, 216, 186, 0.98);
+    padding: 10px;
     border-radius: 30px;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 28px 32px rgba(0, 0, 0, 0.2);
     z-index: 1000;
     backdrop-filter: blur(4px);
 }
 
-.role-selection-popup h3 {
-    color: rgba(165, 75, 42, 0.95);
+.role-selection-popup22 h3 {
+    color: rgba(94, 59, 32, 0.95);
+    font-size: 26px;
     margin-bottom: 20px;
     text-align: center;
 }
 
-.role-selection-popup button {
+.role-selection-popup22 button {
     margin: 10px;
     padding: 12px 24px;
-    background: rgba(145, 78, 23, 0.95);
-    color: white;
+    background: rgba(249, 202, 101, 0.95);
+    color: rgb(105, 68, 32);
     border: none;
     border-radius: 25px;
     cursor: pointer;
     transition: all 0.3s ease;
-    font-weight: 500;
+    font-weight: 700;
+    justify-content: center;
+    align-items: center;  
+    display: flex;
 }
 
-.role-selection-popup button:hover {
-    background: rgba(165, 75, 42, 0.95);
+.role-selection-popup22 button:hover {
+    background: rgba(232, 151, 122, 0.95);
     transform: translateY(-2px);
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+.role-button-group {
+  display: flex;
+  justify-content: center;
+  gap: 10px; 
 }
 
 /* Responsive adjustments */
@@ -317,3 +326,59 @@ body {
       font-size: 14px;
     }
   }
+
+  .password-input-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
+  
+  .password-input-wrapper input {
+    width: 100%;
+    padding-right: 30px;
+  }
+  
+  .toggle-password {
+    position: absolute;
+    right: 10px;
+    cursor: pointer;
+    user-select: none;
+    font-size: 18px;
+  }
+
+  .role-selection-popup {
+    position: fixed;
+    top: 20%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(225, 183, 148, 0.98);
+    padding: 20px;
+    border-radius: 50px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    backdrop-filter: blur(4px);
+  }
+  
+  .role-selection-popup h3 {
+    color: rgba(165, 75, 42, 0.95);
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  
+  .role-selection-popup button {
+    margin: 10px;
+    padding: 12px 24px;
+    background: rgba(145, 78, 23, 0.95);
+    color: white;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 500;
+  }
+  
+  .role-selection-popup button:hover {
+    background: rgba(165, 75, 42, 0.95);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }  
