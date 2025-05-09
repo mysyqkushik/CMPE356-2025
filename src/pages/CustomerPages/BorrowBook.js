@@ -145,58 +145,55 @@ const BorrowBook = () => {
           {showTable ? "Hide Book List" : "See Book List"}
         </button>
 
-        {showTable && (
-          <>
-            <div className="search-sort-container-439">
-                            <input
-                                type="text"
+        {/* BOOK LIST */}
+{showTable && (
+    <>
+        <div className="search-sort-container-439">
+            <input
+                type="text"
                 placeholder="Search books..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
                 className="search-bar-439"
-              />
-              <select onChange={(e) => setSortBy(e.target.value)} className="sort-dropdown-439">
+            />
+            <select onChange={(e) => setSortBy(e.target.value)} className="sort-dropdown-439">
                 <option value="id">Sort by Book ID</option>
                 <option value="title">Sort by Title (A-Z)</option>
                 <option value="author">Sort by Author</option>
                 <option value="quantity">Sort by Quantity</option>
                 <option value="genre">Sort by Genre</option>
-              </select>
-                        <button
+            </select>
+            <button
                 onClick={() => {
-                  setSearchTerm("");
-                  setSortBy("id");
+                    setSearchTerm("");
+                    setSortBy("id");
                 }} 
                 className="clear-filter-btn-439"
-              >
+            >
                 Clear Filters
-                        </button>
-                    </div>
+            </button>
+        </div>
 
-            <table className="book-table-439">
-              <thead>
-                <tr>
-                  <th>ID</th>
-                  <th>Title</th>
-                  <th>Author</th>
-                  <th>Genre</th>
-                  <th>Quantity</th>
-                </tr>
-              </thead>
-              <tbody>
-                {sortedBooks.map(book => (
-                  <tr key={book.id}>
-                    <td>{book.id}</td>
-                    <td>{book.title}</td>
-                    <td>{book.author}</td>
-                    <td>{book.genre}</td>
-                    <td>{book.quantity}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </>
-        )}
+        <div className="book-cards-container">
+            {sortedBooks.map(book => (
+                <div key={book.id} className="book-card">
+                    <img 
+                        src={book.imageUrl || 'default-image.png'} 
+                        alt={book.title} 
+                        className="book-image"
+                    />
+                    <div className="book-details">
+                        <div className="book-title">{book.title}</div>
+                        <div className="book-author">Author: {book.author}</div>
+                        <div className="book-genre">Genre: {book.genre}</div>
+                        <div className="book-quantity">Available: {book.quantity}</div>
+                    </div>
+                </div>
+            ))}
+        </div>
+    </>
+)}
+
                 </div>
             </div>
     );
