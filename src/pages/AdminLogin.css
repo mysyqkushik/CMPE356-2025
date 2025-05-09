@@ -1,241 +1,168 @@
-* {
-    font-family: "Prompt", sans-serif;
+.edit-profile-container-609 {
+  max-width: 700px;
+  margin: 3rem auto;
+  padding: 2.5rem;
+  background: linear-gradient(145deg, #ffffff, #f5f7fa);
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  position: relative;
+  overflow: hidden;
+}
+
+.edit-profile-container-609::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 5px;
+  background: linear-gradient(90deg, #ef7d50, #f2b597);
+}
+
+.profile-header-609 {
+  text-align: center;
+  margin-bottom: 2.5rem;
+  position: relative;
+}
+
+.profile-header-609 h2 {
+  color: #2c3e50;
+  font-size: 2.2rem;
+  margin-bottom: 1rem;
+  font-weight: 600;
+}
+
+.profile-decoration-609 {
+  width: 60px;
+  height: 4px;
+  background: linear-gradient(90deg, #ef7d50, #f2b597);
+  margin: 0 auto;
+  border-radius: 2px;
+}
+
+.edit-profile-form-609 {
+  display: flex;
+  flex-direction: column;
+  gap: 1.8rem;
+}
+
+.form-group-609 {
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+}
+
+.form-group-609 label {
+  font-weight: 500;
+  color: #34495e;
+  font-size: 0.95rem;
+  margin-left: 0.2rem;
+}
+
+.input-field-609 {
+  padding: 1rem;
+  border: 2px solid #e0e6ed;
+  border-radius: 12px;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  background-color: #f8fafc;
+}
+
+.input-field-609:focus {
+  outline: none;
+  border-color: #4a90e2;
+  box-shadow: 0 0 0 4px rgba(74, 144, 226, 0.1);
+  background-color: #ffffff;
+}
+
+.button-group-609 {
+  display: flex;
+  gap: 1.2rem;
+  margin-top: 2rem;
+}
+
+.save-button-609, .cancel-button-609 {
+  padding: 1rem 2rem;
+  border: none;
+  border-radius: 12px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  flex: 1;
+}
+
+.save-button-609 {
+  background: linear-gradient(135deg, #e2a04a, #f0863a);
+  color: white;
+  box-shadow: 0 4px 15px rgba(74, 144, 226, 0.2);
+}
+
+.save-button-609:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(74, 144, 226, 0.3);
+}
+
+.cancel-button-609 {
+  background: #fde0b5;
+  color: #64748b;
+  border: 2px solid #e2e8f0;
+}
+
+.cancel-button-609:hover {
+  background: #f1e9d1;
+  color: #475569;
+}
+
+.error-message-609 {
+  background-color: #fee2e2;
+  color: #dc2626;
+  padding: 1rem 1.5rem;
+  border-radius: 12px;
+  margin-bottom: 1.5rem;
+  border-left: 4px solid #dc2626;
+  font-weight: 500;
+}
+
+.success-message-609 {
+  background-color: #dcfce7;
+  color: #16a34a;
+  padding: 1rem 1.5rem;
+  border-radius: 12px;
+  margin-bottom: 1.5rem;
+  border-left: 4px solid #16a34a;
+  font-weight: 500;
+}
+
+.loading-container-609 {
+  text-align: center;
+  padding: 3rem;
+  color: #64748b;
+  font-size: 1.2rem;
+  font-weight: 500;
+  background: linear-gradient(145deg, #ffffff, #f5f7fa);
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  max-width: 300px;
+  margin: 3rem auto;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .edit-profile-container-609 {
+      margin: 1.5rem;
+      padding: 1.5rem;
   }
 
-
-body {
-    background: url('/public/bookshelfbg.jpg') no-repeat center center fixed; 
-    background-size: cover;;
+  .profile-header-609 h2 {
+      font-size: 1.8rem;
   }
 
-
-.container{
-    display: flex;
-    /*justify-content: center;
-    align-items: center;
-    height: 100vh; */
-    background: #e1b794;
-    flex-direction:column;
-    margin:auto;
-    padding-bottom: 10px;
-    margin-top: 200px;
-    margin-bottom: 200px;
-    width: 500px;
-    border-radius: 55px;
-}
-
-.header{
-    display: flex;
-    gap: 9px;
-    align-items: center;
-    width: 100%;
-    flex-direction:column;
-    margin:auto;
-    padding-bottom: 30px;
-    margin-top: 30px;
-}
-
-.text{
-    color: rgba(165, 75, 42, 0.862);
-    font-size: 48px;
-    font-weight: 700;
-    text-transform: none;
-}
-
-.underline{
-    width: 380px;
-    margin-left: 10px;
-    height: 6px;
-    background: rgba(165, 75, 42, 0.862);
-    border-radius: 9px;
-}
-
-.inputs{
-    margin-top: 55px;
-    display: flex;
-    flex-direction:column;
-    gap: 25px;
-}
-
-.input{
-    display:flex;
-    align-items: center;
-    margin: auto;
-    width: 300px;
-    height: 50px;
-    background: rgba(230, 163, 115, 0.547);
-    border-radius: 6px;
-}
-
-.input img{
-    margin: 0 30px;
-}
-
-.input input{
-    width: 400px;
-    height: 50px;
-    background: transparent;
-    border: none;
-    outline: none;
-    font-size: 19px;
-    color: rgba(101, 68, 56, 0.862);
-}
-
-.forgot-password
-{
-    padding-left: 150px;
-    margin-top: 27px;
-    color: #4a433dc5;
-    font-size: 15px;
-}
-
-.forgot-password span{
-    color: rgba(141, 74, 23, 0.659);
-    cursor: pointer;
-}
-
-.submit-container{
-    display: flex;
-    gap: 30px;
-    margin: 60px auto;
-}
-
-.submit{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 220px;
-    height: 59px;
-    color: white;
-    background: rgba(145, 78, 23, 0.874);
-    border-radius: 50px;
-    font-size: 19px;
-    font-weight: 700;
-    cursor: pointer;
-}
-
-.submit-container {
-    display: flex;
-    gap: 30px;
-    margin: 30px auto; /* Reduced from 60px to 30px */
-  }
-  
-  .home-button-container {
-    display: flex;
-    justify-content: center;
-    margin-bottom: 30px;
-    margin-top: 0; /* Ensures no extra space at the top */
-  }
-  
-  .home-button {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 220px;
-    height: 40px;
-    color: white;
-    background: rgba(101, 68, 56, 0.8);
-    border-radius: 50px;
-    font-size: 16px;
-    font-weight: 500;
-    cursor: pointer;
-    border: none;
-    transition: background-color 0.3s ease;
-  }
-  
-  .home-button:hover {
-    background: rgba(101, 68, 56, 1);
+  .button-group-609 {
+      flex-direction: column;
   }
 
-  /* Add this to all your CSS files (CustomerLogin.css, ManagerLogin.css, AdminLogin.css, SignUp.css) */
-
-/* Existing styles remain unchanged */
-
-/* Responsive adjustments */
-@media screen and (max-width: 768px) {
-    .container {
-      width: 90%;
-      max-width: 450px;
-      margin-top: 100px;
-      margin-bottom: 100px;
-      padding: 20px 10px;
-    }
-    
-    .text {
-      font-size: 36px;
-    }
-    
-    .underline {
-      width: 80%;
-      max-width: 300px;
-    }
+  .save-button-609, .cancel-button-609 {
+      width: 100%;
   }
-  
-  @media screen and (max-width: 480px) {
-    .container {
-      width: 95%;
-      margin-top: 50px;
-      margin-bottom: 50px;
-    }
-    
-    .text {
-      font-size: 32px;
-    }
-    
-    .underline {
-      width: 90%;
-      max-width: 250px;
-    }
-    
-    .input {
-      width: 90%;
-    }
-    
-    .submit {
-      width: 180px;
-    }
-    
-    .home-button {
-      width: 180px;
-    }
-    
-    .forgot-password {
-      padding-left: 0;
-      text-align: center;
-    }
-  }
-  
-  @media screen and (max-width: 320px) {
-    .container {
-      padding: 15px 5px;
-    }
-    
-    .text {
-      font-size: 28px;
-    }
-    
-    .inputs {
-      margin-top: 30px;
-      gap: 20px;
-    }
-    
-    .input {
-      height: 45px;
-    }
-    
-    .input input {
-      font-size: 16px;
-    }
-    
-    .submit {
-      width: 150px;
-      height: 50px;
-      font-size: 16px;
-    }
-    
-    .home-button {
-      width: 150px;
-      height: 35px;
-      font-size: 14px;
-    }
-  }
+} 

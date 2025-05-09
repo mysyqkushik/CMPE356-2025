@@ -45,6 +45,7 @@ import ManagerIssueBook from './pages//ManagerIssueBook';
 import ManagerAddBook from './pages/ManagerAddBook';
 import ManagerNavBar from './pages/ManagerNavBar';
 import HeaderSplash from './pages/HeaderSplash';
+import EditUserProfile from './pages/EditUserProfile';
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import './App.css';
@@ -103,6 +104,7 @@ const App = () => {
         <Route path="/ManagerAddBook" element={<ManagerAddBook/>} />
         <Route path="/ManagerNavBar" element={<ManagerNavBar />} />
         <Route path="/HeaderSplash" element={<HeaderSplash />} />
+        <Route path="/edit-profile" element={<EditUserProfile />} />
        
        
         <Route path="/reset-password/:email" element={<ResetPassword />} />

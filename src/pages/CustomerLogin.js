@@ -1,205 +1,178 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import "./CustomerPages/UserDetails.css";
+import "./AdminLogin.css";
 
-const ManagerLogin = () => {
-  const [userDetails, setUserDetails] = useState({
-    username: "",
-    email: "",
-    firstName: "",
-    lastName: "",
-  });
-
-  const [isEditing, setIsEditing] = useState(false);
-
-  // Added for password changes
-  const [newPassword, setNewPassword] = useState("");
-  const [currentPassword, setCurrentPassword] = useState("");
-  const [error, setError] = useState("");
-  const [successMessage, setSuccessMessage] = useState("");
-
+const CustomerLogin = () => {
   const navigate = useNavigate();
+  const [userData, setUserData] = useState(null);
+  const [editedData, setEditedData] = useState({
+      first_name: "",
+      last_name: "",
+      email: "",
+      username: "",
+      password: "" // Optional field for password change
+  });
+  const [error, setError] = useState("");
+  const [success, setSuccess] = useState("");
 
   useEffect(() => {
-    // Get logged in user from sessionStorage instead of localStorage
-    const loggedInUser = JSON.parse(sessionStorage.getItem("loggedInUser"));
-    if (loggedInUser) {
-      // Fetch user profile data
+      const loggedInUser = JSON.parse(sessionStorage.getItem("loggedInUser"));
+      if (!loggedInUser) {
+          navigate("/UnifiedLogin");
+          return;
+      }
+
+      // Fetch user data
       axios.get(`http://localhost:8080/api/users/profile/${loggedInUser.username}`)
-        .then((response) => {
-          setUserDetails({
-            username: loggedInUser.username,
-            email: loggedInUser.email,
-            firstName: response.data.first_name,
-            lastName: response.data.last_name || ""
+          .then(response => {
+              setUserData(response.data);
+              setEditedData({
+                  first_name: response.data.first_name || "",
+                  last_name: response.data.last_name || "",
+                  email: response.data.email || "",
+                  username: response.data.username || "",
+                  password: "" // Empty by default
+              });
+          })
+          .catch(error => {
+              console.error("Error fetching user data:", error);
+              setError("Failed to load user data");
           });
-        })
-        .catch((error) => {
-          console.error("Error fetching user profile:", error);
-          setError("Failed to load user details");
-        });
-    } else {
-      navigate("/login"); // Redirect to login if not logged in
-    }
   }, [navigate]);
 
-  const handleEdit = () => {
-    setIsEditing(true);
-    setError("");
-    setSuccessMessage("");
+  const handleInputChange = (e) => {
+      const { name, value } = e.target;
+      setEditedData(prev => ({
+          ...prev,
+          [name]: value
+      }));
   };
 
-  const handleSave = async () => {
-    try {
-      if (!currentPassword) {
-        setError("Please enter your current password to save changes");
-        return;
-      }
-
-      const updateData = {
-        currentPassword: currentPassword,
-        username: userDetails.username,
-        email: userDetails.email,
-        first_name: userDetails.firstName,
-        last_name: userDetails.lastName
-      };
-
-      if (newPassword) {
-        updateData.newPassword = newPassword;
-      }
-
-      // Make API call to update all fields
-      const response = await axios.put(
-        `http://localhost:8080/api/users/profile/${userDetails.email}`,
-        updateData
-      );
-
-      // Update sessionStorage with new data
-      const loggedInUser = JSON.parse(sessionStorage.getItem("loggedInUser"));
-      const updatedUser = {
-        ...loggedInUser,
-        username: userDetails.username,
-        email: userDetails.email
-      };
-      
-      sessionStorage.setItem("loggedInUser", JSON.stringify(updatedUser));
-
-      // Reset states
-      setIsEditing(false);
-      setCurrentPassword("");
-      setNewPassword("");
-      setSuccessMessage("Profile updated successfully!");
+  const handleSubmit = async (e) => {
+      e.preventDefault();
       setError("");
+      setSuccess("");
 
-    } catch (error) {
-      setError(error.response?.data?.message || "Failed to update profile");
-    }
+      try {
+          const updatedData = { ...editedData };
+          // Only include password if it's not empty
+          if (!updatedData.password) {
+              delete updatedData.password;
+          }
+
+          const response = await axios.put(
+              `http://localhost:8080/api/users/${userData.id}`,
+              updatedData
+          );
+
+          if (response.data) {
+              setSuccess("Profile updated successfully!");
+              // Update session storage with new data
+              const loggedInUser = JSON.parse(sessionStorage.getItem("loggedInUser"));
+              sessionStorage.setItem("loggedInUser", JSON.stringify({
+                  ...loggedInUser,
+                  ...response.data
+              }));
+          }
+      } catch (error) {
+          console.error("Error updating profile:", error);
+          setError(error.response?.data?.message || "Failed to update profile");
+      }
   };
 
-  const handleChange = (field, value) => {
-    setUserDetails((prev) => ({ ...prev, [field]: value }));
-  };
-
-  const handleReturn = () => {
-    navigate("/ManagerDashboard");
-  };
+  if (!userData) {
+      return <div className="loading-container-609">Loading...</div>;
+  }
 
   return (
-    <div className="user-details-container518">
-      <h2 className="user-details-title518">My User Details</h2>
-      
-      {error && <div className="user-details-message518 error">{error}</div>}
-      {successMessage && <div className="user-details-message518 success">{successMessage}</div>}
-
-      <div className="user-details-content518">
-        <div className="user-details-item518">
-          <label className="user-details-label518">Username:</label>
-          <input
-            type="text"
-            value={userDetails.username}
-            onChange={(e) => handleChange("username", e.target.value)}
-            disabled={!isEditing}
-            className="user-details-value518"
-          />
-        </div>
-
-        <div className="user-details-item518">
-          <label className="user-details-label518">Email:</label>
-          <input
-            type="email"
-            value={userDetails.email}
-            onChange={(e) => handleChange("email", e.target.value)}
-            disabled={!isEditing}
-            className="user-details-value518"
-          />
-        </div>
-
-        <div className="user-details-item518">
-          <label className="user-details-label518">First Name:</label>
-          <input
-            type="text"
-            value={userDetails.firstName}
-            onChange={(e) => handleChange("firstName", e.target.value)}
-            disabled={!isEditing}
-            className="user-details-value518"
-          />
-        </div>
-
-        <div className="user-details-item518">
-          <label className="user-details-label518">Last Name:</label>
-          <input
-            type="text"
-            value={userDetails.lastName}
-            onChange={(e) => handleChange("lastName", e.target.value)}
-            disabled={!isEditing}
-            className="user-details-value518"
-          />
-        </div>
-
-        <div className="user-details-item518">
-          <label className="user-details-label518">New Password:</label>
-          <input
-            type="password"
-            value={newPassword}
-            onChange={(e) => setNewPassword(e.target.value)}
-            disabled={!isEditing}
-            placeholder="Enter new password"
-            className="user-details-value518"
-          />
-        </div>
-
-        {/* Current Password Field - Shows when editing */}
-        {isEditing && (
-          <div className="user-details-item518">
-            <label className="user-details-label518">Current Password (required to save changes):</label>
-            <input
-              type="password"
-              value={currentPassword}
-              onChange={(e) => setCurrentPassword(e.target.value)}
-              placeholder="Enter current password to confirm changes"
-              className="user-details-value518"
-            />
+      <div className="edit-profile-container-609">
+          <div className="profile-header-609">
+              <h2>Edit Your Profile</h2>
+              <div className="profile-decoration-609"></div>
           </div>
-        )}
+          
+          {error && <div className="error-message-609">{error}</div>}
+          {success && <div className="success-message-609">{success}</div>}
+          
+          <form onSubmit={handleSubmit} className="edit-profile-form-609">
+              <div className="form-group-609">
+                  <label htmlFor="first_name">First Name:</label>
+                  <input
+                      type="text"
+                      id="first_name"
+                      name="first_name"
+                      value={editedData.first_name}
+                      onChange={handleInputChange}
+                      required
+                      className="input-field-609"
+                  />
+              </div>
 
-        <div className="user-details-buttons518">
-          {!isEditing ? (
-            <button onClick={handleEdit}>
-              Edit Profile
-            </button>
-          ) : (
-            <button onClick={handleSave}>
-              Save Changes
-            </button>
-          )}
-          <button onClick={handleReturn}>
-            Return to Dashboard
-          </button>
-        </div>
+              <div className="form-group-609">
+                  <label htmlFor="last_name">Last Name:</label>
+                  <input
+                      type="text"
+                      id="last_name"
+                      name="last_name"
+                      value={editedData.last_name}
+                      onChange={handleInputChange}
+                      required
+                      className="input-field-609"
+                  />
+              </div>
+
+              <div className="form-group-609">
+                  <label htmlFor="email">Email:</label>
+                  <input
+                      type="email"
+                      id="email"
+                      name="email"
+                      value={editedData.email}
+                      onChange={handleInputChange}
+                      required
+                      className="input-field-609"
+                  />
+              </div>
+
+              <div className="form-group-609">
+                  <label htmlFor="username">Username:</label>
+                  <input
+                      type="text"
+                      id="username"
+                      name="username"
+                      value={editedData.username}
+                      onChange={handleInputChange}
+                      required
+                      className="input-field-609"
+                  />
+              </div>
+
+              <div className="form-group-609">
+                  <label htmlFor="password">New Password (leave blank to keep current):</label>
+                  <input
+                      type="password"
+                      id="password"
+                      name="password"
+                      value={editedData.password}
+                      onChange={handleInputChange}
+                      className="input-field-609"
+                  />
+              </div>
+
+              <div className="button-group-609">
+                  <button type="submit" className="save-button-609">Save Changes</button>
+                  <button 
+                      type="button" 
+                      className="cancel-button-609"
+                      onClick={() => navigate("/CustomerDashboard")}
+                  >
+                      Return to Dashboard
+                  </button>
+              </div>
+          </form>
       </div>
-    </div>
   );
 };
 
-export default ManagerLogin;
+export default CustomerLogin;
