@@ -48,6 +48,7 @@ const ManageBooks = () => {
         : loggedInUser?.role === 'manager'
         ? 2
         : null,
+      imageUrl: '', // Add image URL or path here
     };
 
     try {
@@ -205,12 +206,13 @@ const ManageBooks = () => {
                 <li key={book.id} className="book-item">
                   <div>
                     <h5>{book.title}</h5>
+                    <p>ID: {book.id}</p>
                     <p>Author: {book.author}</p>
                     <p>Genre: {book.genre}</p>
                     <p>Published: {book.publicationDate}</p>
                     <p>Quantity: {book.quantity}</p>
                     <p>Rating: {renderStaticStars(book.rating)}</p>
-
+                    {book.imageUrl && <img src={book.imageUrl} alt={book.title} className="book-image" />}
                     <p>
                       Added By:{' '}
                       {book.addedBy === 1

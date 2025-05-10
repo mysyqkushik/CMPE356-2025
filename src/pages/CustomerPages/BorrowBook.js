@@ -184,6 +184,7 @@ const BorrowBook = () => {
                     />
                     <div className="book-details">
                         <div className="book-title">{book.title}</div>
+                        <div className="book-author">ID: {book.id}</div>
                         <div className="book-author">Author: {book.author}</div>
                         <div className="book-genre">Genre: {book.genre}</div>
                         <div className="book-quantity">Available: {book.quantity}</div>
