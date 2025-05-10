@@ -2,11 +2,8 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import ManageBar from './ManageBar';
 import './ManageBooks.css';
-
 const ManageBooks = () => {
   const [bookTitle, setBookTitle] = useState('');
-  const [searchTerm, setSearchTerm] = useState('');
-
   const [author, setAuthor] = useState('');
   const [publishedDate, setPublishedDate] = useState('');
   const [quantity, setQuantity] = useState('');
@@ -17,10 +14,9 @@ const ManageBooks = () => {
   const [editingBookId, setEditingBookId] = useState(null);
   const [showBookList, setShowBookList] = useState(true);
   const [showSuccessMessage, setShowSuccessMessage] = useState(false); 
-  const [showDeleteMessage, setShowDeleteMessage] = useState(false); 
-  const [showDeletePopup, setShowDeletePopup] = useState(false);
-
-
+  
+const [searchTerm, setSearchTerm] = useState('');
+const [filteredBooks, setFilteredBooks] = useState([]);
 
   const loggedInUser = JSON.parse(sessionStorage.getItem('loggedInUser'));
 
@@ -32,22 +28,11 @@ const ManageBooks = () => {
     try {
       const response = await axios.get('http://localhost:8080/api/books');
       setBooks(response.data);
+      setFilteredBooks(response.data); 
     } catch (error) {
       console.error('Error fetching books:', error);
     }
   };
-
-  const filteredBooks = books.filter((book) => {
-    const lowerTerm = searchTerm.toLowerCase();
-    return (
-      book.id.toString().includes(lowerTerm) ||
-      book.title.toLowerCase().includes(lowerTerm) ||
-      book.author.toLowerCase().includes(lowerTerm) ||
-      book.genre.toLowerCase().includes(lowerTerm) ||
-      book.quantity.toString().includes(lowerTerm) ||
-      book.publicationDate.toLowerCase().includes(lowerTerm)
-    );
-  });
   
 
   const handleAddBook = async () => {
@@ -67,6 +52,7 @@ const ManageBooks = () => {
         : loggedInUser?.role === 'manager'
         ? 2
         : null,
+      imageUrl: '', // Add image URL or path here
     };
 
     try {
@@ -100,14 +86,11 @@ const ManageBooks = () => {
     try {
       await axios.delete(`http://localhost:8080/api/books/${id}`);
       fetchBooks();
-      setShowDeletePopup(true);
-      setTimeout(() => setShowDeletePopup(false), 3000); // Hide popup after 3s
     } catch (error) {
       console.error('Error deleting book:', error);
     }
   };
-  
-  
+
   const resetForm = () => {
     setBookTitle('');
     setAuthor('');
@@ -158,6 +141,7 @@ const ManageBooks = () => {
   return (
     <>
       <ManageBar />
+
       <div className="manage-books-container">
         <h2>{editingBookId ? 'Edit Book' : 'Add Book'}</h2>
         <div className="form-container">
@@ -212,68 +196,76 @@ const ManageBooks = () => {
           </button>
         </div>
 
-        {/* Success / delete message */}
+        {/* Success message */}
         {showSuccessMessage && <div className="success-message">Book List updated!</div>}
-        {showDeleteMessage && <div className="delete-message">Book deleted successfully!</div>}
-
 
         <button className="toggle-book-list-btn" onClick={toggleBookList}>
           {showBookList ? 'Hide Book List' : 'Show Book List'}
         </button>
-
-        {/* Search Bar */}
-        <div className="search-container442">
+<div className="search-filter-container771">
   <input
     type="text"
-    placeholder="Search by Book ID, Title, Author, Genre, Date, Quantity..."
+    placeholder="Search by title or author..."
+    className="search-input771"
     value={searchTerm}
-    onChange={(e) => setSearchTerm(e.target.value)}
-    className="search-input442"
+    onChange={(e) => {
+      const term = e.target.value.toLowerCase();
+      setSearchTerm(term);
+      const filtered = books.filter(
+        (book) =>
+          book.title.toLowerCase().includes(term) ||
+          book.author.toLowerCase().includes(term)
+      );
+      setFilteredBooks(filtered);
+    }}
   />
+  <button
+    className="clear-filter-btn771"
+    onClick={() => {
+      setSearchTerm('');
+      setFilteredBooks(books);
+    }}
+  >
+    Clear Filters
+  </button>
 </div>
 
         {showBookList && (
           <>
             <h3>Book List</h3>
             <ul className="book-list">
-            {filteredBooks.map((book) => (
-
+              {books.map((book) => (
                 <li key={book.id} className="book-item">
-                  <div>
-                    <h5>{book.title}</h5>
-                    <p>Author: {book.author}</p>
-                    <p>Genre: {book.genre}</p>
-                    <p>Published: {book.publicationDate}</p>
-                    <p>Quantity: {book.quantity}</p>
-                    <p>Rating: {renderStaticStars(book.rating)}</p>
-
-                    <p>
-                      Added By:{' '}
-                      {book.addedBy === 1
-                        ? 'Admin'
-                        : book.addedBy === 2
-                        ? 'Manager'
-                        : 'Unknown'}
-                    </p>
-                  </div>
-                  <div>
+                <div className="book-left">
+                  {book.imageUrl ? (
+                    <img src={book.imageUrl} alt={book.title} className="book-image" />
+                  ) : (
+                    <div className="book-image-placeholder">No Image</div>
+                  )}
+                </div>
+                <div className="book-right">
+                  <h5>{book.title}</h5>
+                  <p>ID: {book.id}</p>
+                  <p>Author: {book.author}</p>
+                  <p>Genre: {book.genre}</p>
+                  <p>Published: {book.publicationDate}</p>
+                  <p>Quantity: {book.quantity}</p>
+                  <p>Rating: {renderStaticStars(book.rating)}</p>
+                  <p>
+                    Added By:{' '}
+                    {book.addedBy === 1 ? 'Admin' : book.addedBy === 2 ? 'Manager' : 'Unknown'}
+                  </p>
+                  <div className="book-actions">
                     <button className="edit-btn" onClick={() => handleEdit(book)}>Edit</button>
                     <button className="delete-btn" onClick={() => handleDelete(book.id)}>Delete</button>
                   </div>
-                </li>
+                </div>
+              </li>
+              
               ))}
             </ul>
           </>
         )}
-        
-        {showDeletePopup && (
-  <div className="popup-overlay442">
-    <div className="popup-message442">
-      📚 Book deleted successfully!
-    </div>
-  </div>
-)}
-
       </div>
     </>
   );

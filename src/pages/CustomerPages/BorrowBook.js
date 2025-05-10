@@ -17,6 +17,8 @@ const BorrowBook = () => {
   const [message, setMessage] = useState({ text: "", type: "" });
     const navigate = useNavigate();
   const [isConfettiVisible, setConfettiVisible] = useState(false);
+  const [selectedBookId, setSelectedBookId] = useState(null);
+
 
     useEffect(() => {
     axios.get("http://localhost:8080/api/books")
@@ -175,23 +177,32 @@ const BorrowBook = () => {
         </div>
 
         <div className="book-cards-container">
-            {sortedBooks.map(book => (
-                <div key={book.id} className="book-card">
-                    <img 
-                        src={book.imageUrl || 'default-image.png'} 
-                        alt={book.title} 
-                        className="book-image"
-                    />
-                    <div className="book-details">
-                        <div className="book-title">{book.title}</div>
-                        <div className="book-author">ID: {book.id}</div>
-                        <div className="book-author">Author: {book.author}</div>
-                        <div className="book-genre">Genre: {book.genre}</div>
-                        <div className="book-quantity">Available: {book.quantity}</div>
-                    </div>
-                </div>
-            ))}
-        </div>
+  {sortedBooks.map(book => (
+    <div
+      key={book.id}
+      className={`book-card ${selectedBookId === book.id ? "selected" : ""}`}
+      onClick={() => {
+        setBookId(book.id);
+        setSelectedBookId(book.id);
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      }}
+    >
+      <img 
+        src={book.imageUrl || 'default-image.png'} 
+        alt={book.title} 
+        className="book-image"
+      />
+      <div className="book-details">
+        <div className="book-title">{book.title}</div>
+        <div className="book-author">ID: {book.id}</div>
+        <div className="book-author">Author: {book.author}</div>
+        <div className="book-genre">Genre: {book.genre}</div>
+        <div className="book-quantity">Available: {book.quantity}</div>
+      </div>
+    </div>
+  ))}
+</div>
+
     </>
 )}
 

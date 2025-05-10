@@ -14,7 +14,10 @@ const ManageBooks = () => {
   const [books, setBooks] = useState([]);
   const [editingBookId, setEditingBookId] = useState(null);
   const [showBookList, setShowBookList] = useState(true);
-  const [showSuccessMessage, setShowSuccessMessage] = useState(false); // New state for success message
+  const [showSuccessMessage, setShowSuccessMessage] = useState(false); 
+  
+const [searchTerm, setSearchTerm] = useState('');
+const [filteredBooks, setFilteredBooks] = useState([]);
 
   const loggedInUser = JSON.parse(sessionStorage.getItem('loggedInUser'));
 
@@ -26,10 +29,12 @@ const ManageBooks = () => {
     try {
       const response = await axios.get('http://localhost:8080/api/books');
       setBooks(response.data);
+      setFilteredBooks(response.data); 
     } catch (error) {
       console.error('Error fetching books:', error);
     }
   };
+  
 
   const handleAddBook = async () => {
     const isEditing = Boolean(editingBookId);
@@ -137,6 +142,7 @@ const ManageBooks = () => {
   return (
     <>
       <ManagerNavBar />
+
       <div className="manage-books-container">
         <h2>{editingBookId ? 'Edit Book' : 'Add Book'}</h2>
         <div className="form-container">
@@ -197,6 +203,33 @@ const ManageBooks = () => {
         <button className="toggle-book-list-btn" onClick={toggleBookList}>
           {showBookList ? 'Hide Book List' : 'Show Book List'}
         </button>
+<div className="search-filter-container771">
+  <input
+    type="text"
+    placeholder="Search by title or author..."
+    className="search-input771"
+    value={searchTerm}
+    onChange={(e) => {
+      const term = e.target.value.toLowerCase();
+      setSearchTerm(term);
+      const filtered = books.filter(
+        (book) =>
+          book.title.toLowerCase().includes(term) ||
+          book.author.toLowerCase().includes(term)
+      );
+      setFilteredBooks(filtered);
+    }}
+  />
+  <button
+    className="clear-filter-btn771"
+    onClick={() => {
+      setSearchTerm('');
+      setFilteredBooks(books);
+    }}
+  >
+    Clear Filters
+  </button>
+</div>
 
         {showBookList && (
           <>
@@ -204,29 +237,32 @@ const ManageBooks = () => {
             <ul className="book-list">
               {books.map((book) => (
                 <li key={book.id} className="book-item">
-                  <div>
-                    <h5>{book.title}</h5>
-                    <p>ID: {book.id}</p>
-                    <p>Author: {book.author}</p>
-                    <p>Genre: {book.genre}</p>
-                    <p>Published: {book.publicationDate}</p>
-                    <p>Quantity: {book.quantity}</p>
-                    <p>Rating: {renderStaticStars(book.rating)}</p>
-                    {book.imageUrl && <img src={book.imageUrl} alt={book.title} className="book-image" />}
-                    <p>
-                      Added By:{' '}
-                      {book.addedBy === 1
-                        ? 'Admin'
-                        : book.addedBy === 2
-                        ? 'Manager'
-                        : 'Unknown'}
-                    </p>
-                  </div>
-                  <div>
+                <div className="book-left">
+                  {book.imageUrl ? (
+                    <img src={book.imageUrl} alt={book.title} className="book-image" />
+                  ) : (
+                    <div className="book-image-placeholder">No Image</div>
+                  )}
+                </div>
+                <div className="book-right">
+                  <h5>{book.title}</h5>
+                  <p>ID: {book.id}</p>
+                  <p>Author: {book.author}</p>
+                  <p>Genre: {book.genre}</p>
+                  <p>Published: {book.publicationDate}</p>
+                  <p>Quantity: {book.quantity}</p>
+                  <p>Rating: {renderStaticStars(book.rating)}</p>
+                  <p>
+                    Added By:{' '}
+                    {book.addedBy === 1 ? 'Admin' : book.addedBy === 2 ? 'Manager' : 'Unknown'}
+                  </p>
+                  <div className="book-actions">
                     <button className="edit-btn" onClick={() => handleEdit(book)}>Edit</button>
                     <button className="delete-btn" onClick={() => handleDelete(book.id)}>Delete</button>
                   </div>
-                </li>
+                </div>
+              </li>
+              
               ))}
             </ul>
           </>

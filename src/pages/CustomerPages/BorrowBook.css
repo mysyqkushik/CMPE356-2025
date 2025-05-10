@@ -223,7 +223,12 @@
     font-size: 16px;
     font-weight: 500;
 }
-
+.book-card.selected {
+    border: 2px solid #ff9900;
+    background-color: #fff8e1;
+    box-shadow: 0 0 10px rgba(255, 153, 0, 0.5);
+  }
+  
 .borrow-message-439.success {
     background-color: #dcedc8;
     color: #2e7d32;

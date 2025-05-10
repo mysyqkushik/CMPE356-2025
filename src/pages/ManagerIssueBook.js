@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Link } from 'react-router-dom';
-import ManagerNavBar from './ManagerNavBar';
+import ManageBar from './ManagerPages/ManageBar';
 import Confetti from 'react-confetti';
 import { useNavigate } from "react-router-dom";
 import "./IssueBook.css";
@@ -19,6 +19,7 @@ const ManagerIssueBook = () => {
     const [message, setMessage] = useState({ text: "", type: "" });
     const navigate = useNavigate();
     const [isConfettiVisible, setConfettiVisible] = useState(false);
+    const [selectedBookId, setSelectedBookId] = useState(null);
 
     useEffect(() => {
         axios.get("http://localhost:8080/api/books")
@@ -85,7 +86,7 @@ const ManagerIssueBook = () => {
 
     return (
         <div>
-            <ManagerNavBar />
+            <ManageBar />
 
             <div className="borrow-container-739">
                 {/* Confetti */}
@@ -166,28 +167,32 @@ const ManagerIssueBook = () => {
                             </button>
                         </div>
 
-                        <table className="book-table-739">
-                            <thead>
-                                <tr>
-                                    <th>ID</th>
-                                    <th>Title</th>
-                                    <th>Author</th>
-                                    <th>Genre</th>
-                                    <th>Quantity</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {sortedBooks.map(book => (
-                                    <tr key={book.id}>
-                                        <td>{book.id}</td>
-                                        <td>{book.title}</td>
-                                        <td>{book.author}</td>
-                                        <td>{book.genre}</td>
-                                        <td>{book.quantity}</td>
-                                    </tr>
-                                ))}
-                            </tbody>
-                        </table>
+                        <div className="book-cards-container">
+                            {sortedBooks.map(book => (
+                                <div
+                                    key={book.id}
+                                    className={`book-card ${selectedBookId === book.id ? "selected" : ""}`}
+                                    onClick={() => {
+                                        setBookId(book.id);
+                                        setSelectedBookId(book.id);
+                                        window.scrollTo({ top: 0, behavior: "smooth" });
+                                    }}
+                                >
+                                    <img 
+                                        src={book.imageUrl || 'default-image.png'} 
+                                        alt={book.title} 
+                                        className="book-image"
+                                    />
+                                    <div className="book-details">
+                                        <div className="book-title">{book.title}</div>
+                                        <div className="book-author">ID: {book.id}</div>
+                                        <div className="book-author">Author: {book.author}</div>
+                                        <div className="book-genre">Genre: {book.genre}</div>
+                                        <div className="book-quantity">Available: {book.quantity}</div>
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
                     </>
                 )}
             </div>
@@ -195,4 +200,4 @@ const ManagerIssueBook = () => {
     );
 };
 
-export default ManagerIssueBook; 
+export default ManagerIssueBook;
